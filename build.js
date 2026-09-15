@@ -20,6 +20,8 @@ marked.use({ gfm: true });
 var config = JSON.parse(fs.readFileSync('site.config.json', 'utf-8'));
 var DIST = 'dist';
 var siteUrl = config.url.replace(/\/$/, '');
+var basePath = (config.basePath || '/').replace(/\/$/, '');
+var base = basePath + '/';
 
 // 유틸리티
 function ensureDir(dir) {
@@ -82,6 +84,7 @@ function htmlTemplate(opts) {
   var hasCode = opts.hasCode || false;
   var jsonLd = opts.jsonLd || '';
   var ogType = opts.ogType || 'website';
+  var pathPrefix = opts.pathPrefix || base;
 
   var adsenseTag = config.adsenseId
     ? '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + config.adsenseId + '" crossorigin="anonymous"></script>'
@@ -118,14 +121,14 @@ function htmlTemplate(opts) {
     + hljsThemeScript
     + '})();\n'
     + '  </script>\n'
-    + '  <link rel="stylesheet" href="/css/style.css">\n'
+    + '  <link rel="stylesheet" href="' + pathPrefix + 'css/style.css">\n'
     + (hljsCss ? hljsCss + '\n' : '')
     + (jsonLd ? '  <script type="application/ld+json">' + jsonLd + '</script>\n' : '')
     + '</head>\n'
     + '<body>\n'
     + '  <header class="site-header">\n'
     + '    <div class="container">\n'
-    + '      <h1 class="site-title"><a href="/">' + escapeHtml(config.title) + '</a></h1>\n'
+    + '      <h1 class="site-title"><a href="' + base + '">' + escapeHtml(config.title) + '</a></h1>\n'
     + '      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
     + '    </div>\n'
     + '  </header>\n\n'
@@ -133,13 +136,13 @@ function htmlTemplate(opts) {
     + '  <footer class="site-footer">\n'
     + '    <div class="container">\n'
     + '      <nav class="footer-nav">\n'
-    + '        <a href="/about.html">소개</a>\n'
-    + '        <a href="/privacy.html">개인정보처리방침</a>\n'
+    + '        <a href="' + base + 'about.html">소개</a>\n'
+    + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
     + '      </nav>\n'
     + '      <p>&copy; 2026 ' + escapeHtml(config.title) + '</p>\n'
     + '    </div>\n'
     + '  </footer>\n\n'
-    + '  <script src="/js/theme.js"></script>\n'
+    + '  <script src="' + pathPrefix + 'js/theme.js"></script>\n'
     + '</body>\n'
     + '</html>';
 }
@@ -190,7 +193,7 @@ function buildPosts() {
 
     var pageContent =
       '  <main class="container">\n'
-      + '    <a href="/" class="back-link">&larr; 목록으로</a>\n'
+      + '    <a href="' + base + '" class="back-link">&larr; 목록으로</a>\n'
       + '    <article>\n'
       + '      <header class="post-header">\n'
       + '        <h1 class="post-title">' + escapeHtml(meta.title || slug) + '</h1>\n'
@@ -212,7 +215,8 @@ function buildPosts() {
       content: pageContent,
       hasCode: hasCode,
       jsonLd: jsonLd,
-      ogType: 'article'
+      ogType: 'article',
+      pathPrefix: base.replace(/\/$/, '') === '' ? '../' : base
     });
 
     ensureDir(path.join(DIST, 'posts'));
@@ -240,7 +244,7 @@ function buildIndex(posts) {
     listHtml = '<ul class="post-list">\n';
     posts.forEach(function(post) {
       listHtml += '    <li class="post-item">\n';
-      listHtml += '      <h2 class="post-item-title"><a href="/posts/' + post.slug + '.html">' + escapeHtml(post.title) + '</a></h2>\n';
+      listHtml += '      <h2 class="post-item-title"><a href="' + base + 'posts/' + post.slug + '.html">' + escapeHtml(post.title) + '</a></h2>\n';
       listHtml += '      <div class="post-item-meta"><time datetime="' + post.date + '">' + formatDate(post.date) + '</time></div>\n';
       if (post.summary) {
         listHtml += '      <p class="post-item-summary">' + escapeHtml(post.summary) + '</p>\n';
