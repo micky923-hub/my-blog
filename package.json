@@ -1,0 +1,14 @@
+{
+  "name": "financial-diary",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npx http-server dist -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "marked": "^12.0.1",
+    "marked-highlight": "^2.1.0",
+    "highlight.js": "^11.9.0"
+  }
+}

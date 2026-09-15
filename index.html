@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>파이낸셜 다이어리</title>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title"><a href="index.html">파이낸셜 다이어리</a></h1>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <section class="site-intro">
+    <div class="container">
+      <p>하루 30분, 경제가 보이는 시간. 어려운 뉴스 대신 핵심만 골라, 오늘 내 지갑과 내일의 자산에 영향을 주는 이야기를 전합니다. 짧게 읽고, 길게 남는 경제 콘텐츠</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div id="post-list">
+      <p class="loading">글을 불러오는 중...</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 파이낸셜 다이어리</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
