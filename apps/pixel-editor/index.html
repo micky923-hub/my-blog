@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>픽셀 아트 에디터</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>🎨 픽셀 아트 에디터</h1>
+    </header>
+
+    <main class="editor-layout">
+        <aside class="sidebar">
+            <!-- 도구 모음 -->
+            <section class="tool-section">
+                <h2 class="section-title">도구</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn active" data-tool="pen" aria-label="펜 도구" aria-pressed="true">✏️ 펜</button>
+                    <button class="tool-btn" data-tool="eraser" aria-label="지우개 도구" aria-pressed="false">🧹 지우개</button>
+                    <button class="tool-btn" data-tool="eyedropper" aria-label="스포이트 도구" aria-pressed="false">💧 스포이트</button>
+                    <button class="tool-btn" data-tool="fill" aria-label="채우기 도구" aria-pressed="false">🪣 채우기</button>
+                </div>
+            </section>
+
+            <!-- 컬러 팔레트 -->
+            <section class="palette-section">
+                <h2 class="section-title">색상</h2>
+                <div class="current-color-display">
+                    <div class="color-preview" id="colorPreview"></div>
+                    <span class="color-hex" id="colorHex">#000000</span>
+                    <input type="color" id="customColorPicker" class="custom-color-picker" value="#000000" aria-label="커스텀 색 선택">
+                </div>
+                <div class="palette-grid" id="paletteGrid"></div>
+            </section>
+
+            <!-- 액션 버튼 -->
+            <section class="action-section">
+                <h2 class="section-title">액션</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="undoBtn" aria-label="되돌리기">↩️ 되돌리기</button>
+                    <button class="action-btn" id="redoBtn" aria-label="다시하기">↪️ 다시하기</button>
+                    <button class="action-btn" id="clearBtn" aria-label="전체 지우기">🗑️ 전체 지우기</button>
+                    <button class="action-btn" id="gridToggleBtn" aria-label="격자선 토글">🔲 격자선</button>
+                </div>
+                <div class="export-row">
+                    <select id="exportSize" class="export-select" aria-label="내보내기 크기">
+                        <option value="16">16x16</option>
+                        <option value="256">256x256</option>
+                        <option value="512" selected>512x512</option>
+                    </select>
+                    <button class="action-btn export-btn" id="exportBtn" aria-label="PNG 저장">💾 PNG 저장</button>
+                </div>
+            </section>
+        </aside>
+
+        <section class="canvas-area">
+            <canvas id="pixelCanvas"></canvas>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>픽셀 아트 에디터 | 클릭/드래그로 그려보세요</span>
+    </footer>
+
+    <script src="editor.js"></script>
+</body>
+</html>
