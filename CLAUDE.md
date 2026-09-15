@@ -1,88 +1,30 @@
-# my-blog
+## 프로젝트 개요
+마크다운 기반 블로그 + 미니 웹앱 포트폴리오.  HTML, CSS, JavaScript 만 사용.
 
-마크다운 파일을 읽어서 정적 블로그 웹사이트(SSG)로 변환하는 프로젝트. Google AdSense 수익화를 위해 사전 빌드된 HTML을 생성한다.
+## 작업 사이클
+사용자가 웹앱 주제를 요청하면 다음 순서로 진행한다.
 
-## 기술 스택
+1. Plan -  서브에이전트를 만들어 계획을 작성한다. 어떤 웹앱을 만들지, 파일 구조는 어떻게 할지 정리한다. 작성한 계획은 spec.md 로 저장하면, 사용자 승인을 받는다.
+2. Build -  서브에이전트를 만들어 구현한다. 웹앱은 /apps/{앱이름}/폴더에 독립적으로 만든다. 블로그의 다른 파일을 건드리지 않는다.
+3. Review -  별도 서브에이전트를 만들어 검증한다. 브라우저에서 정상 동작하는지, 코드에 문제가 없는지 확인하고 review.md 를 작성한다. 문제가 있으면 수정한다.
+4. Embed - 블로그 메인 페이지( index.html) 에 웹앱 카드를 추가한다. 카드에는 제목, 설명, 미리보기 이미지 또는 iframe 을 넣는다. 깃 커밋한다.
 
-- HTML, CSS, JavaScript (프레임워크 없음, 순수 바닐라)
-- 빌드: Node.js (`build.js`) — marked.js + highlight.js로 마크다운→HTML 변환
-- SEO: Open Graph, JSON-LD, sitemap.xml, robots.txt
-- AdSense: `site.config.json`의 `adsenseId`로 광고 스크립트 자동 삽입
 
-## 프로젝트 구조
+## 서브에이전트 규칙
 
-```
-my-blog/
-├── build.js              # 빌드 스크립트 (마크다운→정적 HTML)
-├── site.config.json      # 사이트 설정 (제목, URL, AdSense ID)
-├── package.json          # npm 의존성
-├── css/
-│   └── style.css         # 전체 스타일 (다크 모드 포함)
-├── js/
-│   └── theme.js          # 다크 모드 토글 (빌드된 페이지용)
-├── posts/                # 마크다운 블로그 글 (.md 파일)
-│   └── *.md
-├── pages/                # 정적 페이지 (소개, 개인정보처리방침)
-│   ├── about.md
-│   └── privacy.md
-├── dist/                 # 빌드 출력 (배포 대상)
-│   ├── index.html
-│   ├── about.html
-│   ├── privacy.html
-│   ├── sitemap.xml
-│   ├── robots.txt
-│   ├── css/
-│   ├── js/
-│   └── posts/
-└── CLAUDE.md
-```
+* 서브에이전트에게 작업을 넘길 때 전용 지침 파일(.md)을 만들어 전달한다.
+* Build 서브에이전트와  Review 서브에이전트는 반드시 분리한다.
+* 서브에이전트는 지침 파일에 명시된 범위만 수정한다.
 
-## 마크다운 포스트 형식
 
-각 `.md` 파일 상단에 YAML frontmatter를 포함:
+## 웹앱 규칙
 
-```markdown
----
-title: 글 제목
-date: 2024-01-15
-tags: [태그1, 태그2]
-summary: 글 요약 (목록에 표시)
----
+* 모든 웹앱은 /apps/{앱이름}/폴더 안에 자체 완결된다.
+* 외부 라이브러리 사용을 최소화한다. CDN은 허용한다.
+* 모바일에서도 사용할 수 있어야 한다.
 
-본문 내용...
-```
 
-## 빌드 & 실행
+## 규칙
 
-```bash
-npm install        # 최초 1회
-npm run build      # dist/ 폴더에 정적 사이트 생성
-npm run dev        # dist/ 폴더를 로컬 서버로 확인
-```
-
-## 새 글 추가 방법
-
-1. `posts/` 디렉토리에 `.md` 파일 생성 (frontmatter 포함)
-2. `npm run build` 실행
-
-## 다크 모드
-
-- CSS 커스텀 프로퍼티(변수)로 색상 관리
-- `prefers-color-scheme` 미디어 쿼리로 시스템 설정 연동
-- `data-theme` 속성으로 수동 토글 지원
-- `localStorage`에 사용자 선택 저장
-- `<head>` 인라인 스크립트로 FOUC 방지
-
-## AdSense 설정
-
-1. `site.config.json`의 `adsenseId`에 발급받은 ID 입력 (예: `ca-pub-XXXXXXXX`)
-2. `url`을 실제 도메인으로 변경
-3. `npm run build` 실행
-
-## 코딩 규칙
-
-- ES 모듈 사용하지 않음 — `<script>` 태그로 직접 로드
-- CSS 클래스 네이밍: 시맨틱한 이름 사용
-- 한국어 주석 사용
-- 외부 의존성 최소화
-- 접근성(a11y) 고려: 시맨틱 HTML, ARIA 속성
+* 승인 없이 구현을 시작하지 않는다.
+* 막히면 사용자에게 알린다.

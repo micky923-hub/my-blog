@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>2048 게임</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">2048</h1>
+      <div class="scores">
+        <div class="score-box">
+          <span class="score-label">점수</span>
+          <span class="score-value" id="current-score">0</span>
+        </div>
+        <div class="score-box">
+          <span class="score-label">최고</span>
+          <span class="score-value" id="best-score">0</span>
+        </div>
+      </div>
+    </header>
+    <div class="controls">
+      <button class="new-game-btn" id="new-game-btn">새 게임</button>
+    </div>
+    <div class="game-container" id="game-container">
+      <div class="grid-background" id="grid-background"></div>
+      <div class="tile-container" id="tile-container"></div>
+      <div class="game-message" id="game-message">
+        <p id="message-text"></p>
+        <button class="message-btn" id="message-btn"></button>
+      </div>
+    </div>
+    <p class="instructions">방향키 또는 스와이프로 타일을 움직이세요.<br>같은 숫자 타일이 만나면 하나로 합쳐집니다!</p>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

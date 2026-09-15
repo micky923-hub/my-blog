@@ -235,6 +235,28 @@ function buildPosts() {
   return posts;
 }
 
+// 웹앱 카드 HTML 생성
+function buildAppsHtml() {
+  var appsFile = 'apps.json';
+  if (!fs.existsSync(appsFile)) return '';
+  var apps = JSON.parse(fs.readFileSync(appsFile, 'utf-8'));
+  if (apps.length === 0) return '';
+
+  var html = '    <section class="web-apps">\n';
+  html += '      <h2 class="section-title">웹앱</h2>\n';
+  html += '      <div class="app-grid">\n';
+  apps.forEach(function(app) {
+    html += '        <a href="' + base + app.path + '" class="app-card">\n';
+    html += '          <span class="app-card-emoji">' + (app.emoji || '') + '</span>\n';
+    html += '          <h3 class="app-card-title">' + escapeHtml(app.title) + '</h3>\n';
+    html += '          <p class="app-card-desc">' + escapeHtml(app.description) + '</p>\n';
+    html += '        </a>\n';
+  });
+  html += '      </div>\n';
+  html += '    </section>\n';
+  return html;
+}
+
 // 인덱스 페이지 빌드
 function buildIndex(posts) {
   var listHtml = '';
@@ -261,6 +283,8 @@ function buildIndex(posts) {
     listHtml += '  </ul>';
   }
 
+  var appsHtml = buildAppsHtml();
+
   var pageContent =
     '  <section class="site-intro">\n'
     + '    <div class="container">\n'
@@ -268,6 +292,8 @@ function buildIndex(posts) {
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main class="container">\n'
+    + (appsHtml ? appsHtml + '\n' : '')
+    + '    <h2 class="section-title">최근 글</h2>\n'
     + '    <div id="post-list">\n'
     + '  ' + listHtml + '\n'
     + '    </div>\n'
@@ -373,6 +399,11 @@ ensureDir(DIST);
 copyDir('css', path.join(DIST, 'css'));
 ensureDir(path.join(DIST, 'js'));
 fs.copyFileSync('js/theme.js', path.join(DIST, 'js', 'theme.js'));
+
+if (fs.existsSync('apps')) {
+  copyDir('apps', path.join(DIST, 'apps'));
+  console.log('  apps/ 폴더 복사 완료');
+}
 
 var posts = buildPosts();
 console.log('  포스트 ' + posts.length + '개 빌드 완료');
