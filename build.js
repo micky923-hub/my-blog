@@ -29,7 +29,7 @@ function ensureDir(dir) {
 }
 
 function escapeHtml(text) {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function parseFrontmatter(rawText) {
@@ -126,6 +126,7 @@ function htmlTemplate(opts) {
     + (jsonLd ? '  <script type="application/ld+json">' + jsonLd + '</script>\n' : '')
     + '</head>\n'
     + '<body>\n'
+    + '  <a href="#main-content" class="visually-hidden">본문으로 건너뛰기</a>\n'
     + '  <header class="site-header">\n'
     + '    <div class="container">\n'
     + '      <h1 class="site-title"><a href="' + base + '">' + escapeHtml(config.title) + '</a></h1>\n'
@@ -139,7 +140,7 @@ function htmlTemplate(opts) {
     + '        <a href="' + base + 'about.html">소개</a>\n'
     + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
     + '      </nav>\n'
-    + '      <p>&copy; 2026 ' + escapeHtml(config.title) + '</p>\n'
+    + '      <p>&copy; ' + new Date().getFullYear() + ' ' + escapeHtml(config.title) + '</p>\n'
     + '    </div>\n'
     + '  </footer>\n\n'
     + '  <script src="' + pathPrefix + 'js/theme.js"></script>\n'
@@ -192,7 +193,7 @@ function buildPosts() {
     });
 
     var pageContent =
-      '  <main class="container">\n'
+      '  <main id="main-content" class="container">\n'
       + '    <a href="' + base + '" class="back-link">&larr; 목록으로</a>\n'
       + '    <article>\n'
       + '      <header class="post-header">\n'
@@ -247,7 +248,7 @@ function buildAppsHtml() {
   html += '      <div class="app-grid">\n';
   apps.forEach(function(app) {
     html += '        <a href="' + base + app.path + '" class="app-card">\n';
-    html += '          <span class="app-card-emoji">' + (app.emoji || '') + '</span>\n';
+    html += '          <span class="app-card-emoji">' + escapeHtml(app.emoji || '') + '</span>\n';
     html += '          <h3 class="app-card-title">' + escapeHtml(app.title) + '</h3>\n';
     html += '          <p class="app-card-desc">' + escapeHtml(app.description) + '</p>\n';
     html += '        </a>\n';
@@ -291,7 +292,7 @@ function buildIndex(posts) {
     + '      <p>' + escapeHtml(config.description) + '</p>\n'
     + '    </div>\n'
     + '  </section>\n\n'
-    + '  <main class="container">\n'
+    + '  <main id="main-content" class="container">\n'
     + (appsHtml ? appsHtml + '\n' : '')
     + '    <h2 class="section-title">최근 글</h2>\n'
     + '    <div id="post-list">\n'
@@ -332,7 +333,7 @@ function buildStaticPages() {
     var htmlContent = marked.parse(parsed.content);
 
     var pageContent =
-      '  <main class="container">\n'
+      '  <main id="main-content" class="container">\n'
       + '    <article class="post-content static-page">\n'
       + htmlContent + '\n'
       + '    </article>\n'

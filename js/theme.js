@@ -29,4 +29,11 @@
   });
 
   updateToggle();
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.removeAttribute('data-theme');
+      updateToggle();
+    }
+  });
 })();
