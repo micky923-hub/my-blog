@@ -417,6 +417,9 @@ console.log('  정적 페이지 빌드 완료');
 
 buildSitemap(posts);
 buildRobots();
+if (fs.existsSync('CNAME')) {
+  fs.copyFileSync('CNAME', path.join(DIST, 'CNAME'));
+}
 console.log('  sitemap.xml, robots.txt 생성 완료');
 
 console.log('\n빌드 완료! dist/ 폴더를 배포하세요.');
