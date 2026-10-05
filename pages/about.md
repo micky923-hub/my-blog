@@ -21,4 +21,4 @@ description: 파이낸셜 다이어리 블로그를 소개합니다.
 
 블로그에 대한 의견이나 제안이 있으시면 아래로 연락해 주세요.
 
-- 이메일: contact@example.com
+- 이메일: micky923@gmail.com
