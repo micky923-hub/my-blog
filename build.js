@@ -266,15 +266,52 @@ function buildAppsHtml() {
 
 // 인덱스 페이지 빌드
 function buildIndex(posts) {
+  var tagCount = {};
+  posts.forEach(function(post) {
+    post.tags.forEach(function(tag) {
+      tagCount[tag] = (tagCount[tag] || 0) + 1;
+    });
+  });
+  var allTags = Object.keys(tagCount).sort(function(a, b) {
+    return tagCount[b] - tagCount[a];
+  });
+
+  var searchHtml = '    <div class="search-box">\n'
+    + '      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>\n'
+    + '      <input type="text" id="search-input" class="search-input" placeholder="검색어를 입력하세요.">\n'
+    + '    </div>\n';
+
+  var displayTags = allTags.slice(0, 15);
+
+  var keywordsHtml = '    <div class="keyword-section">\n'
+    + '      <p class="keyword-label"><span class="keyword-icon">&#9889;</span> 원하는 <strong>키워드</strong>를 골라보세요!</p>\n'
+    + '      <div class="keyword-list">\n';
+  displayTags.forEach(function(tag) {
+    keywordsHtml += '        <button class="keyword-btn" type="button" data-tag="' + escapeHtml(tag) + '">' + escapeHtml(tag) + '</button>\n';
+  });
+  keywordsHtml += '      </div>\n'
+    + '    </div>\n';
+
+  var bannerHtml = '    <div class="hero-banner">\n'
+    + '      <div class="hero-overlay">\n'
+    + '        <div class="hero-content">\n'
+    + '          <p class="hero-badge">Financial Diary</p>\n'
+    + '          <p class="hero-text">하루 30분, 경제가 보이는 시간.<br>어려운 뉴스 대신 핵심만 골라, 오늘 내 지갑과 내일의 자산에 영향을 주는 이야기를 전합니다.</p>\n'
+    + '          <a href="#main-content" class="hero-cta">글 읽으러 가기 &rarr;</a>\n'
+    + '        </div>\n'
+    + '      </div>\n'
+    + '    </div>\n';
+
   var cardsHtml = '';
   if (posts.length === 0) {
     cardsHtml = '<p class="loading">아직 작성된 글이 없습니다.</p>';
   } else {
     posts.forEach(function(post) {
+      var tagsAttr = post.tags.map(function(t) { return escapeHtml(t); }).join(',');
       var thumbHtml = post.image
         ? '<img class="post-card-thumb" src="' + escapeHtml(post.image) + '" alt="" loading="lazy">'
         : '<div class="post-card-no-thumb"></div>';
-      cardsHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-card">\n';
+      cardsHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-card" data-tags="' + tagsAttr + '" data-title="' + escapeHtml(post.title) + '" data-summary="' + escapeHtml(post.summary) + '">\n';
       cardsHtml += '        ' + thumbHtml + '\n';
       cardsHtml += '        <div class="post-card-body">\n';
       cardsHtml += '          <h3 class="post-card-title">' + escapeHtml(post.title) + '</h3>\n';
@@ -292,23 +329,29 @@ function buildIndex(posts) {
   var appsHtml = buildAppsHtml();
 
   var pageContent =
-    '  <section class="site-intro">\n'
-    + '    <div class="container">\n'
-    + '      <p>' + escapeHtml(config.description) + '</p>\n'
+    '  <section class="top-section">\n'
+    + '    <div class="container container-wide">\n'
+    + searchHtml
+    + keywordsHtml
+    + bannerHtml
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
     + (appsHtml ? appsHtml + '\n' : '')
     + '    <div class="list-header">\n'
-    + '      <h2 class="section-title">최근 글</h2>\n'
-    + '      <div class="view-toggle">\n'
-    + '        <button id="view-list" class="view-btn active" type="button" aria-label="2열 보기" title="2열 보기">' + listIcon + '</button>\n'
-    + '        <button id="view-grid" class="view-btn" type="button" aria-label="3열 보기" title="3열 보기">' + gridIcon + '</button>\n'
+    + '      <span id="post-count" class="post-count">총 ' + posts.length + '개</span>\n'
+    + '      <div class="list-header-right">\n'
+    + '        <span class="sort-label">최신순</span>\n'
+    + '        <div class="view-toggle">\n'
+    + '          <button id="view-list" class="view-btn active" type="button" aria-label="2열 보기" title="2열 보기">' + listIcon + '</button>\n'
+    + '          <button id="view-grid" class="view-btn" type="button" aria-label="3열 보기" title="3열 보기">' + gridIcon + '</button>\n'
+    + '        </div>\n'
     + '      </div>\n'
     + '    </div>\n'
     + '    <div id="post-grid" class="post-grid view-list">\n'
     + cardsHtml
     + '    </div>\n'
+    + '    <p id="no-results" class="no-results" style="display:none;">검색 결과가 없습니다.</p>\n'
     + '    <nav id="pagination" class="pagination" aria-label="페이지 네비게이션"></nav>\n'
     + '  </main>';
 
