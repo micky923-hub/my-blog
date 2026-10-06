@@ -526,8 +526,16 @@ a:focus-visible {
    ============================== */
 
 .ad-container {
-  margin: 1.5rem 0;
   text-align: center;
+}
+
+.ad-container ins.adsbygoogle[data-ad-status="filled"] {
+  margin: 1.5rem 0;
+}
+
+.ad-container ins.adsbygoogle:not([data-ad-status="filled"]) {
+  height: 0 !important;
+  overflow: hidden;
 }
 
 /* ==============================
