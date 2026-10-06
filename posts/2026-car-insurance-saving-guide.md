@@ -3,7 +3,7 @@ title: 자동차보험료 30만 원 아끼는 법, 갱신 전 꼭 확인하세�
 date: 2026-09-21
 tags: [보험, 자동차보험, 생활금융, 절약]
 summary: 자동차보험은 매년 갱신하면서도 정작 보장 내용을 제대로 들여다보지 않는 경우가 많습니다. 불필요한 특약 정리부터 할인 특약 활용법, 다이렉트 전환 시 주의할 점까지 보험료를 실질적으로 줄이는 방법을 정리했습니다.
-image: https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&h=400&fit=crop
 ---
 
 ## 자동차보험, 왜 매년 다시 봐야 할까
