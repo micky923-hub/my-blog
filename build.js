@@ -232,6 +232,7 @@ function buildPosts() {
       date: meta.date || '',
       tags: meta.tags || [],
       summary: meta.summary || '',
+      image: meta.image || '',
       slug: slug
     });
   });
@@ -271,6 +272,11 @@ function buildIndex(posts) {
     listHtml = '<ul class="post-list">\n';
     posts.forEach(function(post) {
       listHtml += '    <li class="post-item">\n';
+      if (post.image) {
+        listHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-item-thumb-link">\n';
+        listHtml += '        <img class="post-item-thumb" src="' + escapeHtml(post.image) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">\n';
+        listHtml += '      </a>\n';
+      }
       listHtml += '      <h2 class="post-item-title"><a href="' + base + 'posts/' + post.slug + '.html">' + escapeHtml(post.title) + '</a></h2>\n';
       listHtml += '      <div class="post-item-meta"><time datetime="' + post.date + '">' + formatDate(post.date) + '</time></div>\n';
       if (post.summary) {
