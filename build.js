@@ -84,6 +84,7 @@ function htmlTemplate(opts) {
   var hasCode = opts.hasCode || false;
   var jsonLd = opts.jsonLd || '';
   var ogType = opts.ogType || 'website';
+  var ogImage = opts.ogImage || '';
   var pathPrefix = opts.pathPrefix || base;
 
   var adsenseTag = config.adsenseId
@@ -114,6 +115,7 @@ function htmlTemplate(opts) {
     + '  <meta property="og:url" content="' + canonical + '">\n'
     + '  <meta property="og:locale" content="ko_KR">\n'
     + '  <meta property="og:site_name" content="' + escapeHtml(config.title) + '">\n'
+    + (ogImage ? '  <meta property="og:image" content="' + escapeHtml(ogImage) + '">\n' : '')
     + '  <meta name="robots" content="index, follow">\n'
     + (adsenseTag ? adsenseTag + '\n' : '')
     + '  <script>\n'
@@ -201,6 +203,7 @@ function buildPosts() {
       + '        <div class="post-meta"><time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time></div>\n'
       + tagsHtml
       + '      </header>\n'
+      + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" loading="lazy">\n' : '')
       + adSlot()
       + '      <div class="post-content">\n'
       + htmlContent + '\n'
@@ -212,6 +215,7 @@ function buildPosts() {
     var fullHtml = htmlTemplate({
       title: (meta.title || slug) + ' — ' + config.title,
       description: meta.summary || config.description,
+      ogImage: meta.image || '',
       canonical: siteUrl + '/posts/' + slug + '.html',
       content: pageContent,
       hasCode: hasCode,
