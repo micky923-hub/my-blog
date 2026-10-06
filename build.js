@@ -22,6 +22,7 @@ var DIST = 'dist';
 var siteUrl = config.url.replace(/\/$/, '');
 var basePath = (config.basePath || '/').replace(/\/$/, '');
 var base = basePath + '/';
+var allTopTags = [];
 
 // 유틸리티
 function ensureDir(dir) {
@@ -75,6 +76,20 @@ function copyDir(src, dest) {
   });
 }
 
+function collectAllTags() {
+  var postsDir = 'posts';
+  if (!fs.existsSync(postsDir)) return [];
+  var tagCount = {};
+  fs.readdirSync(postsDir).filter(function(f) { return f.endsWith('.md'); }).forEach(function(filename) {
+    var raw = fs.readFileSync(path.join(postsDir, filename), 'utf-8');
+    var parsed = parseFrontmatter(raw);
+    (parsed.metadata.tags || []).forEach(function(tag) {
+      tagCount[tag] = (tagCount[tag] || 0) + 1;
+    });
+  });
+  return Object.keys(tagCount).sort(function(a, b) { return tagCount[b] - tagCount[a]; }).slice(0, 8);
+}
+
 // HTML 템플릿
 function htmlTemplate(opts) {
   var title = opts.title;
@@ -86,6 +101,36 @@ function htmlTemplate(opts) {
   var ogType = opts.ogType || 'website';
   var ogImage = opts.ogImage || '';
   var pathPrefix = opts.pathPrefix || base;
+
+  var preFooterTagsHtml = '';
+  allTopTags.forEach(function(tag) {
+    preFooterTagsHtml += '          <a href="' + base + '#tag=' + encodeURIComponent(tag) + '" class="pre-footer-tag">' + escapeHtml(tag) + '</a>\n';
+  });
+  var preFooterHtml = allTopTags.length > 0
+    ? '  <section class="pre-footer">\n'
+    + '    <div class="pre-footer-inner">\n'
+    + '      <div class="pre-footer-col pre-footer-about">\n'
+    + '        <a href="' + base + '" class="pre-footer-brand">\n'
+    + '          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="var(--color-accent)"/><path d="M8 22L13 15L17 18L24 10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="24" cy="10" r="2" fill="#fff"/></svg>\n'
+    + '          <span class="pre-footer-name">' + escapeHtml(config.title) + '</span>\n'
+    + '        </a>\n'
+    + '        <p class="pre-footer-desc">' + escapeHtml(config.description) + '</p>\n'
+    + '      </div>\n'
+    + '      <div class="pre-footer-col">\n'
+    + '        <h3 class="pre-footer-heading">인기 키워드</h3>\n'
+    + '        <div class="pre-footer-tags">\n'
+    + preFooterTagsHtml
+    + '        </div>\n'
+    + '      </div>\n'
+    + '      <div class="pre-footer-col">\n'
+    + '        <h3 class="pre-footer-heading">바로가기</h3>\n'
+    + '        <a href="' + base + '">홈</a>\n'
+    + '        <a href="' + base + 'about.html">소개</a>\n'
+    + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
+    + '      </div>\n'
+    + '    </div>\n'
+    + '  </section>\n\n'
+    : '';
 
   var adsenseTag = config.adsenseId
     ? '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + config.adsenseId + '" crossorigin="anonymous"></script>'
@@ -139,13 +184,10 @@ function htmlTemplate(opts) {
     + '    </div>\n'
     + '  </header>\n\n'
     + content + '\n\n'
+    + preFooterHtml
     + '  <footer class="site-footer">\n'
     + '    <div class="container">\n'
-    + '      <nav class="footer-nav">\n'
-    + '        <a href="' + base + 'about.html">소개</a>\n'
-    + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
-    + '      </nav>\n'
-    + '      <p>&copy; ' + new Date().getFullYear() + ' ' + escapeHtml(config.title) + '</p>\n'
+    + '      <p>&copy; ' + new Date().getFullYear() + ' ' + escapeHtml(config.title) + '. All rights reserved.</p>\n'
     + '    </div>\n'
     + '  </footer>\n\n'
     + '  <script src="' + pathPrefix + 'js/theme.js"></script>\n'
@@ -468,6 +510,7 @@ if (fs.existsSync('apps')) {
   console.log('  apps/ 폴더 복사 완료');
 }
 
+allTopTags = collectAllTags();
 var posts = buildPosts();
 console.log('  포스트 ' + posts.length + '개 빌드 완료');
 
