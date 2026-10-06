@@ -146,6 +146,7 @@ function htmlTemplate(opts) {
     + '    </div>\n'
     + '  </footer>\n\n'
     + '  <script src="' + pathPrefix + 'js/theme.js"></script>\n'
+    + (opts.extraScripts || '')
     + '</body>\n'
     + '</html>';
 }
@@ -265,34 +266,28 @@ function buildAppsHtml() {
 
 // 인덱스 페이지 빌드
 function buildIndex(posts) {
-  var listHtml = '';
+  var cardsHtml = '';
   if (posts.length === 0) {
-    listHtml = '<p class="loading">아직 작성된 글이 없습니다.</p>';
+    cardsHtml = '<p class="loading">아직 작성된 글이 없습니다.</p>';
   } else {
-    listHtml = '<ul class="post-list">\n';
     posts.forEach(function(post) {
-      listHtml += '    <li class="post-item">\n';
-      if (post.image) {
-        listHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-item-thumb-link">\n';
-        listHtml += '        <img class="post-item-thumb" src="' + escapeHtml(post.image) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">\n';
-        listHtml += '      </a>\n';
-      }
-      listHtml += '      <h2 class="post-item-title"><a href="' + base + 'posts/' + post.slug + '.html">' + escapeHtml(post.title) + '</a></h2>\n';
-      listHtml += '      <div class="post-item-meta"><time datetime="' + post.date + '">' + formatDate(post.date) + '</time></div>\n';
+      var thumbHtml = post.image
+        ? '<img class="post-card-thumb" src="' + escapeHtml(post.image) + '" alt="" loading="lazy">'
+        : '<div class="post-card-no-thumb"></div>';
+      cardsHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-card">\n';
+      cardsHtml += '        ' + thumbHtml + '\n';
+      cardsHtml += '        <div class="post-card-body">\n';
+      cardsHtml += '          <h3 class="post-card-title">' + escapeHtml(post.title) + '</h3>\n';
       if (post.summary) {
-        listHtml += '      <p class="post-item-summary">' + escapeHtml(post.summary) + '</p>\n';
+        cardsHtml += '          <p class="post-card-summary">' + escapeHtml(post.summary) + '</p>\n';
       }
-      if (post.tags.length > 0) {
-        listHtml += '      <ul class="post-tags" aria-label="태그">\n';
-        post.tags.forEach(function(tag) {
-          listHtml += '        <li><span class="tag">' + escapeHtml(tag) + '</span></li>\n';
-        });
-        listHtml += '      </ul>\n';
-      }
-      listHtml += '    </li>\n';
+      cardsHtml += '        </div>\n';
+      cardsHtml += '      </a>\n';
     });
-    listHtml += '  </ul>';
   }
+
+  var listIcon = '<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0" y="0" width="8" height="8" rx="2"/><rect x="10" y="0" width="8" height="8" rx="2"/><rect x="0" y="10" width="8" height="8" rx="2"/><rect x="10" y="10" width="8" height="8" rx="2"/></svg>';
+  var gridIcon = '<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0" y="0" width="5" height="8" rx="1.5"/><rect x="6.5" y="0" width="5" height="8" rx="1.5"/><rect x="13" y="0" width="5" height="8" rx="1.5"/><rect x="0" y="10" width="5" height="8" rx="1.5"/><rect x="6.5" y="10" width="5" height="8" rx="1.5"/><rect x="13" y="10" width="5" height="8" rx="1.5"/></svg>';
 
   var appsHtml = buildAppsHtml();
 
@@ -302,12 +297,19 @@ function buildIndex(posts) {
     + '      <p>' + escapeHtml(config.description) + '</p>\n'
     + '    </div>\n'
     + '  </section>\n\n'
-    + '  <main id="main-content" class="container">\n'
+    + '  <main id="main-content" class="container container-wide">\n'
     + (appsHtml ? appsHtml + '\n' : '')
-    + '    <h2 class="section-title">최근 글</h2>\n'
-    + '    <div id="post-list">\n'
-    + '  ' + listHtml + '\n'
+    + '    <div class="list-header">\n'
+    + '      <h2 class="section-title">최근 글</h2>\n'
+    + '      <div class="view-toggle">\n'
+    + '        <button id="view-list" class="view-btn active" type="button" aria-label="2열 보기" title="2열 보기">' + listIcon + '</button>\n'
+    + '        <button id="view-grid" class="view-btn" type="button" aria-label="3열 보기" title="3열 보기">' + gridIcon + '</button>\n'
+    + '      </div>\n'
     + '    </div>\n'
+    + '    <div id="post-grid" class="post-grid view-list">\n'
+    + cardsHtml
+    + '    </div>\n'
+    + '    <nav id="pagination" class="pagination" aria-label="페이지 네비게이션"></nav>\n'
     + '  </main>';
 
   var jsonLd = JSON.stringify({
@@ -324,7 +326,8 @@ function buildIndex(posts) {
     description: config.description,
     canonical: siteUrl + '/',
     content: pageContent,
-    jsonLd: jsonLd
+    jsonLd: jsonLd,
+    extraScripts: '  <script src="' + base + 'js/list.js"></script>\n'
   });
 
   fs.writeFileSync(path.join(DIST, 'index.html'), fullHtml);
@@ -410,6 +413,9 @@ ensureDir(DIST);
 copyDir('css', path.join(DIST, 'css'));
 ensureDir(path.join(DIST, 'js'));
 fs.copyFileSync('js/theme.js', path.join(DIST, 'js', 'theme.js'));
+if (fs.existsSync('js/list.js')) {
+  fs.copyFileSync('js/list.js', path.join(DIST, 'js', 'list.js'));
+}
 
 if (fs.existsSync('apps')) {
   copyDir('apps', path.join(DIST, 'apps'));
