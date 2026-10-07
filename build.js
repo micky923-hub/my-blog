@@ -167,6 +167,7 @@ function htmlTemplate(opts) {
     + '  <meta property="og:locale" content="ko_KR">\n'
     + '  <meta property="og:site_name" content="' + escapeHtml(config.title) + '">\n'
     + '  <meta property="og:image" content="' + escapeHtml(ogImage || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=630&fit=crop') + '">\n'
+    + '  <meta name="naver-site-verification" content="66829663743427604f00b45e49e0e4dba24a0b39">\n'
     + '  <meta name="robots" content="index, follow">\n'
     + (adsenseTag ? adsenseTag + '\n' : '')
     + (gaTag ? gaTag + '\n' : '')
