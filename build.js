@@ -157,6 +157,7 @@ function htmlTemplate(opts) {
     + '  <meta charset="UTF-8">\n'
     + '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
     + '  <title>' + escapeHtml(title) + '</title>\n'
+    + '  <link rel="icon" type="image/svg+xml" href="' + pathPrefix + 'favicon.svg">\n'
     + '  <meta name="description" content="' + escapeHtml(description) + '">\n'
     + '  <link rel="canonical" href="' + canonical + '">\n'
     + '  <meta property="og:title" content="' + escapeHtml(title) + '">\n'
@@ -559,6 +560,9 @@ console.log('  정적 페이지 빌드 완료');
 
 buildSitemap(posts);
 buildRobots();
+if (fs.existsSync('favicon.svg')) {
+  fs.copyFileSync('favicon.svg', path.join(DIST, 'favicon.svg'));
+}
 if (fs.existsSync('CNAME')) {
   fs.copyFileSync('CNAME', path.join(DIST, 'CNAME'));
 }
