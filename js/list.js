@@ -142,21 +142,21 @@
     }
   }
 
-  try {
-    var hash = window.location.hash;
-    if (hash.indexOf('#tag=') === 0) {
-      var hashTag = decodeURIComponent(hash.substring(5));
-      if (hashTag) {
-        activeTag = hashTag;
-        for (var t = 0; t < keywordBtns.length; t++) {
-          if (keywordBtns[t].getAttribute('data-tag') === hashTag) {
-            keywordBtns[t].classList.add('active');
-            break;
-          }
-        }
+  function applyHashTag() {
+    try {
+      var hash = window.location.hash;
+      var newTag = '';
+      if (hash.indexOf('#tag=') === 0) {
+        newTag = decodeURIComponent(hash.substring(5));
       }
-    }
-  } catch(e) {}
+      activeTag = newTag;
+      for (var t = 0; t < keywordBtns.length; t++) {
+        keywordBtns[t].classList.toggle('active', keywordBtns[t].getAttribute('data-tag') === newTag);
+      }
+      applyFilters();
+    } catch(e) {}
+  }
 
-  applyFilters();
+  window.addEventListener('hashchange', applyHashTag);
+  applyHashTag();
 })();
