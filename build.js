@@ -136,6 +136,11 @@ function htmlTemplate(opts) {
     ? '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + config.adsenseId + '" crossorigin="anonymous"></script>'
     : '';
 
+  var gaTag = config.gaId
+    ? '  <script async src="https://www.googletagmanager.com/gtag/js?id=' + config.gaId + '"></script>\n'
+    + '  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","' + config.gaId + '");</script>'
+    : '';
+
   var hljsCss = hasCode
     ? '  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)" id="hljs-light">\n'
     + '  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)" id="hljs-dark">'
@@ -163,6 +168,7 @@ function htmlTemplate(opts) {
     + '  <meta property="og:image" content="' + escapeHtml(ogImage || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=630&fit=crop') + '">\n'
     + '  <meta name="robots" content="index, follow">\n'
     + (adsenseTag ? adsenseTag + '\n' : '')
+    + (gaTag ? gaTag + '\n' : '')
     + '  <script>\n'
     + '    (function(){var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);'
     + hljsThemeScript
