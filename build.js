@@ -158,6 +158,7 @@ function htmlTemplate(opts) {
     + '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
     + '  <title>' + escapeHtml(title) + '</title>\n'
     + '  <link rel="icon" type="image/svg+xml" href="' + pathPrefix + 'favicon.svg">\n'
+    + '  <link rel="alternate" type="application/rss+xml" title="' + escapeHtml(config.title) + '" href="' + siteUrl + '/rss.xml">\n'
     + '  <meta name="description" content="' + escapeHtml(description) + '">\n'
     + '  <link rel="canonical" href="' + canonical + '">\n'
     + '  <meta property="og:title" content="' + escapeHtml(title) + '">\n'
@@ -518,6 +519,33 @@ function buildSitemap(posts) {
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), xml);
 }
 
+// RSS 피드 생성
+function buildRss(posts) {
+  var items = posts.slice(0, 20).map(function(post) {
+    return '    <item>\n'
+      + '      <title>' + escapeHtml(post.title) + '</title>\n'
+      + '      <link>' + siteUrl + '/posts/' + post.slug + '.html</link>\n'
+      + '      <description>' + escapeHtml(post.summary) + '</description>\n'
+      + '      <pubDate>' + new Date(post.date + 'T00:00:00+09:00').toUTCString() + '</pubDate>\n'
+      + '      <guid>' + siteUrl + '/posts/' + post.slug + '.html</guid>\n'
+      + '    </item>';
+  }).join('\n');
+
+  var rss = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    + '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+    + '  <channel>\n'
+    + '    <title>' + escapeHtml(config.title) + '</title>\n'
+    + '    <link>' + siteUrl + '</link>\n'
+    + '    <description>' + escapeHtml(config.description) + '</description>\n'
+    + '    <language>' + config.language + '</language>\n'
+    + '    <atom:link href="' + siteUrl + '/rss.xml" rel="self" type="application/rss+xml"/>\n'
+    + items + '\n'
+    + '  </channel>\n'
+    + '</rss>';
+
+  fs.writeFileSync(path.join(DIST, 'rss.xml'), rss);
+}
+
 // robots.txt 생성
 function buildRobots() {
   var txt = 'User-agent: *\n'
@@ -560,6 +588,7 @@ buildStaticPages();
 console.log('  정적 페이지 빌드 완료');
 
 buildSitemap(posts);
+buildRss(posts);
 buildRobots();
 if (fs.existsSync('favicon.svg')) {
   fs.copyFileSync('favicon.svg', path.join(DIST, 'favicon.svg'));
@@ -570,7 +599,7 @@ if (fs.existsSync('CNAME')) {
 if (fs.existsSync('ads.txt')) {
   fs.copyFileSync('ads.txt', path.join(DIST, 'ads.txt'));
 }
-console.log('  sitemap.xml, robots.txt 생성 완료');
+console.log('  sitemap.xml, rss.xml, robots.txt 생성 완료');
 
 console.log('\n빌드 완료! dist/ 폴더를 배포하세요.');
 console.log('로컬 확인: npm run dev');
