@@ -423,7 +423,7 @@ function buildIndex(posts) {
     + '    <div class="list-header">\n'
     + '      <span id="post-count" class="post-count">총 ' + posts.length + '개</span>\n'
     + '      <div class="list-header-right">\n'
-    + '        <span class="sort-label">최신순</span>\n'
+    + '        <button id="sort-toggle" class="sort-toggle" type="button"><span id="sort-label">최신순</span><svg class="sort-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2 4.5L6 8.5L10 4.5"/></svg></button>\n'
     + '        <div class="view-toggle">\n'
     + '          <button id="view-list" class="view-btn active" type="button" aria-label="2열 보기" title="2열 보기">' + listIcon + '</button>\n'
     + '          <button id="view-grid" class="view-btn" type="button" aria-label="3열 보기" title="3열 보기">' + gridIcon + '</button>\n'

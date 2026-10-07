@@ -385,9 +385,28 @@ a:focus-visible {
   gap: 0.75rem;
 }
 
-.sort-label {
+.sort-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   font-size: 0.85rem;
   color: var(--color-text-secondary);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.sort-toggle:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.sort-arrow {
+  transition: transform 0.2s;
+}
+.sort-toggle.asc .sort-arrow {
+  transform: rotate(180deg);
 }
 
 .no-results {

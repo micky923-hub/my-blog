@@ -80,6 +80,10 @@
       return matchTag && matchSearch;
     });
 
+    if (sortOrder === 'asc') {
+      filteredCards.reverse();
+    }
+
     if (postCountEl) {
       postCountEl.textContent = '총 ' + filteredCards.length + '개';
     }
@@ -140,6 +144,19 @@
         if (p >= 1 && p <= total) showPage(p);
       });
     }
+  }
+
+  var sortOrder = 'desc';
+  var sortToggle = document.getElementById('sort-toggle');
+  var sortLabel = document.getElementById('sort-label');
+
+  if (sortToggle) {
+    sortToggle.addEventListener('click', function() {
+      sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
+      sortLabel.textContent = sortOrder === 'desc' ? '최신순' : '과거순';
+      sortToggle.classList.toggle('asc', sortOrder === 'asc');
+      applyFilters();
+    });
   }
 
   function applyHashTag() {
