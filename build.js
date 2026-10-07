@@ -160,7 +160,7 @@ function htmlTemplate(opts) {
     + '  <meta property="og:url" content="' + canonical + '">\n'
     + '  <meta property="og:locale" content="ko_KR">\n'
     + '  <meta property="og:site_name" content="' + escapeHtml(config.title) + '">\n'
-    + (ogImage ? '  <meta property="og:image" content="' + escapeHtml(ogImage) + '">\n' : '')
+    + '  <meta property="og:image" content="' + escapeHtml(ogImage || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=630&fit=crop') + '">\n'
     + '  <meta name="robots" content="index, follow">\n'
     + (adsenseTag ? adsenseTag + '\n' : '')
     + '  <script>\n'
@@ -524,6 +524,9 @@ buildSitemap(posts);
 buildRobots();
 if (fs.existsSync('CNAME')) {
   fs.copyFileSync('CNAME', path.join(DIST, 'CNAME'));
+}
+if (fs.existsSync('ads.txt')) {
+  fs.copyFileSync('ads.txt', path.join(DIST, 'ads.txt'));
 }
 console.log('  sitemap.xml, robots.txt 생성 완료');
 

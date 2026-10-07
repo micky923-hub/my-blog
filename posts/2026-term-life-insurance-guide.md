@@ -3,7 +3,7 @@ title: 종신보험 vs 정기보험, 보장성보험 제대로 고르는 법
 date: 2026-09-26
 tags: [보험, 보장성보험, 종신보험, 정기보험]
 summary: 보장성보험은 저축이 아니라 위험 대비 상품인데도 저축처럼 오해하고 가입하는 경우가 많습니다. 종신보험과 정기보험의 근본적인 차이부터, 내게 맞는 보장 기간과 보험료를 정하는 방법까지 실전 위주로 정리했습니다.
-image: https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1563198804-b144dfc1661c?w=800&h=400&fit=crop
 ---
 
 ## 보장성보험, 왜 헷갈릴까

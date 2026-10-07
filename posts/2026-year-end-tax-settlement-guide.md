@@ -3,7 +3,7 @@ title: 연말정산 미리 준비하기, 놓치기 쉬운 소득공제 항목 �
 date: 2026-09-22
 tags: [절세, 연말정산, 소득공제, 세액공제]
 summary: 연말정산은 12월에 급하게 챙기면 이미 늦습니다. 신용카드 사용 비율 조정부터 주택청약, 의료비, 기부금까지 지금부터 준비하면 환급액을 크게 늘릴 수 있는 소득공제·세액공제 항목을 정리했습니다.
-image: https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop
 ---
 
 ## 연말정산, 왜 지금부터 챙겨야 할까

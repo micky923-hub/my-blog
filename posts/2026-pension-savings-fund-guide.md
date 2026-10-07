@@ -3,7 +3,7 @@ title: 연금저축펀드, IRP와 뭐가 다를까 - 개인연금 200% 활용법
 date: 2026-09-30
 tags: [연금, 절세, 연금저축, 세액공제]
 summary: 연금저축은 IRP와 함께 노후 준비의 양대 축이지만 가입 조건, 운용 자유도, 중도인출 기준이 서로 다릅니다. 두 상품의 차이를 정리하고, 연금저축을 세액공제뿐 아니라 장기 투자 수단으로 활용하는 방법을 소개합니다.
-image: https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&h=400&fit=crop
 ---
 
 ## 연금저축, IRP와 헷갈리지 마세요

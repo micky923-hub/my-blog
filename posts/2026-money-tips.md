@@ -3,7 +3,7 @@ title: 2026년 하반기, 지금 챙겨야 할 금융 체크리스트 5가지
 date: 2026-09-15
 tags: [절세, 연금, 보험, 증권, 재테크]
 summary: ISA 계좌 국내 주식형 신설, 퇴직연금 디폴트옵션 점검, 실손보험 5세대 전환, 금투세 시행 대비까지. 올해 안에 꼭 확인해야 할 금융 정보를 정리했습니다.
-image: https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=400&fit=crop
 ---
 
 ## 1. ISA 계좌, 국내투자형이 새로 생겼다
