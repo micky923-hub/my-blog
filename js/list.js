@@ -154,6 +154,10 @@
         keywordBtns[t].classList.toggle('active', keywordBtns[t].getAttribute('data-tag') === newTag);
       }
       applyFilters();
+      if (newTag) {
+        var target = document.getElementById('main-content');
+        if (target) window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+      }
     } catch(e) {}
   }
 
