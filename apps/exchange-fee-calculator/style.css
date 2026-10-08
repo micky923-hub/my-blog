@@ -1,0 +1,451 @@
+/* ==============================
+   환전 수수료 계산기 (fx-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다.
+   예외: 오류 표시용 빨간색 1개 (--fx-color-error)
+   ============================== */
+
+:root {
+  --fx-color-error: #dc2626;
+  --fx-radius: 10px;
+  --fx-touch: 44px;
+}
+
+/* ---------- Header ---------- */
+
+.fx-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.fx-header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.fx-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--fx-touch);
+  font-weight: 600;
+}
+
+.fx-theme-toggle {
+  min-width: var(--fx-touch);
+  min-height: var(--fx-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.fx-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.fx-intro {
+  margin-bottom: 1.25rem;
+}
+
+.fx-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.fx-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.fx-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fx-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.fx-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--fx-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.fx-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.fx-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fx-guide-steps,
+.fx-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.fx-guide-steps li,
+.fx-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.fx-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- Form ---------- */
+
+.fx-form {
+  margin-bottom: 1.5rem;
+}
+
+.fx-chip:focus-visible,
+.fx-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.fx-field {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.fx-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--color-text);
+}
+
+/* 라벨 왼쪽 · 작은 입력칸 오른쪽 (스프레드, 우대율) */
+.fx-field-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.fx-field-inline .fx-label {
+  margin-bottom: 0;
+  word-break: keep-all;
+}
+
+.fx-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fx-input-wrap-small {
+  flex: 0 0 8.5rem;
+  max-width: 50%;
+}
+
+.fx-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5rem 3.5rem 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.125rem; /* 16px 이상: iOS 자동 확대 방지 */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fx-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.fx-input-wrap-small .fx-input {
+  padding-right: 2.25rem;
+}
+
+.fx-input:focus {
+  border-color: var(--color-accent);
+}
+
+.fx-input[aria-invalid="true"] {
+  border-color: var(--fx-color-error);
+}
+
+.fx-unit {
+  position: absolute;
+  right: 0.9rem;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.fx-hint {
+  margin: 0.3rem 0 0;
+  min-height: 1.5em;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.fx-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.fx-chip {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: var(--fx-touch);
+  padding: 0 0.75rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fx-chip:hover {
+  border-color: var(--color-accent);
+}
+
+.fx-chip-unit {
+  margin-left: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.fx-quick-pref .fx-chip {
+  flex: 1 1 0;
+  padding: 0 0.25rem;
+}
+
+.fx-chip[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ---------- Segmented radios ---------- */
+
+.fx-segment-options {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fx-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.fx-segment-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.fx-segment-options label {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--fx-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.35rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+/* 통화 4칸: 좁으면 2×2로 줄바꿈 (flex-wrap은 3+1로 깨져 grid 사용) */
+.fx-segment-currency {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.fx-segment-currency label {
+  white-space: nowrap;
+}
+
+@media (max-width: 374px) {
+  .fx-segment-currency {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fx-segment-currency label span {
+  margin-left: 0.25rem;
+}
+
+.fx-seg-sub {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.fx-segment-options input:checked + label {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.fx-segment-options input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Result ---------- */
+
+.fx-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fx-radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.fx-result-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.fx-rows {
+  margin: 0;
+}
+
+.fx-row {
+  display: flex;
+  flex-wrap: wrap; /* 긴 금액은 숫자 중간이 아니라 통째로 다음 줄로 */
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.fx-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.fx-row dd {
+  margin: 0 0 0 auto;
+  min-width: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.fx-row-strong dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.fx-row-strong dd {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.fx-total {
+  margin-top: 0.6rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.fx-total-label {
+  align-self: flex-start;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.fx-total-value {
+  max-width: 100%;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.fx-saved-note {
+  margin: 0.25rem 0 0;
+  align-self: stretch;
+  padding: 0.6rem 0.8rem;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.fx-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 4px solid var(--fx-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.fx-error::before {
+  content: "⚠ ";
+  color: var(--fx-color-error);
+}
+
+.fx-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+@media (min-width: 600px) {
+  .fx-title {
+    font-size: 1.75rem;
+  }
+  .fx-total-value {
+    font-size: 2rem;
+  }
+}
