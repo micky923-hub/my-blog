@@ -32,7 +32,7 @@
       <ol class="fx-guide-steps">
         <li>바꿀 <strong>통화</strong>와 <strong>살 때(원화 → 외화) / 팔 때(외화 → 원화)</strong>를 고르세요.</li>
         <li>바꿀 <strong>외화 금액</strong>을 입력하세요. 엔화도 실제 엔 금액(예: 300,000엔)을 넣으면 됩니다.</li>
-        <li>은행 앱 환율 화면에서 오늘의 <strong>매매기준율</strong>을 확인해 넣으세요. <strong>엔화는 100엔당 환율</strong>입니다(예: 900원).</li>
+        <li>매매기준율은 <strong>한국수출입은행이 평일 오전에 발표한 값</strong>이 자동으로 들어가요. 하루 한 번 바뀌는 값이라 <strong>실시간 환율이 아니고</strong>, 내 은행 숫자와 조금 다를 수 있어요. 은행 앱의 매매기준율을 알면 직접 고쳐 넣으세요. <strong>엔화는 100엔당 환율</strong>입니다(예: 900원).</li>
         <li><strong>스프레드</strong>는 통화별 보통 값이 자동으로 들어가요. 내 은행 수수료율을 알면 바꿔 넣으세요.</li>
         <li>쿠폰·우대 이벤트의 <strong>우대율</strong>을 고르면, 맨 아래 <strong>아낀 금액</strong>이 바로 바뀝니다.</li>
       </ol>
@@ -42,6 +42,7 @@
         <li><strong>스프레드</strong>는 은행이 얹는 수수료율이에요. 현찰은 보통 달러·엔 약 1.75%, 유로 약 1.99%, 위안 약 5%예요.</li>
         <li><strong>우대율 90%</strong>면 스프레드의 10%만 내요. 1.75% × 0.1 = 0.175%</li>
         <li>해외송금·외화예금(전신환)은 현찰보다 스프레드가 낮은 경우가 많아요.</li>
+        <li>주말·공휴일에는 직전 영업일 환율이 보여요.</li>
       </ul>
     </details>
 
@@ -90,7 +91,10 @@
           <input type="text" id="fx-rate" class="fx-input" inputmode="decimal" autocomplete="off" value="1,300.00" aria-describedby="fx-rate-hint">
           <span class="fx-unit" aria-hidden="true">원</span>
         </div>
-        <p class="fx-hint" id="fx-rate-hint">예시 환율이에요. 은행 앱의 오늘 매매기준율로 바꿔 주세요.</p>
+        <p class="fx-hint" id="fx-rate-hint">예시 환율이에요. 은행 앱의 오늘 매매기준율로 직접 넣어 주세요.</p>
+        <div class="fx-rate-reset-wrap">
+          <button type="button" class="fx-chip fx-rate-reset" id="fx-rate-reset" hidden>오늘 환율로 되돌리기</button>
+        </div>
       </div>
 
       <div class="fx-field fx-field-inline">
@@ -139,7 +143,7 @@
     </section>
 
     <p class="fx-disclaimer">
-      ※ 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 환율과 환전 수수료(스프레드)는 <strong>은행·지점·시간대마다 다르고</strong>, <strong>현찰과 송금(전신환)의 수수료도 다릅니다</strong>. 실제 은행은 적용 환율을 소수점 아래에서 끊어 계산하므로 몇 원 차이가 날 수 있습니다. 정확한 금액은 환전하려는 은행 앱이나 창구에서 확인하세요.
+      ※ 자동으로 채워지는 매매기준율은 한국수출입은행이 영업일에 고시한 값으로, <strong>실시간 환율이 아니며 은행마다 다릅니다.</strong> 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 환율과 환전 수수료(스프레드)는 <strong>은행·지점·시간대마다 다르고</strong>, <strong>현찰과 송금(전신환)의 수수료도 다릅니다</strong>. 실제 은행은 적용 환율을 소수점 아래에서 끊어 계산하므로 몇 원 차이가 날 수 있습니다. 정확한 금액은 환전하려는 은행 앱이나 창구에서 확인하세요.
     </p>
   </main>
 
