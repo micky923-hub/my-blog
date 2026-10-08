@@ -247,6 +247,13 @@
   margin-top: 0.5rem;
 }
 
+/* 320px대에서는 auto-fit이 3+3+1이 되어 '30년'만 홀로 남으므로 4+3으로 고정 */
+@media (max-width: 374px) {
+  .lr-quick {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .lr-chip {
   min-width: 0;
   min-height: var(--lr-touch);
