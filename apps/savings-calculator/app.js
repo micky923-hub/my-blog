@@ -171,6 +171,7 @@ function calculate(p) {
   function setAmount(v) {
     var s = String(Math.min(v, 999999999999));
     amountInput.value = withCommas(s);
+    lastAmountValue = amountInput.value;
   }
 
   function sanitizeMonths() {
@@ -263,8 +264,36 @@ function calculate(p) {
     });
   });
 
-  amountInput.addEventListener('input', function () {
+  // 쉼표만 지워진 경우(쉼표 바로 뒤에서 Backspace, 바로 앞에서 Delete) 옆 숫자를 대신 지운다.
+  // 그렇지 않으면 쉼표가 다시 붙어 키를 눌러도 아무 변화가 없다.
+  var lastAmountValue = amountInput.value;
+  function removeDigitNextToDeletedComma(e) {
+    var el = amountInput;
+    var type = e && e.inputType;
+    if (type !== 'deleteContentBackward' && type !== 'deleteContentForward') return;
+    if (el.value === lastAmountValue || digitsOnly(el.value) !== digitsOnly(lastAmountValue)) return;
+    var caret = el.selectionStart;
+    if (caret == null) return;
+    var v = el.value;
+    if (type === 'deleteContentBackward') {
+      var p = caret - 1;
+      while (p >= 0 && !/\d/.test(v.charAt(p))) p--;
+      if (p < 0) return;
+      el.value = v.slice(0, p) + v.slice(p + 1);
+      try { el.setSelectionRange(p, p); } catch (err) { /* 무시 */ }
+    } else {
+      var q = caret;
+      while (q < v.length && !/\d/.test(v.charAt(q))) q++;
+      if (q >= v.length) return;
+      el.value = v.slice(0, q) + v.slice(q + 1);
+      try { el.setSelectionRange(caret, caret); } catch (err) { /* 무시 */ }
+    }
+  }
+
+  amountInput.addEventListener('input', function (e) {
+    removeDigitNextToDeletedComma(e);
     formatAmountInput();
+    lastAmountValue = amountInput.value;
     render();
   });
   monthsInput.addEventListener('input', function () {
