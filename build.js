@@ -228,6 +228,88 @@ function adSlot() {
 }
 
 // 포스트 빌드
+// 글 읽기 편의 기능: 읽는 시간, 목차, 관련 글
+var READ_CHARS_PER_MIN = 500; // 한국어 평균 읽기 속도(분당 글자 수, 공백 제외)
+
+function stripTags(html) {
+  return html.replace(/<[^>]*>/g, '');
+}
+
+function readingMinutes(html) {
+  var text = stripTags(html)
+    .replace(/&[a-z#0-9]+;/gi, ' ')
+    .replace(/\s+/g, '');
+  return Math.max(1, Math.round(text.length / READ_CHARS_PER_MIN));
+}
+
+// h2에 id를 붙이고 목차 항목을 모은다
+function addHeadingIds(html) {
+  var toc = [];
+  var out = html.replace(/<h2>([\s\S]*?)<\/h2>/g, function(m, inner) {
+    var id = 'section-' + (toc.length + 1);
+    toc.push({ id: id, text: stripTags(inner).trim() });
+    return '<h2 id="' + id + '">' + inner + '</h2>';
+  });
+  return { html: out, toc: toc };
+}
+
+function tocHtml(toc) {
+  if (toc.length < 3) return '';
+  var html = '      <nav class="post-toc" aria-labelledby="post-toc-title">\n'
+    + '        <details open>\n'
+    + '          <summary id="post-toc-title">목차</summary>\n'
+    + '          <ol>\n';
+  toc.forEach(function(item) {
+    // item.text는 marked가 이미 HTML 이스케이프한 텍스트
+    html += '            <li><a href="#' + item.id + '">' + item.text + '</a></li>\n';
+  });
+  html += '          </ol>\n'
+    + '        </details>\n'
+    + '      </nav>\n';
+  return html;
+}
+
+// 겹치는 태그가 많고, 드문 태그가 겹칠수록 점수가 높다 (흔한 태그는 가중치가 낮음)
+function relatedPosts(post, all, tagCount, limit) {
+  var scored = [];
+  all.forEach(function(other) {
+    if (other.slug === post.slug) return;
+    var score = 0;
+    other.tags.forEach(function(t) {
+      if (post.tags.indexOf(t) !== -1) score += 1 / tagCount[t];
+    });
+    if (score > 0) scored.push({ post: other, score: score });
+  });
+  scored.sort(function(a, b) {
+    if (b.score !== a.score) return b.score - a.score;
+    return b.post.date.localeCompare(a.post.date);
+  });
+  return scored.slice(0, limit).map(function(s) { return s.post; });
+}
+
+function relatedHtml(list) {
+  if (list.length === 0) return '';
+  var html = '      <section class="related-posts" aria-labelledby="related-title">\n'
+    + '        <h2 id="related-title" class="related-title">함께 읽으면 좋은 글</h2>\n'
+    + '        <ul class="related-list">\n';
+  list.forEach(function(r) {
+    html += '          <li>\n'
+      + '            <a class="related-card" href="' + base + 'posts/' + r.slug + '.html">\n'
+      + (r.image
+        ? '              <img class="related-thumb" src="' + escapeHtml(r.image) + '" alt="" loading="lazy" width="160" height="90">\n'
+        : '              <span class="related-thumb related-thumb-empty" aria-hidden="true"></span>\n')
+      + '              <span class="related-body">\n'
+      + '                <span class="related-card-title">' + escapeHtml(r.title) + '</span>\n'
+      + '                <span class="related-meta">' + formatDate(r.date) + ' · 약 ' + r.minutes + '분</span>\n'
+      + '              </span>\n'
+      + '            </a>\n'
+      + '          </li>\n';
+  });
+  html += '        </ul>\n'
+    + '      </section>\n';
+  return html;
+}
+
 function buildPosts() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
@@ -235,12 +317,42 @@ function buildPosts() {
   var files = fs.readdirSync(postsDir).filter(function(f) { return f.endsWith('.md'); });
   var posts = [];
 
+  // 1단계: 모든 글을 읽어 정보 모으기
+  var entries = [];
   files.forEach(function(filename) {
     var raw = fs.readFileSync(path.join(postsDir, filename), 'utf-8');
     var parsed = parseFrontmatter(raw);
     var meta = parsed.metadata;
     var slug = filename.replace(/\.md$/, '');
-    var htmlContent = marked.parse(parsed.content);
+    var withIds = addHeadingIds(marked.parse(parsed.content));
+    entries.push({
+      meta: meta,
+      slug: slug,
+      htmlContent: withIds.html,
+      toc: withIds.toc,
+      info: {
+        title: meta.title || slug,
+        date: meta.date || '',
+        tags: meta.tags || [],
+        summary: meta.summary || '',
+        image: meta.image || '',
+        slug: slug,
+        minutes: readingMinutes(withIds.html)
+      }
+    });
+  });
+
+  var allInfo = entries.map(function(e) { return e.info; });
+  var tagCount = {};
+  allInfo.forEach(function(p) {
+    p.tags.forEach(function(t) { tagCount[t] = (tagCount[t] || 0) + 1; });
+  });
+
+  // 2단계: 글 페이지 쓰기
+  entries.forEach(function(entry) {
+    var meta = entry.meta;
+    var slug = entry.slug;
+    var htmlContent = entry.htmlContent;
     var hasCode = htmlContent.indexOf('<code') !== -1;
 
     var tagsHtml = '';
@@ -268,14 +380,16 @@ function buildPosts() {
       + '    <article>\n'
       + '      <header class="post-header">\n'
       + '        <h1 class="post-title">' + escapeHtml(meta.title || slug) + '</h1>\n'
-      + '        <div class="post-meta"><time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time></div>\n'
+      + '        <div class="post-meta"><time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time><span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-reading-time">약 ' + entry.info.minutes + '분 읽기</span></div>\n'
       + tagsHtml
       + '      </header>\n'
       + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" loading="lazy">\n' : '')
       + adSlot()
+      + tocHtml(entry.toc)
       + '      <div class="post-content">\n'
       + htmlContent + '\n'
       + '      </div>\n'
+      + relatedHtml(relatedPosts(entry.info, allInfo, tagCount, 3))
       + '      <div class="share-section" data-url="' + siteUrl + '/posts/' + slug + '.html" data-title="' + escapeHtml(meta.title || slug) + '" data-desc="' + escapeHtml(meta.summary || '') + '" data-image="' + escapeHtml(meta.image || '') + '">\n'
       + '        <span class="share-heading">공유하기</span>\n'
       + '        <div class="share-buttons">\n'
@@ -323,14 +437,7 @@ function buildPosts() {
     ensureDir(path.join(DIST, 'posts'));
     fs.writeFileSync(path.join(DIST, 'posts', slug + '.html'), fullHtml);
 
-    posts.push({
-      title: meta.title || slug,
-      date: meta.date || '',
-      tags: meta.tags || [],
-      summary: meta.summary || '',
-      image: meta.image || '',
-      slug: slug
-    });
+    posts.push(entry.info);
   });
 
   posts.sort(function(a, b) { return b.date.localeCompare(a.date); });
