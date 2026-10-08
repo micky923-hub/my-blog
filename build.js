@@ -177,7 +177,7 @@ function htmlTemplate(opts) {
     + hljsThemeScript
     + '})();\n'
     + '  </script>\n'
-    + '  <link rel="stylesheet" href="' + pathPrefix + 'css/style.css">\n'
+    + '  <link rel="stylesheet" href="' + pathPrefix + 'css/style.css?v=' + Date.now() + '">\n'
     + (hljsCss ? hljsCss + '\n' : '')
     + (jsonLd ? '  <script type="application/ld+json">' + jsonLd + '</script>\n' : '')
     + '</head>\n'
@@ -199,7 +199,7 @@ function htmlTemplate(opts) {
     + '      <p>&copy; ' + new Date().getFullYear() + ' ' + escapeHtml(config.title) + '. All rights reserved.</p>\n'
     + '    </div>\n'
     + '  </footer>\n\n'
-    + '  <script src="' + pathPrefix + 'js/theme.js"></script>\n'
+    + '  <script src="' + pathPrefix + 'js/theme.js?v=' + Date.now() + '"></script>\n'
     + (opts.extraScripts || '')
     + '</body>\n'
     + '</html>';
@@ -304,7 +304,7 @@ function buildPosts() {
       jsonLd: jsonLd,
       ogType: 'article',
       pathPrefix: sharePathPrefix,
-      extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js"></script>\n'
+      extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + Date.now() + '"></script>\n'
     });
 
     ensureDir(path.join(DIST, 'posts'));
@@ -452,7 +452,7 @@ function buildIndex(posts) {
     canonical: siteUrl + '/',
     content: pageContent,
     jsonLd: jsonLd,
-    extraScripts: '  <script src="' + base + 'js/list.js"></script>\n'
+    extraScripts: '  <script src="' + base + 'js/list.js?v=' + Date.now() + '"></script>\n'
   });
 
   fs.writeFileSync(path.join(DIST, 'index.html'), fullHtml);
