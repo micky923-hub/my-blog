@@ -288,10 +288,20 @@
   word-break: keep-all;
 }
 
-/* 통화 4칸: 좁으면 2×2로 줄바꿈 */
+/* 통화 4칸: 좁으면 2×2로 줄바꿈 (flex-wrap은 3+1로 깨져 grid 사용) */
+.fx-segment-currency {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .fx-segment-currency label {
-  flex: 1 1 4.75rem;
   white-space: nowrap;
+}
+
+@media (max-width: 374px) {
+  .fx-segment-currency {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .fx-segment-currency label span {

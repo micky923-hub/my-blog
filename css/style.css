@@ -985,6 +985,8 @@ a:focus-visible {
 .app-card-body {
   flex: 1;
   min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .app-card-badge {
