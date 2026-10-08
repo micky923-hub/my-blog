@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>적금·예금 이자 계산기</title>
+  <meta name="description" content="금액·기간·금리만 넣으면 단리/월복리, 세금(15.4%·비과세·세금우대)까지 반영한 만기 세후 수령액을 바로 계산해요.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="sc-header">
+    <div class="sc-header-inner">
+      <a href="../../" class="sc-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle sc-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="sc-main" id="main-content">
+    <div class="sc-intro">
+      <h1 class="sc-title">💰 적금·예금 이자 계산기</h1>
+      <p class="sc-subtitle">만기에 실제로 얼마 받는지 세금까지 계산해 드려요</p>
+    </div>
+
+    <details class="sc-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="sc-guide-steps">
+        <li>위에서 <strong>예금</strong>(목돈을 한 번에 맡김) 또는 <strong>적금</strong>(매달 같은 금액을 넣음)을 고르세요.</li>
+        <li>금액, 기간(개월), 은행에서 안내한 <strong>연 이자율</strong>을 입력하세요.</li>
+        <li>이자 방식(단리/월복리)과 세금 종류를 고르면 결과가 바로 바뀝니다.</li>
+        <li>맨 아래 <strong>세후 수령액</strong>이 만기에 실제로 통장에 들어오는 금액입니다.</li>
+      </ol>
+      <p class="sc-guide-heading"><strong>용어 풀이</strong></p>
+      <ul class="sc-guide-terms">
+        <li><strong>단리</strong>: 원금에만 이자가 붙어요. 대부분의 은행 예·적금이 단리입니다.</li>
+        <li><strong>월복리</strong>: 매달 붙은 이자에도 다시 이자가 붙어요.</li>
+        <li><strong>일반과세 15.4%</strong>: 이자소득세 14% + 지방소득세 1.4%. 보통 이 경우입니다.</li>
+        <li><strong>세금우대 9.5%</strong>: 조합 예탁금 등 일부 상품에 적용되는 낮은 세율입니다.</li>
+        <li><strong>비과세</strong>: 세금이 없어요. 청년도약계좌, ISA 한도 내 이익 등이 해당됩니다.</li>
+      </ul>
+    </details>
+
+    <form class="sc-form" id="sc-form" novalidate onsubmit="return false;">
+      <div class="sc-tabs" role="tablist" aria-label="상품 종류">
+        <button type="button" class="sc-tab" role="tab" id="sc-tab-deposit" data-type="deposit" aria-selected="true">예금</button>
+        <button type="button" class="sc-tab" role="tab" id="sc-tab-savings" data-type="savings" aria-selected="false" tabindex="-1">적금</button>
+      </div>
+
+      <div class="sc-field">
+        <label for="sc-amount" class="sc-label" id="sc-amount-label">예치 금액</label>
+        <div class="sc-input-wrap">
+          <input type="text" id="sc-amount" class="sc-input" inputmode="numeric" autocomplete="off" value="10,000,000" aria-describedby="sc-amount-korean">
+          <span class="sc-unit" aria-hidden="true">원</span>
+        </div>
+        <p class="sc-hint" id="sc-amount-korean">1,000만 원</p>
+        <div class="sc-quick" role="group" aria-label="금액 빠르게 더하기">
+          <button type="button" class="sc-chip" data-add="100000">+10만</button>
+          <button type="button" class="sc-chip" data-add="1000000">+100만</button>
+          <button type="button" class="sc-chip" data-add="10000000">+1000만</button>
+        </div>
+      </div>
+
+      <div class="sc-field">
+        <label for="sc-months" class="sc-label">기간</label>
+        <div class="sc-input-wrap">
+          <input type="text" id="sc-months" class="sc-input" inputmode="numeric" autocomplete="off" maxlength="3" value="12">
+          <span class="sc-unit" aria-hidden="true">개월</span>
+        </div>
+        <div class="sc-quick" role="group" aria-label="기간 빠르게 선택">
+          <button type="button" class="sc-chip" data-months="6">6개월</button>
+          <button type="button" class="sc-chip" data-months="12">12개월</button>
+          <button type="button" class="sc-chip" data-months="24">24개월</button>
+          <button type="button" class="sc-chip" data-months="36">36개월</button>
+        </div>
+      </div>
+
+      <div class="sc-field">
+        <label for="sc-rate" class="sc-label">연 이자율</label>
+        <div class="sc-input-wrap">
+          <input type="text" id="sc-rate" class="sc-input" inputmode="decimal" autocomplete="off" maxlength="5" value="3.5">
+          <span class="sc-unit" aria-hidden="true">%</span>
+        </div>
+      </div>
+
+      <fieldset class="sc-field sc-segment">
+        <legend class="sc-label">이자 방식</legend>
+        <div class="sc-segment-options">
+          <input type="radio" name="sc-method" id="sc-method-simple" value="simple" checked>
+          <label for="sc-method-simple">단리</label>
+          <input type="radio" name="sc-method" id="sc-method-compound" value="compound">
+          <label for="sc-method-compound">월복리</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="sc-field sc-segment">
+        <legend class="sc-label">세금</legend>
+        <div class="sc-segment-options">
+          <input type="radio" name="sc-tax" id="sc-tax-general" value="154" checked>
+          <label for="sc-tax-general">일반 15.4%</label>
+          <input type="radio" name="sc-tax" id="sc-tax-free" value="0">
+          <label for="sc-tax-free">비과세</label>
+          <input type="radio" name="sc-tax" id="sc-tax-preferential" value="95">
+          <label for="sc-tax-preferential">세금우대 9.5%</label>
+        </div>
+      </fieldset>
+    </form>
+
+    <section class="sc-result" id="sc-result" aria-live="polite" aria-labelledby="sc-result-title">
+      <h2 class="sc-result-title" id="sc-result-title">결과</h2>
+      <div id="sc-result-body">
+        <dl class="sc-rows">
+          <div class="sc-row"><dt>원금 합계</dt><dd id="sc-principal">-</dd></div>
+          <div class="sc-row"><dt>세전 이자</dt><dd id="sc-interest">-</dd></div>
+          <div class="sc-row"><dt>이자 과세액</dt><dd id="sc-tax">-</dd></div>
+        </dl>
+        <div class="sc-total">
+          <span class="sc-total-label">세후 수령액</span>
+          <strong class="sc-total-value" id="sc-total">-</strong>
+        </div>
+      </div>
+      <p class="sc-error" id="sc-error" hidden></p>
+    </section>
+
+    <p class="sc-disclaimer">
+      ※ 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 실제 금융상품의 이자 계산 방식(일 단위 계산, 세금 원 단위 절사, 우대금리 조건, 중도해지 등)과 다를 수 있으므로, 정확한 금액은 가입하려는 금융회사의 상품설명서를 확인하세요.
+    </p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
