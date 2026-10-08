@@ -1,6 +1,6 @@
 # 연금저축·IRP 세액공제 계산기 — 계획서 (spec)
 
-> 상태: **승인 대기** · 작성일 2026-10-08
+> 상태: **승인됨 (2026-10-08)** · 작성일 2026-10-08
 > 위치: `apps/pension-tax-calculator/` · 블로그: financialdiary.co.kr
 > 첫 번째 앱 `apps/savings-calculator/`의 구조·사용감을 그대로 따른다. CSS 접두사는 **`pt-`**.
 
