@@ -155,6 +155,59 @@ function calculate(p) {
   };
 }
 
+/* ---------- 자동 환율(rates.json) 검증 — DOM과 분리된 순수 함수 ---------- */
+
+var FX_STALE_DAYS = 4; // 기준일이 오늘(KST)보다 4일 이상 전이면 오래됨 경고 (금→월 3일은 경고 안 함)
+
+function fxIsRealDate(s) {
+  if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  var d = new Date(s + 'T00:00:00Z');
+  return !isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+}
+
+/** 지금 시각의 한국 날짜 'YYYY-MM-DD' */
+function fxTodayKst(nowMs) {
+  return new Date((nowMs === undefined ? Date.now() : nowMs) + 9 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+/**
+ * baseDate('YYYY-MM-DD')부터 오늘(KST)까지 며칠 지났는지. 형식이 틀리면 NaN.
+ * @param {string} baseDate
+ * @param {number} [nowMs] 기준 시각(테스트용), 생략 시 Date.now()
+ */
+function daysBetweenKst(baseDate, nowMs) {
+  if (!fxIsRealDate(baseDate)) return NaN;
+  var today = fxTodayKst(nowMs);
+  return Math.round((Date.parse(today + 'T00:00:00Z') - Date.parse(baseDate + 'T00:00:00Z')) / 86400000);
+}
+
+/**
+ * rates.json 내용을 검증한다. 통과한 통화만 '1392.50' 같은 소수 둘째 자리 문자열로 돌려준다.
+ * 하나도 없거나 형식이 틀리면 null.
+ * @param {*} data
+ * @returns {{baseDate:string, rates:Object<string,string>}|null}
+ */
+function validateRates(data) {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+  if (data.version !== 1 || !fxIsRealDate(data.baseDate)) return null;
+  if (!data.rates || typeof data.rates !== 'object') return null;
+  var units = data.units && typeof data.units === 'object' ? data.units : {};
+  var max = parseFixed(FX_LIMITS.rateMax, 2);
+  var rates = {};
+  var count = 0;
+  Object.keys(FX_CURRENCIES).forEach(function (code) {
+    var v = data.rates[code];
+    if (typeof v !== 'number' || !isFinite(v) || v <= 0) return;
+    if (FX_CURRENCIES[code].unit !== 1 && units[code] !== FX_CURRENCIES[code].unit) return; // JPY는 100엔당일 때만
+    var s = v.toFixed(2);
+    var q = parseFixed(s, 2);
+    if (q === null || q <= BigInt(0) || q > max) return;
+    rates[code] = s;
+    count++;
+  });
+  return count ? { baseDate: data.baseDate, rates: rates } : null;
+}
+
 /* ---------- 화면 코드 (브라우저에서만 실행) ---------- */
 (function () {
   if (typeof document === 'undefined') return;
@@ -168,6 +221,7 @@ function calculate(p) {
   var rateInput = document.getElementById('fx-rate');
   var rateLabel = document.getElementById('fx-rate-label');
   var rateHint = document.getElementById('fx-rate-hint');
+  var rateReset = document.getElementById('fx-rate-reset');
   var spreadInput = document.getElementById('fx-spread');
   var prefInput = document.getElementById('fx-pref');
   var amountChips = Array.prototype.slice.call(document.querySelectorAll('.fx-chip[data-add]'));
@@ -188,7 +242,9 @@ function calculate(p) {
   };
 
   var commaInputs = [amountInput, rateInput];
-  var rateIsSample = true; // 통화 기본 예시 환율이 그대로인지
+  // 매매기준율 칸의 값이 어디서 왔는지: 'sample' 예시 환율 / 'auto' rates.json 자동 값 / 'user' 직접 입력
+  var rateSource = 'sample';
+  var autoRates = null; // validateRates() 결과 { baseDate, rates: { USD: '1392.50', ... } }
 
   function won(v) {
     return v.toLocaleString('ko-KR') + '원';
@@ -358,13 +414,35 @@ function calculate(p) {
     return cur.unit === 100 ? '100엔당' : '1' + cur.name + '당';
   }
 
+  function rateText(plain) {
+    var parts = plain.split('.');
+    return fxWithCommas(parts[0]) + (parts[1] ? '.' + parts[1] : '');
+  }
+
+  function autoRateFor(code) {
+    return autoRates && autoRates.rates[code] ? autoRates.rates[code] : null;
+  }
+
+  // 매매기준율 칸을 그 통화 자동 값(있으면) 또는 예시 환율로 채운다.
+  function fillRate() {
+    var code = currency();
+    var auto = autoRateFor(code);
+    rateInput.value = rateText(auto || FX_CURRENCIES[code].sampleRate);
+    rateSource = auto ? 'auto' : 'sample';
+    rememberValues();
+  }
+
   function applyCurrencyDefaults() {
     var cur = FX_CURRENCIES[currency()];
     spreadInput.value = cur.spread;
-    var parts = cur.sampleRate.split('.');
-    rateInput.value = fxWithCommas(parts[0]) + (parts[1] ? '.' + parts[1] : '');
-    rateIsSample = true;
-    rememberValues();
+    fillRate();
+  }
+
+  // 'YYYY-MM-DD' → "10월 8일" (연도가 올해(KST)와 다르면 "2025년 10월 8일")
+  function koreanDate(iso) {
+    var y = iso.slice(0, 4);
+    var text = Number(iso.slice(5, 7)) + '월 ' + Number(iso.slice(8, 10)) + '일';
+    return y === fxTodayKst().slice(0, 4) ? text : Number(y) + '년 ' + text;
   }
 
   function updateLabels() {
@@ -382,13 +460,40 @@ function calculate(p) {
     amountHint.textContent = !a ? ''
       : fxWithCommas(String(a)) + cur.name + (a >= 10000 ? ' · ' + koreanNumber(a) + ' ' + cur.name : '');
 
-    if (rateIsSample) {
-      rateHint.textContent = '예시 환율이에요. 은행 앱의 오늘 매매기준율로 바꿔 주세요.';
-    } else {
+    var code = currency();
+    var auto = autoRateFor(code);
+    var stale = false;
+    var hint;
+    if (rateSource === 'auto' && auto) {
+      var date = koreanDate(autoRates.baseDate);
+      if (daysBetweenKst(autoRates.baseDate) >= FX_STALE_DAYS) {
+        stale = true;
+        hint = '⚠ ' + date + ' 기준이라 오래된 환율이에요. 은행 앱의 오늘 매매기준율로 바꿔 주세요.';
+      } else {
+        hint = date + ' 한국수출입은행 매매기준율' + (code === 'CNY' ? '(CNH 고시)' : '') +
+          '이에요. 내 은행 숫자와 조금 다를 수 있어요.';
+      }
+    } else if (rateSource === 'user') {
       var r = parseFixed(rateInput.value, 2);
-      rateHint.textContent = r !== null && r > BigInt(0)
-        ? rateLabelText(cur) + ' ' + formatFixed(r, 2, 0) + '원'
+      hint = r !== null && r > BigInt(0)
+        ? (auto ? '직접 입력: ' : '') + rateLabelText(cur) + ' ' + formatFixed(r, 2, 0) + '원'
         : '은행 앱의 오늘 매매기준율을 넣어 주세요.';
+    } else if (autoRates && !auto) {
+      hint = '이 통화는 자동 환율이 없어요. 은행 앱의 매매기준율을 넣어 주세요. (예시 환율)';
+    } else {
+      hint = '예시 환율이에요. 은행 앱의 오늘 매매기준율로 직접 넣어 주세요.';
+    }
+    rateHint.textContent = hint;
+    rateHint.classList.toggle('fx-rate-source', rateSource === 'auto' && !stale);
+    rateHint.classList.toggle('fx-rate-stale', stale);
+
+    if (rateReset) {
+      var showReset = rateSource === 'user' && !!auto;
+      if (showReset) {
+        rateReset.textContent = (autoRates.baseDate === fxTodayKst() ? '오늘' : koreanDate(autoRates.baseDate)) +
+          ' 환율로 되돌리기';
+      }
+      rateReset.hidden = !showReset;
     }
   }
 
@@ -458,9 +563,18 @@ function calculate(p) {
     removeDigitNextToDeletedComma(rateInput, e);
     formatRateInput(rateInput);
     lastValues[rateInput.id] = rateInput.value;
-    rateIsSample = false;
+    rateSource = 'user';
     render();
   });
+
+  if (rateReset) {
+    rateReset.addEventListener('click', function () {
+      if (!autoRateFor(currency())) return;
+      fillRate();
+      render();
+      rateInput.focus();
+    });
+  }
 
   spreadInput.addEventListener('input', function () {
     sanitizeSpread();
@@ -497,8 +611,36 @@ function calculate(p) {
   });
 
   render();
+
+  // 배포 때 함께 올라간 rates.json(한국수출입은행 매매기준율)을 읽어 칸을 채운다.
+  // 없거나 깨졌으면 조용히 예시 환율로 계속 동작한다.
+  function loadAutoRates() {
+    if (typeof fetch !== 'function' || location.protocol === 'file:') {
+      console.info('[환전 계산기] 자동 환율을 읽지 않고 예시 환율로 동작해요.');
+      return;
+    }
+    fetch('rates.json', { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var valid = validateRates(data);
+        if (!valid) throw new Error('형식 오류');
+        autoRates = valid;
+        // 사용자가 이미 칸을 고쳤으면 덮어쓰지 않는다.
+        if (rateSource === 'sample' && autoRateFor(currency())) fillRate();
+        render();
+      })
+      .catch(function (err) {
+        console.info('[환전 계산기] 자동 환율 없음, 예시 환율 사용 (' + (err && err.message ? err.message : err) + ')');
+      });
+  }
+  loadAutoRates();
 })();
 
 if (typeof module !== 'undefined') {
   module.exports = { calculate: calculate, parseFixed: parseFixed, divRound: divRound, formatRate: formatRate, FX_CURRENCIES: FX_CURRENCIES };
+  module.exports.validateRates = validateRates;
+  module.exports.daysBetweenKst = daysBetweenKst;
 }

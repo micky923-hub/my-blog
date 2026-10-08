@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '30 2 * * 1-5'   # 평일 11:30 KST (수출입은행 매매기준율 발표 직후)
+    - cron: '30 6 * * 1-5'   # 평일 15:30 KST (11:30 실패·지연 대비 재시도)
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -28,6 +32,13 @@ jobs:
 
       - run: npm install
       - run: npm run build
+
+      - name: Fetch exchange rates (Korea Eximbank)
+        run: node apps/exchange-fee-calculator/tools/fetch-rates.js --out dist/apps/exchange-fee-calculator/rates.json
+        env:
+          KOREAEXIM_API_KEY: ${{ secrets.KOREAEXIM_API_KEY }}
+        continue-on-error: true
+        timeout-minutes: 3
 
       - uses: actions/configure-pages@v5
 

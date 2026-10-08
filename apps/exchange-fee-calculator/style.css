@@ -449,3 +449,31 @@
     font-size: 2rem;
   }
 }
+
+/* ---------- 자동 환율 (rates.json) ---------- */
+
+.fx-hint.fx-rate-source {
+  color: var(--color-text-secondary);
+}
+
+.fx-hint.fx-rate-stale {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.fx-rate-reset-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fx-rate-reset {
+  flex: 0 1 auto;
+  margin-top: 0.4rem;
+  max-width: 100%;
+  white-space: normal;
+  word-break: keep-all;
+}
+
+.fx-rate-reset[hidden] {
+  display: none;
+}
