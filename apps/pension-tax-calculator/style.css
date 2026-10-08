@@ -190,10 +190,10 @@
 }
 
 .pt-chip {
-  flex: 1 1 0;
+  flex: 1 1 auto;
   min-width: 0;
   min-height: var(--pt-touch);
-  padding: 0 0.5rem;
+  padding: 0 0.75rem;
   font: inherit;
   font-size: 0.95rem;
   font-weight: 600;
