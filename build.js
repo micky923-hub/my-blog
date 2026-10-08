@@ -17,6 +17,19 @@ marked.use(markedHighlight({
 }));
 marked.use({ gfm: true });
 
+// 취소선은 ~~두 개~~ 일 때만 적용한다.
+// 기본 설정은 ~ 하나도 취소선으로 처리해서 "1~2%, 3~4만 원" 같은 범위 표기에 가운데 줄이 그어진다.
+marked.use({
+  tokenizer: {
+    del: function(src) {
+      var match = /^~~(?=[^\s~])([\s\S]*?[^\s~])~~(?!~)/.exec(src);
+      if (match) {
+        return { type: 'del', raw: match[0], text: match[1], tokens: this.lexer.inlineTokens(match[1]) };
+      }
+    }
+  }
+});
+
 var config = JSON.parse(fs.readFileSync('site.config.json', 'utf-8'));
 var DIST = 'dist';
 var siteUrl = config.url.replace(/\/$/, '');
