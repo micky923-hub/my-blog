@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "baseDate": "2026-10-02",
+  "fetchedAt": "2026-10-02T11:31:05+09:00",
+  "source": "한국수출입은행 현재환율 Open API (매매기준율)",
+  "sourceUrl": "https://www.koreaexim.go.kr/",
+  "origin": "api",
+  "rates": {
+    "USD": 1380.5,
+    "JPY": 930.1,
+    "EUR": 1610,
+    "CNY": 192.75
+  },
+  "units": {
+    "USD": 1,
+    "JPY": 100,
+    "EUR": 1,
+    "CNY": 1
+  },
+  "apiCodes": {
+    "USD": "USD",
+    "JPY": "JPY(100)",
+    "EUR": "EUR",
+    "CNY": "CNH"
+  }
+}
