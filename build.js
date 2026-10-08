@@ -349,6 +349,9 @@ function buildAppsHtml() {
   html += '      <div class="app-grid">\n';
   apps.forEach(function(app) {
     html += '        <a href="' + base + app.path + '" class="app-card">\n';
+    if (app.image) {
+      html += '          <img class="app-card-image" src="' + base + escapeHtml(app.image) + '" alt="' + escapeHtml(app.title) + ' 미리보기" loading="lazy" width="600" height="340">\n';
+    }
     html += '          <span class="app-card-emoji">' + escapeHtml(app.emoji || '') + '</span>\n';
     html += '          <h3 class="app-card-title">' + escapeHtml(app.title) + '</h3>\n';
     html += '          <p class="app-card-desc">' + escapeHtml(app.description) + '</p>\n';
