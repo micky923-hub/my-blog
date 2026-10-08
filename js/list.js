@@ -13,7 +13,7 @@
   var allCards = Array.prototype.slice.call(grid.querySelectorAll('.post-card'));
   var filteredCards = allCards.slice();
   var currentPage = 1;
-  var activeTag = '';
+  var activeTags = []; // 여러 개 선택 가능, 하나라도 맞으면 보여 준다
   var searchQuery = '';
 
   var savedView = null;
@@ -44,21 +44,65 @@
   }
 
   var keywordBtns = document.querySelectorAll('.keyword-btn');
+  var selectedRow = document.getElementById('keyword-selected');
+  var chipsBox = document.getElementById('keyword-chips');
+  var resetBtn = document.getElementById('keyword-reset');
+
   for (var i = 0; i < keywordBtns.length; i++) {
     keywordBtns[i].addEventListener('click', function() {
-      var tag = this.getAttribute('data-tag');
-      if (activeTag === tag) {
-        activeTag = '';
-        this.classList.remove('active');
-      } else {
-        for (var j = 0; j < keywordBtns.length; j++) {
-          keywordBtns[j].classList.remove('active');
-        }
-        activeTag = tag;
-        this.classList.add('active');
-      }
-      applyFilters();
+      toggleTag(this.getAttribute('data-tag'));
     });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      setTags([]);
+    });
+  }
+
+  function toggleTag(tag) {
+    var next = activeTags.slice();
+    var idx = next.indexOf(tag);
+    if (idx === -1) next.push(tag);
+    else next.splice(idx, 1);
+    setTags(next);
+  }
+
+  // 사용자가 직접 고르면 주소의 #tag= 는 지워서, 같은 링크를 다시 눌러도 동작하게 한다
+  function setTags(tags, keepHash) {
+    activeTags = tags;
+    if (!keepHash && window.location.hash.indexOf('#tag=') === 0) {
+      try { history.replaceState(null, '', window.location.pathname + window.location.search); } catch(e) {}
+    }
+    renderSelected();
+    applyFilters();
+  }
+
+  function renderSelected() {
+    for (var b = 0; b < keywordBtns.length; b++) {
+      var on = activeTags.indexOf(keywordBtns[b].getAttribute('data-tag')) !== -1;
+      keywordBtns[b].classList.toggle('active', on);
+      keywordBtns[b].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    if (!selectedRow || !chipsBox) return;
+    while (chipsBox.firstChild) chipsBox.removeChild(chipsBox.firstChild);
+    activeTags.forEach(function(tag) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'keyword-chip';
+      chip.setAttribute('aria-label', tag + ' 선택 해제');
+      var label = document.createElement('span');
+      label.textContent = tag;
+      var x = document.createElement('span');
+      x.className = 'keyword-chip-x';
+      x.setAttribute('aria-hidden', 'true');
+      x.textContent = '\u00d7';
+      chip.appendChild(label);
+      chip.appendChild(x);
+      chip.addEventListener('click', function() { toggleTag(tag); });
+      chipsBox.appendChild(chip);
+    });
+    selectedRow.hidden = activeTags.length === 0;
   }
 
   function applyFilters() {
@@ -66,9 +110,9 @@
       var matchTag = true;
       var matchSearch = true;
 
-      if (activeTag) {
+      if (activeTags.length) {
         var tags = (card.getAttribute('data-tags') || '').split(',');
-        matchTag = tags.indexOf(activeTag) !== -1;
+        matchTag = activeTags.some(function(t) { return tags.indexOf(t) !== -1; });
       }
 
       if (searchQuery) {
@@ -166,11 +210,7 @@
       if (hash.indexOf('#tag=') === 0) {
         newTag = decodeURIComponent(hash.substring(5));
       }
-      activeTag = newTag;
-      for (var t = 0; t < keywordBtns.length; t++) {
-        keywordBtns[t].classList.toggle('active', keywordBtns[t].getAttribute('data-tag') === newTag);
-      }
-      applyFilters();
+      setTags(newTag ? [newTag] : [], true);
       if (newTag) {
         var target = document.getElementById('main-content');
         if (target) window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
