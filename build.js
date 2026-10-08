@@ -344,33 +344,27 @@ function buildAppsHtml() {
   var apps = JSON.parse(fs.readFileSync(appsFile, 'utf-8'));
   if (apps.length === 0) return '';
 
-  var html = '    <section class="web-apps">\n';
-  html += '      <h2 class="section-title">웹앱</h2>\n';
-  html += '      <div class="app-grid">\n';
-  apps.forEach(function(app) {
-    if (app.icon) {
-      // 앱 아이콘 + 실행 버튼이 있는 앱스토어 스타일 카드
-      html += '        <a href="' + base + app.path + '" class="app-card app-card-launcher">\n';
-      html += '          <img class="app-card-icon" src="' + base + escapeHtml(app.icon) + '" alt="" width="88" height="88">\n';
-      html += '          <div class="app-card-body">\n';
-      html += '            <span class="app-card-badge">웹앱</span>\n';
-      html += '            <h3 class="app-card-title">' + escapeHtml(app.title) + '</h3>\n';
-      html += '            <p class="app-card-desc">' + escapeHtml(app.description) + '</p>\n';
-      html += '            <span class="app-card-play">▶ 실행하기</span>\n';
-      html += '          </div>\n';
-      html += '        </a>\n';
-      return;
-    }
-    html += '        <a href="' + base + app.path + '" class="app-card">\n';
-    if (app.image) {
-      html += '          <img class="app-card-image" src="' + base + escapeHtml(app.image) + '" alt="' + escapeHtml(app.title) + ' 미리보기" loading="lazy" width="600" height="340">\n';
-    }
-    html += '          <span class="app-card-emoji">' + escapeHtml(app.emoji || '') + '</span>\n';
-    html += '          <h3 class="app-card-title">' + escapeHtml(app.title) + '</h3>\n';
-    html += '          <p class="app-card-desc">' + escapeHtml(app.description) + '</p>\n';
-    html += '        </a>\n';
-  });
+  // 휴대폰 홈 화면처럼 아이콘 + 짧은 이름만 한 줄로 보여 준다 (좁은 화면에서는 옆으로 넘김)
+  var html = '    <section class="web-apps" aria-labelledby="web-apps-title">\n';
+  html += '      <div class="app-shelf-head">\n';
+  html += '        <h2 id="web-apps-title" class="app-shelf-title">무료 계산기</h2>\n';
+  html += '        <span class="app-shelf-hint" aria-hidden="true">옆으로 넘겨 보세요 →</span>\n';
   html += '      </div>\n';
+  html += '      <ul class="app-shelf">\n';
+  apps.forEach(function(app) {
+    var name = app.shortTitle || app.title;
+    html += '        <li>\n';
+    html += '          <a href="' + base + app.path + '" class="app-tile" title="' + escapeHtml(app.description) + '" aria-label="' + escapeHtml(app.title) + '">\n';
+    if (app.icon) {
+      html += '            <img class="app-tile-icon" src="' + base + escapeHtml(app.icon) + '" alt="" width="64" height="64">\n';
+    } else {
+      html += '            <span class="app-tile-icon app-tile-emoji" aria-hidden="true">' + escapeHtml(app.emoji || '') + '</span>\n';
+    }
+    html += '            <span class="app-tile-name">' + escapeHtml(name) + '</span>\n';
+    html += '          </a>\n';
+    html += '        </li>\n';
+  });
+  html += '      </ul>\n';
   html += '    </section>\n';
   return html;
 }
