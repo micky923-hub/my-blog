@@ -683,6 +683,64 @@ a:focus-visible {
   margin-bottom: 0.75rem;
 }
 
+/* 404 페이지 */
+.not-found {
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+}
+
+.not-found-code {
+  margin: 0;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-accent);
+  letter-spacing: -0.03em;
+}
+
+.not-found-title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.not-found-desc {
+  margin: 0 0 1rem;
+  color: var(--color-text-secondary);
+}
+
+.not-found-home {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.not-found-home:hover,
+.not-found-home:focus-visible {
+  background: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+.not-found-recent-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.not-found-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.not-found-list li {
+  margin: 0.45rem 0;
+  line-height: 1.5;
+}
+
 /* 읽는 시간 */
 .post-meta-sep {
   margin: 0 0.15rem;

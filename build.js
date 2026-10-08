@@ -114,6 +114,8 @@ function htmlTemplate(opts) {
   var ogType = opts.ogType || 'website';
   var ogImage = opts.ogImage || '';
   var pathPrefix = opts.pathPrefix || base;
+  var robots = opts.robots || 'index, follow';
+  var extraMeta = opts.extraMeta || '';
 
   var preFooterTagsHtml = '';
   allTopTags.forEach(function(tag) {
@@ -182,7 +184,8 @@ function htmlTemplate(opts) {
     + '  <meta property="og:site_name" content="' + escapeHtml(config.title) + '">\n'
     + '  <meta property="og:image" content="' + escapeHtml(ogImage || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=630&fit=crop') + '">\n'
     + '  <meta name="naver-site-verification" content="66829663743427604f00b45e49e0e4dba24a0b39">\n'
-    + '  <meta name="robots" content="index, follow">\n'
+    + '  <meta name="robots" content="' + robots + '">\n'
+    + extraMeta
     + (adsenseTag ? adsenseTag + '\n' : '')
     + (gaTag ? gaTag + '\n' : '')
     + '  <script>\n'
@@ -192,7 +195,8 @@ function htmlTemplate(opts) {
     + '  </script>\n'
     + '  <link rel="stylesheet" href="' + pathPrefix + 'css/style.css?v=' + Date.now() + '">\n'
     + (hljsCss ? hljsCss + '\n' : '')
-    + (jsonLd ? '  <script type="application/ld+json">' + jsonLd + '</script>\n' : '')
+    // JSON 안의 '<'를 이스케이프해서 제목 등에 '</script>'가 들어가도 태그가 깨지지 않게 한다
+    + (jsonLd ? '  <script type="application/ld+json">' + jsonLd.replace(/</g, '\\u003c') + '</script>\n' : '')
     + '</head>\n'
     + '<body>\n'
     + '  <a href="#main-content" class="visually-hidden">본문으로 건너뛰기</a>\n'
@@ -364,14 +368,35 @@ function buildPosts() {
       tagsHtml += '      </ul>\n';
     }
 
+    var postUrl = siteUrl + '/posts/' + slug + '.html';
+    var article = {
+      "@type": "BlogPosting",
+      "@id": postUrl + '#article',
+      "headline": meta.title || slug,
+      "description": meta.summary || "",
+      "datePublished": meta.date || "",
+      "dateModified": meta.updated || meta.date || "",
+      "inLanguage": "ko-KR",
+      "author": { "@type": "Person", "name": config.author, "url": siteUrl + '/about.html' },
+      "publisher": { "@type": "Organization", "name": config.title, "url": siteUrl + '/' },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
+      "url": postUrl,
+      "timeRequired": 'PT' + entry.info.minutes + 'M'
+    };
+    if (meta.image) article.image = [meta.image];
+    if (meta.tags && meta.tags.length) article.keywords = meta.tags.join(', ');
     var jsonLd = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": meta.title || slug,
-      "datePublished": meta.date || "",
-      "author": { "@type": "Person", "name": config.author },
-      "description": meta.summary || "",
-      "url": siteUrl + '/posts/' + slug + '.html'
+      "@graph": [
+        article,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": siteUrl + '/' },
+            { "@type": "ListItem", "position": 2, "name": meta.title || slug, "item": postUrl }
+          ]
+        }
+      ]
     });
 
     var pageContent =
@@ -430,6 +455,8 @@ function buildPosts() {
       hasCode: hasCode,
       jsonLd: jsonLd,
       ogType: 'article',
+      extraMeta: (meta.date ? '  <meta property="article:published_time" content="' + escapeHtml(meta.date) + '">\n' : '')
+        + (meta.tags || []).map(function(t) { return '  <meta property="article:tag" content="' + escapeHtml(t) + '">\n'; }).join(''),
       pathPrefix: sharePathPrefix,
       extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + Date.now() + '"></script>\n'
     });
@@ -575,11 +602,27 @@ function buildIndex(posts) {
 
   var jsonLd = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": config.title,
-    "description": config.description,
-    "url": siteUrl,
-    "author": { "@type": "Person", "name": config.author }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": siteUrl + '/#website',
+        "name": config.title,
+        "url": siteUrl + '/',
+        "inLanguage": "ko-KR",
+        "description": config.description
+      },
+      {
+        "@type": "Blog",
+        "name": config.title,
+        "description": config.description,
+        "url": siteUrl + '/',
+        "inLanguage": "ko-KR",
+        "author": { "@type": "Person", "name": config.author },
+        "blogPost": posts.slice(0, 10).map(function(p) {
+          return { "@type": "BlogPosting", "headline": p.title, "url": siteUrl + '/posts/' + p.slug + '.html', "datePublished": p.date };
+        })
+      }
+    ]
   });
 
   var fullHtml = htmlTemplate({
@@ -624,6 +667,39 @@ function buildStaticPages() {
   });
 }
 
+// 404 페이지 (GitHub Pages가 없는 주소에서 dist/404.html을 보여 준다)
+function buildNotFound(posts) {
+  var recent = posts.slice(0, 5);
+  var listHtml = recent.map(function(p) {
+    return '        <li><a href="' + base + 'posts/' + p.slug + '.html">' + escapeHtml(p.title) + '</a></li>\n';
+  }).join('');
+
+  var pageContent =
+    '  <main id="main-content" class="container not-found">\n'
+    + '    <p class="not-found-code" aria-hidden="true">404</p>\n'
+    + '    <h1 class="not-found-title">찾으시는 페이지가 없어요</h1>\n'
+    + '    <p class="not-found-desc">주소가 바뀌었거나 잘못 입력되었을 수 있어요. 아래에서 다른 글을 둘러보세요.</p>\n'
+    + '    <p><a href="' + base + '" class="not-found-home">홈으로 가기 &rarr;</a></p>\n'
+    + buildAppsHtml().replace(/^/gm, '  ')
+    + '    <section class="not-found-recent" aria-labelledby="not-found-recent-title">\n'
+    + '      <h2 id="not-found-recent-title" class="not-found-recent-title">최근 글</h2>\n'
+    + '      <ul class="not-found-list">\n'
+    + listHtml
+    + '      </ul>\n'
+    + '    </section>\n'
+    + '  </main>';
+
+  var fullHtml = htmlTemplate({
+    title: '페이지를 찾을 수 없어요 — ' + config.title,
+    description: config.description,
+    canonical: siteUrl + '/404.html',
+    content: pageContent,
+    robots: 'noindex, follow'
+  });
+
+  fs.writeFileSync(path.join(DIST, '404.html'), fullHtml);
+}
+
 // sitemap.xml 생성
 function buildSitemap(posts) {
   var urls = [
@@ -631,6 +707,11 @@ function buildSitemap(posts) {
     { loc: siteUrl + '/about.html', priority: '0.3', changefreq: 'monthly' },
     { loc: siteUrl + '/privacy.html', priority: '0.1', changefreq: 'yearly' }
   ];
+  if (fs.existsSync('apps.json')) {
+    JSON.parse(fs.readFileSync('apps.json', 'utf-8')).forEach(function(app) {
+      urls.push({ loc: siteUrl + '/' + app.path, priority: '0.7', changefreq: 'monthly' });
+    });
+  }
   posts.forEach(function(post) {
     urls.push({
       loc: siteUrl + '/posts/' + post.slug + '.html',
@@ -724,6 +805,7 @@ buildStaticPages();
 console.log('  정적 페이지 빌드 완료');
 
 buildSitemap(posts);
+buildNotFound(posts);
 buildRss(posts);
 buildRobots();
 if (fs.existsSync('favicon.svg')) {
