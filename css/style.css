@@ -952,6 +952,7 @@ a:focus-visible {
 .app-card-image {
   display: block;
   width: calc(100% + 2.5rem);
+  max-width: none;
   height: auto;
   aspect-ratio: 600 / 340;
   object-fit: cover;
