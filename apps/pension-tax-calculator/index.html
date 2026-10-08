@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연금저축·IRP 세액공제 계산기</title>
+  <meta name="description" content="소득과 연금저축·IRP 납입액만 넣으면 올해 연말정산 예상 환급액과, 한도까지 채우면 얼마를 더 돌려받는지 바로 알려줘요.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="pt-header">
+    <div class="pt-header-inner">
+      <a href="../../" class="pt-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle pt-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="pt-main" id="main-content">
+    <div class="pt-intro">
+      <h1 class="pt-title">🐷 연금저축·IRP 세액공제 계산기</h1>
+      <p class="pt-subtitle">올해 연말정산에서 얼마 돌려받는지 바로 계산해 드려요</p>
+    </div>
+
+    <details class="pt-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="pt-guide-steps">
+        <li>소득 유형을 고르고 금액을 입력하세요. 직장인은 원천징수영수증의 <strong>총급여</strong>(비과세 제외 연봉), 사업·기타 소득이 있으면 <strong>종합소득금액</strong>을 넣습니다.</li>
+        <li>올해 <strong>연금저축</strong>과 <strong>IRP</strong>에 넣었거나 넣을 <strong>1년 치 금액</strong>을 입력하세요. 없는 계좌는 비워 두면 됩니다.</li>
+        <li><strong>예상 환급액</strong>이 연말정산 때 돌려받는 세금입니다.</li>
+        <li>아래 <strong>"한도까지 더 넣으면"</strong>에서 연말까지 얼마를 더 넣으면 얼마를 더 받는지 확인하세요.</li>
+      </ol>
+      <p class="pt-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="pt-guide-terms">
+        <li>연금저축은 <strong>600만 원</strong>까지, 연금저축 + IRP 합쳐 <strong>900만 원</strong>까지 공제돼요.</li>
+        <li>총급여 <strong>5,500만 원 이하</strong>(종합소득금액 4,500만 원 이하)면 <strong>16.5%</strong>, 넘으면 <strong>13.2%</strong>를 돌려받아요.</li>
+        <li>연금저축을 600만 원 넘게 넣었다면 나머지는 <strong>IRP</strong>로 채워야 900만 원 한도를 다 쓸 수 있어요.</li>
+      </ul>
+    </details>
+
+    <form class="pt-form" id="pt-form" novalidate onsubmit="return false;">
+      <fieldset class="pt-field pt-segment">
+        <legend class="pt-label">소득 유형</legend>
+        <div class="pt-segment-options">
+          <input type="radio" name="pt-income-type" id="pt-type-salary" value="salary" checked>
+          <label for="pt-type-salary">근로소득자</label>
+          <input type="radio" name="pt-income-type" id="pt-type-global" value="global">
+          <label for="pt-type-global">그 외 소득</label>
+        </div>
+      </fieldset>
+
+      <div class="pt-field">
+        <label for="pt-income" class="pt-label" id="pt-income-label">총급여 (연봉)</label>
+        <div class="pt-input-wrap">
+          <input type="text" id="pt-income" class="pt-input" inputmode="numeric" autocomplete="off" value="50,000,000" aria-describedby="pt-income-hint">
+          <span class="pt-unit" aria-hidden="true">원</span>
+        </div>
+        <p class="pt-hint" id="pt-income-hint">5,000만 원 · 5,500만 원 이하면 16.5%</p>
+      </div>
+
+      <div class="pt-field">
+        <label for="pt-pension" class="pt-label">연금저축 연 납입액</label>
+        <div class="pt-input-wrap">
+          <input type="text" id="pt-pension" class="pt-input" inputmode="numeric" autocomplete="off" value="6,000,000" aria-describedby="pt-pension-hint">
+          <span class="pt-unit" aria-hidden="true">원</span>
+        </div>
+        <p class="pt-hint" id="pt-pension-hint">600만 원 · 월 50만 원</p>
+        <div class="pt-quick" role="group" aria-label="연금저축 납입액 빠르게 입력">
+          <button type="button" class="pt-chip" data-target="pt-pension" data-add="500000">+50만</button>
+          <button type="button" class="pt-chip" data-target="pt-pension" data-add="1000000">+100만</button>
+          <button type="button" class="pt-chip" data-target="pt-pension" data-fill="pension">600만 채우기</button>
+        </div>
+      </div>
+
+      <div class="pt-field">
+        <label for="pt-irp" class="pt-label">IRP 연 납입액</label>
+        <div class="pt-input-wrap">
+          <input type="text" id="pt-irp" class="pt-input" inputmode="numeric" autocomplete="off" value="3,000,000" aria-describedby="pt-irp-hint">
+          <span class="pt-unit" aria-hidden="true">원</span>
+        </div>
+        <p class="pt-hint" id="pt-irp-hint">300만 원 · 월 25만 원</p>
+        <div class="pt-quick" role="group" aria-label="IRP 납입액 빠르게 입력">
+          <button type="button" class="pt-chip" data-target="pt-irp" data-add="500000">+50만</button>
+          <button type="button" class="pt-chip" data-target="pt-irp" data-add="1000000">+100만</button>
+          <button type="button" class="pt-chip" data-target="pt-irp" data-fill="irp">남은 한도 채우기</button>
+        </div>
+      </div>
+    </form>
+
+    <section class="pt-result" id="pt-result" aria-live="polite" aria-labelledby="pt-result-title">
+      <h2 class="pt-result-title" id="pt-result-title">결과</h2>
+      <div id="pt-result-body">
+        <dl class="pt-rows">
+          <div class="pt-row"><dt>적용 공제율</dt><dd id="pt-rate">-</dd></div>
+          <div class="pt-row"><dt>공제 대상 금액</dt><dd id="pt-eligible">-</dd></div>
+          <div class="pt-row pt-row-excess" id="pt-excess-row"><dt>한도 초과(공제 안 됨)</dt><dd id="pt-excess">-</dd></div>
+        </dl>
+        <p class="pt-excess-reason" id="pt-excess-reason" hidden></p>
+        <div class="pt-total">
+          <span class="pt-total-label">예상 환급액</span>
+          <strong class="pt-total-value" id="pt-refund">-</strong>
+        </div>
+
+        <div class="pt-more-box">
+          <h3 class="pt-more-title">한도까지 더 넣으면</h3>
+          <p class="pt-more-done" id="pt-more-done" hidden>🎉 올해 공제 한도를 모두 채웠어요</p>
+          <div id="pt-more-detail">
+            <div class="pt-row"><span class="pt-more-key">남은 한도</span><span class="pt-more-val" id="pt-remaining">-</span></div>
+            <p class="pt-more-extra"><strong id="pt-extra">-</strong> 더 돌려받아요</p>
+            <p class="pt-more-room" id="pt-room"></p>
+          </div>
+        </div>
+      </div>
+      <p class="pt-error" id="pt-error" hidden></p>
+      <p class="pt-note">ⓘ 세액공제는 내야 할 세금(결정세액)을 넘어 돌려받을 수 없어요. 소득이 낮거나 다른 공제가 많으면 실제 환급액이 이보다 적을 수 있어요.</p>
+    </section>
+
+    <p class="pt-disclaimer">
+      ※ 이 계산기는 <strong>2026년 세법 기준</strong>으로 만든 <strong>참고용</strong>입니다. 세액공제는 결정세액을 넘을 수 없고, 다른 공제 항목·원 단위 절사·세법 개정 등에 따라 실제 연말정산 결과와 다를 수 있습니다. 정확한 금액은 국세청 홈택스 연말정산 미리보기나 세무 전문가를 통해 확인하세요.
+    </p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

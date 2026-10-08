@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="연금저축·IRP 세액공제 계산기 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#6ee7b7"/>
+      <stop offset="0.55" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#065f46"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="pig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fecdd3"/>
+      <stop offset="1" stop-color="#fb7185"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 환급 화살표 (↺ 돌려받기) -->
+  <g opacity="0.95">
+    <path d="M205 121.5A190 190 0 0 0 96 352" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round"/>
+    <path d="M110 412L58 366L128 340Z" fill="#ffffff" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 돼지저금통 그림자 -->
+  <ellipse cx="275" cy="330" rx="150" ry="115" fill="#064e3b" opacity="0.35" transform="translate(10 14)"/>
+
+  <!-- 다리 -->
+  <rect x="180" y="400" width="46" height="62" rx="18" fill="#f43f5e"/>
+  <rect x="318" y="400" width="46" height="62" rx="18" fill="#f43f5e"/>
+
+  <!-- 귀 -->
+  <path d="M316 238L350 178Q360 170 366 182L380 250Z" fill="#f43f5e"/>
+
+  <!-- 몸통 -->
+  <ellipse cx="275" cy="330" rx="150" ry="115" fill="url(#pig)"/>
+
+  <!-- 코 -->
+  <ellipse cx="420" cy="336" rx="36" ry="44" fill="#f43f5e"/>
+  <ellipse cx="410" cy="336" rx="7" ry="12" fill="#9f1239"/>
+  <ellipse cx="432" cy="336" rx="7" ry="12" fill="#9f1239"/>
+
+  <!-- 눈 -->
+  <circle cx="358" cy="296" r="12" fill="#4c0519"/>
+
+  <!-- 동전 투입구 -->
+  <rect x="230" y="230" width="86" height="18" rx="9" fill="#e11d48"/>
+
+  <!-- 동전 -->
+  <circle cx="273" cy="170" r="54" fill="url(#gold)"/>
+  <circle cx="273" cy="170" r="41" fill="none" stroke="#fef3c7" stroke-width="5" opacity="0.8"/>
+  <text x="273" y="194" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#78350f">₩</text>
+
+  <!-- % 배지 -->
+  <circle cx="414" cy="112" r="52" fill="#ffffff"/>
+  <text x="414" y="134" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#047857">%</text>
+</svg>
