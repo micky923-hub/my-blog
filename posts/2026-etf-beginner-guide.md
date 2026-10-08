@@ -1,7 +1,7 @@
 ---
 title: 주식 초보라면 ETF부터, 실전 투자 시작 가이드
 date: 2026-09-17
-tags: [증권, ETF, 주식투자, 재테크]
+tags: [투자, ETF, 주식]
 summary: 개별 종목 분석이 부담스러운 초보 투자자에게 ETF는 가장 현실적인 시작점입니다. ETF의 기본 구조부터 국내·해외 상장 ETF의 세금 차이, 초보자가 흔히 저지르는 실수까지 실전 위주로 정리했습니다.
 image: https://images.unsplash.com/photo-1604594849809-dfedbc827105?w=800&h=400&fit=crop
 ---
