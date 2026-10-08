@@ -962,6 +962,75 @@ a:focus-visible {
   border-radius: 12px 12px 0 0;
 }
 
+/* 앱 아이콘형 카드 (apps.json에 icon이 있을 때) */
+.app-card-launcher {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .app-card-launcher {
+    grid-column: auto;
+  }
+}
+
+.app-card-icon {
+  flex: 0 0 auto;
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+  transition: transform 0.2s;
+}
+
+.app-card-launcher:hover .app-card-icon {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.app-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-card-badge {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-tag-text);
+  background-color: var(--color-tag-bg);
+  border-radius: 999px;
+}
+
+.app-card-play {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  border-radius: 999px;
+  transition: background-color 0.2s;
+}
+
+[data-theme="dark"] .app-card-play {
+  color: var(--color-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .app-card-play {
+    color: var(--color-bg);
+  }
+}
+
+.app-card-launcher:hover .app-card-play {
+  background-color: var(--color-accent-hover);
+}
+
 .app-card-emoji {
   display: block;
   font-size: 2rem;

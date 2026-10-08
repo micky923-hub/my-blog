@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="적금·예금 이자 계산기 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="0.55" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 계산기 -->
+  <rect x="128" y="104" width="240" height="320" rx="40" fill="#1e3a8a" opacity="0.35" transform="translate(10 14)"/>
+  <rect x="128" y="96" width="240" height="320" rx="40" fill="url(#body)"/>
+  <rect x="156" y="124" width="184" height="76" rx="16" fill="#1e3a8a"/>
+  <text x="322" y="178" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#86efac">3.5%</text>
+
+  <g fill="#93c5fd">
+    <rect x="156" y="222" width="48" height="40" rx="10"/>
+    <rect x="224" y="222" width="48" height="40" rx="10"/>
+    <rect x="156" y="278" width="48" height="40" rx="10"/>
+    <rect x="224" y="278" width="48" height="40" rx="10"/>
+    <rect x="156" y="334" width="48" height="40" rx="10"/>
+    <rect x="224" y="334" width="48" height="40" rx="10"/>
+  </g>
+  <rect x="292" y="222" width="48" height="96" rx="10" fill="#2563eb"/>
+  <rect x="292" y="334" width="48" height="40" rx="10" fill="#f59e0b"/>
+  <rect x="304" y="346" width="24" height="5" rx="2.5" fill="#ffffff"/>
+  <rect x="304" y="357" width="24" height="5" rx="2.5" fill="#ffffff"/>
+
+  <!-- 동전 -->
+  <circle cx="378" cy="384" r="78" fill="#92400e" opacity="0.35" transform="translate(6 10)"/>
+  <circle cx="378" cy="384" r="78" fill="url(#gold)"/>
+  <circle cx="378" cy="384" r="60" fill="none" stroke="#fef3c7" stroke-width="6" opacity="0.8"/>
+  <text x="378" y="410" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900" fill="#78350f">₩</text>
+</svg>
