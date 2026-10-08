@@ -289,7 +289,10 @@ function toMonthly(v) {
       out.excessReason.textContent = '연금저축은 600만 원까지만 공제돼요.';
       out.excessReason.hidden = false;
     } else if (res.excessReason === 'total') {
-      out.excessReason.textContent = '두 계좌 합산 900만 원을 넘었어요.';
+      // 연금저축 600만 초과 + 합산 900만 초과가 동시에 일어난 경우 두 이유를 함께 알린다.
+      out.excessReason.textContent = (amountValue(pensionInput) || 0) > PT_LIMITS.pensionLimit
+        ? '연금저축 600만 원 한도와 두 계좌 합산 900만 원 한도를 모두 넘었어요.'
+        : '두 계좌 합산 900만 원을 넘었어요.';
       out.excessReason.hidden = false;
     } else {
       out.excessReason.textContent = '';
@@ -303,7 +306,15 @@ function toMonthly(v) {
     } else {
       out.moreDone.hidden = true;
       out.moreDetail.hidden = false;
-      out.remaining.textContent = won(res.remaining) + ' (' + monthlyText(res.remaining) + ')';
+      // 금액과 월 환산을 별도 줄로 표시 (375px에서 "원)"만 다음 줄로 떨어지는 문제 방지)
+      out.remaining.textContent = '';
+      var remMain = document.createElement('span');
+      remMain.textContent = won(res.remaining);
+      var remMonthly = document.createElement('span');
+      remMonthly.className = 'pt-more-sub';
+      remMonthly.textContent = monthlyText(res.remaining);
+      out.remaining.appendChild(remMain);
+      out.remaining.appendChild(remMonthly);
       out.extra.textContent = '+' + won(res.extraRefund);
       out.room.textContent = res.pensionRoom > 0
         ? '연금저축으로는 ' + won(res.pensionRoom) + '까지, IRP로는 ' + won(res.remaining) + ' 전액을 넣을 수 있어요.'
