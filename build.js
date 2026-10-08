@@ -360,9 +360,11 @@ function buildPosts() {
     var hasCode = htmlContent.indexOf('<code') !== -1;
 
     var tagsHtml = '';
-    if (meta.tags && meta.tags.length > 0) {
+    // 글 2개 이상이 함께 쓰는 태그만 링크로 보여 준다 (1개뿐인 태그는 눌러도 이 글만 나오므로 검색엔진 키워드로만 쓴다)
+    var linkTags = (meta.tags || []).filter(function(tag) { return tagCount[tag] >= 2; });
+    if (linkTags.length > 0) {
       tagsHtml = '      <ul class="post-tags" aria-label="태그">\n';
-      meta.tags.forEach(function(tag) {
+      linkTags.forEach(function(tag) {
         // 누르면 메인 글 목록에서 이 키워드가 선택된 상태로 보여 준다 (js/list.js의 #tag= 처리)
         tagsHtml += '        <li><a class="tag tag-link" href="' + base + '#tag=' + encodeURIComponent(tag) + '" aria-label="' + escapeHtml(tag) + ' 키워드 글 모아 보기">' + escapeHtml(tag) + '</a></li>\n';
       });
