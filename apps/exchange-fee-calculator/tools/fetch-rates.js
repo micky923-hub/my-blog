@@ -174,6 +174,9 @@ function mask(s) {
   try {
     if (secretKey) str = str.split(encodeURIComponent(secretKey)).join('***');
   } catch (e) { /* 무시 */ }
+  // 오류 메시지에 요청 URL이 섞여 들어와도 주소·쿼리(authkey 등)는 출력하지 않는다.
+  str = str.replace(/https?:\/\/oapi\.koreaexim\.go\.kr[^\s'"]*/gi, '[API 주소 생략]');
+  str = str.replace(/authkey=[^&\s'"]*/gi, 'authkey=***');
   return str;
 }
 
