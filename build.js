@@ -363,7 +363,8 @@ function buildPosts() {
     if (meta.tags && meta.tags.length > 0) {
       tagsHtml = '      <ul class="post-tags" aria-label="태그">\n';
       meta.tags.forEach(function(tag) {
-        tagsHtml += '        <li><span class="tag">' + escapeHtml(tag) + '</span></li>\n';
+        // 누르면 메인 글 목록에서 이 키워드가 선택된 상태로 보여 준다 (js/list.js의 #tag= 처리)
+        tagsHtml += '        <li><a class="tag tag-link" href="' + base + '#tag=' + encodeURIComponent(tag) + '" aria-label="' + escapeHtml(tag) + ' 키워드 글 모아 보기">' + escapeHtml(tag) + '</a></li>\n';
       });
       tagsHtml += '      </ul>\n';
     }

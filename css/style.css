@@ -659,6 +659,26 @@ a:focus-visible {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* 글 상단 태그: 누르면 해당 키워드 글 목록으로 이동 */
+.tag-link {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.tag-link::before {
+  content: '#';
+  margin-right: 0.1rem;
+  opacity: 0.7;
+}
+
+.tag-link:hover,
+.tag-link:focus-visible {
+  border-color: var(--color-tag-text);
+  text-decoration: none;
+}
+
 /* ==============================
    Post Content (post.html)
    ============================== */
