@@ -378,9 +378,9 @@ function calculate(p) {
   function updateHints() {
     var cur = FX_CURRENCIES[currency()];
     var a = amountValue();
-    amountHint.textContent = a
-      ? fxWithCommas(String(a)) + cur.name + ' · ' + koreanNumber(a) + ' ' + cur.name
-      : '';
+    // 1만 미만이면 한글 보조 표시가 같은 숫자라 생략: "5,000위안"
+    amountHint.textContent = !a ? ''
+      : fxWithCommas(String(a)) + cur.name + (a >= 10000 ? ' · ' + koreanNumber(a) + ' ' + cur.name : '');
 
     if (rateIsSample) {
       rateHint.textContent = '예시 환율이에요. 은행 앱의 오늘 매매기준율로 바꿔 주세요.';

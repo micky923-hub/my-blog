@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>환전 수수료 계산기 (우대율 반영)</title>
+  <meta name="description" content="통화·금액·매매기준율·우대율만 넣으면 살 때/팔 때 적용 환율, 실제로 내는 수수료, 우대 쿠폰으로 아낀 금액을 바로 계산해요.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="fx-header">
+    <div class="fx-header-inner">
+      <a href="../../" class="fx-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle fx-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="fx-main" id="main-content">
+    <div class="fx-intro">
+      <h1 class="fx-title">💱 환전 수수료 계산기</h1>
+      <p class="fx-subtitle">우대율까지 넣으면 실제로 내는 수수료와 아낀 돈을 알려드려요</p>
+    </div>
+
+    <details class="fx-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="fx-guide-steps">
+        <li>바꿀 <strong>통화</strong>와 <strong>살 때(원화 → 외화) / 팔 때(외화 → 원화)</strong>를 고르세요.</li>
+        <li>바꿀 <strong>외화 금액</strong>을 입력하세요. 엔화도 실제 엔 금액(예: 300,000엔)을 넣으면 됩니다.</li>
+        <li>은행 앱 환율 화면에서 오늘의 <strong>매매기준율</strong>을 확인해 넣으세요. <strong>엔화는 100엔당 환율</strong>입니다(예: 900원).</li>
+        <li><strong>스프레드</strong>는 통화별 보통 값이 자동으로 들어가요. 내 은행 수수료율을 알면 바꿔 넣으세요.</li>
+        <li>쿠폰·우대 이벤트의 <strong>우대율</strong>을 고르면, 맨 아래 <strong>아낀 금액</strong>이 바로 바뀝니다.</li>
+      </ol>
+      <p class="fx-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="fx-guide-terms">
+        <li><strong>매매기준율</strong>은 수수료가 붙지 않은 기준 가격이에요.</li>
+        <li><strong>스프레드</strong>는 은행이 얹는 수수료율이에요. 현찰은 보통 달러·엔 약 1.75%, 유로 약 1.99%, 위안 약 5%예요.</li>
+        <li><strong>우대율 90%</strong>면 스프레드의 10%만 내요. 1.75% × 0.1 = 0.175%</li>
+        <li>해외송금·외화예금(전신환)은 현찰보다 스프레드가 낮은 경우가 많아요.</li>
+      </ul>
+    </details>
+
+    <form class="fx-form" id="fx-form" novalidate onsubmit="return false;">
+      <fieldset class="fx-field fx-segment">
+        <legend class="fx-label">통화</legend>
+        <div class="fx-segment-options fx-segment-currency">
+          <input type="radio" name="fx-currency" id="fx-cur-usd" value="USD" checked>
+          <label for="fx-cur-usd">USD <span aria-hidden="true">🇺🇸</span></label>
+          <input type="radio" name="fx-currency" id="fx-cur-jpy" value="JPY">
+          <label for="fx-cur-jpy">JPY <span aria-hidden="true">🇯🇵</span></label>
+          <input type="radio" name="fx-currency" id="fx-cur-eur" value="EUR">
+          <label for="fx-cur-eur">EUR <span aria-hidden="true">🇪🇺</span></label>
+          <input type="radio" name="fx-currency" id="fx-cur-cny" value="CNY">
+          <label for="fx-cur-cny">CNY <span aria-hidden="true">🇨🇳</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fx-field fx-segment">
+        <legend class="fx-label">방향</legend>
+        <div class="fx-segment-options">
+          <input type="radio" name="fx-direction" id="fx-dir-buy" value="buy" checked>
+          <label for="fx-dir-buy"><span>살 때<span class="fx-seg-sub">원화 → 외화</span></span></label>
+          <input type="radio" name="fx-direction" id="fx-dir-sell" value="sell">
+          <label for="fx-dir-sell"><span>팔 때<span class="fx-seg-sub">외화 → 원화</span></span></label>
+        </div>
+      </fieldset>
+
+      <div class="fx-field">
+        <label for="fx-amount" class="fx-label">외화 금액</label>
+        <div class="fx-input-wrap">
+          <input type="text" id="fx-amount" class="fx-input" inputmode="numeric" autocomplete="off" value="10,000" aria-describedby="fx-amount-hint">
+          <span class="fx-unit" id="fx-amount-unit" aria-hidden="true">달러</span>
+        </div>
+        <p class="fx-hint" id="fx-amount-hint">10,000달러 · 1만 달러</p>
+        <div class="fx-quick" role="group" aria-label="외화 금액 빠르게 입력">
+          <button type="button" class="fx-chip" data-add="100">+100<span class="fx-chip-unit">달러</span></button>
+          <button type="button" class="fx-chip" data-add="1000">+1,000<span class="fx-chip-unit">달러</span></button>
+          <button type="button" class="fx-chip" data-add="10000">+10,000<span class="fx-chip-unit">달러</span></button>
+        </div>
+      </div>
+
+      <div class="fx-field">
+        <label for="fx-rate" class="fx-label" id="fx-rate-label">매매기준율 (1달러당)</label>
+        <div class="fx-input-wrap">
+          <input type="text" id="fx-rate" class="fx-input" inputmode="decimal" autocomplete="off" value="1,300.00" aria-describedby="fx-rate-hint">
+          <span class="fx-unit" aria-hidden="true">원</span>
+        </div>
+        <p class="fx-hint" id="fx-rate-hint">예시 환율이에요. 은행 앱의 오늘 매매기준율로 바꿔 주세요.</p>
+      </div>
+
+      <div class="fx-field fx-field-inline">
+        <label for="fx-spread" class="fx-label">스프레드(수수료율)</label>
+        <div class="fx-input-wrap fx-input-wrap-small">
+          <input type="text" id="fx-spread" class="fx-input" inputmode="decimal" autocomplete="off" maxlength="5" value="1.75">
+          <span class="fx-unit" aria-hidden="true">%</span>
+        </div>
+      </div>
+
+      <div class="fx-field">
+        <div class="fx-field-inline">
+          <label for="fx-pref" class="fx-label">우대율</label>
+          <div class="fx-input-wrap fx-input-wrap-small">
+            <input type="text" id="fx-pref" class="fx-input" inputmode="numeric" autocomplete="off" maxlength="5" value="90">
+            <span class="fx-unit" aria-hidden="true">%</span>
+          </div>
+        </div>
+        <div class="fx-quick fx-quick-pref" role="group" aria-label="우대율 빠르게 선택">
+          <button type="button" class="fx-chip" data-pref="0" aria-pressed="false">0%</button>
+          <button type="button" class="fx-chip" data-pref="50" aria-pressed="false">50%</button>
+          <button type="button" class="fx-chip" data-pref="70" aria-pressed="false">70%</button>
+          <button type="button" class="fx-chip" data-pref="90" aria-pressed="true">90%</button>
+          <button type="button" class="fx-chip" data-pref="100" aria-pressed="false">100%</button>
+        </div>
+      </div>
+    </form>
+
+    <section class="fx-result" id="fx-result" aria-live="polite" aria-labelledby="fx-result-title">
+      <h2 class="fx-result-title" id="fx-result-title">결과</h2>
+      <div id="fx-result-body">
+        <dl class="fx-rows">
+          <div class="fx-row"><dt>실제 수수료율</dt><dd id="fx-eff">-</dd></div>
+          <div class="fx-row"><dt>적용 환율</dt><dd id="fx-applied">-</dd></div>
+          <div class="fx-row fx-row-strong"><dt id="fx-krw-label">필요한 원화</dt><dd id="fx-krw">-</dd></div>
+          <div class="fx-row"><dt>낸 수수료</dt><dd id="fx-fee">-</dd></div>
+          <div class="fx-row"><dt>우대 없을 때 수수료</dt><dd id="fx-fee-nopref">-</dd></div>
+        </dl>
+        <div class="fx-total">
+          <span class="fx-total-label">우대 덕분에 아낀 금액</span>
+          <strong class="fx-total-value" id="fx-saved">-</strong>
+          <p class="fx-saved-note" id="fx-saved-note" hidden></p>
+        </div>
+      </div>
+      <p class="fx-error" id="fx-error" hidden></p>
+    </section>
+
+    <p class="fx-disclaimer">
+      ※ 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 환율과 환전 수수료(스프레드)는 <strong>은행·지점·시간대마다 다르고</strong>, <strong>현찰과 송금(전신환)의 수수료도 다릅니다</strong>. 실제 은행은 적용 환율을 소수점 아래에서 끊어 계산하므로 몇 원 차이가 날 수 있습니다. 정확한 금액은 환전하려는 은행 앱이나 창구에서 확인하세요.
+    </p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
