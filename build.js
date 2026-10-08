@@ -348,6 +348,19 @@ function buildAppsHtml() {
   html += '      <h2 class="section-title">웹앱</h2>\n';
   html += '      <div class="app-grid">\n';
   apps.forEach(function(app) {
+    if (app.icon) {
+      // 앱 아이콘 + 실행 버튼이 있는 앱스토어 스타일 카드
+      html += '        <a href="' + base + app.path + '" class="app-card app-card-launcher">\n';
+      html += '          <img class="app-card-icon" src="' + base + escapeHtml(app.icon) + '" alt="" width="88" height="88">\n';
+      html += '          <div class="app-card-body">\n';
+      html += '            <span class="app-card-badge">웹앱</span>\n';
+      html += '            <h3 class="app-card-title">' + escapeHtml(app.title) + '</h3>\n';
+      html += '            <p class="app-card-desc">' + escapeHtml(app.description) + '</p>\n';
+      html += '            <span class="app-card-play">▶ 실행하기</span>\n';
+      html += '          </div>\n';
+      html += '        </a>\n';
+      return;
+    }
     html += '        <a href="' + base + app.path + '" class="app-card">\n';
     if (app.image) {
       html += '          <img class="app-card-image" src="' + base + escapeHtml(app.image) + '" alt="' + escapeHtml(app.title) + ' 미리보기" loading="lazy" width="600" height="340">\n';
