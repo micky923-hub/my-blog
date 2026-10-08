@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대출 갈아타기 이자 비교 계산기</title>
+  <meta name="description" content="기존 대출과 새 대출의 금리·기간·상환 방식만 넣으면 중도상환수수료와 인지세까지 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지 바로 알려줘요.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="lr-header">
+    <div class="lr-header-inner">
+      <a href="../../" class="lr-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle lr-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="lr-main" id="main-content">
+    <div class="lr-intro">
+      <h1 class="lr-title">🏦 대출 갈아타기 이자 비교</h1>
+      <p class="lr-subtitle">수수료까지 빼고 진짜 아끼는 돈과 손익분기 시점을 알려드려요</p>
+    </div>
+
+    <details class="lr-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="lr-guide-steps">
+        <li><strong>기존 대출</strong>의 남은 원금, 남은 기간, 금리, 상환 방식을 넣으세요. 대출 앱이나 은행 앱의 "대출 상세"에 나와 있어요.</li>
+        <li><strong>새 대출</strong>의 금리와 상환 방식을 고르세요. 기간은 기본으로 기존 남은 기간과 같게 계산해요.</li>
+        <li><strong>중도상환수수료</strong>는 수수료율과 대출받은 지 지난 기간을 넣으면 자동으로 계산해요. 은행 앱에서 예상 수수료 금액을 봤다면 "금액 직접 입력"을 고르세요.</li>
+        <li>맨 아래에서 <strong>갈아타는 게 유리한지</strong>, 비용을 빼고 <strong>얼마를 아끼는지</strong>, <strong>몇 개월째부터 이득인지</strong> 확인하세요.</li>
+      </ol>
+      <p class="lr-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="lr-guide-terms">
+        <li><strong>원리금균등</strong>은 매달 같은 금액, <strong>원금균등</strong>은 처음에 많이 내고 점점 줄어요. <strong>만기일시</strong>는 이자만 내다가 마지막에 원금을 갚아요.</li>
+        <li>중도상환수수료는 보통 <strong>대출받은 지 3년</strong>이 지나면 없어져요. 3년이 거의 다 됐다면 기다렸다 갈아타는 게 나을 수 있어요.</li>
+        <li>새 대출 기간을 늘리면 <strong>월 부담은 줄어도 총이자는 늘 수 있어요.</strong></li>
+        <li>새 대출이 5천만 원을 넘으면 <strong>인지세</strong>를 은행과 절반씩 내요(고객 3만 5천~17만 5천 원).</li>
+      </ul>
+    </details>
+
+    <form class="lr-form" id="lr-form" novalidate onsubmit="return false;">
+      <!-- ① 기존 대출 -->
+      <section class="lr-section" aria-labelledby="lr-sec-old">
+        <h2 class="lr-section-title" id="lr-sec-old">① 기존 대출</h2>
+
+        <div class="lr-field">
+          <label for="lr-balance" class="lr-label">남은 원금(잔액)</label>
+          <div class="lr-input-wrap">
+            <input type="text" id="lr-balance" class="lr-input" inputmode="numeric" autocomplete="off" value="200,000,000" aria-describedby="lr-balance-hint">
+            <span class="lr-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="lr-hint" id="lr-balance-hint">200,000,000원 · 2억 원</p>
+        </div>
+
+        <div class="lr-field">
+          <label for="lr-remain" class="lr-label">남은 기간</label>
+          <div class="lr-input-wrap">
+            <input type="text" id="lr-remain" class="lr-input" inputmode="numeric" autocomplete="off" maxlength="3" value="240" aria-describedby="lr-remain-hint">
+            <span class="lr-unit" aria-hidden="true">개월</span>
+          </div>
+          <p class="lr-hint" id="lr-remain-hint">240개월 = 20년</p>
+          <div class="lr-quick" role="group" aria-label="남은 기간 빠르게 선택" data-target="lr-remain">
+            <button type="button" class="lr-chip" data-months="12" aria-pressed="false">1년</button>
+            <button type="button" class="lr-chip" data-months="24" aria-pressed="false">2년</button>
+            <button type="button" class="lr-chip" data-months="36" aria-pressed="false">3년</button>
+            <button type="button" class="lr-chip" data-months="60" aria-pressed="false">5년</button>
+            <button type="button" class="lr-chip" data-months="120" aria-pressed="false">10년</button>
+            <button type="button" class="lr-chip" data-months="240" aria-pressed="true">20년</button>
+            <button type="button" class="lr-chip" data-months="360" aria-pressed="false">30년</button>
+          </div>
+        </div>
+
+        <div class="lr-field lr-field-inline">
+          <label for="lr-old-rate" class="lr-label">기존 금리 (연)</label>
+          <div class="lr-input-wrap lr-input-wrap-small">
+            <input type="text" id="lr-old-rate" class="lr-input" inputmode="decimal" autocomplete="off" maxlength="5" value="4.5">
+            <span class="lr-unit" aria-hidden="true">%</span>
+          </div>
+        </div>
+
+        <fieldset class="lr-field lr-segment">
+          <legend class="lr-label">기존 상환 방식</legend>
+          <div class="lr-segment-options lr-segment-3">
+            <input type="radio" name="lr-old-type" id="lr-old-type-annuity" value="annuity" checked>
+            <label for="lr-old-type-annuity">원리금균등</label>
+            <input type="radio" name="lr-old-type" id="lr-old-type-equal" value="equal">
+            <label for="lr-old-type-equal">원금균등</label>
+            <input type="radio" name="lr-old-type" id="lr-old-type-bullet" value="bullet">
+            <label for="lr-old-type-bullet">만기일시</label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ② 새 대출 -->
+      <section class="lr-section" aria-labelledby="lr-sec-new">
+        <h2 class="lr-section-title" id="lr-sec-new">② 새 대출</h2>
+
+        <div class="lr-field lr-field-inline">
+          <label for="lr-new-rate" class="lr-label">새 대출 금리 (연)</label>
+          <div class="lr-input-wrap lr-input-wrap-small">
+            <input type="text" id="lr-new-rate" class="lr-input" inputmode="decimal" autocomplete="off" maxlength="5" value="3.8">
+            <span class="lr-unit" aria-hidden="true">%</span>
+          </div>
+        </div>
+
+        <fieldset class="lr-field lr-segment">
+          <legend class="lr-label">새 대출 상환 방식</legend>
+          <div class="lr-segment-options lr-segment-3">
+            <input type="radio" name="lr-new-type" id="lr-new-type-annuity" value="annuity" checked>
+            <label for="lr-new-type-annuity">원리금균등</label>
+            <input type="radio" name="lr-new-type" id="lr-new-type-equal" value="equal">
+            <label for="lr-new-type-equal">원금균등</label>
+            <input type="radio" name="lr-new-type" id="lr-new-type-bullet" value="bullet">
+            <label for="lr-new-type-bullet">만기일시</label>
+          </div>
+        </fieldset>
+
+        <div class="lr-field">
+          <label class="lr-check" for="lr-term-change">
+            <input type="checkbox" id="lr-term-change">
+            <span>새 대출 기간 바꾸기</span>
+          </label>
+          <p class="lr-hint lr-hint-left">끄면 기존 남은 기간과 같은 기간으로 계산해요.</p>
+        </div>
+
+        <div class="lr-field" id="lr-new-term-wrap" hidden>
+          <label for="lr-new-term" class="lr-label">새 대출 기간</label>
+          <div class="lr-input-wrap">
+            <input type="text" id="lr-new-term" class="lr-input" inputmode="numeric" autocomplete="off" maxlength="3" value="240" aria-describedby="lr-new-term-hint">
+            <span class="lr-unit" aria-hidden="true">개월</span>
+          </div>
+          <p class="lr-hint" id="lr-new-term-hint">240개월 = 20년</p>
+          <div class="lr-quick" role="group" aria-label="새 대출 기간 빠르게 선택" data-target="lr-new-term">
+            <button type="button" class="lr-chip" data-months="12" aria-pressed="false">1년</button>
+            <button type="button" class="lr-chip" data-months="24" aria-pressed="false">2년</button>
+            <button type="button" class="lr-chip" data-months="36" aria-pressed="false">3년</button>
+            <button type="button" class="lr-chip" data-months="60" aria-pressed="false">5년</button>
+            <button type="button" class="lr-chip" data-months="120" aria-pressed="false">10년</button>
+            <button type="button" class="lr-chip" data-months="240" aria-pressed="true">20년</button>
+            <button type="button" class="lr-chip" data-months="360" aria-pressed="false">30년</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ③ 갈아타기 비용 -->
+      <section class="lr-section" aria-labelledby="lr-sec-cost">
+        <h2 class="lr-section-title" id="lr-sec-cost">③ 갈아타기 비용</h2>
+
+        <fieldset class="lr-field lr-segment">
+          <legend class="lr-label">중도상환수수료</legend>
+          <div class="lr-segment-options lr-segment-2">
+            <input type="radio" name="lr-fee-mode" id="lr-fee-mode-rate" value="rate" checked>
+            <label for="lr-fee-mode-rate">요율로 계산</label>
+            <input type="radio" name="lr-fee-mode" id="lr-fee-mode-amount" value="amount">
+            <label for="lr-fee-mode-amount">금액 직접 입력</label>
+          </div>
+        </fieldset>
+
+        <div id="lr-fee-rate-group">
+          <div class="lr-field">
+            <div class="lr-field-inline">
+              <label for="lr-fee-rate" class="lr-label">수수료율</label>
+              <div class="lr-input-wrap lr-input-wrap-small">
+                <input type="text" id="lr-fee-rate" class="lr-input" inputmode="decimal" autocomplete="off" maxlength="5" value="1.2" aria-describedby="lr-fee-rate-hint">
+                <span class="lr-unit" aria-hidden="true">%</span>
+              </div>
+            </div>
+            <p class="lr-hint lr-hint-left" id="lr-fee-rate-hint">약정서·은행 앱에서 확인하세요. 2025년 1월 13일 이전 계약 주담대는 보통 1.2~1.4%, 이후 계약은 0.6% 안팎이에요.</p>
+          </div>
+
+          <div class="lr-field lr-field-inline">
+            <label for="lr-fee-period" class="lr-label">부과 기간</label>
+            <div class="lr-input-wrap lr-input-wrap-small">
+              <input type="text" id="lr-fee-period" class="lr-input" inputmode="numeric" autocomplete="off" maxlength="3" value="36">
+              <span class="lr-unit" aria-hidden="true">개월</span>
+            </div>
+          </div>
+
+          <div class="lr-field">
+            <div class="lr-field-inline">
+              <label for="lr-elapsed" class="lr-label">대출받은 지 지난 기간</label>
+              <div class="lr-input-wrap lr-input-wrap-small">
+                <input type="text" id="lr-elapsed" class="lr-input" inputmode="numeric" autocomplete="off" maxlength="3" value="12" aria-describedby="lr-elapsed-hint">
+                <span class="lr-unit" aria-hidden="true">개월</span>
+              </div>
+            </div>
+            <p class="lr-hint" id="lr-elapsed-hint"></p>
+          </div>
+        </div>
+
+        <div class="lr-field" id="lr-fee-amount-group" hidden>
+          <label for="lr-fee-amount" class="lr-label">중도상환수수료 금액</label>
+          <div class="lr-input-wrap">
+            <input type="text" id="lr-fee-amount" class="lr-input" inputmode="numeric" autocomplete="off" value="0" aria-describedby="lr-fee-amount-hint">
+            <span class="lr-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="lr-hint" id="lr-fee-amount-hint"></p>
+        </div>
+
+        <div class="lr-field">
+          <label class="lr-check" for="lr-stamp">
+            <input type="checkbox" id="lr-stamp" checked aria-describedby="lr-stamp-hint">
+            <span>인지세 포함</span>
+          </label>
+          <p class="lr-hint lr-hint-left" id="lr-stamp-hint">고객 부담 75,000원 (1억 원 초과 10억 원 이하)</p>
+        </div>
+
+        <div class="lr-field">
+          <label for="lr-other" class="lr-label">기타 비용</label>
+          <div class="lr-input-wrap">
+            <input type="text" id="lr-other" class="lr-input" inputmode="numeric" autocomplete="off" value="0" aria-describedby="lr-other-hint">
+            <span class="lr-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="lr-hint lr-hint-left" id="lr-other-hint">주담대라면 근저당 관련 채권 할인 비용·말소 비용 등을 넣으세요.</p>
+        </div>
+      </section>
+    </form>
+
+    <section class="lr-result" id="lr-result" aria-labelledby="lr-result-title">
+      <h2 class="lr-result-title" id="lr-result-title">결과</h2>
+
+      <div aria-live="polite">
+        <div class="lr-verdict" id="lr-verdict" data-verdict="gain">
+          <p class="lr-verdict-title" id="lr-verdict-title">-</p>
+          <p class="lr-verdict-text" id="lr-verdict-text"></p>
+          <div class="lr-net-box">
+            <span class="lr-net-label" id="lr-net-label">비용 빼고 아끼는 돈</span>
+            <strong class="lr-net" id="lr-net">-</strong>
+          </div>
+          <p class="lr-breakeven" id="lr-breakeven"></p>
+        </div>
+        <p class="lr-error" id="lr-error" hidden></p>
+      </div>
+
+      <div id="lr-result-body">
+        <dl class="lr-rows">
+          <div class="lr-row"><dt>기존 대출 총이자</dt><dd id="lr-out-old-interest">-</dd></div>
+          <div class="lr-row"><dt>새 대출 총이자</dt><dd id="lr-out-new-interest">-</dd></div>
+          <div class="lr-row lr-row-strong"><dt id="lr-out-saved-label">아끼는 이자</dt><dd id="lr-out-saved">-</dd></div>
+          <div class="lr-row lr-row-strong"><dt>갈아타기 비용</dt><dd id="lr-out-cost">-</dd></div>
+          <div class="lr-row lr-row-sub"><dt>· 중도상환수수료</dt><dd id="lr-out-fee">-</dd></div>
+          <div class="lr-row lr-row-sub"><dt>· 인지세</dt><dd id="lr-out-stamp">-</dd></div>
+          <div class="lr-row lr-row-sub"><dt>· 기타</dt><dd id="lr-out-other">-</dd></div>
+        </dl>
+
+        <div class="lr-monthly">
+          <p class="lr-monthly-label">월 상환액 (첫 달)</p>
+          <p class="lr-monthly-value" id="lr-out-monthly">-</p>
+          <p class="lr-monthly-diff" id="lr-out-monthly-diff"></p>
+          <ul class="lr-monthly-notes" id="lr-monthly-notes" hidden></ul>
+        </div>
+
+        <ul class="lr-notes" id="lr-notes" hidden></ul>
+      </div>
+    </section>
+
+    <p class="lr-disclaimer">
+      ※ 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 실제 대출 <strong>한도·금리 심사, DSR 규제, 변동금리의 금리 변화, 거치 기간, 연체·우대 조건</strong>은 반영하지 않습니다. 이자는 매달 "연 금리 ÷ 12"로 계산해 원 단위로 반올림했기 때문에 일 단위로 계산하는 실제 금융회사 금액과 차이가 날 수 있습니다. 중도상환수수료율·부과 방식은 <strong>계약 시점(2025년 1월 13일 전후)과 상품마다 다르니</strong> 약정서나 금융회사에서 꼭 확인하세요. 인지세는 은행과 고객이 절반씩 낸다고 가정했습니다.
+    </p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
