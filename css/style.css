@@ -683,6 +683,143 @@ a:focus-visible {
   margin-bottom: 0.75rem;
 }
 
+/* 읽는 시간 */
+.post-meta-sep {
+  margin: 0 0.15rem;
+}
+
+/* 목차 */
+.post-toc {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.post-toc summary {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  list-style-position: outside;
+}
+
+.post-toc ol {
+  margin: 0.75rem 0 0;
+  padding-left: 1.4rem;
+}
+
+.post-toc li {
+  margin: 0.35rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.post-toc li::marker {
+  color: var(--color-text-secondary);
+}
+
+.post-toc a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.post-toc a:hover,
+.post-toc a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.post-content h2[id] {
+  scroll-margin-top: 1.5rem;
+}
+
+/* 관련 글 */
+.related-posts {
+  margin: 2.5rem 0 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.related-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.related-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.related-card:hover,
+.related-card:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--color-surface);
+  text-decoration: none;
+}
+
+.related-thumb {
+  flex: 0 0 auto;
+  width: 112px;
+  height: 63px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--color-surface);
+}
+
+.related-thumb-empty {
+  display: block;
+}
+
+.related-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.related-card-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.related-meta {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 420px) {
+  .related-thumb {
+    width: 88px;
+    height: 56px;
+  }
+
+  .related-card-title {
+    font-size: 0.86rem;
+  }
+}
+
 .back-link {
   display: inline-block;
   margin-bottom: 1.5rem;
