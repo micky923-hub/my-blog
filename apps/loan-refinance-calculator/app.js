@@ -278,6 +278,9 @@ function calculate(p) {
   var net = saved - totalCost;
   var verdict = net > zero ? 'gain' : net < zero ? 'loss' : 'even';
   var be = net > zero ? breakeven(oldS.interests, newS.interests, totalCost) : null;
+  // "수수료가 없어지면 다시 계산" 안내는 수수료만 빼면 이득이 되는 경우에만 준다.
+  // (예: 기간을 늘려 이자 자체가 늘어난 경우엔 수수료가 0이어도 손해라 안내하지 않는다)
+  if (monthsUntilFeeFree !== null && saved - stamp - other <= zero) monthsUntilFeeFree = null;
 
   return {
     ok: true,
