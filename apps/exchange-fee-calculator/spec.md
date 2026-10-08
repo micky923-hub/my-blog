@@ -1,6 +1,6 @@
 # 환전 수수료 계산기 (우대율 반영) — 계획서 (spec)
 
-> 상태: **승인 대기** · 작성일 2026-10-08
+> 상태: **승인됨 (2026-10-08)** · 작성일 2026-10-08
 > 위치: `apps/exchange-fee-calculator/` · 블로그: financialdiary.co.kr
 > 앞의 두 앱(`savings-calculator`, `pension-tax-calculator`)의 구조·사용감을 그대로 따른다. CSS 접두사는 **`fx-`**.
 
