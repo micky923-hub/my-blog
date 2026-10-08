@@ -1,0 +1,608 @@
+/* ==============================
+   대출 갈아타기 이자 비교 계산기 (lr-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다.
+   예외: 오류·손해 표시용 빨간색 1개 (--lr-color-error, 테두리·아이콘에만)
+   ============================== */
+
+:root {
+  --lr-color-error: #dc2626;
+  --lr-radius: 10px;
+  --lr-touch: 44px;
+}
+
+/* ---------- Header ---------- */
+
+.lr-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.lr-header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.lr-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--lr-touch);
+  font-weight: 600;
+}
+
+.lr-theme-toggle {
+  min-width: var(--lr-touch);
+  min-height: var(--lr-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.lr-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.lr-intro {
+  margin-bottom: 1.25rem;
+}
+
+.lr-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.lr-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.lr-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--lr-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.lr-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--lr-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.lr-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.lr-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lr-guide-steps,
+.lr-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.lr-guide-steps li,
+.lr-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.lr-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- Sections ---------- */
+
+.lr-form {
+  margin-bottom: 1.5rem;
+}
+
+.lr-section {
+  border: 1px solid var(--color-border);
+  border-radius: var(--lr-radius);
+  padding: 1rem 1rem 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.lr-section-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.9rem;
+  color: var(--color-text);
+}
+
+/* ---------- Fields ---------- */
+
+.lr-chip:focus-visible,
+.lr-input:focus-visible,
+.lr-check input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.lr-field {
+  margin: 0 0 1.1rem;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.lr-field[hidden],
+#lr-fee-rate-group[hidden] {
+  display: none;
+}
+
+.lr-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+/* 라벨 왼쪽 · 작은 입력칸 오른쪽 (금리, 수수료율, 부과 기간, 지난 기간) */
+.lr-field-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.lr-field-inline .lr-label {
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+.lr-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lr-input-wrap-small {
+  flex: 0 0 8.5rem;
+  max-width: 50%;
+}
+
+.lr-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5rem 3.5rem 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.125rem; /* 16px 이상: iOS 자동 확대 방지 */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--lr-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.lr-input-wrap-small .lr-input {
+  padding-right: 3rem;
+}
+
+.lr-input:focus {
+  border-color: var(--color-accent);
+}
+
+.lr-input[aria-invalid="true"] {
+  border-color: var(--lr-color-error);
+  box-shadow: 0 0 0 1px var(--lr-color-error);
+}
+
+.lr-unit {
+  position: absolute;
+  right: 0.9rem;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.lr-hint {
+  margin: 0.3rem 0 0;
+  min-height: 1.5em;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.lr-hint:empty {
+  min-height: 0;
+}
+
+.lr-hint-left {
+  text-align: left;
+}
+
+/* ---------- Chips ---------- */
+
+/* 칩 7개: 좁으면 4+3, 넓으면 한 줄 (flex-wrap은 마지막 칩 하나만 길게 늘어남) */
+.lr-quick {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(3.5rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.lr-chip {
+  min-width: 0;
+  min-height: var(--lr-touch);
+  padding: 0 0.25rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lr-chip:hover {
+  border-color: var(--color-accent);
+}
+
+.lr-chip[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ---------- Checkbox ---------- */
+
+.lr-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--lr-touch);
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.lr-check input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.lr-check + .lr-hint {
+  margin-top: 0;
+}
+
+/* ---------- Segmented radios ---------- */
+
+.lr-segment-options {
+  display: grid;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--lr-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.lr-segment-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lr-segment-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lr-segment-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.lr-segment-options label {
+  min-width: 0;
+  min-height: var(--lr-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.2rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 320px 등 좁은 화면: 줄바꿈 없이 글자만 작게 */
+@media (max-width: 374px) {
+  .lr-segment-options label {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.1rem;
+  }
+}
+
+.lr-segment-options input:checked + label {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.lr-segment-options input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Result ---------- */
+
+.lr-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--lr-radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.lr-result-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.6rem;
+  color: var(--color-text);
+}
+
+.lr-verdict {
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--lr-radius);
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.lr-verdict[data-verdict="loss"] {
+  border-color: var(--lr-color-error);
+}
+
+.lr-verdict[data-verdict="even"] {
+  border-color: var(--color-border);
+}
+
+.lr-verdict[hidden] {
+  display: none;
+}
+
+.lr-verdict-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 800;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.lr-verdict-text {
+  margin: 0.25rem 0 0;
+  color: var(--color-text);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.lr-verdict-text[hidden] {
+  display: none;
+}
+
+.lr-net-box {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+}
+
+.lr-net-label {
+  align-self: flex-start;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.lr-net {
+  max-width: 100%;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.lr-verdict[data-verdict="loss"] .lr-net,
+.lr-verdict[data-verdict="even"] .lr-net {
+  color: var(--color-text);
+}
+
+.lr-breakeven {
+  margin: 0.5rem 0 0;
+  font-weight: 700;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.lr-rows {
+  margin: 0;
+}
+
+.lr-row {
+  display: flex;
+  flex-wrap: wrap; /* 긴 금액은 숫자 중간이 아니라 통째로 다음 줄로 */
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.lr-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.lr-row dd {
+  margin: 0 0 0 auto;
+  min-width: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.lr-row-strong dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.lr-row-strong dd {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.lr-row-sub {
+  padding: 0.15rem 0 0.15rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.lr-row-sub dd {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.lr-monthly {
+  margin-top: 0.6rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.lr-monthly-label {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.lr-monthly-value {
+  margin: 0.2rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.lr-monthly-diff {
+  margin: 0.1rem 0 0;
+  text-align: right;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.lr-monthly-notes,
+.lr-notes {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lr-monthly-notes[hidden],
+.lr-notes[hidden] {
+  display: none;
+}
+
+.lr-monthly-notes li {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.lr-notes {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lr-notes li {
+  padding: 0.6rem 0.8rem;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.lr-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 4px solid var(--lr-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.lr-error::before {
+  content: "⚠ ";
+  color: var(--lr-color-error);
+}
+
+.lr-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* 320px에서 최대 금액(15자)이 숫자 중간에서 끊기지 않게 */
+@media (max-width: 374px) {
+  .lr-net {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .lr-title {
+    font-size: 1.75rem;
+  }
+  .lr-net {
+    font-size: 2rem;
+  }
+}
