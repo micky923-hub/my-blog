@@ -236,7 +236,7 @@ img {
   background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=400&fit=crop&q=80') center/cover no-repeat;
   background-blend-mode: overlay;
   background-color: rgba(30, 58, 95, 0.88);
-  padding: 2.25rem 2rem;
+  padding: 1.5rem 2rem;
 }
 
 .hero-content {
@@ -257,14 +257,15 @@ img {
 }
 
 .hero-text {
-  margin: 0 0 1rem;
+  margin: 0;
   font-size: 0.95rem;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.92);
 }
 
+/* 글 목록이 배너 바로 아래 보이므로 버튼은 쓰지 않는다 */
 .hero-cta {
-  display: inline-block;
+  display: none;
   padding: 0.45rem 1.1rem;
   font-size: 0.8rem;
   font-weight: 600;
@@ -1105,14 +1106,6 @@ a:focus-visible {
     max-width: var(--content-width);
   }
 
-  .hero-overlay {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .hero-text {
-    font-size: 0.85rem;
-  }
-
   .keyword-list {
     gap: 0.35rem;
   }
@@ -1120,6 +1113,55 @@ a:focus-visible {
   .keyword-btn {
     padding: 0.3rem 0.7rem;
     font-size: 0.75rem;
+  }
+
+  /* 첫 화면에 글이 보이도록 위쪽 영역을 줄인다 */
+  .top-section {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-box,
+  .keyword-section {
+    margin-bottom: 0.85rem;
+  }
+
+  .keyword-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* 키워드는 한 줄로 두고 옆으로 넘겨 본다 */
+  .keyword-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .keyword-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .keyword-btn {
+    flex: 0 0 auto;
+  }
+
+  /* 배너는 소개 문구만 짧게 (글 목록이 바로 아래라 버튼·배지는 숨김) */
+  .hero-overlay {
+    padding: 1rem 1.1rem;
+  }
+
+  .hero-badge,
+  .hero-cta {
+    display: none;
+  }
+
+  .hero-text {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
   }
 
   .pre-footer-inner {
