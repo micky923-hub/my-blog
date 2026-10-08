@@ -19,5 +19,12 @@
     "title": "환전 수수료 계산기 (우대율 반영)",
     "description": "통화·금액·매매기준율·우대율만 넣으면 살 때/팔 때 적용 환율, 실제로 내는 수수료, 우대 쿠폰으로 아낀 금액을 바로 계산해요.",
     "icon": "apps/exchange-fee-calculator/icon.svg"
+  },
+  {
+    "path": "apps/loan-refinance-calculator/",
+    "emoji": "🏦",
+    "title": "대출 갈아타기 이자 비교 계산기",
+    "description": "기존 대출과 새 대출의 금리·기간·상환 방식만 넣으면 중도상환수수료와 인지세까지 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지 바로 알려줘요.",
+    "icon": "apps/loan-refinance-calculator/icon.svg"
   }
 ]
