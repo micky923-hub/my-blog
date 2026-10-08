@@ -1,6 +1,7 @@
 # 환전 수수료 계산기 — 매매기준율 자동 적용 계획서 (spec-auto-rate)
 
-> 상태: **승인됨 (2026-10-08)** · 작성일 2026-10-08 · Plan 서브에이전트
+> 상태: **승인됨 (2026-10-08) · 구현·배포 완료 · 실제 API 확인 완료(2026-10-08)** · 작성일 2026-10-08 · Plan 서브에이전트
+> 첫 실제 실행 결과는 **10장**에 정리했고, 2장 표의 "미확인" 항목 중 확인된 것은 갱신했다.
 > 대상 앱: `apps/exchange-fee-calculator/` (이미 공개됨, 기존 계획서 `spec.md`)
 > 이 문서는 기존 `spec.md` 2장의 "실시간 환율 API는 쓰지 않는다" 결정을 **부분 변경**한다.
 > 브라우저는 여전히 외부 API를 부르지 않는다. **배포할 때 서버(GitHub Actions)가 한 번 받아 정적 파일로 같이 올린다.**
@@ -33,22 +34,22 @@ GitHub Actions가 배포할 때 한국수출입은행 API에서 매매기준율�
 
 | 항목 | 내용 | 상태 | 출처 |
 |---|---|---|---|
-| 엔드포인트 | `https://oapi.koreaexim.go.kr/site/program/financial/exchangeJSON` | 확인됨 | data.go.kr 카탈로그 설명(UMMAYA 저장소에 보관된 사본 `docs/api/data-go-kr-candidate-docs/3068846/data-go-kr-catalog.json`), GitHub 코드 다수(`hersky3107-wq/cas-platform`, `haunpapa/korea-trade-dashboard` 등) |
-| 도메인 변경 이력 | 2025-06-25 `www.koreaexim.go.kr` → `oapi.koreaexim.go.kr` 로 변경. 옛 도메인은 **2026-04-30 종료 예정**이라고 공지됨 | 확인됨(공지 내용) / 실제 종료 여부는 **미확인** | data.go.kr 상세 페이지 설명(최종 수정 2026-04-30), 웹 검색 요약. → 우리는 **신규 도메인만** 쓴다 |
+| 엔드포인트 | `https://oapi.koreaexim.go.kr/site/program/financial/exchangeJSON` | **실제 확인**(2026-10-08 Actions 실행, HTTP 200) | data.go.kr 카탈로그 설명(UMMAYA 저장소에 보관된 사본 `docs/api/data-go-kr-candidate-docs/3068846/data-go-kr-catalog.json`), GitHub 코드 다수(`hersky3107-wq/cas-platform`, `haunpapa/korea-trade-dashboard` 등) |
+| 도메인 변경 이력 | 2025-06-25 `www.koreaexim.go.kr` → `oapi.koreaexim.go.kr` 로 변경. 옛 도메인은 **2026-04-30 종료 예정**이라고 공지됨 | 확인됨(공지 내용). 신규 도메인 `oapi`는 **API 전용**이라 브라우저로 열면 보여 줄 화면이 없다. **인증키 발급은 여전히 `www` 홈페이지**에서 한다(2026-10-08 사용자 확인). 옛 도메인의 API 경로 종료 여부는 확인하지 않음 | data.go.kr 상세 페이지 설명(최종 수정 2026-04-30), 웹 검색 요약. → 우리는 **신규 도메인만** 쓴다 |
 | 요청 파라미터 | `authkey`(인증키), `searchdate`(YYYYMMDD, 생략 시 오늘), `data=AP01`(환율. AP02 대출금리, AP03 국제금리) | 확인됨 | GitHub `terryjin89/embedWebProject/api/exchangeRate.md`, UMMAYA usage-notes, 여러 코드 |
-| 응답 형식 | JSON **배열**. 통화 하나당 객체 하나 (약 22~23개 통화) | 확인됨 | `youngclown.github.io` 2019 실제 응답 예시, `donifin/donifin_BE` 주석 |
+| 응답 형식 | JSON **배열**. 통화 하나당 객체 하나 (2026-10-08 기준 **23개** 통화) | **실제 확인** | `youngclown.github.io` 2019 실제 응답 예시, `donifin/donifin_BE` 주석 |
 | 응답 필드 | `result`, `cur_unit`(통화코드), `cur_nm`(국가/통화명), `ttb`(전신환 받을 때), `tts`(전신환 보낼 때), `deal_bas_r`(**매매기준율**), `bkpr`, `yy_efee_r`, `ten_dd_efee_r`, `kftc_bkpr`, `kftc_deal_bas_r` | 확인됨 | 위 응답 예시, `hong8807/huxeed-activation-tracker` 타입 정의 |
-| 통화 코드 표기 | USD → `USD`, EUR → `EUR`, 엔 → **`JPY(100)`**(100엔당), 위안 → **`CNH`**(cur_nm "위안화"). `CNY`는 목록에 없음 | 확인됨(2019 응답 + 2026 코드가 `CNH`를 찾음) | `youngclown` 응답 예시, eGovFramework `EgovEhgtCalcUtil.java`(CNY→"CNH" 매핑), `SOJUNHEE/mini_final`(USD·CNH·EUR 확인) |
-| 값 형식 | **쉼표 포함 문자열**. 예: `"1,134.5"`, `"1,019.45"`, `"168.47"`. 소수 자릿수가 1자리일 때도 있음 | 확인됨 | 응답 예시, `cas-platform` 주석("comma-grouped string"), 여러 코드의 `.replace(',', '')` |
+| 통화 코드 표기 | USD → `USD`, EUR → `EUR`, 엔 → **`JPY(100)`**(100엔당), 위안 → **`CNH`**(cur_nm "위안화"). `CNY`는 목록에 없음 | **실제 확인**. 2026-10-08 목록: AED, AUD, BHD, BND, CAD, CHF, CNH, DKK, EUR, GBP, HKD, IDR(100), JPY(100), KRW, KWD, MYR, NOK, NZD, SAR, SEK, SGD, THB, USD | `youngclown` 응답 예시, eGovFramework `EgovEhgtCalcUtil.java`(CNY→"CNH" 매핑), `SOJUNHEE/mini_final`(USD·CNH·EUR 확인) |
+| 값 형식 | **쉼표 포함 문자열**. 예: `"1,134.5"`, `"1,019.45"`, `"168.47"`. 소수 자릿수가 1자리일 때도 있음 | **실제 확인**. 2026-10-08 USD `"1,339.2"`(소수 1자리), EUR `"1,500.04"`, JPY(100) `"847.46"`, CNH `"199.71"` | 응답 예시, `cas-platform` 주석("comma-grouped string"), 여러 코드의 `.replace(',', '')` |
 | `result` 코드 | 1 성공, 2 DATA코드 오류, 3 인증코드 오류, 4 일일제한횟수 마감 | 확인됨 | `openapi-kr/specifications`, `RealSoup/4science`, `sangwoo-sean/scala-practice`, UMMAYA usage-notes |
 | 오류 응답 모양 | 원소 1개 배열, `result`만 숫자이고 나머지는 `null`. 예: `[{"result":3,"cur_unit":null,...}]` | 확인됨(1곳+코드 처리 방식) / HTTP 상태코드는 **미확인** | `zemyblue/personal-flipcover/docs/providers/fx.md` |
 | 주말·공휴일 | **빈 배열 `[]`** | 확인됨 | `donifin` 주석, `heartyhong2002-png/nescio` 주석, 웹 검색 요약 |
 | 발표 시각 | 영업일 **오전 11시 전후** 갱신. 그 전에 오늘 날짜로 부르면 빈 배열 | 시각은 **미확인**(설명 글 1곳). 발표 전 빈 배열은 미확인 | 웹 검색 요약(앱 설명). → 구현 단계 로그로 확인 |
 | 하루 호출 한도 | **1,000회** | **미확인**(코드 주석 1곳) | `nescio/src/lib/exim.ts` 주석 "일일 1000회 제한". 우리 사용량은 하루 10회 안팎이라 영향 없음 |
 | 인증키 유효기간 | 개인정보 보유기간(2년) 만료로 키가 파기될 수 있어 재발급 필요 | **미확인**(1곳) | `nescio` 주석. → 실패 시나리오에 반영(result 3) |
-| TLS 인증서 | 많은 공개 코드가 `verify=False` / `rejectUnauthorized:false`를 쓴다 → **인증서 체인 문제가 과거에 있었던 것으로 보임**. 신규 도메인(oapi)에서도 그런지는 **미확인** | 미확인 | GitHub 검색 결과 다수. **우리는 검증을 끄지 않는다**(9장 참고) |
-| GitHub Actions(해외 IP)에서 접속 가능 여부 | 해외 IP 차단 여부 **미확인**. Actions에서 `oapi.koreaexim.go.kr`을 쓰는 공개 워크플로가 1건 있음(`singaseongj/singaseongj.github.io`) | 미확인 | 첫 실행 로그로 확인 |
-| 인증키 발급 | 한국수출입은행 홈페이지 Open API 페이지에서 무료 발급. data.go.kr에는 "링크형"으로 등록(PC에서만 신청 안내) | 발급처 확인됨 / 메뉴 이름·입력 항목은 **미확인** | data.go.kr 설명의 안내 링크 `https://www.koreaexim.go.kr/ir/HPHKIR020M01?apino=2&viewtype=C` |
+| TLS 인증서 | 많은 공개 코드가 `verify=False` / `rejectUnauthorized:false`를 쓴다 → 인증서 체인 문제가 과거에 있었던 것으로 보임. **신규 도메인(oapi)은 Node 20 기본 인증서 검증을 켠 채로 정상 접속됨** | **실제 확인**(2026-10-08) | GitHub 검색 결과 다수. **우리는 검증을 끄지 않는다**(9장 참고) |
+| GitHub Actions(해외 IP)에서 접속 가능 여부 | **접속 가능**. GitHub Actions(ubuntu-latest)에서 HTTP 200, result=1, 응답 약 1초 | **실제 확인**(2026-10-08) | 첫 수동 실행 로그 |
+| 인증키 발급 | 한국수출입은행 홈페이지 Open API 페이지에서 무료 발급. data.go.kr에는 "링크형"으로 등록(PC에서만 신청 안내) | 발급처 확인됨. 본인인증 후 신청서를 작성하면 즉시 발급, "나의 인증키 발급내역"에서 다시 확인 가능(웹 검색). 사용자가 2026-10-08 발급 완료. 발급 과정에서 사용자 PC 브라우저에 `www` 홈페이지 인증서 경고(`NET::ERR_CERT_AUTHORITY_INVALID`)가 뜬 적이 있음(원인은 확인하지 않음) | data.go.kr 설명의 안내 링크 `https://www.koreaexim.go.kr/ir/HPHKIR020M01?apino=2&viewtype=C` |
 
 ### 미확인 사항을 구현 단계에서 확인하는 방법
 수집 스크립트는 **키 없이** 다음을 Actions 로그에 남긴다(4장 스크립트 로그 규칙).
@@ -293,6 +294,7 @@ on:
 
 ### 8-1. 한국수출입은행 API 인증키 발급 (PC에서, 약 5분)
 > 메뉴 이름과 입력 항목은 이 환경에서 사이트에 접속하지 못해 확인하지 못했다(**미확인**). 화면이 다르면 비슷한 이름을 찾으면 된다.
+> 실제 경험(2026-10-08): `oapi.koreaexim.go.kr`은 API 전용 주소라 브라우저로 열어도 화면이 없다. 키 발급은 `www.koreaexim.go.kr` 홈페이지에서 한다. 홈페이지에서 인증서 경고(`NET::ERR_CERT_AUTHORITY_INVALID`)가 뜨면 경고를 무시하고 들어가지 말고, 다른 브라우저나 휴대폰 데이터 등 다른 네트워크로 열어 본다.
 
 1. PC 브라우저로 **한국수출입은행 Open API 안내 페이지**를 연다: `https://www.koreaexim.go.kr/ir/HPHKIR020M01?apino=2&viewtype=C`
    - 안 열리면 `https://www.koreaexim.go.kr` → 화면 맨 아래나 메뉴의 **"Open API"** (또는 "오픈API") → **"현재환율 API"**.
@@ -373,9 +375,9 @@ echo "exit=$?"   # 모든 경우 0이어야 함
 ### 배포 후 (사용자 Secret 등록 이후)
 | # | 확인 항목 |
 |---|---|
-| 20 | 수동 실행 로그에 `HTTP 200`, `result=1`, 통화 코드 목록(CNH·JPY(100) 포함 여부) → 2장 "미확인" 표를 실제 값으로 갱신 |
-| 21 | 평일 11:30·15:30 실행 로그 비교로 발표 시각·발표 전 빈 배열 여부 확인 |
-| 22 | TLS/해외 IP 문제로 실패하면: 로그 `cause.code`를 사용자에게 알리고 대안 검토(인증서 체인 문제면 `NODE_EXTRA_CA_CERTS`로 중간 인증서 추가 — 검증을 끄는 방법은 쓰지 않음). 해결 전까지는 예시 환율로 안전하게 동작 |
+| 20 | ✅ **완료(2026-10-08)**: 수동 실행 로그에 `HTTP 200`, `result=1`, 통화 23개(CNH·JPY(100) 포함) 확인. 2장 표 갱신함 |
+| 21 | ⏳ **남음**: 평일 11:30·15:30 실행 로그 비교로 발표 시각·발표 전 빈 배열 여부 확인 (첫 실행은 14:37 KST라 판단 불가) |
+| 22 | ✅ **해당 없음(2026-10-08)**: TLS·해외 IP 문제 없이 성공. (참고용 원래 대응안) TLS/해외 IP 문제로 실패하면: 로그 `cause.code`를 사용자에게 알리고 대안 검토(인증서 체인 문제면 `NODE_EXTRA_CA_CERTS`로 중간 인증서 추가 — 검증을 끄는 방법은 쓰지 않음). 해결 전까지는 예시 환율로 안전하게 동작 |
 
 ---
 
@@ -385,3 +387,41 @@ echo "exit=$?"   # 모든 경우 0이어야 함
 3. 수집 스크립트를 `apps/exchange-fee-calculator/tools/`에 두며, 비밀 정보 없는 파일이라 사이트에 같이 공개되는 것을 허용
 4. CNY 자리에 수출입은행 `CNH` 값을 쓰고 화면에 "CNH 고시"로 밝히기
 5. 오래됨 경고 기준 **4일 이상**, 날짜 거슬러 가기 **최대 7일**
+
+---
+
+## 10. 배포 후 실제 확인 결과 (2026-10-08)
+
+첫 수동 실행: GitHub Actions `Deploy to GitHub Pages` #59 (`workflow_dispatch`, 2026-10-08 14:37 KST), 결과 **성공**.
+
+### 수집 단계 로그 (키는 GitHub가 `***`로 가림)
+```
+[rates] 요청 날짜 20261008 → HTTP 200, 배열 23개, result=1
+[rates] 통화 코드 목록: AED,AUD,BHD,BND,CAD,CHF,CNH,DKK,EUR,GBP,HKD,IDR(100),JPY(100),KRW,KWD,MYR,NOK,NZD,SAR,SEK,SGD,THB,USD
+[rates] USD deal_bas_r 원문 "1,339.2" → 1339.20
+[rates] JPY(100) deal_bas_r 원문 "847.46" → 847.46
+[rates] EUR deal_bas_r 원문 "1,500.04" → 1500.04
+[rates] CNH deal_bas_r 원문 "199.71" → 199.71
+[rates] 저장: 기준일 2026-10-08, 출처 api
+```
+
+### 확인된 것
+| 항목 | 결과 |
+|---|---|
+| 엔드포인트·파라미터 | `oapi.koreaexim.go.kr` + `authkey`, `searchdate`, `data=AP01`로 정상 응답 |
+| 해외 IP(GitHub Actions)에서 접속 | 가능 |
+| TLS 인증서 검증 | 검증을 켠 채로 정상 접속(Node 20 기본 인증서) |
+| 응답 형식 | 배열 23개, `result=1`, 값은 쉼표 포함 문자열(소수 1자리 값 있음) |
+| 통화 코드 | `JPY(100)`, `CNH` 사용, `CNY` 없음 → 설계대로 CNY ← CNH 매핑이 맞음 |
+| 배포 산출물 | `dist/apps/exchange-fee-calculator/rates.json`이 Pages 아티팩트에 포함되어 배포됨 |
+| 키 노출 | 로그에 키 원문·요청 URL 없음 |
+| 응답 시간 | 약 1초 (시간 제한 10초 안) |
+
+### 아직 확인하지 않은 것
+| 항목 | 확인 방법 |
+|---|---|
+| 정확한 발표 시각, 발표 전 빈 배열 여부 | 평일 11:30·15:30 예약 실행 로그를 며칠 비교 |
+| 하루 호출 한도(1,000회 추정) | 우리 사용량(하루 수 회)으로는 영향 없음. 한도 초과 시 로그에 `result=4` |
+| 인증키 유효기간(2년 추정) | 만료되면 로그에 `result=3` → 키 재발급 후 Secret 교체 |
+| 주말·공휴일 동작 | 첫 주말 이후 월요일 오전 실행 로그에서 "빈 배열 → 전날" 경로 확인 |
+
