@@ -392,9 +392,15 @@ function buildIndex(posts) {
     + '      <p class="keyword-label"><span class="keyword-icon">&#9889;</span> 원하는 <strong>키워드</strong>를 골라보세요!</p>\n'
     + '      <div class="keyword-list">\n';
   displayTags.forEach(function(tag) {
-    keywordsHtml += '        <button class="keyword-btn" type="button" data-tag="' + escapeHtml(tag) + '">' + escapeHtml(tag) + '</button>\n';
+    keywordsHtml += '        <button class="keyword-btn" type="button" aria-pressed="false" data-tag="' + escapeHtml(tag) + '">' + escapeHtml(tag) + '</button>\n';
   });
   keywordsHtml += '      </div>\n'
+    + '      <div class="keyword-selected" id="keyword-selected" hidden>\n'
+    + '        <button class="keyword-reset" id="keyword-reset" type="button" aria-label="선택한 키워드 모두 지우고 전체 글 보기" title="전체 글 보기">'
+    + '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>'
+    + '</button>\n'
+    + '        <div class="keyword-chips" id="keyword-chips" aria-label="선택한 키워드"></div>\n'
+    + '      </div>\n'
     + '    </div>\n';
 
   var bannerHtml = '    <div class="hero-banner">\n'

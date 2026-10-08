@@ -224,6 +224,74 @@ img {
   border-color: var(--color-accent);
 }
 
+/* 선택한 키워드 줄 */
+.keyword-selected {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.keyword-selected[hidden] {
+  display: none;
+}
+
+.keyword-reset {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.3s;
+}
+
+.keyword-reset:hover,
+.keyword-reset:focus-visible {
+  background: var(--color-surface);
+  transform: rotate(-90deg);
+}
+
+.keyword-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.keyword-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.55rem 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.keyword-chip:hover,
+.keyword-chip:focus-visible {
+  opacity: 0.75;
+}
+
+.keyword-chip-x {
+  font-size: 1rem;
+  line-height: 1;
+}
+
 /* Hero Banner */
 .hero-banner {
   border-radius: 16px;
