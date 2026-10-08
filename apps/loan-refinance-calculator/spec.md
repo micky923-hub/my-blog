@@ -1,6 +1,6 @@
 # 대출 갈아타기 이자 비교 계산기 — 계획서 (spec)
 
-> 상태: **승인 대기** · 작성일 2026-10-08 · Plan 서브에이전트
+> 상태: **승인됨 (2026-10-08)** · 작성일 2026-10-08 · Plan 서브에이전트
 > 위치: `apps/loan-refinance-calculator/` · 블로그: financialdiary.co.kr
 > 앞의 세 앱(`savings-calculator`, `pension-tax-calculator`, `exchange-fee-calculator`)의 구조·사용감을 그대로 따른다. CSS 접두사는 **`lr-`**.
 
