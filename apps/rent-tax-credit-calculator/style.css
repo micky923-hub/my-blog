@@ -1,0 +1,759 @@
+/* ==============================
+   월세 세액공제 계산기 (rt-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다.
+   예외: 오류 표시용 빨간색 1개 (--rt-color-error)
+   ============================== */
+
+:root {
+  --rt-color-error: #dc2626;
+  --rt-radius: 10px;
+  --rt-touch: 44px;
+}
+
+/* ---------- Header ---------- */
+
+.rt-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.rt-header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.rt-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--rt-touch);
+  font-weight: 600;
+}
+
+.rt-theme-toggle {
+  min-width: var(--rt-touch);
+  min-height: var(--rt-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.rt-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.rt-intro {
+  margin-bottom: 1.25rem;
+}
+
+.rt-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.rt-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.rt-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.rt-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--rt-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.rt-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.rt-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rt-guide-steps,
+.rt-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.rt-guide-steps li,
+.rt-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.rt-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- Form ---------- */
+
+.rt-form {
+  margin-bottom: 1.5rem;
+}
+
+.rt-chip:focus-visible,
+.rt-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.rt-field {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.rt-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.rt-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rt-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5rem 3.5rem 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.125rem; /* 16px 이상: iOS 자동 확대 방지 */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rt-input:focus {
+  border-color: var(--color-accent);
+}
+
+.rt-input[aria-invalid="true"] {
+  border-color: var(--rt-color-error);
+}
+
+.rt-unit {
+  position: absolute;
+  right: 0.9rem;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.rt-hint {
+  margin: 0.3rem 0 0;
+  min-height: 1.5em;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.rt-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.rt-chip {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: var(--rt-touch);
+  padding: 0 0.75rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rt-chip:hover {
+  border-color: var(--color-accent);
+}
+
+/* ---------- Segmented radios ---------- */
+
+.rt-segment-options {
+  display: flex;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.rt-segment-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.rt-segment-options label {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--rt-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.35rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.rt-segment-options input:checked + label {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.rt-segment-options input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Result ---------- */
+
+.rt-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.rt-result-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.rt-rows {
+  margin: 0;
+}
+
+.rt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.rt-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.rt-row dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.rt-total {
+  margin-top: 0.6rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.rt-total-label {
+  align-self: flex-start;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.rt-total-value {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.rt-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 4px solid var(--rt-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.rt-error::before {
+  content: "⚠ ";
+  color: var(--rt-color-error);
+}
+
+.rt-excess-reason {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  text-align: right;
+  word-break: keep-all;
+}
+
+.rt-excess-reason::before {
+  content: "⚠ ";
+  color: var(--rt-color-error);
+}
+
+.rt-row-excess.rt-has-excess dd {
+  padding-right: 0.5rem;
+  border-right: 3px solid var(--rt-color-error);
+}
+
+.rt-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.rt-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+@media (min-width: 600px) {
+  .rt-title {
+    font-size: 1.75rem;
+  }
+  .rt-total-value {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- 이렇게 계산해요 / 자주 묻는 질문 / 관련 글 ---------- */
+
+.rt-explain,
+.rt-faq {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  color: var(--color-text);
+}
+
+.rt-explain-title,
+.rt-faq-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.rt-explain-lead {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.rt-explain-steps,
+.rt-explain-notes {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.rt-explain-steps li,
+.rt-explain-notes li {
+  margin-bottom: 0.4rem;
+}
+
+.rt-formula {
+  display: block;
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.rt-example {
+  background: var(--color-tag-bg);
+  border-radius: var(--rt-radius);
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.rt-example-title {
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.rt-example-title strong {
+  color: var(--color-tag-text);
+}
+
+.rt-example-rows {
+  margin: 0;
+}
+
+.rt-example-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.rt-example-row:first-child {
+  border-top: 0;
+}
+
+.rt-example-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.rt-example-row dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.rt-explain-sub {
+  margin: 0.75rem 0 0;
+}
+
+.rt-explain-notes {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.rt-faq {
+  padding-bottom: 0.25rem;
+}
+
+.rt-faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.rt-faq-q {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--rt-touch);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  list-style-position: inside;
+}
+
+.rt-faq-q::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.rt-faq-q:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.rt-faq-item[open] .rt-faq-q {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rt-faq-a {
+  margin: 0.5rem 0 1rem;
+  color: var(--color-text);
+}
+
+.rt-related {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.rt-related a {
+  color: var(--color-accent);
+}
+
+/* FAQ 질문 앞 펼침 표시: summary가 flex라 기본 삼각형(::marker)이 보이지 않아 직접 그린다 */
+.rt-faq-q {
+  list-style: none;
+}
+
+.rt-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.rt-faq-q::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+  color: var(--color-accent);
+}
+
+.rt-faq-item[open] .rt-faq-q::before {
+  content: "▾";
+}
+
+/* ---------- 월세 계산기 전용 ---------- */
+
+/* 자격 체크 */
+.rt-checks {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  padding: 0.9rem 1rem 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.rt-checks-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-text);
+}
+
+.rt-check {
+  margin-bottom: 1rem;
+}
+
+.rt-check-q {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  padding: 0;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.rt-check-hint {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.rt-check .rt-segment-options {
+  background: var(--color-bg);
+}
+
+.rt-check .rt-segment-options input:checked + label {
+  background: var(--color-surface);
+}
+
+.rt-business-note {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.rt-hint-left {
+  text-align: left;
+  min-height: 0;
+}
+
+/* 개월 수 */
+.rt-months-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rt-months-wrap {
+  flex: 0 0 7.5rem;
+}
+
+.rt-months-wrap .rt-input {
+  padding-right: 3.25rem;
+}
+
+.rt-months-quick {
+  flex: 1 1 12rem;
+  margin-top: 0;
+}
+
+/* 결정세액 (선택) */
+.rt-extra {
+  border: 1px dashed var(--color-border);
+  border-radius: var(--rt-radius);
+  padding: 0 1rem;
+}
+
+.rt-extra summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--rt-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+  word-break: keep-all;
+}
+
+.rt-extra summary::-webkit-details-marker {
+  display: none;
+}
+
+.rt-extra summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.rt-extra[open] summary::before {
+  content: "▾";
+}
+
+.rt-extra summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.rt-extra-body {
+  margin: 0.5rem 0 1rem;
+}
+
+/* 결과 보조 */
+.rt-total-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: right;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.rt-total-sub strong {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.rt-limit-box,
+.rt-cash-box {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rt-radius);
+  color: var(--color-text);
+}
+
+.rt-limit-title,
+.rt-cash-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-tag-text);
+}
+
+.rt-row-strong dd {
+  color: var(--color-accent);
+  font-size: 1.15rem;
+}
+
+.rt-row dt {
+  flex-shrink: 1;
+  min-width: 0;
+  word-break: keep-all;
+}
+
+.rt-row dd {
+  flex-shrink: 0;
+  max-width: 60%;
+}
+
+/* 대상 아님 */
+.rt-no-title {
+  margin: 0 0 0.4rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 4px solid var(--rt-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.rt-no-reasons {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.rt-no-reasons li {
+  margin-bottom: 0.25rem;
+}
+
+.rt-no-fix {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.rt-cash-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  word-break: keep-all;
+}

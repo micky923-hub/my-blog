@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>월세 세액공제 계산기 (연말정산 환급액·조건 확인) — Financial Diary</title>
+  <meta name="description" content="월세 세액공제를 계산해요. 총급여(또는 종합소득금액)와 월세를 넣으면 공제율 17%·15%와 연 1,000만 원 한도를 반영한 세액공제액과 지방소득세까지 줄어드는 세금을 알려 주고, 받을 수 있는 조건도 함께 확인해요. 2026년 세법 기준.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/rent-tax-credit-calculator/">
+  <meta property="og:title" content="월세 세액공제 계산기 (연말정산 환급액·조건 확인) — Financial Diary">
+  <meta property="og:description" content="월세 세액공제를 계산해요. 총급여(또는 종합소득금액)와 월세를 넣으면 공제율 17%·15%와 연 1,000만 원 한도를 반영한 세액공제액과 지방소득세까지 줄어드는 세금을 알려 주고, 받을 수 있는 조건도 함께 확인해요. 2026년 세법 기준.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/rent-tax-credit-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/rent-tax-credit-calculator/#app",
+        "name": "월세 세액공제 계산기",
+        "url": "https://financialdiary.co.kr/apps/rent-tax-credit-calculator/",
+        "description": "월세 세액공제를 계산해요. 총급여(또는 종합소득금액)와 월세를 넣으면 공제율 17%·15%와 연 1,000만 원 한도를 반영한 세액공제액과 지방소득세까지 줄어드는 세금을 알려 주고, 받을 수 있는 조건도 함께 확인해요. 2026년 세법 기준.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/rent-tax-credit-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "월세 세액공제는 누가 받을 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "12월 31일 기준으로 집이 없는 세대의 세대주이고 총급여가 8,000만 원 이하인 근로자가 받을 수 있어요. 세대주가 주택 관련 공제를 받지 않았다면 세대원도 받을 수 있어요. 집은 전용 85제곱미터 이하이거나 기준시가 4억 원 이하여야 하고, 주거용 오피스텔과 고시원도 포함돼요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "월세 세액공제율 17%와 15%는 어떻게 나뉘나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "총급여 5,500만 원 이하면 17%, 5,500만 원 초과 8,000만 원 이하면 15%예요. 기준이 이하라서 총급여가 정확히 5,500만 원이어도 17%가 적용돼요. 사업자는 종합소득금액 4,500만 원과 7,000만 원이 기준이에요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "월세를 1,000만 원 넘게 냈으면 어떻게 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1년에 1,000만 원까지만 공제 대상이라 넘는 금액은 공제되지 않아요. 총급여 8,000만 원 이하로 15%를 적용받는다면 최대 1,500,000원, 17%라면 최대 1,700,000원까지 세금이 줄어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "계산기에 나온 금액을 그대로 돌려받나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "꼭 그렇지는 않아요. 세액공제는 낼 세금(결정세액)을 넘어 돌려받을 수 없어서 소득이 낮거나 다른 공제가 많으면 실제로 줄어드는 세금이 더 적을 수 있어요. 결정세액을 알면 계산기의 선택 칸에 넣어 확인해 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "전입신고를 안 했거나 조건이 안 되면 방법이 없나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "월세를 계좌이체로 내고 홈택스에서 주택임차료 현금영수증을 신청하면 신용카드 등 사용액 소득공제에 포함돼 현금영수증과 같은 30% 공제율이 적용돼요. 다만 총급여의 25%를 넘게 쓴 금액부터 공제되고 세액공제보다 효과는 작아요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "작년에 월세 세액공제를 못 받았는데 지금 받을 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 5월 종합소득세 신고 때 추가로 신청하거나, 그 기간도 지났다면 홈택스에서 경정청구로 최근 5년 치를 돌려받을 수 있어요. 다만 2023년 이전 연도는 소득 기준과 한도가 지금보다 낮았으니 그해 기준으로 확인해야 해요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "월세 세액공제 계산기",
+            "item": "https://financialdiary.co.kr/apps/rent-tax-credit-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="rt-header">
+    <div class="rt-header-inner">
+      <a href="../../" class="rt-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle rt-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="rt-main" id="main-content">
+    <div class="rt-intro">
+      <h1 class="rt-title">🏠 월세 세액공제 계산기</h1>
+      <p class="rt-subtitle">올해 낸 월세로 세금을 얼마나 돌려받는지 바로 알려 드려요</p>
+    </div>
+
+    <details class="rt-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="rt-guide-steps">
+        <li><strong>먼저 확인해요</strong>의 네 가지 질문에 답하세요. 하나라도 "아니오"면 월세 세액공제 대신 받을 수 있는 방법을 알려 드려요.</li>
+        <li>소득 유형을 고르고 금액을 넣으세요. 직장인은 원천징수영수증의 <strong>총급여</strong>(비과세 제외 연봉), 사업자는 <strong>종합소득금액</strong>을 넣습니다.</li>
+        <li><strong>한 달 월세와 낸 개월 수</strong>를 넣으세요. 중간에 월세가 바뀌었다면 <strong>1년 합계로</strong> 탭에서 1년 동안 낸 금액을 모두 더해 넣으세요. 관리비는 빼고 넣어요.</li>
+        <li><strong>월세 세액공제액</strong>이 연말정산에서 줄어드는 소득세예요. 지방소득세까지 합친 금액도 함께 보여 드려요.</li>
+      </ol>
+      <p class="rt-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="rt-guide-terms">
+        <li>총급여 <strong>5,500만 원 이하</strong>면 <strong>17%</strong>, <strong>8,000만 원 이하</strong>면 <strong>15%</strong>를 공제받아요. (사업자는 종합소득금액 4,500만 원·7,000만 원 기준)</li>
+        <li>1년에 <strong>1,000만 원</strong>까지만 공제 대상이에요.</li>
+        <li>월세는 연말정산 간소화 서비스에 안 뜨는 경우가 많아요. <strong>임대차계약서 사본과 이체 내역</strong>을 회사에 직접 내야 해요.</li>
+      </ul>
+    </details>
+
+    <form class="rt-form" id="rt-form" novalidate onsubmit="return false;">
+      <div class="rt-checks">
+        <h2 class="rt-checks-title">먼저 확인해요</h2>
+
+        <fieldset class="rt-field rt-check">
+          <legend class="rt-check-q">12월 31일 기준 집이 없는 세대의 세대주인가요?</legend>
+          <p class="rt-check-hint">세대원이라도 세대주가 주택 관련 공제를 받지 않았다면 "예"를 고르세요.</p>
+          <div class="rt-segment-options">
+            <input type="radio" name="rt-q-homeless" id="rt-q-homeless-yes" value="yes" checked>
+            <label for="rt-q-homeless-yes">예</label>
+            <input type="radio" name="rt-q-homeless" id="rt-q-homeless-no" value="no">
+            <label for="rt-q-homeless-no">아니오</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rt-field rt-check">
+          <legend class="rt-check-q">전용 85㎡ 이하이거나 기준시가 4억 원 이하인 집인가요?</legend>
+          <p class="rt-check-hint">주거용 오피스텔과 고시원도 포함돼요.</p>
+          <div class="rt-segment-options">
+            <input type="radio" name="rt-q-house" id="rt-q-house-yes" value="yes" checked>
+            <label for="rt-q-house-yes">예</label>
+            <input type="radio" name="rt-q-house" id="rt-q-house-no" value="no">
+            <label for="rt-q-house-no">아니오</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rt-field rt-check">
+          <legend class="rt-check-q">임대차계약서 주소로 전입신고를 했나요?</legend>
+          <div class="rt-segment-options">
+            <input type="radio" name="rt-q-address" id="rt-q-address-yes" value="yes" checked>
+            <label for="rt-q-address-yes">예</label>
+            <input type="radio" name="rt-q-address" id="rt-q-address-no" value="no">
+            <label for="rt-q-address-no">아니오</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rt-field rt-check">
+          <legend class="rt-check-q">월세를 계좌이체 등으로 내서 증빙이 있나요?</legend>
+          <div class="rt-segment-options">
+            <input type="radio" name="rt-q-proof" id="rt-q-proof-yes" value="yes" checked>
+            <label for="rt-q-proof-yes">예</label>
+            <input type="radio" name="rt-q-proof" id="rt-q-proof-no" value="no">
+            <label for="rt-q-proof-no">아니오</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <fieldset class="rt-field">
+        <legend class="rt-label">소득 유형</legend>
+        <div class="rt-segment-options">
+          <input type="radio" name="rt-income-type" id="rt-type-salary" value="salary" checked>
+          <label for="rt-type-salary">근로소득자</label>
+          <input type="radio" name="rt-income-type" id="rt-type-business" value="business">
+          <label for="rt-type-business">사업자 등</label>
+        </div>
+        <p class="rt-business-note" id="rt-business-note" hidden>사업자는 성실사업자 등 일부 사업자만 해당돼요. 종합소득금액 7,000만 원 이하여야 해요.</p>
+      </fieldset>
+
+      <div class="rt-field">
+        <label for="rt-income" class="rt-label" id="rt-income-label">총급여 (연봉)</label>
+        <div class="rt-input-wrap">
+          <input type="text" id="rt-income" class="rt-input" inputmode="numeric" autocomplete="off" value="50,000,000" aria-describedby="rt-income-hint">
+          <span class="rt-unit" aria-hidden="true">원</span>
+        </div>
+        <p class="rt-hint" id="rt-income-hint">5,000만 원 · 5,500만 원 이하면 17%</p>
+      </div>
+
+      <fieldset class="rt-field">
+        <legend class="rt-label">월세 입력 방법</legend>
+        <div class="rt-segment-options">
+          <input type="radio" name="rt-rent-mode" id="rt-mode-monthly" value="monthly" checked>
+          <label for="rt-mode-monthly">월 금액으로</label>
+          <input type="radio" name="rt-rent-mode" id="rt-mode-annual" value="annual">
+          <label for="rt-mode-annual">1년 합계로</label>
+        </div>
+      </fieldset>
+
+      <div class="rt-panel" id="rt-panel-monthly">
+        <div class="rt-field">
+          <label for="rt-monthly" class="rt-label">월세 (한 달)</label>
+          <div class="rt-input-wrap">
+            <input type="text" id="rt-monthly" class="rt-input" inputmode="numeric" autocomplete="off" value="600,000" aria-describedby="rt-monthly-hint">
+            <span class="rt-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="rt-hint" id="rt-monthly-hint">60만 원 · 1년 720만 원</p>
+          <div class="rt-quick" role="group" aria-label="월세 빠르게 입력">
+            <button type="button" class="rt-chip" data-target="rt-monthly" data-add="50000">+5만</button>
+            <button type="button" class="rt-chip" data-target="rt-monthly" data-add="100000">+10만</button>
+          </div>
+        </div>
+
+        <div class="rt-field">
+          <label for="rt-months" class="rt-label">월세 낸 개월 수</label>
+          <div class="rt-months-row">
+            <div class="rt-input-wrap rt-months-wrap">
+              <input type="text" id="rt-months" class="rt-input" inputmode="numeric" autocomplete="off" maxlength="2" value="12" aria-describedby="rt-months-hint">
+              <span class="rt-unit" aria-hidden="true">개월</span>
+            </div>
+            <div class="rt-quick rt-months-quick" role="group" aria-label="개월 수 빠르게 입력">
+              <button type="button" class="rt-chip" data-months="3">3개월</button>
+              <button type="button" class="rt-chip" data-months="6">6개월</button>
+              <button type="button" class="rt-chip" data-months="12">12개월</button>
+            </div>
+          </div>
+          <p class="rt-hint rt-hint-left" id="rt-months-hint">올해 실제로 월세를 낸 달 수 (1~12)</p>
+        </div>
+      </div>
+
+      <div class="rt-panel" id="rt-panel-annual" hidden>
+        <div class="rt-field">
+          <label for="rt-annual" class="rt-label">1년 동안 낸 월세 합계</label>
+          <div class="rt-input-wrap">
+            <input type="text" id="rt-annual" class="rt-input" inputmode="numeric" autocomplete="off" value="7,200,000" aria-describedby="rt-annual-hint">
+            <span class="rt-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="rt-hint" id="rt-annual-hint">720만 원</p>
+          <div class="rt-quick" role="group" aria-label="1년 월세 합계 빠르게 입력">
+            <button type="button" class="rt-chip" data-target="rt-annual" data-add="500000">+50만</button>
+            <button type="button" class="rt-chip" data-target="rt-annual" data-add="1000000">+100만</button>
+          </div>
+        </div>
+      </div>
+
+      <details class="rt-extra">
+        <summary>낼 세금을 알면 더 정확해요 (선택)</summary>
+        <div class="rt-field rt-extra-body">
+          <label for="rt-tax" class="rt-label">월세 공제 전 소득세 결정세액</label>
+          <div class="rt-input-wrap">
+            <input type="text" id="rt-tax" class="rt-input" inputmode="numeric" autocomplete="off" value="" placeholder="모르면 비워 두세요" aria-describedby="rt-tax-hint rt-tax-amount">
+            <span class="rt-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="rt-hint" id="rt-tax-amount"></p>
+          <p class="rt-hint rt-hint-left" id="rt-tax-hint">홈택스 연말정산 미리보기에서 확인할 수 있어요. 모르면 비워 두세요.</p>
+        </div>
+      </details>
+    </form>
+
+    <section class="rt-result" id="rt-result" aria-live="polite" aria-labelledby="rt-result-title">
+      <h2 class="rt-result-title" id="rt-result-title">결과</h2>
+      <div id="rt-result-body">
+        <dl class="rt-rows">
+          <div class="rt-row"><dt>적용 공제율</dt><dd id="rt-rate">-</dd></div>
+          <div class="rt-row"><dt>1년 낸 월세</dt><dd id="rt-annual-out">-</dd></div>
+          <div class="rt-row"><dt>공제 대상 월세</dt><dd id="rt-eligible">-</dd></div>
+          <div class="rt-row rt-row-excess" id="rt-excess-row"><dt>한도 초과(공제 안 됨)</dt><dd id="rt-excess">-</dd></div>
+        </dl>
+        <p class="rt-excess-reason" id="rt-excess-reason" hidden>월세는 1년에 1,000만 원까지만 공제돼요.</p>
+        <div class="rt-total">
+          <span class="rt-total-label">월세 세액공제액</span>
+          <strong class="rt-total-value" id="rt-credit">-</strong>
+          <p class="rt-total-sub" id="rt-credit-sub"></p>
+        </div>
+
+        <div class="rt-limit-box" id="rt-limit-box" hidden>
+          <h3 class="rt-limit-title">낼 세금(결정세액)을 반영하면</h3>
+          <dl class="rt-rows">
+            <div class="rt-row"><dt>실제 공제받는 소득세</dt><dd id="rt-applied">-</dd></div>
+            <div class="rt-row"><dt>함께 줄어드는 지방소득세</dt><dd id="rt-local">-</dd></div>
+            <div class="rt-row rt-row-strong"><dt>실제로 줄어드는 세금</dt><dd id="rt-total">-</dd></div>
+            <div class="rt-row"><dt>낼 세금이 적어 못 받는 금액</dt><dd id="rt-lost">-</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="rt-not-eligible" id="rt-not-eligible" hidden>
+        <p class="rt-no-title">공제 대상이 아니에요</p>
+        <ul class="rt-no-reasons" id="rt-no-reasons"></ul>
+        <p class="rt-no-fix" id="rt-no-fix" hidden>지금이라도 전입신고·증빙을 갖추면 공제받을 수 있어요.</p>
+        <div class="rt-cash-box">
+          <p class="rt-cash-title">대신 이렇게 받을 수 있어요</p>
+          <p class="rt-cash-text">월세를 계좌이체로 내고 홈택스에서 '주택임차료 현금영수증'을 신청하면 신용카드 등 사용액 소득공제(현금영수증 30%)에 포함돼요. 총급여의 25%를 넘게 쓴 부분부터 공제돼요.</p>
+        </div>
+      </div>
+
+      <p class="rt-error" id="rt-error" hidden></p>
+      <p class="rt-note" id="rt-note">ⓘ 세액공제는 낼 세금(결정세액)을 넘어 돌려받을 수 없어요. 소득이 낮거나 다른 공제가 많으면 실제로 줄어드는 세금이 이보다 적을 수 있어요.</p>
+    </section>
+
+    <p class="rt-disclaimer">
+      ※ 이 계산기는 <strong>2026년 세법 기준</strong>으로 만든 <strong>참고용</strong>입니다. 세액공제는 결정세액을 넘을 수 없고, 다른 공제 항목·원 단위 절사·세법 개정 등에 따라 실제 연말정산 결과와 다를 수 있습니다. 정확한 금액은 국세청 홈택스 연말정산 미리보기나 세무 전문가를 통해 확인하세요.
+    </p>
+    <section class="rt-explain" aria-labelledby="rt-explain-title">
+      <h2 class="rt-explain-title" id="rt-explain-title">이렇게 계산해요</h2>
+      <p class="rt-explain-lead">2026년 세법 기준으로 아래 순서대로 계산해요.</p>
+      <ol class="rt-explain-steps">
+        <li><strong>받을 수 있는지 확인</strong> 무주택 세대주이고 총급여 8,000만 원 이하(사업자는 종합소득금액 7,000만 원 이하)여야 해요.</li>
+        <li><strong>공제율 정하기</strong> 총급여 5,500만 원 이하(사업자는 종합소득금액 4,500만 원 이하)면 17%, 그보다 많으면 15%예요.</li>
+        <li><strong>공제 대상 월세</strong> 1년 동안 낸 월세 중 1,000만 원까지만 인정해요.<span class="rt-formula">공제 대상 = 1년 월세와 1,000만 원 중 작은 값</span></li>
+        <li><strong>세액공제액</strong> 원 단위로 반올림해요.<span class="rt-formula">공제 대상 월세 × 공제율</span></li>
+        <li><strong>지방소득세</strong> 소득세가 줄면 지방소득세도 그 10%만큼 함께 줄어요.<span class="rt-formula">총 줄어드는 세금 = 세액공제액 × 1.1</span></li>
+      </ol>
+      <div class="rt-example">
+        <p class="rt-example-title"><strong>예시</strong> 총급여 5,000만 원, 월세 60만 원 × 12개월</p>
+        <dl class="rt-example-rows">
+          <div class="rt-example-row"><dt>공제율</dt><dd>5,500만 원 이하 → <strong>17%</strong></dd></div>
+          <div class="rt-example-row"><dt>공제 대상 월세</dt><dd>600,000 × 12 = <strong>7,200,000원</strong></dd></div>
+          <div class="rt-example-row"><dt>세액공제액</dt><dd>7,200,000 × 17% = <strong>1,224,000원</strong></dd></div>
+          <div class="rt-example-row"><dt>지방소득세까지</dt><dd>1,224,000 + 122,400 = <strong>1,346,400원</strong></dd></div>
+        </dl>
+      </div>
+      <p class="rt-explain-sub"><strong>실제 연말정산과 다를 수 있어요</strong></p>
+      <ul class="rt-explain-notes">
+        <li>실제로는 원 단위 미만을 버려 몇 원 차이가 날 수 있어요.</li>
+        <li>세액공제는 낼 세금(결정세액)보다 많이 받을 수 없어요. 월세 세액공제를 받으면 표준세액공제 13만 원은 받을 수 없어요.</li>
+      </ul>
+    </section>
+
+    <section class="rt-faq" aria-labelledby="rt-faq-title">
+      <h2 class="rt-faq-title" id="rt-faq-title">자주 묻는 질문</h2>
+      <details class="rt-faq-item">
+        <summary class="rt-faq-q">월세 세액공제는 누가 받을 수 있나요?</summary>
+        <p class="rt-faq-a">12월 31일 기준으로 집이 없는 세대의 세대주이고 총급여가 8,000만 원 이하인 근로자가 받을 수 있어요. 세대주가 주택 관련 공제를 받지 않았다면 세대원도 받을 수 있어요. 집은 전용 85제곱미터 이하이거나 기준시가 4억 원 이하여야 하고, 주거용 오피스텔과 고시원도 포함돼요.</p>
+      </details>
+      <details class="rt-faq-item">
+        <summary class="rt-faq-q">월세 세액공제율 17%와 15%는 어떻게 나뉘나요?</summary>
+        <p class="rt-faq-a">총급여 5,500만 원 이하면 17%, 5,500만 원 초과 8,000만 원 이하면 15%예요. 기준이 이하라서 총급여가 정확히 5,500만 원이어도 17%가 적용돼요. 사업자는 종합소득금액 4,500만 원과 7,000만 원이 기준이에요.</p>
+      </details>
+      <details class="rt-faq-item">
+        <summary class="rt-faq-q">월세를 1,000만 원 넘게 냈으면 어떻게 되나요?</summary>
+        <p class="rt-faq-a">1년에 1,000만 원까지만 공제 대상이라 넘는 금액은 공제되지 않아요. 총급여 8,000만 원 이하로 15%를 적용받는다면 최대 1,500,000원, 17%라면 최대 1,700,000원까지 세금이 줄어요.</p>
+      </details>
+      <details class="rt-faq-item">
+        <summary class="rt-faq-q">계산기에 나온 금액을 그대로 돌려받나요?</summary>
+        <p class="rt-faq-a">꼭 그렇지는 않아요. 세액공제는 낼 세금(결정세액)을 넘어 돌려받을 수 없어서 소득이 낮거나 다른 공제가 많으면 실제로 줄어드는 세금이 더 적을 수 있어요. 결정세액을 알면 계산기의 선택 칸에 넣어 확인해 보세요.</p>
+      </details>
+      <details class="rt-faq-item">
+        <summary class="rt-faq-q">전입신고를 안 했거나 조건이 안 되면 방법이 없나요?</summary>
+        <p class="rt-faq-a">월세를 계좌이체로 내고 홈택스에서 주택임차료 현금영수증을 신청하면 신용카드 등 사용액 소득공제에 포함돼 현금영수증과 같은 30% 공제율이 적용돼요. 다만 총급여의 25%를 넘게 쓴 금액부터 공제되고 세액공제보다 효과는 작아요.</p>
+      </details>
+      <details class="rt-faq-item">
+        <summary class="rt-faq-q">작년에 월세 세액공제를 못 받았는데 지금 받을 수 있나요?</summary>
+        <p class="rt-faq-a">네. 5월 종합소득세 신고 때 추가로 신청하거나, 그 기간도 지났다면 홈택스에서 경정청구로 최근 5년 치를 돌려받을 수 있어요. 다만 2023년 이전 연도는 소득 기준과 한도가 지금보다 낮았으니 그해 기준으로 확인해야 해요.</p>
+      </details>
+    </section>
+
+    <p class="rt-related">관련 글: <a href="../../posts/2026-rent-tax-credit-guide.html">월세 세액공제 받는 법, 환급 조건과 신청 방법 총정리</a> · <a href="../../posts/2026-year-end-tax-settlement-guide.html">연말정산 미리 준비하기, 놓치기 쉬운 소득공제 항목 총정리</a></p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

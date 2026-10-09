@@ -38,5 +38,13 @@
     "description": "기존 대출과 새 대출의 금리·기간·상환 방식만 넣으면 중도상환수수료와 인지세까지 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지 바로 알려줘요.",
     "icon": "apps/loan-refinance-calculator/icon.svg",
     "shortTitle": "대출 비교"
+  },
+  {
+    "path": "apps/rent-tax-credit-calculator/",
+    "emoji": "🏠",
+    "title": "월세 세액공제 계산기",
+    "description": "소득과 월세만 넣으면 받을 수 있는지 먼저 확인하고, 공제율 17%·15%와 연 1,000만 원 한도를 반영한 연말정산 월세 세액공제액을 바로 알려줘요.",
+    "icon": "apps/rent-tax-credit-calculator/icon.svg",
+    "shortTitle": "월세 공제"
   }
 ]
