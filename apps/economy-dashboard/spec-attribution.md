@@ -1,6 +1,6 @@
 # 계획서: 생활경제 대시보드 — ECOS 출처 표기 정확히 하기
 
-> 상태: **승인 대기** · 작성 2026-10-09 · Plan 서브에이전트 · 지침 `.claude/tasks/ecos-attribution/plan-instructions.md`
+> 상태: **승인됨 (2026-10-09, 방법 1: 미확인 기관은 이름 없이 표기)** · 작성 2026-10-09 · Plan 서브에이전트 · 지침 `.claude/tasks/ecos-attribution/plan-instructions.md`
 > "확인됨" = 공식 페이지 또는 서로 다른 출처 2곳 이상 일치. "미확인" = 1곳·제3자 자료·추정. 이 환경에서 `ecos.bok.or.kr`, `kosis.kr` 직접 접속은 실패했다(DNS 오류).
 
 ---
