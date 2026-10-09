@@ -12,10 +12,15 @@
  * - ECOS는 API가 과거 값을 주므로 기록을 이어붙이지 않고 매번 기간 조회한다(일별 45일, 월별 16개월(이번 달 포함이라 실제 최대 15개월), 기준금리 3년).
  * - 항목코드가 틀리면(결과 없음·항목명 불일치) StatisticItemList로 항목 이름을 찾아 다시 조회하고 "≠ 계획"을 로그에 남긴다.
  * - Node 20 내장 fetch만 쓴다. 외부 패키지 없음. TLS 인증서 검증은 끄지 않는다. https만 쓴다.
+ * - 지표마다 fetchedAt(그 지표를 ECOS에서 받은 날, KST)을 기록한다. 이전 배포본 값을 다시 쓸 때는 그 값의 fetchedAt을
+ *   그대로 둔다(없으면 이전 배포본 generatedAt 날짜). 화면 출처 줄 'ECOS(작성기관, 통계표명), YYYY.M.D.'의 날짜.
+ * - 작성기관·통계표명은 app.js ED_DEFS의 고정 표(사람이 확인한 값)만 화면에 쓴다. 이 스크립트는 [meta] 로그로 대조만 한다:
+ *   StatisticSearch 행의 STAT_NAME(추가 호출 0), 지표 수집이 끝난 뒤 StatisticTableList 통계표당 1회(ORG_NAME).
+ *   [meta] 호출의 실패·오류는 무시한다(지표 데이터에 영향 없음).
  * - 어떤 경우든 종료 코드는 0 (배포를 막지 않는다).
  *
  * fixture 형식(로컬 테스트용, 네트워크 대신 사용). --fixture를 여러 번 주면 뒤 파일이 앞 파일을 덮는다.
- *   { "StatisticSearch/<통계표>/<항목코드>": 응답, "StatisticItemList/<통계표>": 응답, "*": 기본 응답 }
+ *   { "StatisticSearch/<통계표>/<항목코드>": 응답, "StatisticItemList/<통계표>": 응답, "StatisticTableList/<통계표>": 응답, "*": 기본 응답 }
  *   응답 = ECOS JSON 객체 또는 원문 문자열(XML 등). 찾는 키가 없으면 INFO-200(데이터 없음) 응답으로 본다.
  */
 'use strict';
@@ -198,6 +203,16 @@ function nameMatches(itemName, names) {
   return names.some(function (x) { return n.indexOf(normName(x)) >= 0; });
 }
 
+/** ECOS 통계표명에서 앞 번호('4.2.1. ')를 뺀 이름 */
+function stripStatNo(name) {
+  return String(name || '').replace(/^\s*(\d+\.)+\s*/, '').trim();
+}
+
+/** API 통계표명 vs 고정 표 → '=' | '≠' (앞 번호·공백·괄호 무시) */
+function compareStatName(apiName, fixedName) {
+  return normName(stripStatNo(apiName)) === normName(fixedName) ? '=' : '≠';
+}
+
 /** 조회 기간: { start, end } — 일별 'YYYYMMDD', 월별 'YYYYMM' */
 function queryRange(def, today) {
   if (def.cycle === 'M') {
@@ -229,8 +244,8 @@ function latestPeriod(ind) {
 
 /**
  * 새로 받은 지표 + 이전 배포본 → 최종 지표(순수 함수).
- * - 새 값이 있으면 그것. 월별은 latestSeenAt(최신 달이 처음 보인 날)을 이어받거나 오늘로.
- * - 없으면 이전 배포본 값이 한도 이내일 때만 origin "previous-deploy"로 재사용.
+ * - 새 값이 있으면 그것(fetchedAt = 오늘). 월별은 latestSeenAt(최신 달이 처음 보인 날)을 이어받거나 오늘로.
+ * - 없으면 이전 배포본 값이 한도 이내일 때만 origin "previous-deploy"로 재사용(fetchedAt 보존, 없으면 이전 generatedAt 날짜).
  * @param {Object} fresh { key: 지표 } (origin "api")
  * @param {Object|null} prev 검증된 이전 data.json
  * @param {string} today 'YYYY-MM-DD'
@@ -238,6 +253,7 @@ function latestPeriod(ind) {
  */
 function mergeWithFallback(fresh, prev, today) {
   var prevInd = prev && prev.indicators ? prev.indicators : {};
+  var prevGen = prev && typeof prev.generatedAt === 'string' && app.isRealDate(prev.generatedAt.slice(0, 10)) ? prev.generatedAt.slice(0, 10) : null;
   var out = {};
   var report = {};
   app.ED_KEYS.forEach(function (k) {
@@ -246,6 +262,7 @@ function mergeWithFallback(fresh, prev, today) {
     if (f) {
       var copy = JSON.parse(JSON.stringify(f));
       copy.origin = 'api';
+      copy.fetchedAt = today;
       if (app.ED_DEFS[k].cycle === 'M') {
         if (p && latestPeriod(p) === latestPeriod(copy)) copy.latestSeenAt = p.latestSeenAt || null;
         else copy.latestSeenAt = p ? today : null;
@@ -259,6 +276,11 @@ function mergeWithFallback(fresh, prev, today) {
     if (age === null || age > maxReuseDays(k)) { report[k] = 'old'; return; }
     var reuse = JSON.parse(JSON.stringify(p));
     reuse.origin = 'previous-deploy';
+    // 처음 받은 날을 그대로 둔다(오늘로 바꾸지 않음). 옛 배포본엔 없으니 그 generatedAt 날짜
+    if (!app.isRealDate(reuse.fetchedAt)) {
+      if (prevGen) reuse.fetchedAt = prevGen;
+      else delete reuse.fetchedAt;
+    }
     out[k] = reuse;
     report[k] = 'previous-deploy';
   });
@@ -289,7 +311,7 @@ function mask(s) {
   });
   str = str.replace(/https?:\/\/[^\s'"]*ecos\.bok\.or\.kr[^\s'"]*/gi, '[API 주소 생략]');
   str = str.replace(/ecos\.bok\.or\.kr\/api[^\s'"]*/gi, '[API 주소 생략]');
-  str = str.replace(/(StatisticSearch|StatisticItemList|KeyStatisticList)\/[^/\s'"]+\/(json|xml)/gi, '$1/***/$2');
+  str = str.replace(/(StatisticSearch|StatisticItemList|StatisticTableList|KeyStatisticList)\/[^/\s'"]+\/(json|xml)/gi, '$1/***/$2');
   return str;
 }
 
@@ -372,6 +394,7 @@ async function searchSeries(opts, def, item) {
   if (c.kind === 'ok') {
     var d = app.ED_DEFS[def.key];
     r = rowsToSeries(c.rows, def.cycle, d.min, d.max);
+    logStatName(opts, def, c.rows);
   }
   return { c: c, label: got.label, parsed: r };
 }
@@ -395,6 +418,49 @@ async function findItemCode(opts, def, reasonText) {
   log('items', def.label + ' ' + reasonText + ' → 이름 "' + def.names[0] + '"으로 찾음 ' + found.code + ' "' + found.name + '"' +
     (def.item && found.code !== def.item ? ' ≠ 계획 ' + def.item : (def.item ? '' : ' (계획 코드 없음)')));
   return { c: c, found: found };
+}
+
+/** StatisticSearch 행에 STAT_NAME이 있으면 고정 표와 대조해 한 줄(통계표당 1번). 추가 호출 없음 */
+function logStatName(opts, def, rows) {
+  if (!opts.metaSeen) opts.metaSeen = {};
+  if (opts.metaSeen[def.stat]) return;
+  var apiName = '';
+  for (var i = 0; i < rows.length && !apiName; i++) apiName = field(rows[i], ['STAT_NAME', 'stat_name']);
+  if (!apiName) return;
+  opts.metaSeen[def.stat] = true;
+  var fixed = app.ED_DEFS[def.key].statName;
+  var cmp = compareStatName(apiName, fixed);
+  log('meta', def.stat + ' 통계표명 "' + apiName.slice(0, 80) + '" ' + (cmp === '=' ? '= 고정 표' : '≠ 고정 표 "' + fixed + '"'));
+}
+
+/**
+ * 지표 수집이 끝난 뒤 통계표마다 StatisticTableList 1회 → ORG_NAME·STAT_NAME 로그(화면에는 안 씀).
+ * 실패·한도 오류·접속 실패는 무시하고 다음 통계표로.
+ */
+async function logTableMeta(opts) {
+  var stats = [];
+  INDICATORS.forEach(function (d) { if (stats.indexOf(d.stat) < 0) stats.push(d.stat); });
+  for (var i = 0; i < stats.length; i++) {
+    var stat = stats[i];
+    try {
+      var got = await ecosRequest(opts, 'StatisticTableList', ['1', '10', stat], 'StatisticTableList/' + stat);
+      var c = classifyEcosResponse(got.body, 'StatisticTableList');
+      if (c.kind !== 'ok') {
+        log('meta', stat + ' 통계표 정보 ' + got.label + ', ' + (c.reason || '없음') + ' → 무시');
+        continue;
+      }
+      var row = c.rows.filter(function (r) { return field(r, ['STAT_CODE', 'stat_code']) === stat; })[0] || c.rows[0];
+      var org = row.ORG_NAME !== undefined ? row.ORG_NAME : row.org_name;
+      var orgText = org === null || org === undefined || String(org).trim() === '' ? 'null' : '"' + String(org).trim().slice(0, 60) + '"';
+      var key = INDICATORS.filter(function (d) { return d.stat === stat; })[0].key;
+      var fixedOrg = app.ED_DEFS[key].org;
+      var name = field(row, ['STAT_NAME', 'stat_name']);
+      log('meta', stat + ' ORG_NAME=' + orgText + ' (고정 표 작성기관: ' + (fixedOrg || '미확인') + ')' +
+        (name ? ', 통계표명 "' + name.slice(0, 80) + '" ' + (compareStatName(name, app.ED_DEFS[key].statName) === '=' ? '= 고정 표' : '≠ 고정 표 "' + app.ED_DEFS[key].statName + '"') : ''));
+    } catch (err) {
+      log('meta', stat + ' 통계표 정보 요청 실패: ' + errorText(err) + ' → 무시');
+    }
+  }
 }
 
 function fmtVal(n) {
@@ -437,7 +503,7 @@ async function fetchIndicator(opts, def) {
   var last = s[s.length - 1];
   var nameText = p.itemName ? '항목명 "' + p.itemName + '", ' : '항목명 없음, ';
   var extra = '';
-  var ind = { origin: 'api', name: app.ED_DEFS[def.key].name, unit: app.ED_DEFS[def.key].unit, stat: def.stat, item: item, cycle: def.cycle };
+  var ind = { origin: 'api', name: app.ED_DEFS[def.key].name, unit: app.ED_DEFS[def.key].unit, stat: def.stat, item: item, cycle: def.cycle, fetchedAt: opts.today };
   if (def.key === 'baseRate') {
     var ch = lastChange(s);
     ind.latest = [last[0], last[1]];
@@ -458,6 +524,7 @@ async function fetchIndicator(opts, def) {
   return { ind: ind };
 }
 
+/** 반환 { fresh, stopped } — stopped: 키·한도 문제나 연속 접속 실패로 중간에 멈춤 */
 async function fromEcos(opts) {
   var fresh = {};
   var netErrors = 0;
@@ -472,23 +539,23 @@ async function fromEcos(opts) {
       log('ecos', def.label + ' 요청 실패: ' + errorText(err) + ' → 이 지표만 대비책 (http로 바꾸지 않음)');
       if (netErrors >= 2) {
         log('ecos', '연속 2번 접속 실패 → 나머지 호출 생략, 대비책으로');
-        return fresh;
+        return { fresh: fresh, stopped: true };
       }
       continue;
     }
     if (got.stop) {
       log('ecos', got.reason + ' → 나머지 호출 생략, 전부 대비책으로');
-      return fresh;
+      return { fresh: fresh, stopped: true };
     }
     if (got.ind) fresh[def.key] = got.ind;
   }
-  return fresh;
+  return { fresh: fresh, stopped: false };
 }
 
 /* ----- 이전 배포본 ----- */
 
 /** 반환 { data: 검증된 객체|null, status } */
-async function loadPrevious(src, retryDelayMs) {
+async function loadPrevious(src, retryDelayMs, nowMs) {
   if (!src || src === 'none') {
     log('fallback', '이전 배포본 주소 없음');
     return { data: null, status: 'none' };
@@ -530,7 +597,7 @@ async function loadPrevious(src, retryDelayMs) {
     log('fallback', '이전 배포본이 JSON이 아님');
     return { data: null, status: 'broken' };
   }
-  var valid = validateDataJson(json);
+  var valid = validateDataJson(json, nowMs);
   if (!valid) {
     log('fallback', '이전 배포본 형식 검증 실패');
     return { data: null, status: 'broken' };
@@ -569,14 +636,24 @@ async function main(argv) {
   }
 
   var fresh = {};
+  var stopped = true;
   if (canApi) {
-    try { fresh = await fromEcos(opts); } catch (err) { log('ecos', '예상 못한 오류: ' + errorText(err)); fresh = {}; }
+    try {
+      var eco = await fromEcos(opts);
+      fresh = eco.fresh;
+      stopped = eco.stopped;
+    } catch (err) { log('ecos', '예상 못한 오류: ' + errorText(err)); fresh = {}; }
+    // 출처 대조 로그(지표 수집이 모두 끝난 뒤, 실패 무시). 키·한도 문제로 멈췄으면 부르지 않는다
+    if (stopped) log('meta', '수집이 중간에 멈춰 통계표 정보 확인은 건너뜀');
+    else {
+      try { await logTableMeta(opts); } catch (err) { log('meta', '통계표 정보 확인 중 오류: ' + errorText(err) + ' → 무시'); }
+    }
   }
-  var checked = validateDataJson({ version: 1, indicators: fresh });
+  var checked = validateDataJson({ version: 1, indicators: fresh }, nowMs);
   fresh = checked ? checked.indicators : {};
 
   // 실패한 지표의 대비책 + 월별 지표 "새로 발표" 날짜(latestSeenAt) 이어받기용으로 항상 읽는다
-  var prev = await loadPrevious(fallback, retryDelay);
+  var prev = await loadPrevious(fallback, retryDelay, nowMs);
 
   var merged = mergeWithFallback(fresh, prev.data, today);
   app.ED_KEYS.forEach(function (k) {
@@ -601,7 +678,7 @@ async function main(argv) {
     source: SOURCE,
     indicators: merged.indicators
   };
-  if (!validateDataJson(data)) {
+  if (!validateDataJson(data, nowMs)) {
     log('out', '최종 검증 실패 → data.json을 만들지 않음');
     return;
   }
@@ -619,6 +696,8 @@ module.exports = {
   rowsToSeries: rowsToSeries,
   pickByName: pickByName,
   nameMatches: nameMatches,
+  stripStatNo: stripStatNo,
+  compareStatName: compareStatName,
   queryRange: queryRange,
   weekAgoPoint: weekAgoPoint,
   yoy: yoy,

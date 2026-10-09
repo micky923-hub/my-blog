@@ -1,0 +1,6 @@
+{"StatisticTableList/722Y001":{"StatisticTableList":{"list_total_count":1,"row":[{"P_STAT_CODE":"0000000004","STAT_CODE":"722Y001","STAT_NAME":"1.3.1. 한국은행 기준금리 및 여수신금리","CYCLE":"D","SRCH_YN":"Y","ORG_NAME":"한국은행"}]}},
+"StatisticTableList/731Y001":{"StatisticTableList":{"list_total_count":1,"row":[{"P_STAT_CODE":"0000000033","STAT_CODE":"731Y001","STAT_NAME":"3.1.1.1. 주요국 통화의 대원화환율","CYCLE":"D","SRCH_YN":"Y","ORG_NAME":null}]}},
+"StatisticTableList/817Y002":{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다."}},
+"StatisticTableList/901Y009":{"StatisticTableList":{"list_total_count":1,"row":[{"P_STAT_CODE":"0000000062","STAT_CODE":"901Y009","STAT_NAME":"4.2.1. 소비자물가지수","CYCLE":"M","SRCH_YN":"Y","ORG_NAME":null}]}},
+"StatisticTableList/121Y006":"__network_error__",
+"StatisticTableList/121Y002":"<RESULT><CODE>ERROR-602</CODE><MESSAGE>호출 한도 초과</MESSAGE></RESULT>"}

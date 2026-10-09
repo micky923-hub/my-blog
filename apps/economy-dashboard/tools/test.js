@@ -256,7 +256,68 @@ test('mask: 경로 속 키 원문·인코딩·ECOS 주소 모두 가림', functi
   assert.ok(s.indexOf('AB+c') < 0 && s.indexOf('AB%2B') < 0 && s.indexOf('KEY') < 0, s);
   assert.ok(s.indexOf('ecos.bok.or.kr/api') < 0, s);
   assert.ok(s.indexOf('somekey') < 0, s);
+  // (출처 표기) 새 StatisticTableList 호출도 같은 방식으로 가림
+  var t = fx.mask('https://ecos.bok.or.kr/api/StatisticTableList/AB+c/d==KEY/json/kr/1/10/731Y001 StatisticTableList/otherkey/json');
+  assert.ok(t.indexOf('KEY') < 0 && t.indexOf('otherkey') < 0 && t.indexOf('/json/kr/') < 0, t);
   fx._setSecrets([]);
+});
+
+/* ---------- 출처 표기 (spec-attribution.md) ---------- */
+
+test('edSrcLine: 한국은행·국가데이터처·미확인(org null)·날짜 대비책·날짜 없음', function () {
+  assert.strictEqual(app.edSrcLine('baseRate', { fetchedAt: '2026-10-09' }, null), '출처 : ECOS(한국은행, 한국은행 기준금리 및 여수신금리), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('mortgageRate', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 예금은행 가중평균금리(대출, 신규취급액)), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('depositRate', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 예금은행 가중평균금리(수신, 신규취급액)), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('cpi', { fetchedAt: '2026-10-09' }), '출처 : ECOS(국가데이터처, 소비자물가지수), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('ktb3y', { fetchedAt: '2026-10-09' }), '출처 : ECOS(시장금리(일별)), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('usdkrw', { fetchedAt: '2026-10-09' }), '출처 : ECOS(주요국 통화의 대원화환율), 2026.10.9.');
+  // fetchedAt 없음 → generatedAt 날짜, 둘 다 없음 → 날짜 생략
+  assert.strictEqual(app.edSrcLine('cpi', {}, '2026-10-08T18:21:00+09:00'), '출처 : ECOS(국가데이터처, 소비자물가지수), 2026.10.8.');
+  assert.strictEqual(app.edSrcLine('cpi', { fetchedAt: 'x' }, 'bad'), '출처 : ECOS(국가데이터처, 소비자물가지수)');
+  assert.strictEqual(app.edSrcLine('cpi', null, null), '출처 : ECOS(국가데이터처, 소비자물가지수)');
+  // 앞자리 0 없음·끝 점, 고정 표에 없는 키는 'ECOS'만
+  assert.strictEqual(app.dateDot('2026-01-05'), '2026.1.5.');
+  assert.strictEqual(app.edSrcLine('nope', { fetchedAt: '2026-01-05' }), '출처 : ECOS, 2026.1.5.');
+  // 미확인 기관은 이름을 지어내지 않음
+  assert.strictEqual(app.ED_DEFS.usdkrw.org, null);
+  assert.strictEqual(app.ED_DEFS.ktb3y.org, null);
+  assert.strictEqual(app.ED_DEFS.ktb10y.org, null);
+});
+
+test('통계표명 대조: 앞 번호·공백 무시', function () {
+  assert.strictEqual(fx.stripStatNo('4.2.1. 소비자물가지수'), '소비자물가지수');
+  assert.strictEqual(fx.compareStatName('4.2.1. 소비자물가지수', '소비자물가지수'), '=');
+  assert.strictEqual(fx.compareStatName('1.3.2.2. 시장금리 (일별)', '시장금리(일별)'), '=');
+  assert.strictEqual(fx.compareStatName('4.2.1. 소비자물가지수(2020=100)', '소비자물가지수'), '≠');
+});
+
+test('fetchedAt 검증: 실제 날짜·미래 아님만, 틀리면 그 필드만 버림', function () {
+  var v = app.validateDataJson({ version: 1, indicators: {
+    usdkrw: { series: [['2026-10-08', 1392.5]], fetchedAt: '2026-10-09' },
+    cpi: { series: [['2026-09', 117.6]], fetchedAt: '2026-10-10' },
+    baseRate: { latest: ['2026-10-08', 2.5], fetchedAt: '2026-02-30' },
+    ktb3y: { series: [['2026-10-08', 2.58]], fetchedAt: 20261009 }
+  } }, NOW_MS);
+  assert.strictEqual(v.indicators.usdkrw.fetchedAt, '2026-10-09');
+  assert.ok(v.indicators.cpi && !('fetchedAt' in v.indicators.cpi));
+  assert.ok(v.indicators.baseRate && !('fetchedAt' in v.indicators.baseRate));
+  assert.ok(v.indicators.ktb3y && !('fetchedAt' in v.indicators.ktb3y));
+  assert.strictEqual(v.version, 1);
+});
+
+test('mergeWithFallback: fetchedAt — 새 값은 오늘, 재사용은 그대로, 옛 배포본은 generatedAt 날짜', function () {
+  var oldPrev = app.validateDataJson(readFx('previous-deploy.json'), NOW_MS);
+  assert.ok(!('fetchedAt' in oldPrev.indicators.usdkrw), 'fixture는 옛 모양(fetchedAt 없음)');
+  var m = fx.mergeWithFallback({ cpi: { origin: 'api', series: [['2026-09', 117.66]] } }, oldPrev, TODAY);
+  assert.strictEqual(m.indicators.cpi.fetchedAt, TODAY);
+  assert.strictEqual(m.indicators.usdkrw.fetchedAt, '2026-10-08');
+  var newPrev = JSON.parse(JSON.stringify(oldPrev));
+  newPrev.indicators.usdkrw.fetchedAt = '2026-10-06';
+  var m2 = fx.mergeWithFallback({}, newPrev, TODAY);
+  assert.strictEqual(m2.indicators.usdkrw.fetchedAt, '2026-10-06');
+  var noGen = JSON.parse(JSON.stringify(oldPrev));
+  noGen.generatedAt = null;
+  assert.ok(!('fetchedAt' in fx.mergeWithFallback({}, noGen, TODAY).indicators.usdkrw));
 });
 
 /* ---------- 검증 ---------- */
@@ -386,12 +447,35 @@ var SCENARIOS = [
     assert.ok(/\[ecos\] 기준금리 722Y001\/D\/0101000 → fixture/.test(r.log));
     assert.ok(/\[items\] 121Y006 항목 목록/.test(r.log));
     assert.ok(/\[out\] 저장: 지표 7개\(api 7 · previous-deploy 0\)/.test(r.log));
+    Object.keys(i).forEach(function (k) { assert.strictEqual(i[k].fetchedAt, TODAY, k + ' fetchedAt'); });
+    assert.strictEqual(r.data.version, 1);
+    // STAT_NAME 있음(= / ≠) / 없음(121Y006·121Y002 → 줄 없음), 817Y002는 1번만
+    assert.ok(/\[meta\] 722Y001 통계표명 "1\.3\.1\. 한국은행 기준금리 및 여수신금리" = 고정 표/.test(r.log), r.log);
+    assert.ok(/\[meta\] 901Y009 통계표명 "4\.2\.1\. 소비자물가지수\(2020=100\)" ≠ 고정 표 "소비자물가지수"/.test(r.log), r.log);
+    assert.strictEqual((r.log.match(/\[meta\] 817Y002 통계표명/g) || []).length, 1);
+    assert.ok(!/\[meta\] 121Y00[26] 통계표명/.test(r.log));
+    // ecos-ok.json엔 StatisticTableList가 없음 → 데이터 없음으로 무시, 6개 통계표 각 1줄
+    assert.strictEqual((r.log.match(/\[meta\] \w+ 통계표 정보 .*→ 무시/g) || []).length, 6, r.log);
+    assert.ok(r.log.indexOf('[meta] 722Y001 통계표 정보') > r.log.indexOf('[ecos] 정기예금 평균금리'), 'meta 호출은 수집 뒤');
     SCEN_OK_DATA = r.data;
+  } },
+  { name: '출처 확인 호출(ORG_NAME 있음·null·오류·접속 실패·한도) → 무시, 지표 값은 같음', args: OK.concat(['--fixture', f('ecos-meta.json')], PREV), check: function (r) {
+    assert.ok(/\[meta\] 722Y001 ORG_NAME="한국은행" \(고정 표 작성기관: 한국은행\)/.test(r.log), r.log);
+    assert.ok(/\[meta\] 731Y001 ORG_NAME=null \(고정 표 작성기관: 미확인\)/.test(r.log), r.log);
+    assert.ok(/\[meta\] 901Y009 ORG_NAME=null \(고정 표 작성기관: 국가데이터처\), 통계표명 "4\.2\.1\. 소비자물가지수" = 고정 표/.test(r.log), r.log);
+    assert.ok(/\[meta\] 817Y002 통계표 정보 fixture, RESULT\.CODE=ERROR-500.*→ 무시/.test(r.log), r.log);
+    assert.ok(/\[meta\] 121Y006 통계표 정보 요청 실패.*→ 무시/.test(r.log), r.log);
+    assert.ok(/\[meta\] 121Y002 .*ERROR-602.*→ 무시/.test(r.log), r.log);
+    assert.ok(/\[out\] 저장: 지표 7개\(api 7 · previous-deploy 0\)/.test(r.log));
+    assert.strictEqual(JSON.stringify(r.data.indicators), JSON.stringify(SCEN_OK_DATA.indicators), 'meta 결과와 무관하게 지표 같음');
   } },
   { name: '키 없음 + 이전 배포본', args: PREV, env: {}, check: function (r) {
     assert.ok(/키 없음\(ECOS_API_KEY\)/.test(r.log));
     assert.strictEqual(Object.keys(r.data.indicators).length, 7);
     Object.keys(r.data.indicators).forEach(function (k) { assert.strictEqual(r.data.indicators[k].origin, 'previous-deploy', k); });
+    // 옛 배포본(fetchedAt 없음) → 그 generatedAt 날짜. 오늘로 바꾸지 않음
+    Object.keys(r.data.indicators).forEach(function (k) { assert.strictEqual(r.data.indicators[k].fetchedAt, '2026-10-08', k); });
+    assert.ok(!/\[meta\]/.test(r.log), '키 없으면 meta 호출 없음');
   } },
   { name: '키 없음 + 첫 배포', args: NOPREV, env: {}, check: function (r) {
     assert.strictEqual(r.data, null);
@@ -401,6 +485,7 @@ var SCENARIOS = [
     assert.ok(/INFO-100/.test(r.log) && /나머지 호출 생략/.test(r.log));
     assert.strictEqual((r.log.match(/\[ecos\] /g) || []).length, 2, r.log); // fixture 줄 + 중단 줄 = 호출 1번에서 멈춤
     assert.ok(Object.keys(r.data.indicators).every(function (k) { return r.data.indicators[k].origin === 'previous-deploy'; }));
+    assert.ok(/\[meta\] 수집이 중간에 멈춰 통계표 정보 확인은 건너뜀/.test(r.log) && !/ORG_NAME/.test(r.log));
   } },
   { name: '한도 초과 XML ERROR-602', args: ['--fixture', f('ecos-limit.json')].concat(PREV), check: function (r) {
     assert.ok(/ERROR-602/.test(r.log) && /호출 한도/.test(r.log) && /나머지 호출 생략/.test(r.log));
@@ -540,6 +625,70 @@ test('renderApp: ECOS만 / 날씨만 / rates만 / 셋 다 없음 / 깨진 JSON /
   part.indicators.mortgageRate.origin = 'previous-deploy';
   var pv = app.renderApp({ eco: part, weather: WX, rates: RATES }, NOW_MS);
   assert.ok(/지금은 불러오지 못했어요/.test(pv.cardsHtml) && /이전 값을 보여 드려요/.test(pv.cardsHtml));
+});
+
+test('renderApp: 출처 줄 — ECOS 카드 6줄(국고채 1줄), 대비책 환율엔 없음, 기준 줄에서 "한국은행 ECOS" 뺌', function () {
+  var v = app.renderApp({ eco: ecoOk(), weather: WX, rates: RATES }, NOW_MS);
+  var srcs = (v.cardsHtml.match(/<p class="ed-src">[^<]*<\/p>/g) || []).map(function (x) { return x.replace(/<[^>]+>/g, '').replace(/&#39;/g, "'"); });
+  assert.deepStrictEqual(srcs, [
+    '출처 : ECOS(국가데이터처, 소비자물가지수), 2026.10.9.',
+    '출처 : ECOS(주요국 통화의 대원화환율), 2026.10.9.',
+    '출처 : ECOS(한국은행, 한국은행 기준금리 및 여수신금리), 2026.10.9.',
+    '출처 : ECOS(한국은행, 예금은행 가중평균금리(대출, 신규취급액)), 2026.10.9.',
+    '출처 : ECOS(한국은행, 예금은행 가중평균금리(수신, 신규취급액)), 2026.10.9.',
+    '출처 : ECOS(시장금리(일별)), 2026.10.9.'
+  ]);
+  assert.ok(v.cardsHtml.indexOf('· 한국은행 ECOS') < 0);
+  assert.ok(/<p class="ed-basis">10월 8일\(목\) 기준<\/p>/.test(v.cardsHtml), '기준 줄 1줄');
+  // 원/달러 대비책 카드: ECOS 줄 없음, 수출입은행 표기 그대로
+  var noUsd = ecoOk();
+  delete noUsd.indicators.usdkrw;
+  var fb = app.renderApp({ eco: noUsd, weather: WX, rates: RATES }, NOW_MS);
+  var usdCard = fb.cardsHtml.match(/<article[^>]+id="ed-card-usdkrw"[\s\S]*?<\/article>/)[0];
+  assert.ok(usdCard.indexOf('ed-src') < 0 && /10월 8일\(목\) 기준 · 한국수출입은행 매매기준율/.test(usdCard), usdCard);
+  assert.strictEqual((fb.cardsHtml.match(/class="ed-src"/g) || []).length, 5);
+  var ro = app.renderApp({ eco: null, weather: null, rates: RATES }, NOW_MS);
+  assert.ok(ro.cardsHtml.indexOf('ed-src') < 0);
+  // 국고채 하나만 있어도 줄 1개
+  var only10 = ecoOk();
+  delete only10.indicators.ktb3y;
+  var o10 = app.renderApp({ eco: only10, weather: null, rates: null }, NOW_MS);
+  assert.ok(/<article[^>]+id="ed-card-ktb"[\s\S]*?출처 : ECOS\(시장금리\(일별\)\), 2026\.10\.9\.[\s\S]*?<\/article>/.test(o10.cardsHtml));
+  // 국고채 수집일이 다르면 더 이른 날
+  var mixed = ecoOk();
+  mixed.indicators.ktb10y.fetchedAt = '2026-10-07';
+  assert.ok(/출처 : ECOS\(시장금리\(일별\)\), 2026\.10\.7\./.test(app.renderApp({ eco: mixed, weather: null, rates: null }, NOW_MS).cardsHtml));
+});
+
+test('renderApp: 옛 data.json(fetchedAt 없음) → generatedAt 날짜, version 1 그대로', function () {
+  var old = readFx('previous-deploy.json');
+  assert.strictEqual(old.version, 1);
+  var v = app.renderApp({ eco: old, weather: WX, rates: RATES }, NOW_MS);
+  assert.ok(v.ok);
+  assert.strictEqual((v.cardsHtml.match(/class="ed-src">출처 : ECOS\([^<]*\), 2026\.10\.8\.</g) || []).length, 6, v.cardsHtml);
+  var noGen = readFx('previous-deploy.json');
+  delete noGen.generatedAt;
+  var v2 = app.renderApp({ eco: noGen, weather: null, rates: null }, NOW_MS);
+  assert.ok(/class="ed-src">출처 : ECOS\(국가데이터처, 소비자물가지수\)<\/p>/.test(v2.cardsHtml), v2.cardsHtml);
+});
+
+test('출처 문구: 하단 문단이 고정 표와 일치, "통계청" 단독·"출처: KOSIS" 0건', function () {
+  var html = fs.readFileSync(path.join(APP_DIR, 'index.html'), 'utf8');
+  assert.ok(html.indexOf('원작성: 국가데이터처(옛 통계청) — 소비자물가지수 (공공누리 제1유형 · 출처 표시)') >= 0);
+  assert.ok(/한국은행 작성: 기준금리, 예금은행 가중평균금리\(주담대·정기예금\)/.test(html));
+  assert.ok(/원\/달러 환율\(주요국 통화의 대원화환율\), 국고채 금리\(시장금리\(일별\)\)는 ECOS에서 받은 값이며 원작성기관 확인 중/.test(html));
+  assert.ok(html.indexOf('국가데이터처(옛 통계청) 발표와') >= 0);
+  var v = app.renderApp({ eco: ecoOk(), weather: WX, rates: RATES }, NOW_MS);
+  [html, v.cardsHtml + v.sources.join()].forEach(function (t) {
+    assert.ok(!/통계청/.test(t.replace(/옛 통계청/g, '')), '"통계청" 단독 표기');
+    assert.ok(!/출처\s*:\s*(국가통계포털|KOSIS)/.test(t), '출처: KOSIS');
+  });
+  // 하단 문단의 기관 구분이 고정 표와 맞는지
+  assert.strictEqual(app.ED_DEFS.baseRate.org, '한국은행');
+  assert.strictEqual(app.ED_DEFS.mortgageRate.org, '한국은행');
+  assert.strictEqual(app.ED_DEFS.depositRate.org, '한국은행');
+  assert.strictEqual(app.ED_DEFS.cpi.org, '국가데이터처');
+  assert.ok(html.indexOf(app.ED_DEFS.usdkrw.statName) >= 0 && html.indexOf(app.ED_DEFS.ktb3y.statName) >= 0);
 });
 
 test('renderApp: 오래된 데이터 경고(일별 5일, 월별 70일, 예보 2일, 시세 5일)', function () {

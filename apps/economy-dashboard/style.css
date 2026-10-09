@@ -257,6 +257,20 @@
   overflow-wrap: anywhere;
 }
 
+/* 카드 출처 줄(ECOS 권장 형식). 기준 줄 바로 아래, 더 작은 글자 */
+.ed-basis:has(+ .ed-src) {
+  margin-bottom: 0.15rem;
+}
+
+.ed-src {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .ed-spark {
   display: block;
   width: 100%;
@@ -365,6 +379,20 @@
 
 .ed-footnote p {
   margin: 0 0 0.5rem;
+}
+
+.ed-footnote .ed-footnote-head {
+  margin-bottom: 0.25rem;
+}
+
+.ed-footnote-list {
+  margin: 0 0 0.5rem;
+  padding-left: 1.1rem;
+}
+
+.ed-footnote-list li {
+  margin: 0 0 0.15rem;
+  overflow-wrap: anywhere;
 }
 
 .ed-footnote a {
