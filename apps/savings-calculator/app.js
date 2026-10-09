@@ -18,7 +18,7 @@ var SC_LIMITS = {
  * @param {number} p.months               기간(개월), 1~120 정수
  * @param {number} p.rate                 연 이자율(%), 0~20, 소수 둘째 자리까지
  * @param {'simple'|'compound'} p.method  단리 / 월복리
- * @param {number} p.taxCode              세율코드: 154(일반) / 95(세금우대) / 0(비과세)
+ * @param {number} p.taxCode              세율코드: 154(일반) / 14(조합 예탁금 농특세) / 0(비과세)
  * @returns {{ok:true, principal:number, interest:number, tax:number, afterTaxInterest:number, total:number}
  *          |{ok:false, field:string, message:string}}
  */
@@ -48,7 +48,7 @@ function calculate(p) {
   if (method !== 'simple' && method !== 'compound') {
     return { ok: false, field: 'method', message: '이자 방식을 골라 주세요.' };
   }
-  if (taxCode !== 154 && taxCode !== 95 && taxCode !== 0) {
+  if (taxCode !== 154 && taxCode !== 14 && taxCode !== 0) {
     return { ok: false, field: 'tax', message: '세금 종류를 골라 주세요.' };
   }
 
