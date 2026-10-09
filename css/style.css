@@ -1673,3 +1673,116 @@ a:focus-visible {
     text-decoration: underline;
   }
 }
+
+/* ==============================
+   Like Button (공유 섹션 안 "도움이 됐어요")
+   ============================== */
+
+/* 공유 섹션은 줄바꿈되는 flex 행이라, 좋아요 줄은 한 줄 전체를 차지하게 한다 */
+.like-row {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  min-width: 0;
+}
+
+.like-row[hidden],
+.like-count[hidden] {
+  display: none;
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.like-btn:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.like-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.like-btn.is-liked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  cursor: default;
+}
+
+.like-thumb {
+  display: inline-block;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.like-count {
+  margin-left: 0.15rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.like-btn.is-liked .like-count {
+  background: var(--color-bg);
+  color: var(--color-accent);
+}
+
+.like-thanks {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.like-thanks:empty {
+  display: none;
+}
+
+.like-btn.is-popping .like-thumb {
+  animation: like-pop 0.45s ease-out;
+}
+
+@keyframes like-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.45) rotate(-12deg); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .like-row {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .like-btn {
+    transition: none;
+  }
+
+  .like-btn.is-popping .like-thumb {
+    animation: none;
+  }
+}

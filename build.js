@@ -447,6 +447,14 @@ function buildPosts() {
       + '          <h2 id="share-title" class="share-heading">이 글이 도움이 됐다면</h2>\n'
       + '          <p class="share-sub">필요한 분께 공유해 주세요</p>\n'
       + '        </div>\n'
+      + '        <div class="like-row" data-slug="' + escapeHtml(slug) + '" data-like-api="' + escapeHtml(String(config.likeApi || '')) + '" hidden>\n'
+      + '          <button class="like-btn" type="button" aria-pressed="false">\n'
+      + '            <span class="like-thumb" aria-hidden="true">👍</span>\n'
+      + '            <span class="like-label">도움이 됐어요</span>\n'
+      + '            <span class="like-count" aria-live="polite" hidden></span>\n'
+      + '          </button>\n'
+      + '          <p class="like-thanks" aria-live="polite"></p>\n'
+      + '        </div>\n'
       + '        <div class="share-buttons">\n'
       + '          <button class="share-btn share-kakao-btn" data-share="kakao" type="button" aria-label="카카오톡으로 공유">\n'
       + '            <span class="share-icon"><svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.24.11.06.24.01.24.01.32-.05 3.7-2.44 4.28-2.86.56.08 1.14.13 1.73.13 5.52 0 10-3.58 10-7.95C22 6.58 17.52 3 12 3z"/></svg></span>\n'
@@ -490,6 +498,7 @@ function buildPosts() {
         + (meta.tags || []).map(function(t) { return '  <meta property="article:tag" content="' + escapeHtml(t) + '">\n'; }).join(''),
       pathPrefix: sharePathPrefix,
       extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + Date.now() + '"></script>\n'
+        + '  <script src="' + sharePathPrefix + 'js/like.js?v=' + Date.now() + '" defer></script>\n'
     });
 
     ensureDir(path.join(DIST, 'posts'));
@@ -818,6 +827,9 @@ if (fs.existsSync('js/list.js')) {
 }
 if (fs.existsSync('js/share.js')) {
   fs.copyFileSync('js/share.js', path.join(DIST, 'js', 'share.js'));
+}
+if (fs.existsSync('js/like.js')) {
+  fs.copyFileSync('js/like.js', path.join(DIST, 'js', 'like.js'));
 }
 
 if (fs.existsSync('apps')) {
