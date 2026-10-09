@@ -17,19 +17,19 @@ var ED_KEYS = ['usdkrw', 'baseRate', 'cpi', 'mortgageRate', 'depositRate', 'ktb3
  */
 var ED_DEFS = {
   usdkrw: { name: '원/달러 매매기준율', unit: '원', cycle: 'D', min: 500, max: 3000,
-    stat: '731Y001', statName: '주요국 통화의 대원화환율', org: null },
+    stat: '731Y001', statName: '주요국 통화의 대원화환율', org: '한국은행' },
   baseRate: { name: '한국은행 기준금리', unit: '%', cycle: 'D', min: -1, max: 30,
     stat: '722Y001', statName: '한국은행 기준금리 및 여수신금리', org: '한국은행' },
   cpi: { name: '소비자물가지수', unit: '2020=100', cycle: 'M', min: 50, max: 300,
     stat: '901Y009', statName: '소비자물가지수', org: '국가데이터처' },
   mortgageRate: { name: '주택담보대출 평균금리(예금은행, 신규취급액)', unit: '%', cycle: 'M', min: -1, max: 30,
-    stat: '121Y006', statName: '예금은행 가중평균금리(대출, 신규취급액)', org: '한국은행' },
+    stat: '121Y006', statName: '예금은행 대출금리(신규취급액 기준)', org: '한국은행' },
   depositRate: { name: '정기예금 평균금리(예금은행, 신규취급액)', unit: '%', cycle: 'M', min: -1, max: 30,
-    stat: '121Y002', statName: '예금은행 가중평균금리(수신, 신규취급액)', org: '한국은행' },
+    stat: '121Y002', statName: '예금은행 수신금리(신규취급액 기준)', org: '한국은행' },
   ktb3y: { name: '국고채 3년', unit: '%', cycle: 'D', min: -1, max: 30,
-    stat: '817Y002', statName: '시장금리(일별)', org: null },
+    stat: '817Y002', statName: '시장금리(일별)', org: '한국은행' },
   ktb10y: { name: '국고채 10년', unit: '%', cycle: 'D', min: -1, max: 30,
-    stat: '817Y002', statName: '시장금리(일별)', org: null }
+    stat: '817Y002', statName: '시장금리(일별)', org: '한국은행' }
 };
 
 /* 수집 스크립트가 이전 배포본을 재사용하는 한도(일). 기준금리는 따로 */
