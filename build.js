@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var fs = require('fs');
 var path = require('path');
+var crypto = require('crypto');
 var { marked } = require('marked');
 var { markedHighlight } = require('marked-highlight');
 var hljs = require('highlight.js');
@@ -524,12 +525,21 @@ function buildAppsHtml() {
   html += '        <h2 id="web-apps-title" class="app-shelf-title">무료 도구</h2>\n';
   html += '      </div>\n';
   html += '      <ul class="app-shelf">\n';
+  // 아이콘 주소 뒤에 파일 내용으로 만든 버전(?v=)을 붙인다.
+  // 그림이 바뀌면 주소도 바뀌어서, 휴대폰이 옛 그림을 계속 보여 주지 않는다.
+  function iconVersion(file) {
+    try {
+      return crypto.createHash('sha1').update(fs.readFileSync(file)).digest('hex').slice(0, 8);
+    } catch (e) {
+      return '';
+    }
+  }
   apps.forEach(function(app) {
     var name = app.shortTitle || app.title;
     html += '        <li>\n';
     html += '          <a href="' + base + app.path + '" class="app-tile" title="' + escapeHtml(app.description) + '" aria-label="' + escapeHtml(app.title) + '">\n';
     if (app.icon) {
-      html += '            <img class="app-tile-icon" src="' + base + escapeHtml(app.icon) + '" alt="" width="64" height="64">\n';
+      html += '            <img class="app-tile-icon" src="' + base + escapeHtml(app.icon) + (iconVersion(app.icon) ? '?v=' + iconVersion(app.icon) : '') + '" alt="" width="64" height="64">\n';
     } else {
       html += '            <span class="app-tile-icon app-tile-emoji" aria-hidden="true">' + escapeHtml(app.emoji || '') + '</span>\n';
     }
