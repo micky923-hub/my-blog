@@ -23,7 +23,7 @@
 | **8월** | 9~10월 | 추석 상여금·목돈 굴리는 법 | 파킹통장, 채권 | 적금·예금 계산기 |
 | **9월** | 10~12월 | 다음 해 연말정산 준비 시작(이번 계획표의 10월로 돌아감) | 연말정산·IRP·연금저축 | 연금저축·IRP 계산기 |
 
-> **운영 메모 (2027년 10월 초)**: Cloudflare API 토큰 만료 전 갱신 — 토큰(`github-actions-likes`, 1년 만료)을 새로 만들어 GitHub Secret `CLOUDFLARE_API_TOKEN`만 바꾼다(`workers/likes/deploy-spec.md` 3절).
+> **운영 메모**: Cloudflare API 토큰(`github-actions-likes`)은 **2036년 10월 9일** 만료. 만료돼도 좋아요 버튼은 계속 동작하고 Worker 재배포만 실패한다. 갱신 시 새 토큰(TTL 시작 날짜는 비움)으로 GitHub Secret `CLOUDFLARE_API_TOKEN`만 바꾼다(`workers/likes/deploy-spec.md` 4절).
 
 ## 언제든 쓸 수 있는 글 (시기와 무관)
 
