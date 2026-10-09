@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>연금저축·IRP 세액공제 계산기</title>
-  <meta name="description" content="소득과 연금저축·IRP 납입액만 넣으면 올해 연말정산 예상 환급액과, 한도까지 채우면 얼마를 더 돌려받는지 바로 알려줘요.">
+  <title>연금저축·IRP 세액공제 계산기 (연말정산 예상 환급액) — Financial Diary</title>
+  <meta name="description" content="연금저축·IRP 세액공제를 계산해요. 총급여(또는 종합소득금액)와 연 납입액을 넣으면 공제율 16.5%·13.2%와 한도 600만·900만 원을 반영한 연말정산 예상 환급액, 한도까지 채우면 더 받는 금액을 알려 줘요. 2026년 세법 기준.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/pension-tax-calculator/">
+  <meta property="og:title" content="연금저축·IRP 세액공제 계산기 (연말정산 예상 환급액) — Financial Diary">
+  <meta property="og:description" content="연금저축·IRP 세액공제를 계산해요. 총급여(또는 종합소득금액)와 연 납입액을 넣으면 공제율 16.5%·13.2%와 한도 600만·900만 원을 반영한 연말정산 예상 환급액, 한도까지 채우면 더 받는 금액을 알려 줘요. 2026년 세법 기준.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/pension-tax-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>
     (function(){ var t = localStorage.getItem('theme');
@@ -12,6 +21,109 @@
   </script>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/pension-tax-calculator/#app",
+        "name": "연금저축·IRP 세액공제 계산기",
+        "url": "https://financialdiary.co.kr/apps/pension-tax-calculator/",
+        "description": "연금저축·IRP 세액공제를 계산해요. 총급여(또는 종합소득금액)와 연 납입액을 넣으면 공제율 16.5%·13.2%와 한도 600만·900만 원을 반영한 연말정산 예상 환급액, 한도까지 채우면 더 받는 금액을 알려 줘요. 2026년 세법 기준.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/pension-tax-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "연금저축과 IRP 세액공제 한도는 얼마인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "연금저축은 연 600만 원까지, 연금저축과 IRP를 합쳐 연 900만 원까지 세액공제를 받을 수 있어요. IRP만으로 900만 원을 모두 채우는 것도 가능해요. 연금저축에 600만 원을 넘게 넣었다면 나머지는 IRP로 채워야 900만 원 한도를 다 쓸 수 있어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "세액공제율 16.5%와 13.2%는 어떻게 나뉘나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "근로소득만 있다면 총급여 5,500만 원 이하, 그 외 소득이 있다면 종합소득금액 4,500만 원 이하일 때 16.5%이고, 이를 넘으면 13.2%예요. 기준이 이하라서 총급여가 정확히 5,500만 원이어도 16.5%가 적용돼요. 두 공제율 모두 지방소득세가 포함된 값이에요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "900만 원을 모두 채우면 최대 얼마를 돌려받나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "공제율 16.5%라면 최대 1,485,000원, 13.2%라면 최대 1,188,000원이에요. 900만 원을 12개월로 나누면 한 달에 75만 원씩 넣으면 돼요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "한도보다 많이 넣은 돈은 어떻게 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "넣을 수는 있지만 한도를 넘는 금액은 세액공제를 받지 못해요. 세액공제 한도(연금저축 600만 원, 합산 900만 원)와 연간 납입 한도(연금저축과 IRP 합쳐 1,800만 원)는 서로 달라요. 계산기의 한도 초과 칸에서 공제받지 못하는 금액을 확인할 수 있어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "12월에 한꺼번에 넣어도 세액공제를 받을 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 12월 31일까지 입금된 금액이 올해 공제 대상이라 연말에 한 번에 넣어도 공제는 똑같아요. 다만 연말에는 이체가 몰릴 수 있으니 12월 중순까지 넣어 두는 것이 안전해요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "계산기에 나온 환급액을 그대로 돌려받나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "꼭 그렇지는 않아요. 세액공제는 내야 할 세금(결정세액)을 넘어 돌려받을 수 없어서 소득이 낮거나 다른 공제가 많으면 실제 환급액이 이보다 적을 수 있어요. 정확한 금액은 국세청 홈택스 연말정산 미리보기로 확인하세요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "연금저축·IRP 세액공제 계산기",
+            "item": "https://financialdiary.co.kr/apps/pension-tax-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="pt-header">
@@ -123,6 +235,60 @@
     <p class="pt-disclaimer">
       ※ 이 계산기는 <strong>2026년 세법 기준</strong>으로 만든 <strong>참고용</strong>입니다. 세액공제는 결정세액을 넘을 수 없고, 다른 공제 항목·원 단위 절사·세법 개정 등에 따라 실제 연말정산 결과와 다를 수 있습니다. 정확한 금액은 국세청 홈택스 연말정산 미리보기나 세무 전문가를 통해 확인하세요.
     </p>
+    <section class="pt-explain" aria-labelledby="pt-explain-title">
+      <h2 class="pt-explain-title" id="pt-explain-title">이렇게 계산해요</h2>
+      <p class="pt-explain-lead">2026년 세법 기준으로 아래 순서대로 계산해요.</p>
+      <ol class="pt-explain-steps">
+        <li><strong>공제율 정하기</strong> 근로소득만 있으면 총급여 5,500만 원 이하, 그 외에는 종합소득금액 4,500만 원 이하일 때 16.5%, 넘으면 13.2%예요. 세액공제율 15%와 12%에 지방소득세 10%를 더한 값이에요.</li>
+        <li><strong>공제 대상 금액</strong> 연금저축은 600만 원까지만 인정하고, IRP를 더해 합계 900만 원까지 인정해요.<span class="pt-formula">공제 대상 = (연금저축과 600만 원 중 작은 값 + IRP)와 900만 원 중 작은 값</span></li>
+        <li><strong>예상 환급액</strong> 원 단위로 반올림해요.<span class="pt-formula">공제 대상 금액 × 공제율</span></li>
+        <li><strong>한도까지 더 넣으면</strong><span class="pt-formula">900만 원을 다 채웠을 때 환급액 − 지금 환급액</span></li>
+      </ol>
+      <div class="pt-example">
+        <p class="pt-example-title"><strong>예시</strong> 총급여 8,000만 원, 연금저축 800만 원, IRP 0원</p>
+        <dl class="pt-example-rows">
+          <div class="pt-example-row"><dt>공제율</dt><dd>5,500만 원 초과 → <strong>13.2%</strong></dd></div>
+          <div class="pt-example-row"><dt>공제 대상 금액</dt><dd>연금저축 800만 원 중 600만 원만 인정 → <strong>6,000,000원</strong> (공제 안 되는 금액 2,000,000원)</dd></div>
+          <div class="pt-example-row"><dt>예상 환급액</dt><dd>6,000,000 × 13.2% = <strong>792,000원</strong></dd></div>
+          <div class="pt-example-row"><dt>한도까지 더 넣으면</dt><dd>IRP로 300만 원을 더 넣으면 9,000,000 × 13.2% = 1,188,000원 → <strong>396,000원 더</strong></dd></div>
+        </dl>
+      </div>
+      <p class="pt-explain-sub"><strong>실제 연말정산과 다를 수 있어요</strong></p>
+      <ul class="pt-explain-notes">
+        <li>실제 연말정산은 세액공제(12%·15%)와 지방소득세(10%)를 따로 계산하고 원 단위 미만을 버려 몇 원 차이가 날 수 있어요.</li>
+        <li>세액공제는 내야 할 세금(결정세액)보다 많이 돌려받을 수 없어요. 소득이 낮거나 다른 공제가 많으면 환급액이 줄 수 있어요.</li>
+      </ul>
+    </section>
+
+    <section class="pt-faq" aria-labelledby="pt-faq-title">
+      <h2 class="pt-faq-title" id="pt-faq-title">자주 묻는 질문</h2>
+      <details class="pt-faq-item">
+        <summary class="pt-faq-q">연금저축과 IRP 세액공제 한도는 얼마인가요?</summary>
+        <p class="pt-faq-a">연금저축은 연 600만 원까지, 연금저축과 IRP를 합쳐 연 900만 원까지 세액공제를 받을 수 있어요. IRP만으로 900만 원을 모두 채우는 것도 가능해요. 연금저축에 600만 원을 넘게 넣었다면 나머지는 IRP로 채워야 900만 원 한도를 다 쓸 수 있어요.</p>
+      </details>
+      <details class="pt-faq-item">
+        <summary class="pt-faq-q">세액공제율 16.5%와 13.2%는 어떻게 나뉘나요?</summary>
+        <p class="pt-faq-a">근로소득만 있다면 총급여 5,500만 원 이하, 그 외 소득이 있다면 종합소득금액 4,500만 원 이하일 때 16.5%이고, 이를 넘으면 13.2%예요. 기준이 이하라서 총급여가 정확히 5,500만 원이어도 16.5%가 적용돼요. 두 공제율 모두 지방소득세가 포함된 값이에요.</p>
+      </details>
+      <details class="pt-faq-item">
+        <summary class="pt-faq-q">900만 원을 모두 채우면 최대 얼마를 돌려받나요?</summary>
+        <p class="pt-faq-a">공제율 16.5%라면 최대 1,485,000원, 13.2%라면 최대 1,188,000원이에요. 900만 원을 12개월로 나누면 한 달에 75만 원씩 넣으면 돼요.</p>
+      </details>
+      <details class="pt-faq-item">
+        <summary class="pt-faq-q">한도보다 많이 넣은 돈은 어떻게 되나요?</summary>
+        <p class="pt-faq-a">넣을 수는 있지만 한도를 넘는 금액은 세액공제를 받지 못해요. 세액공제 한도(연금저축 600만 원, 합산 900만 원)와 연간 납입 한도(연금저축과 IRP 합쳐 1,800만 원)는 서로 달라요. 계산기의 한도 초과 칸에서 공제받지 못하는 금액을 확인할 수 있어요.</p>
+      </details>
+      <details class="pt-faq-item">
+        <summary class="pt-faq-q">12월에 한꺼번에 넣어도 세액공제를 받을 수 있나요?</summary>
+        <p class="pt-faq-a">네. 12월 31일까지 입금된 금액이 올해 공제 대상이라 연말에 한 번에 넣어도 공제는 똑같아요. 다만 연말에는 이체가 몰릴 수 있으니 12월 중순까지 넣어 두는 것이 안전해요.</p>
+      </details>
+      <details class="pt-faq-item">
+        <summary class="pt-faq-q">계산기에 나온 환급액을 그대로 돌려받나요?</summary>
+        <p class="pt-faq-a">꼭 그렇지는 않아요. 세액공제는 내야 할 세금(결정세액)을 넘어 돌려받을 수 없어서 소득이 낮거나 다른 공제가 많으면 실제 환급액이 이보다 적을 수 있어요. 정확한 금액은 국세청 홈택스 연말정산 미리보기로 확인하세요.</p>
+      </details>
+    </section>
+
+    <p class="pt-related">관련 글: <a href="../../posts/2026-irp-tax-deduction-guide.html">IRP로 세액공제 300만 원 더 받는 법, 연말정산 전에 확인하세요</a> · <a href="../../posts/2026-pension-savings-fund-guide.html">연금저축펀드, IRP와 뭐가 다를까 - 개인연금 200% 활용법</a></p>
   </main>
 
   <script src="../../js/theme.js"></script>

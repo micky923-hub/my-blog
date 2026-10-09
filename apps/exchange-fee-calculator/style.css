@@ -477,3 +477,174 @@
 .fx-rate-reset[hidden] {
   display: none;
 }
+
+/* ---------- 이렇게 계산해요 / 자주 묻는 질문 / 관련 글 ---------- */
+
+.fx-explain,
+.fx-faq {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fx-radius);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  color: var(--color-text);
+}
+
+.fx-explain-title,
+.fx-faq-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.fx-explain-lead {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.fx-explain-steps,
+.fx-explain-notes {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.fx-explain-steps li,
+.fx-explain-notes li {
+  margin-bottom: 0.4rem;
+}
+
+.fx-formula {
+  display: block;
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.fx-example {
+  background: var(--color-tag-bg);
+  border-radius: var(--fx-radius);
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.fx-example-title {
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.fx-example-title strong {
+  color: var(--color-tag-text);
+}
+
+.fx-example-rows {
+  margin: 0;
+}
+
+.fx-example-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.fx-example-row:first-child {
+  border-top: 0;
+}
+
+.fx-example-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.fx-example-row dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.fx-explain-sub {
+  margin: 0.75rem 0 0;
+}
+
+.fx-explain-notes {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.fx-faq {
+  padding-bottom: 0.25rem;
+}
+
+.fx-faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.fx-faq-q {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--fx-touch);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  list-style-position: inside;
+}
+
+.fx-faq-q::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.fx-faq-q:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.fx-faq-item[open] .fx-faq-q {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fx-faq-a {
+  margin: 0.5rem 0 1rem;
+  color: var(--color-text);
+}
+
+.fx-related {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.fx-related a {
+  color: var(--color-accent);
+}
+
+/* FAQ 질문 앞 펼침 표시: summary가 flex라 기본 삼각형(::marker)이 보이지 않아 직접 그린다 */
+.fx-faq-q {
+  list-style: none;
+}
+
+.fx-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.fx-faq-q::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+  color: var(--color-accent);
+}
+
+.fx-faq-item[open] .fx-faq-q::before {
+  content: "▾";
+}
