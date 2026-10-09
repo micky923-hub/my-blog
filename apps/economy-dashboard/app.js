@@ -9,14 +9,27 @@
 
 var ED_KEYS = ['usdkrw', 'baseRate', 'cpi', 'mortgageRate', 'depositRate', 'ktb3y', 'ktb10y'];
 
+/*
+ * 지표 정의 + 출처 고정 표(사람이 확인한 값만, spec-attribution.md 2장).
+ * stat: ECOS 통계표 코드, statName: 화면에 쓰는 통계표명(ECOS 앞 번호 뺌),
+ * org: 원작성기관(확인된 것만). null = 미확인 → 출처 줄에 기관명을 쓰지 않는다.
+ * API의 ORG_NAME·STAT_NAME은 수집 로그([meta])로 대조만 하고 화면에는 쓰지 않는다.
+ */
 var ED_DEFS = {
-  usdkrw: { name: '원/달러 매매기준율', unit: '원', cycle: 'D', min: 500, max: 3000 },
-  baseRate: { name: '한국은행 기준금리', unit: '%', cycle: 'D', min: -1, max: 30 },
-  cpi: { name: '소비자물가지수', unit: '2020=100', cycle: 'M', min: 50, max: 300 },
-  mortgageRate: { name: '주택담보대출 평균금리(예금은행, 신규취급액)', unit: '%', cycle: 'M', min: -1, max: 30 },
-  depositRate: { name: '정기예금 평균금리(예금은행, 신규취급액)', unit: '%', cycle: 'M', min: -1, max: 30 },
-  ktb3y: { name: '국고채 3년', unit: '%', cycle: 'D', min: -1, max: 30 },
-  ktb10y: { name: '국고채 10년', unit: '%', cycle: 'D', min: -1, max: 30 }
+  usdkrw: { name: '원/달러 매매기준율', unit: '원', cycle: 'D', min: 500, max: 3000,
+    stat: '731Y001', statName: '주요국 통화의 대원화환율', org: null },
+  baseRate: { name: '한국은행 기준금리', unit: '%', cycle: 'D', min: -1, max: 30,
+    stat: '722Y001', statName: '한국은행 기준금리 및 여수신금리', org: '한국은행' },
+  cpi: { name: '소비자물가지수', unit: '2020=100', cycle: 'M', min: 50, max: 300,
+    stat: '901Y009', statName: '소비자물가지수', org: '국가데이터처' },
+  mortgageRate: { name: '주택담보대출 평균금리(예금은행, 신규취급액)', unit: '%', cycle: 'M', min: -1, max: 30,
+    stat: '121Y006', statName: '예금은행 가중평균금리(대출, 신규취급액)', org: '한국은행' },
+  depositRate: { name: '정기예금 평균금리(예금은행, 신규취급액)', unit: '%', cycle: 'M', min: -1, max: 30,
+    stat: '121Y002', statName: '예금은행 가중평균금리(수신, 신규취급액)', org: '한국은행' },
+  ktb3y: { name: '국고채 3년', unit: '%', cycle: 'D', min: -1, max: 30,
+    stat: '817Y002', statName: '시장금리(일별)', org: null },
+  ktb10y: { name: '국고채 10년', unit: '%', cycle: 'D', min: -1, max: 30,
+    stat: '817Y002', statName: '시장금리(일별)', org: null }
 };
 
 /* 수집 스크립트가 이전 배포본을 재사용하는 한도(일). 기준금리는 따로 */
@@ -114,6 +127,18 @@ function edDateKoW(iso) {
   return edDateKo(iso) + '(' + ED_WEEKDAYS[new Date(iso + 'T00:00:00Z').getUTCDay()] + ')';
 }
 
+/** '2026-10-09' → '2026.10.9.' (앞자리 0 없음, 끝 점) */
+function edDateDot(iso) {
+  return Number(iso.slice(0, 4)) + '.' + Number(iso.slice(5, 7)) + '.' + Number(iso.slice(8, 10)) + '.';
+}
+
+/** generatedAt('2026-10-08T18:21:00+09:00') → '2026-10-08'. 앞 10자가 실제 날짜가 아니면 null */
+function edGenDate(generatedAt) {
+  if (typeof generatedAt !== 'string') return null;
+  var d = generatedAt.slice(0, 10);
+  return edIsRealDate(d) ? d : null;
+}
+
 /** '2026-09' → '2026년 9월' */
 function edMonthKo(ym) {
   return ym.slice(0, 4) + '년 ' + Number(ym.slice(5, 7)) + '월';
@@ -144,7 +169,10 @@ function edValidateSeries(arr, cycle, min, max) {
   return dates.map(function (d) { return [d, map[d]]; });
 }
 
-function edValidateIndicator(key, ind) {
+/**
+ * @param {string} today 'YYYY-MM-DD'(KST). fetchedAt이 이보다 뒤(미래)면 그 필드만 버린다.
+ */
+function edValidateIndicator(key, ind, today) {
   var def = ED_DEFS[key];
   if (!def || !ind || typeof ind !== 'object' || Array.isArray(ind)) return null;
   var out = {
@@ -155,6 +183,8 @@ function edValidateIndicator(key, ind) {
     item: edStr(ind.item, null, 40),
     cycle: def.cycle
   };
+  // 그 지표를 ECOS에서 받은 날(KST). 없거나 틀리거나 미래면 필드만 버림(지표는 살림)
+  if (edIsRealDate(ind.fetchedAt) && (!today || ind.fetchedAt <= today)) out.fetchedAt = ind.fetchedAt;
   if (key === 'baseRate') {
     var l = ind.latest;
     if (!Array.isArray(l) || !edIsRealDate(l[0]) || edNum(l[1], def.min, def.max) === null) return null;
@@ -174,13 +204,15 @@ function edValidateIndicator(key, ind) {
 /**
  * 이 앱 data.json 검증. version이 1이 아니면 null(파일 전체 무시).
  * 그 밖에는 틀린 지표·점만 버린다. 지표가 하나도 없어도 객체는 돌려준다(카드는 "불러오지 못했어요").
+ * @param {number} [nowMs] fetchedAt 미래 판정 기준 시각(기본: 지금)
  */
-function validateDataJson(data) {
+function validateDataJson(data, nowMs) {
   if (!data || typeof data !== 'object' || Array.isArray(data) || data.version !== 1) return null;
   var src = data.indicators && typeof data.indicators === 'object' ? data.indicators : {};
   var indicators = {};
+  var today = edTodayKst(nowMs);
   ED_KEYS.forEach(function (k) {
-    var v = edValidateIndicator(k, src[k]);
+    var v = edValidateIndicator(k, src[k], today);
     if (v) indicators[k] = v;
   });
   return {
@@ -649,7 +681,7 @@ function edLinksHtml(list) {
 
 /**
  * 카드 하나.
- * @param {Object} c {id, title, badge, big, changes[], basis, spark, wallet, note, links[], empty, wide}
+ * @param {Object} c {id, title, badge, big, changes[], basis, src, spark, wallet, note, links[], empty, wide}
  */
 function edCard(c) {
   var cls = 'ed-card' + (c.wide ? ' ed-card-wide' : '') + (c.empty ? ' ed-card-empty' : '');
@@ -664,6 +696,7 @@ function edCard(c) {
       html += '<ul class="ed-changes">' + c.changes.map(function (t) { return '<li>' + edEsc(t) + '</li>'; }).join('') + '</ul>';
     }
     if (c.basis) html += '<p class="ed-basis">' + edEsc(c.basis) + '</p>';
+    if (c.src) html += '<p class="ed-src">' + edEsc(c.src) + '</p>';
     if (c.spark) html += c.spark;
     if (c.wallet) html += '<p class="ed-wallet"><strong>내 지갑엔</strong> ' + edEsc(c.wallet) + '</p>';
     if (c.note) html += '<p class="ed-note">' + edEsc(c.note) + '</p>';
@@ -672,17 +705,33 @@ function edCard(c) {
   return html + '</article>';
 }
 
+/** 기준 줄. ECOS 카드는 src 없이(출처는 edSrcLine 줄), 수출입은행 대비책만 src를 붙인다 */
 function edBasis(dateText, ind, src) {
-  var s = dateText + ' 기준 · ' + (src || '한국은행 ECOS');
+  var s = dateText + ' 기준' + (src ? ' · ' + src : '');
   if (ind && ind.origin === 'previous-deploy') s += ' · 새로 불러오지 못해 이전 값을 보여 드려요';
   return s;
+}
+
+/**
+ * ECOS 권장 출처 줄: '출처 : ECOS(작성기관, 통계표명), YYYY.M.D.'
+ * - 작성기관·통계표명은 고정 표(ED_DEFS)에서만. org 없으면 'ECOS(통계표명)', 둘 다 없으면 'ECOS'.
+ * - 날짜: 지표의 fetchedAt(ECOS에서 받은 날) → 없으면 data.json generatedAt 날짜 → 없으면 생략.
+ * @param {string} key 지표 키
+ * @param {Object|null} ind 검증된 지표
+ * @param {string|null} generatedAt data.json generatedAt
+ */
+function edSrcLine(key, ind, generatedAt) {
+  var def = ED_DEFS[key] || {};
+  var inner = [def.org, def.statName].filter(function (x) { return typeof x === 'string' && x; }).join(', ');
+  var date = ind && edIsRealDate(ind.fetchedAt) ? ind.fetchedAt : edGenDate(generatedAt);
+  return '출처 : ECOS' + (inner ? '(' + inner + ')' : '') + (date ? ', ' + edDateDot(date) : '');
 }
 
 function edMissing(ecoOk) {
   return ecoOk ? '지금은 불러오지 못했어요. 잠시 후 다시 들러 주세요.' : '준비 중이에요. 한국은행 자료 연결이 끝나면 여기에 표시돼요.';
 }
 
-function cardUsd(ind, rates, ecoOk) {
+function cardUsd(ind, rates, ecoOk, gen) {
   var base = { id: 'usdkrw', title: '원/달러 환율', links: [ED_LINKS.fee, ED_LINKS.dollarPost] };
   var u = ind.usdkrw;
   if (u) {
@@ -697,6 +746,7 @@ function cardUsd(ind, rates, ecoOk) {
       big: edEsc(edFmtMax(last[1], 2)) + '<span class="ed-unit">원</span>',
       changes: changes,
       basis: edBasis(edDateKoW(last[0]), u),
+      src: edSrcLine('usdkrw', u, gen),
       spark: sparkline(edRecent(s, 30), '최근 30일', function (v) { return edFmtMax(v, 2) + '원'; }),
       wallet: walletUsd(last[1], wk ? wk[1] : null),
       note: '환전 수수료 계산기는 수출입은행 고시 기준이라 숫자가 조금 다를 수 있어요.'
@@ -752,7 +802,7 @@ function cardWeather(wx, today) {
   }));
 }
 
-function cardCpi(ind, ecoOk, badge) {
+function cardCpi(ind, ecoOk, badge, gen) {
   var base = { id: 'cpi', title: '소비자물가 상승률', badge: badge, links: [ED_LINKS.weather, ED_LINKS.tipsPost] };
   var c = ind.cpi;
   if (!c) return edCard(Object.assign(base, { empty: edMissing(ecoOk) }));
@@ -767,12 +817,13 @@ function cardCpi(ind, ecoOk, badge) {
     big: y ? '<span class="ed-big-label">1년 전보다</span> ' + edEsc(pctText(y.pct)) : edEsc(edFmt(last[1], 2)) + '<span class="ed-unit">(지수)</span>',
     changes: changes,
     basis: edBasis(edMonthKo(last[0]), c) + ' · 지수 ' + edFmt(last[1], 2) + '(2020=100)으로 계산',
+    src: edSrcLine('cpi', c, gen),
     spark: sparkline(s.slice(-13), '최근 13개월 지수', function (v) { return edFmt(v, 1); }),
     wallet: walletCpi(y)
   }));
 }
 
-function cardBaseRate(ind, ecoOk, today) {
+function cardBaseRate(ind, ecoOk, today, gen) {
   var base = { id: 'baseRate', title: '한국은행 기준금리', links: [ED_LINKS.loan, ED_LINKS.loanPost] };
   var b = ind.baseRate;
   if (!b) return edCard(Object.assign(base, { empty: edMissing(ecoOk) }));
@@ -781,11 +832,12 @@ function cardBaseRate(ind, ecoOk, today) {
     big: edEsc(edFmt(b.latest[1], 2)) + '<span class="ed-unit">%</span>',
     changes: [ch ? '마지막 변경 ' + edDateKo(ch.date) + ' · ' + edFmt(ch.from, 2) + '% → ' + edFmt(ch.to, 2) + '% (' + ppText(ch.to - ch.from) + ')' : '최근 3년 자료에서 변경 없음'],
     basis: edBasis(edDateKoW(b.latest[0]), b),
+    src: edSrcLine('baseRate', b, gen),
     wallet: walletBaseRate(b.latest, ch, today)
   }));
 }
 
-function cardMonthlyRate(key, ind, ecoOk, badge) {
+function cardMonthlyRate(key, ind, ecoOk, badge, gen) {
   var isMortgage = key === 'mortgageRate';
   var base = {
     id: key,
@@ -803,12 +855,13 @@ function cardMonthlyRate(key, ind, ecoOk, badge) {
     big: edEsc(edFmt(last[1], 2)) + '<span class="ed-unit">%</span>',
     changes: [pv ? (Math.abs(diff) < 0.01 ? '전월과 거의 같아요' : '전월보다 ' + ppText(diff)) : '전월 값이 없어요'],
     basis: edBasis(edMonthKo(last[0]), m) + ' · 예금은행 신규취급액 가중평균',
+    src: edSrcLine(key, m, gen),
     spark: isMortgage ? sparkline(s.slice(-13), '최근 13개월', function (v) { return edFmt(v, 2) + '%'; }) : '',
     wallet: isMortgage ? walletMortgage(s) : walletDeposit(s)
   }));
 }
 
-function cardKtb(ind, ecoOk) {
+function cardKtb(ind, ecoOk, gen) {
   var base = { id: 'ktb', title: '국고채 금리 3년·10년', links: [ED_LINKS.bondPost] };
   var a = ind.ktb3y;
   var b = ind.ktb10y;
@@ -826,10 +879,18 @@ function cardKtb(ind, ecoOk) {
     if (dates.indexOf(last[0]) < 0) dates.push(last[0]);
   });
   var main = a || b;
+  // 3년·10년은 같은 통계표라 출처 줄 1개. 수집일이 다르면 더 이른 날을 쓴다
+  var srcInd = main;
+  if (a && b) {
+    var da = edIsRealDate(a.fetchedAt) ? a.fetchedAt : edGenDate(gen);
+    var db = edIsRealDate(b.fetchedAt) ? b.fetchedAt : edGenDate(gen);
+    if (db && (!da || db < da)) srcInd = b;
+  }
   return edCard(Object.assign(base, {
     big: bigParts.join(' <span class="ed-sep">·</span> '),
     changes: changes,
     basis: edBasis(dates.map(edDateKoW).join(' · '), main.origin === 'previous-deploy' ? main : (b && b.origin === 'previous-deploy' ? b : main)),
+    src: edSrcLine(a ? 'ktb3y' : 'ktb10y', srcInd, gen),
     spark: sparkline(edRecent(main.series, 30), '국고채 ' + (a ? '3년' : '10년') + ' 최근 30일', function (v) { return edFmt(v, 2) + '%'; }),
     wallet: walletKtb(a ? '3년' : '10년', main.series)
   }));
@@ -879,7 +940,7 @@ function staleWarnings(eco, wx, today) {
  */
 function renderApp(raw, nowMs) {
   var r = raw || {};
-  var eco = validateDataJson(r.eco);
+  var eco = validateDataJson(r.eco, nowMs);
   var wx = validateWeatherJson(r.weather);
   var rates = validateRatesJson(r.rates);
   var ecoHas = !!(eco && Object.keys(eco.indicators).length);
@@ -890,15 +951,16 @@ function renderApp(raw, nowMs) {
   var signals = wx ? weatherSignals(wx.weather, today) : [];
   var usedRates = !ind.usdkrw && !!rates;
   var newKey = newMonthlyKey(ind, today);
+  var gen = eco ? eco.generatedAt : null;
 
   var cards = [
-    { id: 'usdkrw', html: cardUsd(ind, rates, ecoOk) },
+    { id: 'usdkrw', html: cardUsd(ind, rates, ecoOk, gen) },
     { id: 'weather', html: cardWeather(wx, today) },
-    { id: 'cpi', html: cardCpi(ind, ecoOk, newKey === 'cpi' ? '새로 발표' : '') },
-    { id: 'baseRate', html: cardBaseRate(ind, ecoOk, today) },
-    { id: 'mortgageRate', html: cardMonthlyRate('mortgageRate', ind, ecoOk, newKey === 'mortgageRate' ? '새로 발표' : '') },
-    { id: 'depositRate', html: cardMonthlyRate('depositRate', ind, ecoOk, newKey === 'depositRate' ? '새로 발표' : '') },
-    { id: 'ktb', html: cardKtb(ind, ecoOk) }
+    { id: 'cpi', html: cardCpi(ind, ecoOk, newKey === 'cpi' ? '새로 발표' : '', gen) },
+    { id: 'baseRate', html: cardBaseRate(ind, ecoOk, today, gen) },
+    { id: 'mortgageRate', html: cardMonthlyRate('mortgageRate', ind, ecoOk, newKey === 'mortgageRate' ? '새로 발표' : '', gen) },
+    { id: 'depositRate', html: cardMonthlyRate('depositRate', ind, ecoOk, newKey === 'depositRate' ? '새로 발표' : '', gen) },
+    { id: 'ktb', html: cardKtb(ind, ecoOk, gen) }
   ];
   if (newKey) {
     var idx = -1;
@@ -985,6 +1047,9 @@ if (typeof module !== 'undefined') {
     addMonths: edAddMonths,
     daysBetween: edDaysBetween,
     monthEnd: edMonthEnd,
+    dateDot: edDateDot,
+    genDate: edGenDate,
+    edSrcLine: edSrcLine,
     indicatorAgeDays: indicatorAgeDays,
     validateDataJson: validateDataJson,
     validateRatesJson: validateRatesJson,
