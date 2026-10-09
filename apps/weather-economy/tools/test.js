@@ -531,6 +531,18 @@ test('renderApp: 정상 데이터 화면 요소', function () {
   assert.ok(/<script/i.test(app.renderPriceTable({ items: [{ id: 'cabbage', name: '배추', unit: '<script>', today: 1 }] })) === false);
 });
 
+test('renderApp: 예보가 모두 지난 날짜면 신호 없음·"오늘"로 표시 안 함 (Review 추가)', function () {
+  var hot = weatherWith(function (id, k, d) { d.tmx = 36; });
+  var data = { version: 1, weather: hot, prices: null, history: { days: [] } };
+  var later = Date.parse('2026-10-15T08:00+09:00');
+  var v = app.renderApp(data, 'seoul', later);
+  assert.ok(v.ok);
+  assert.deepStrictEqual(v.signals, []);
+  assert.ok(!/오늘/.test(v.weatherHtml.replace(/오늘 이후/, '')), v.weatherHtml);
+  assert.ok(/예보가 오래돼서/.test(v.weatherHtml));
+  assert.strictEqual(v.warnings.length, 1);
+});
+
 /* ---------- 결과 ---------- */
 
 try { fs.rmSync(TMP, { recursive: true, force: true }); } catch (e) { /* 무시 */ }

@@ -220,11 +220,9 @@ function validateDataJson(data) {
 
 /* ---------- 규칙 엔진 ---------- */
 
-/** 오늘(KST)부터 3일치 날씨만 (오늘이 없으면 있는 앞쪽 3일) */
+/** 오늘(KST)부터 3일치 날씨만. 지난 날짜는 쓰지 않는다(오래된 예보로 신호를 내거나 "오늘"로 표시하지 않도록) */
 function weThreeDays(days, today) {
-  var list = days.filter(function (d) { return d.date >= today; });
-  if (!list.length) list = days.slice();
-  return list.slice(0, 3);
+  return days.filter(function (d) { return d.date >= today; }).slice(0, 3);
 }
 
 function weMax(arr) {
@@ -502,9 +500,10 @@ function renderWeatherCards(weather, cityId, today) {
   if (!city) return '<p class="we-empty">이 도시의 날씨 정보가 없어요. 다른 도시를 골라 주세요.</p>';
   var labels = ['오늘', '내일', '모레'];
   var days = weThreeDays(city.days, today);
-  var html = days.map(function (d, i) {
+  if (!days.length) return '<p class="we-empty">예보가 오래돼서 오늘 이후 날씨가 없어요. 잠시 후 다시 들러 주세요.</p>';
+  var html = days.map(function (d) {
     var label = weDaysBetween(d.date, today);
-    var name = label >= 0 && label <= 2 ? labels[label] : labels[i];
+    var name = label >= 0 && label <= 2 ? labels[label] : '';
     var tmpNote = d.tmxFrom === 'TMP' || d.tmnFrom === 'TMP'
       ? '<p class="we-day-note">시간별 기온으로 계산한 값이에요</p>' : '';
     return '<li class="we-day">' +
