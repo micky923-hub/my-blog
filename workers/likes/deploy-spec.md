@@ -1,6 +1,6 @@
 # 계획서: 좋아요 Worker 자동 배포 (GitHub Actions → Cloudflare)
 
-- 상태: **승인 대기**
+- 상태: **승인됨 (2026-10-09)**
 - 작성: 2026-10-09 (Plan 서브에이전트)
 - 근거 요청: "방법2번으로 할께 cloudflare에 가입이 되어 있어"
 - 한 줄 요약: 사용자는 GitHub Secrets에 값 3개(`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `HASH_SALT`)만 넣는다. 나머지(D1 만들기, 표 만들기, Worker 배포, 비밀값 넣기, cron 등록)는 GitHub Actions가 한다.

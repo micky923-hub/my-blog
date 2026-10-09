@@ -1,8 +1,9 @@
-# 좋아요 API Worker 설정 (터미널에서 `npx wrangler deploy` 로 배포할 때만 사용)
-# 대시보드에 붙여넣는 방식이면 이 파일은 참고용이다.
+# 좋아요 API Worker 설정. 배포 방법 2가지: ① GitHub Actions 자동 배포(`.github/workflows/deploy-likes.yml`, 권장)
+# ② 터미널 `npx wrangler deploy`. 대시보드 붙여넣기 방식이면 이 파일은 참고용이다.
 #
-# - account_id 는 넣지 않는다. wrangler 로그인 계정을 그대로 쓴다.
-# - database_id 는 자리표시자다. 실제 값은 이 저장소에 커밋하지 말고 배포 직전에만 바꿔 넣는다.
+# - account_id 는 넣지 않는다. wrangler 로그인 계정(GitHub Actions 에서는 Secret CLOUDFLARE_ACCOUNT_ID)을 쓴다.
+# - database_id 는 자리표시자다. GitHub Actions 가 실행할 때만 임시 복사본에 넣는다. 이 파일에 실제 값을 커밋하지 않는다.
+#   (터미널 배포 때도 배포 직전에만 바꿔 넣고 커밋하지 않는다.)
 # - 비밀 값 HASH_SALT 는 `npx wrangler secret put HASH_SALT` 로 넣는다(이 파일에 쓰지 않는다).
 
 name = "likes-api"
