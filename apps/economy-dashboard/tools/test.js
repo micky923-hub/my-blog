@@ -490,6 +490,13 @@ test('summaryText 우선순위: 기준금리 변경 7일 이내 > 새 발표 > �
   assert.strictEqual(app.summaryText(ind4, null, [], TODAY), '어제와 비교해 큰 변화는 없어요. 원/달러 1,392.5원, 기준금리 2.50%.');
   assert.strictEqual(app.summaryText({}, { usd: 1339.2 }, [], TODAY), '오늘 확인한 값이에요. 원/달러 1,339.2원.');
   assert.strictEqual(app.summaryText({}, null, [], TODAY), '오늘은 비교할 자료가 아직 없어요. 아래 카드를 확인해 주세요.');
+  // (Review 추가) 1주 전 원/달러 값이 없으면 "큰 변화 없음"이라고 단정하지 않는다
+  var ind5 = JSON.parse(JSON.stringify(ind4));
+  ind5.usdkrw.series = ind5.usdkrw.series.slice(-3);
+  assert.strictEqual(app.summaryText(ind5, null, [], TODAY), '오늘 확인한 값이에요. 원/달러 1,392.5원, 기준금리 2.50%.');
+  var ind6 = JSON.parse(JSON.stringify(ind4));
+  delete ind6.usdkrw;
+  assert.strictEqual(app.summaryText(ind6, null, [], TODAY), '오늘 확인한 값이에요. 기준금리 2.50%.');
 });
 
 test('renderApp: 셋 다 정상 → 7카드, 새 발표 CPI가 맨 위, 스파크라인 aria-label', function () {

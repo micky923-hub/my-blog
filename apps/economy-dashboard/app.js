@@ -578,9 +578,10 @@ function summaryText(ind, usdFallback, signals, today) {
       (pv ? '(전월보다 ' + ppText(last[1] - pv[1]) + ').' : '.');
   }
   var u = ind.usdkrw;
+  var wk = null;
   if (u) {
     var uLast = u.series[u.series.length - 1];
-    var wk = weekAgoPoint(u.series);
+    wk = weekAgoPoint(u.series);
     if (wk) {
       var pct = pctChange(uLast[1], wk[1]);
       if (Math.abs(pct) >= 1.5) {
@@ -595,7 +596,9 @@ function summaryText(ind, usdFallback, signals, today) {
   if (u) parts.push('원/달러 ' + edFmtMax(u.series[u.series.length - 1][1], 2) + '원');
   else if (usdFallback) parts.push('원/달러 ' + edFmtMax(usdFallback.usd, 2) + '원');
   if (br) parts.push('기준금리 ' + edFmt(br.latest[1], 2) + '%');
-  if (!u && !br) return parts.length ? '오늘 확인한 값이에요. ' + parts.join(', ') + '.' : '오늘은 비교할 자료가 아직 없어요. 아래 카드를 확인해 주세요.';
+  if (!parts.length) return '오늘은 비교할 자료가 아직 없어요. 아래 카드를 확인해 주세요.';
+  // 비교할 1주 전 원/달러 값이 없으면 "큰 변화 없음"이라고 단정하지 않는다
+  if (!wk) return '오늘 확인한 값이에요. ' + parts.join(', ') + '.';
   return '어제와 비교해 큰 변화는 없어요. ' + parts.join(', ') + '.';
 }
 
