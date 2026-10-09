@@ -117,6 +117,9 @@ D1 데이터베이스
 
 > 사용자가 터미널을 쓸 줄 알면 2~6단계는 `npx wrangler` 명령 몇 줄로 대신할 수 있다. 어느 쪽이든 Claude는 Cloudflare 계정 비밀번호·API 토큰을 받지 않는다.
 
+> **방법 2 — GitHub Actions 자동 배포 (2026-10-09 선택).** 위 2~7단계 대신, 사용자는 GitHub Secrets에 `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `HASH_SALT` 3개만 넣고 Actions에서 **Deploy likes worker**를 실행한다. D1 생성·표 만들기·배포·비밀값·cron은 워크플로(`.github/workflows/deploy-likes.yml`)가 한다.
+> 자세한 절차는 `workers/likes/deploy-spec.md` 4절.
+
 ---
 
 ## 4. 중복 방지

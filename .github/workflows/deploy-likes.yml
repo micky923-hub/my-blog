@@ -1,0 +1,42 @@
+name: Deploy likes worker
+
+# 좋아요 Worker(likes-api)를 Cloudflare 에 배포한다. 계획서: workers/likes/deploy-spec.md
+# 필요한 Secrets: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, HASH_SALT
+# (Secrets 가 없으면 push 실행은 건너뛰고 성공, 수동 실행은 실패로 알린다.)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'workers/likes/**'
+      - '!workers/likes/**/*.md'
+      - '.github/workflows/deploy-likes.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-likes
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Deploy likes-api (wrangler 4.136.3)
+        run: bash workers/likes/scripts/deploy.sh
+        env:
+          WRANGLER: npx --yes wrangler@4.136.3
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          HASH_SALT: ${{ secrets.HASH_SALT }}

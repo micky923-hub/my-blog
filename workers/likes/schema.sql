@@ -1,4 +1,4 @@
--- 좋아요 버튼용 D1 스키마 (Cloudflare 대시보드 D1 → blog-likes → Console 에 붙여넣고 실행)
+-- 좋아요 버튼용 D1 스키마 (Cloudflare 대시보드 D1 → blog-likes → Console 에 붙여넣고 실행) (GitHub Actions 자동 배포 시에는 자동 실행됨)
 -- 여러 번 실행해도 안전하다.
 
 -- 글별 좋아요 수
