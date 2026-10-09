@@ -1333,12 +1333,6 @@ a:focus-visible {
   color: var(--color-text-secondary);
 }
 
-.app-shelf-hint {
-  display: none;
-  font-size: 0.75rem;
-  color: var(--color-text-secondary);
-}
-
 .app-shelf {
   display: flex;
   gap: 0.5rem;
@@ -1406,28 +1400,35 @@ a:focus-visible {
   white-space: nowrap;
 }
 
-/* 휴대폰: 375px 폭에 아이콘 4개가 한 줄로 들어가게 조금 줄인다 */
-@media (max-width: 420px) {
+/* 휴대폰·작은 태블릿: 옆으로 넘기지 않고 3열 격자(3×2)로 모두 보여 준다 */
+@media (max-width: 640px) {
   .app-shelf {
-    gap: 0.25rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.1rem 0.25rem;
+    padding: 0 0 0.25rem;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .app-shelf li {
+    min-width: 0;
   }
 
   .app-tile {
-    width: 78px;
-    padding: 0.4rem 0.1rem;
+    width: auto;
+    gap: 0.25rem;
+    padding: 0.3rem 0.1rem;
   }
 
   .app-tile-icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 15px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
   }
-}
 
-/* 아주 좁은 화면: 다 안 들어가므로 옆으로 넘김 안내 */
-@media (max-width: 360px) {
-  .app-shelf-hint {
-    display: inline;
+  .app-shelf-head {
+    margin-bottom: 0.35rem;
   }
 }
 
@@ -1540,8 +1541,9 @@ a:focus-visible {
   }
 
   /* 배너는 소개 문구만 짧게 (글 목록이 바로 아래라 버튼·배지는 숨김) */
+  /* 무료 도구가 2줄 격자가 되어 늘어난 높이를 배너 여백으로 상쇄 */
   .hero-overlay {
-    padding: 1rem 1.1rem;
+    padding: 0.6rem 1rem;
   }
 
   .hero-badge,
@@ -1552,7 +1554,7 @@ a:focus-visible {
   .hero-text {
     margin: 0;
     font-size: 0.82rem;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .pre-footer-inner {
