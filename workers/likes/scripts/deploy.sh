@@ -20,7 +20,12 @@ EVENT="${GITHUB_EVENT_NAME:-workflow_dispatch}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-TMP_ROOT="${RUNNER_TEMP:-$(mktemp -d)}"
+if [ -n "${RUNNER_TEMP:-}" ]; then
+  TMP_ROOT="$RUNNER_TEMP"   # GitHub 러너가 작업 끝에 지운다.
+else
+  TMP_ROOT="$(mktemp -d)"   # 로컬 실행: 스크립트가 끝나면 지운다.
+  trap 'rm -rf "$TMP_ROOT"' EXIT
+fi
 WORK="$TMP_ROOT/likes-deploy"
 LOGS="$TMP_ROOT/likes-deploy-logs"
 OUTPUT_FILE="$TMP_ROOT/wrangler-output.ndjson"
