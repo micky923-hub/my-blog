@@ -10,6 +10,10 @@ name = "likes-api"
 main = "worker.js"
 compatibility_date = "2026-09-01"
 
+# workers.dev 주소로 공개(블로그가 이 주소를 부름). 미리보기 주소는 쓰지 않는다.
+workers_dev = true
+preview_urls = false
+
 [[d1_databases]]
 binding = "DB"
 database_name = "blog-likes"
