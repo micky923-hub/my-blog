@@ -9,7 +9,7 @@
  *   요청 URL은 절대 출력하지 않고, 모든 로그는 mask()를 거친다(키 원문·인코딩 형태·API 주소 가림).
  * - 지표마다 독립. 한 지표가 실패하면 그 지표만 이전 배포본(data.json) 값을 재사용한다
  *   (일별 10일, 월별 75일, 기준금리 45일 이내).
- * - ECOS는 API가 과거 값을 주므로 기록을 이어붙이지 않고 매번 기간 조회한다(일별 45일, 월별 15개월, 기준금리 3년).
+ * - ECOS는 API가 과거 값을 주므로 기록을 이어붙이지 않고 매번 기간 조회한다(일별 45일, 월별 16개월(이번 달 포함이라 실제 최대 15개월), 기준금리 3년).
  * - 항목코드가 틀리면(결과 없음·항목명 불일치) StatisticItemList로 항목 이름을 찾아 다시 조회하고 "≠ 계획"을 로그에 남긴다.
  * - Node 20 내장 fetch만 쓴다. 외부 패키지 없음. TLS 인증서 검증은 끄지 않는다. https만 쓴다.
  * - 어떤 경우든 종료 코드는 0 (배포를 막지 않는다).
@@ -39,9 +39,9 @@ var INDICATORS = [
   { key: 'usdkrw', label: '원/달러', stat: '731Y001', cycle: 'D', item: '0000001', names: ['원/미국달러', '미국달러'], span: { days: 45 }, rows: 100 },
   { key: 'ktb3y', label: '국고채 3년', stat: '817Y002', cycle: 'D', item: '010200000', names: ['국고채(3년)', '국고채3년'], span: { days: 45 }, rows: 100 },
   { key: 'ktb10y', label: '국고채 10년', stat: '817Y002', cycle: 'D', item: '010210000', names: ['국고채(10년)', '국고채10년'], span: { days: 45 }, rows: 100 },
-  { key: 'cpi', label: 'CPI', stat: '901Y009', cycle: 'M', item: '0', names: ['총지수'], span: { months: 15 }, rows: 100 },
-  { key: 'mortgageRate', label: '주담대 평균금리', stat: '121Y006', cycle: 'M', item: null, names: ['주택담보대출'], span: { months: 15 }, rows: 100 },
-  { key: 'depositRate', label: '정기예금 평균금리', stat: '121Y002', cycle: 'M', item: null, names: ['정기예금'], span: { months: 15 }, rows: 100 }
+  { key: 'cpi', label: 'CPI', stat: '901Y009', cycle: 'M', item: '0', names: ['총지수'], span: { months: 16 }, rows: 100 },
+  { key: 'mortgageRate', label: '주담대 평균금리', stat: '121Y006', cycle: 'M', item: null, names: ['주택담보대출'], span: { months: 16 }, rows: 100 },
+  { key: 'depositRate', label: '정기예금 평균금리', stat: '121Y002', cycle: 'M', item: null, names: ['정기예금'], span: { months: 16 }, rows: 100 }
 ];
 
 /* 키·한도 문제로 보이는 코드 → 나머지 호출 생략(미확인: 첫 실행 로그로 확정) */

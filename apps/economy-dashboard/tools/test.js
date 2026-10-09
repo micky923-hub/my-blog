@@ -124,11 +124,11 @@ test('nameMatches: 항목명 없으면 통과, 다르면 실패', function () {
   assert.ok(!fx.nameMatches('외환보유액', ['원/미국달러', '미국달러']));
 });
 
-test('queryRange: 일별 45일, 기준금리 3년, 월별 15개월', function () {
+test('queryRange: 일별 45일, 기준금리 3년, 월별 16개월', function () {
   var defs = {};
   fx.INDICATORS.forEach(function (d) { defs[d.key] = d; });
   assert.deepStrictEqual(fx.queryRange(defs.usdkrw, TODAY), { start: '20260825', end: '20261009' });
-  assert.deepStrictEqual(fx.queryRange(defs.cpi, TODAY), { start: '202508', end: '202610' });
+  assert.deepStrictEqual(fx.queryRange(defs.cpi, TODAY), { start: '202507', end: '202610' });
   assert.strictEqual(fx.queryRange(defs.baseRate, TODAY).start, '20231009');
   assert.strictEqual(fx.INDICATORS.length, 7);
 });
