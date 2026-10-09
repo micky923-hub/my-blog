@@ -1,21 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="대출 갈아타기 이자 비교 계산기 아이콘">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#fdba74"/>
-      <stop offset="0.55" stop-color="#f97316"/>
-      <stop offset="1" stop-color="#9a3412"/>
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.55" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#92400e"/>
     </linearGradient>
     <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
       <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="house" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#ffedd5"/>
+    <linearGradient id="oldCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#cbd5e1"/>
     </linearGradient>
-    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#dc2626"/>
-      <stop offset="1" stop-color="#991b1b"/>
+    <linearGradient id="newCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ecfdf5"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="1" stop-color="#d97706"/>
     </linearGradient>
   </defs>
 
@@ -23,31 +27,36 @@
   <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
   <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
 
-  <!-- 집 그림자 -->
-  <g fill="#7c2d12" stroke="#7c2d12" opacity="0.35" transform="translate(10 14)">
-    <rect x="84" y="236" width="200" height="184" rx="20" stroke="none"/>
-    <path d="M184 120L66 248H302Z" stroke-width="18" stroke-linejoin="round"/>
+  <!-- 갈아타기 화살표 (⇄ 회전): 위 호는 기존 대출 → 새 대출, 아래 호는 반대 방향 -->
+  <g opacity="0.95" fill="#ffffff" stroke="#ffffff">
+    <path d="M300 168A124 124 0 0 1 392 262" fill="none" stroke-width="28" stroke-linecap="round"/>
+    <path d="M394 300L360 250L424 248Z" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M212 412A124 124 0 0 1 120 318" fill="none" stroke-width="28" stroke-linecap="round"/>
+    <path d="M118 280L152 330L88 332Z" stroke-width="10" stroke-linejoin="round"/>
   </g>
 
-  <!-- 집 몸통 -->
-  <rect x="84" y="236" width="200" height="184" rx="20" fill="url(#house)"/>
+  <!-- 카드 그림자 -->
+  <g fill="#78350f" opacity="0.35">
+    <rect x="52" y="96" width="220" height="146" rx="24" transform="translate(10 14)"/>
+    <rect x="240" y="270" width="220" height="146" rx="24" transform="translate(10 14)"/>
+  </g>
 
-  <!-- 지붕 -->
-  <path d="M184 120L66 248H302Z" fill="url(#roof)" stroke="url(#roof)" stroke-width="18" stroke-linejoin="round"/>
+  <!-- 기존 대출 카드 (회색, 왼쪽 위) -->
+  <rect x="52" y="96" width="220" height="146" rx="24" fill="url(#oldCard)"/>
+  <rect x="52" y="124" width="220" height="30" fill="#64748b"/>
+  <rect x="76" y="176" width="46" height="36" rx="8" fill="url(#chip)"/>
+  <rect x="140" y="184" width="104" height="18" rx="9" fill="#94a3b8"/>
 
-  <!-- 문 -->
-  <rect x="158" y="332" width="52" height="88" rx="14" fill="#9a3412"/>
-
-  <!-- 창문 -->
-  <rect x="226" y="286" width="40" height="40" rx="8" fill="#fdba74"/>
-
-  <!-- 금리 하락 화살표 (지그재그로 내려감) -->
-  <g opacity="0.95" fill="#ffffff" stroke="#ffffff">
-    <path d="M318 196L378 262L350 292L408 372" fill="none" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M437.3 412.5L372.5 387.8L434.1 343.2Z" stroke-width="10" stroke-linejoin="round"/>
+  <!-- 새 대출 카드 (흰색, 오른쪽 아래) + 금리 하락 ↘ -->
+  <rect x="240" y="270" width="220" height="146" rx="24" fill="url(#newCard)"/>
+  <rect x="240" y="298" width="220" height="30" fill="#0f766e"/>
+  <rect x="264" y="350" width="46" height="36" rx="8" fill="url(#chip)"/>
+  <g fill="#059669" stroke="#059669">
+    <path d="M338 346L398 386" fill="none" stroke-width="18" stroke-linecap="round"/>
+    <path d="M428 406L384 408L408 372Z" stroke-width="8" stroke-linejoin="round"/>
   </g>
 
   <!-- % 배지 (금리) -->
   <circle cx="414" cy="112" r="52" fill="#ffffff"/>
-  <text x="414" y="134" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#c2410c">%</text>
+  <text x="414" y="134" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#b45309">%</text>
 </svg>

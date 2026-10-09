@@ -518,11 +518,10 @@ function buildAppsHtml() {
   var apps = JSON.parse(fs.readFileSync(appsFile, 'utf-8'));
   if (apps.length === 0) return '';
 
-  // 휴대폰 홈 화면처럼 아이콘 + 짧은 이름만 한 줄로 보여 준다 (좁은 화면에서는 옆으로 넘김)
+  // 휴대폰 홈 화면처럼 아이콘 + 짧은 이름만 보여 준다 (PC는 한 줄, 좁은 화면은 3열 격자)
   var html = '    <section class="web-apps" aria-labelledby="web-apps-title">\n';
   html += '      <div class="app-shelf-head">\n';
   html += '        <h2 id="web-apps-title" class="app-shelf-title">무료 도구</h2>\n';
-  html += '        <span class="app-shelf-hint" aria-hidden="true">옆으로 넘겨 보세요 →</span>\n';
   html += '      </div>\n';
   html += '      <ul class="app-shelf">\n';
   apps.forEach(function(app) {
