@@ -1402,11 +1402,16 @@ a:focus-visible {
 
 /* 휴대폰·작은 태블릿: 옆으로 넘기지 않고 3열 격자(3×2)로 모두 보여 준다 */
 @media (max-width: 640px) {
+  /* 2줄 격자로 늘어난 높이만큼 구역 아래 여백을 줄여 글 목록이 덜 밀리게 한다 */
+  .web-apps {
+    margin-bottom: 1rem;
+  }
+
   .app-shelf {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.1rem 0.25rem;
-    padding: 0 0 0.25rem;
+    gap: 0 0.25rem;
+    padding: 0;
     overflow: visible;
     scroll-snap-type: none;
   }
@@ -1418,7 +1423,7 @@ a:focus-visible {
   .app-tile {
     width: auto;
     gap: 0.25rem;
-    padding: 0.3rem 0.1rem;
+    padding: 0.2rem 0.1rem;
   }
 
   .app-tile-icon {
