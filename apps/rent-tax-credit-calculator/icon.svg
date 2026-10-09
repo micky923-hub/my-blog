@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="월세 세액공제 계산기 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#fda4af"/>
+      <stop offset="0.55" stop-color="#f43f5e"/>
+      <stop offset="1" stop-color="#9f1239"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 그림자 -->
+  <ellipse cx="250" cy="446" rx="190" ry="26" fill="#881337" opacity="0.35"/>
+
+  <!-- 집 몸통 -->
+  <rect x="92" y="248" width="236" height="192" rx="14" fill="url(#wall)"/>
+
+  <!-- 지붕 -->
+  <path d="M74 266L210 142L346 266Z" fill="#be123c" stroke="#be123c" stroke-width="26" stroke-linejoin="round"/>
+
+  <!-- 문 -->
+  <rect x="132" y="336" width="66" height="104" rx="10" fill="#9f1239"/>
+  <circle cx="186" cy="392" r="6" fill="#fecdd3"/>
+
+  <!-- 창문 -->
+  <rect x="236" y="306" width="60" height="56" rx="9" fill="#fecdd3"/>
+
+  <!-- 돌려받기 화살표 (↑) -->
+  <g>
+    <path d="M412 296V188" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round"/>
+    <path d="M370 198L412 142L454 198Z" fill="#ffffff" stroke="#ffffff" stroke-width="14" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 동전 -->
+  <circle cx="390" cy="380" r="72" fill="url(#gold)"/>
+  <circle cx="390" cy="380" r="56" fill="none" stroke="#fef3c7" stroke-width="6" opacity="0.8"/>
+  <text x="390" y="408" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="900" fill="#78350f">₩</text>
+</svg>
