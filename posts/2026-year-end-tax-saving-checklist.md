@@ -60,7 +60,7 @@ ISA 계좌가 만기된 뒤 **60일 이내**에 그 돈을 연금저축이나 IR
 - 월세 이체 내역(계좌이체 영수증)
 - 주민등록등본(계약서 주소로 **전입신고**가 되어 있어야 함)
 
-자세한 내용: [월세 세액공제 받는 법](/posts/2026-rent-tax-credit-guide.html)
+자세한 내용: [월세 세액공제 받는 법](/posts/2026-rent-tax-credit-guide.html) · 계산: [월세 세액공제 계산기](/apps/rent-tax-credit-calculator/)
 
 ## 5. 고향사랑기부금 10만 원은 사실상 공짜
 

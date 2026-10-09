@@ -193,8 +193,8 @@ function checkEligibility(answers) {
   };
 
   var INCOME_TEXT = {
-    salary: { label: '총급여 (연봉)', high: 55000000, max: 80000000, maxText: '8,000만 원', highText: '5,500만 원', overName: '총급여' },
-    business: { label: '종합소득금액', high: 45000000, max: 70000000, maxText: '7,000만 원', highText: '4,500만 원', overName: '종합소득금액' }
+    salary: { label: '총급여 (연봉)', high: 55000000, max: 80000000, maxText: '8,000만 원', highText: '5,500만 원', overName: '총급여가' },
+    business: { label: '종합소득금액', high: 45000000, max: 70000000, maxText: '7,000만 원', highText: '4,500만 원', overName: '종합소득금액이' }
   };
 
   var CHECK_REASON = {
@@ -372,7 +372,7 @@ function checkEligibility(answers) {
     var check = checkEligibility(answers());
     var reasons = check.failed.map(function (k) { return CHECK_REASON[k]; });
     if (res.ok && !res.qualified) {
-      reasons.unshift(INCOME_TEXT[type].overName + '가 ' + INCOME_TEXT[type].maxText + '을 넘어요');
+      reasons.unshift(INCOME_TEXT[type].overName + ' ' + INCOME_TEXT[type].maxText + '을 넘어요');
     }
     if (reasons.length) {
       var fixable = check.failed.indexOf('address') !== -1 || check.failed.indexOf('proof') !== -1;
