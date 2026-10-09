@@ -1,0 +1,19 @@
+# 좋아요 API Worker 설정 (터미널에서 `npx wrangler deploy` 로 배포할 때만 사용)
+# 대시보드에 붙여넣는 방식이면 이 파일은 참고용이다.
+#
+# - account_id 는 넣지 않는다. wrangler 로그인 계정을 그대로 쓴다.
+# - database_id 는 자리표시자다. 실제 값은 이 저장소에 커밋하지 말고 배포 직전에만 바꿔 넣는다.
+# - 비밀 값 HASH_SALT 는 `npx wrangler secret put HASH_SALT` 로 넣는다(이 파일에 쓰지 않는다).
+
+name = "likes-api"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-likes"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# 30일 지난 중복 방지 기록을 매일 정리 (UTC 03:17)
+[triggers]
+crons = ["17 3 * * *"]
