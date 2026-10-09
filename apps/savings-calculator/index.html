@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>적금·예금 이자 계산기</title>
-  <meta name="description" content="금액·기간·금리만 넣으면 단리/월복리, 세금(15.4%·비과세·세금우대)까지 반영한 만기 세후 수령액을 바로 계산해요.">
+  <title>적금·예금 이자 계산기 (세후 만기 수령액·단리·월복리) — Financial Diary</title>
+  <meta name="description" content="적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·세금우대 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/savings-calculator/">
+  <meta property="og:title" content="적금·예금 이자 계산기 (세후 만기 수령액·단리·월복리) — Financial Diary">
+  <meta property="og:description" content="적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·세금우대 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/savings-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>
     (function(){ var t = localStorage.getItem('theme');
@@ -12,6 +21,109 @@
   </script>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/savings-calculator/#app",
+        "name": "적금·예금 이자 계산기",
+        "url": "https://financialdiary.co.kr/apps/savings-calculator/",
+        "description": "적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·세금우대 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/savings-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "적금 금리가 연 3.5%인데 이자가 왜 이렇게 적나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "적금은 돈을 매달 나눠 넣기 때문에 첫 달에 넣은 돈만 12개월 내내 이자가 붙고, 마지막 달에 넣은 돈은 한 달 치 이자만 받아요. 월 10만 원씩 12개월, 연 3.5% 단리라면 세전 이자는 22,750원으로 넣은 돈 120만 원의 약 1.9%예요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "같은 금리라면 예금과 적금 중 어느 쪽 이자가 더 많나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "넣는 총액이 같다면 예금이 더 많아요. 예금은 처음부터 전액이 기간 내내 맡겨지지만 적금은 나중에 넣은 돈일수록 이자가 붙는 기간이 짧기 때문이에요. 연 3.5% 단리 12개월 기준으로 1,200만 원을 한 번에 예금하면 세전 이자가 420,000원, 월 100만 원씩 적금하면 227,500원이에요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "이자에서 떼는 세금 15.4%는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "이자소득세 14%와 지방소득세 1.4%를 합한 세율이에요. 대부분의 예금과 적금이 이 일반과세 대상이고, 청년도약계좌처럼 비과세 상품은 이자에 세금이 붙지 않아요. 계산기에서 세금 종류를 바꾸면 세후 수령액이 바로 바뀌어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "단리와 월복리는 이자가 얼마나 차이 나나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1,000만 원을 연 3.5%로 12개월 예금하면 세전 이자가 단리 350,000원, 월복리 355,670원으로 5,670원 차이예요. 기간이 길고 금리가 높을수록 차이가 커져요. 대부분의 은행 예금과 적금은 단리이니 상품설명서에서 이자 방식을 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "계산 결과가 은행 앱 금액과 조금 다른 이유는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "은행은 소득세와 지방소득세를 따로 계산하고 10원 미만을 버리거나 이자를 일 단위로 계산하는 경우가 많아 몇십 원 차이가 날 수 있어요. 우대금리 조건과 중도해지 이율도 이 계산기에는 들어가지 않아요. 정확한 금액은 가입하려는 금융회사의 상품설명서에서 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "청년도약계좌 정부기여금도 계산되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 이 계산기는 내가 넣은 돈에 붙는 이자만 계산하고 정부기여금은 포함하지 않아요. 청년도약계좌라면 세금을 비과세로 고르면 이자 부분의 세후 금액을 확인할 수 있어요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "적금·예금 이자 계산기",
+            "item": "https://financialdiary.co.kr/apps/savings-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="sc-header">
@@ -129,6 +241,61 @@
     <p class="sc-disclaimer">
       ※ 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 실제 금융상품의 이자 계산 방식(일 단위 계산, 세금 원 단위 절사, 우대금리 조건, 중도해지 등)과 다를 수 있으므로, 정확한 금액은 가입하려는 금융회사의 상품설명서를 확인하세요.
     </p>
+    <section class="sc-explain" aria-labelledby="sc-explain-title">
+      <h2 class="sc-explain-title" id="sc-explain-title">이렇게 계산해요</h2>
+      <p class="sc-explain-lead">은행 예·적금 상품설명서에 흔히 나오는 공식으로 계산해요.</p>
+      <ol class="sc-explain-steps">
+        <li><strong>예금(단리)</strong> 목돈 전체에 기간만큼 이자가 붙어요.<span class="sc-formula">세전 이자 = 예치 금액 × 연 이자율 × 기간(개월) ÷ 12</span></li>
+        <li><strong>적금(단리)</strong> 첫 달에 넣은 돈은 기간 내내, 마지막 달에 넣은 돈은 한 달만 이자가 붙어요. 12개월이면 1부터 12까지 더한 78개월 치 이자예요.<span class="sc-formula">세전 이자 = 월 납입액 × 연 이자율 ÷ 12 × (1 + 2 + … + 기간)</span></li>
+        <li><strong>월복리</strong> 매달 붙은 이자를 원금에 더해 다음 달 이자를 계산해요.</li>
+        <li><strong>세금</strong> 세전 이자에 세율(일반 15.4%, 세금우대 9.5%, 비과세 0%)을 곱해요. 세전 이자와 세금은 원 단위로 반올림해요.<span class="sc-formula">이자 과세액 = 세전 이자 × 세율</span></li>
+        <li><strong>세후 수령액</strong><span class="sc-formula">원금 합계 + 세전 이자 − 이자 과세액</span></li>
+      </ol>
+      <div class="sc-example">
+        <p class="sc-example-title"><strong>예시</strong> 적금 월 10만 원, 12개월, 연 3.5%, 단리, 일반과세</p>
+        <dl class="sc-example-rows">
+          <div class="sc-example-row"><dt>원금 합계</dt><dd>100,000 × 12 = <strong>1,200,000원</strong></dd></div>
+          <div class="sc-example-row"><dt>세전 이자</dt><dd>100,000 × 0.035 ÷ 12 × 78 = <strong>22,750원</strong></dd></div>
+          <div class="sc-example-row"><dt>이자 과세액</dt><dd>22,750 × 15.4% = 3,503.5 → <strong>3,504원</strong></dd></div>
+          <div class="sc-example-row"><dt>세후 수령액</dt><dd>1,200,000 + 22,750 − 3,504 = <strong>1,219,246원</strong></dd></div>
+        </dl>
+      </div>
+      <p class="sc-explain-sub"><strong>은행 계산과 다를 수 있어요</strong></p>
+      <ul class="sc-explain-notes">
+        <li>은행은 소득세 14%와 지방소득세 1.4%를 따로 계산하고 10원 미만을 버리는 경우가 많아 몇십 원 차이가 날 수 있어요.</li>
+        <li>실제 상품은 이자를 일 단위로 계산하거나 우대금리 조건, 중도해지 이율이 따로 있을 수 있어요.</li>
+      </ul>
+    </section>
+
+    <section class="sc-faq" aria-labelledby="sc-faq-title">
+      <h2 class="sc-faq-title" id="sc-faq-title">자주 묻는 질문</h2>
+      <details class="sc-faq-item">
+        <summary class="sc-faq-q">적금 금리가 연 3.5%인데 이자가 왜 이렇게 적나요?</summary>
+        <p class="sc-faq-a">적금은 돈을 매달 나눠 넣기 때문에 첫 달에 넣은 돈만 12개월 내내 이자가 붙고, 마지막 달에 넣은 돈은 한 달 치 이자만 받아요. 월 10만 원씩 12개월, 연 3.5% 단리라면 세전 이자는 22,750원으로 넣은 돈 120만 원의 약 1.9%예요.</p>
+      </details>
+      <details class="sc-faq-item">
+        <summary class="sc-faq-q">같은 금리라면 예금과 적금 중 어느 쪽 이자가 더 많나요?</summary>
+        <p class="sc-faq-a">넣는 총액이 같다면 예금이 더 많아요. 예금은 처음부터 전액이 기간 내내 맡겨지지만 적금은 나중에 넣은 돈일수록 이자가 붙는 기간이 짧기 때문이에요. 연 3.5% 단리 12개월 기준으로 1,200만 원을 한 번에 예금하면 세전 이자가 420,000원, 월 100만 원씩 적금하면 227,500원이에요.</p>
+      </details>
+      <details class="sc-faq-item">
+        <summary class="sc-faq-q">이자에서 떼는 세금 15.4%는 무엇인가요?</summary>
+        <p class="sc-faq-a">이자소득세 14%와 지방소득세 1.4%를 합한 세율이에요. 대부분의 예금과 적금이 이 일반과세 대상이고, 청년도약계좌처럼 비과세 상품은 이자에 세금이 붙지 않아요. 계산기에서 세금 종류를 바꾸면 세후 수령액이 바로 바뀌어요.</p>
+      </details>
+      <details class="sc-faq-item">
+        <summary class="sc-faq-q">단리와 월복리는 이자가 얼마나 차이 나나요?</summary>
+        <p class="sc-faq-a">1,000만 원을 연 3.5%로 12개월 예금하면 세전 이자가 단리 350,000원, 월복리 355,670원으로 5,670원 차이예요. 기간이 길고 금리가 높을수록 차이가 커져요. 대부분의 은행 예금과 적금은 단리이니 상품설명서에서 이자 방식을 확인하세요.</p>
+      </details>
+      <details class="sc-faq-item">
+        <summary class="sc-faq-q">계산 결과가 은행 앱 금액과 조금 다른 이유는 무엇인가요?</summary>
+        <p class="sc-faq-a">은행은 소득세와 지방소득세를 따로 계산하고 10원 미만을 버리거나 이자를 일 단위로 계산하는 경우가 많아 몇십 원 차이가 날 수 있어요. 우대금리 조건과 중도해지 이율도 이 계산기에는 들어가지 않아요. 정확한 금액은 가입하려는 금융회사의 상품설명서에서 확인하세요.</p>
+      </details>
+      <details class="sc-faq-item">
+        <summary class="sc-faq-q">청년도약계좌 정부기여금도 계산되나요?</summary>
+        <p class="sc-faq-a">아니요. 이 계산기는 내가 넣은 돈에 붙는 이자만 계산하고 정부기여금은 포함하지 않아요. 청년도약계좌라면 세금을 비과세로 고르면 이자 부분의 세후 금액을 확인할 수 있어요.</p>
+      </details>
+    </section>
+
+    <p class="sc-related">관련 글: <a href="../../posts/2026-parking-savings-guide.html">파킹통장 vs CMA vs 정기예금, 목돈 굴리는 법</a> · <a href="../../posts/2026-youth-leap-account-guide.html">청년도약계좌, 5년 채우면 얼마 받을까 - 가입부터 만기까지 완전 정리</a></p>
   </main>
 
   <script src="../../js/theme.js"></script>

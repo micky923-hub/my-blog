@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>대출 갈아타기 이자 비교 계산기</title>
-  <meta name="description" content="기존 대출과 새 대출의 금리·기간·상환 방식만 넣으면 중도상환수수료와 인지세까지 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지 바로 알려줘요.">
+  <title>대출 갈아타기 계산기 (대환대출 이자·중도상환수수료 비교) — Financial Diary</title>
+  <meta name="description" content="대출 갈아타기(대환대출) 전에 계산해 보세요. 기존 대출과 새 대출의 금리·기간·상환 방식을 넣으면 중도상환수수료와 인지세를 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지(손익분기)를 알려 줘요.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/loan-refinance-calculator/">
+  <meta property="og:title" content="대출 갈아타기 계산기 (대환대출 이자·중도상환수수료 비교) — Financial Diary">
+  <meta property="og:description" content="대출 갈아타기(대환대출) 전에 계산해 보세요. 기존 대출과 새 대출의 금리·기간·상환 방식을 넣으면 중도상환수수료와 인지세를 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지(손익분기)를 알려 줘요.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/loan-refinance-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>
     (function(){ var t = localStorage.getItem('theme');
@@ -12,6 +21,109 @@
   </script>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/loan-refinance-calculator/#app",
+        "name": "대출 갈아타기 이자 비교 계산기",
+        "url": "https://financialdiary.co.kr/apps/loan-refinance-calculator/",
+        "description": "대출 갈아타기(대환대출) 전에 계산해 보세요. 기존 대출과 새 대출의 금리·기간·상환 방식을 넣으면 중도상환수수료와 인지세를 빼고 실제로 아끼는 이자와 몇 개월째부터 이득인지(손익분기)를 알려 줘요.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/loan-refinance-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "중도상환수수료는 어떻게 계산하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "보통 갚는 원금 × 수수료율 × (부과 기간 − 대출받은 뒤 지난 기간) ÷ 부과 기간으로 계산해요. 예를 들어 2억 원, 수수료율 1.2%, 부과 기간 36개월 중 12개월이 지났다면 1,600,000원이에요. 부과 기간은 보통 3년이고 3년이 지나면 0원이에요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "2025년 1월 13일 이후에 받은 대출은 중도상환수수료가 낮아졌나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 2025년 1월 13일부터 중도상환수수료는 실제 드는 비용 안에서만 받도록 바뀌었어요. 5대 시중은행 평균으로 주택담보대출 고정금리는 약 1.4%에서 약 0.65%로 낮아졌어요. 그 전에 계약한 대출은 옛 수수료율이 그대로 적용되니 약정서를 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "금리가 얼마나 낮아야 대출을 갈아타는 게 이득인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "정해진 기준은 없고 남은 원금, 남은 기간, 중도상환수수료에 따라 달라요. 2억 원을 20년 남기고 4.5%에서 3.8%로 바꾸면 비용을 빼고도 약 1,616만 원을 아끼지만, 3억 원을 5년 남기고 4.0%에서 3.8%로 바꾸면 수수료 350만 원 때문에 약 195만 원 손해예요. 내 숫자로 직접 계산해 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "대출 기간을 늘려서 갈아타면 이득인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "월 상환액은 줄지만 이자를 내는 기간이 늘어 총이자는 늘어날 수 있어요. 2억 원, 남은 기간 20년, 4.5% 대출을 3.8%의 30년 대출로 바꾸면 월 상환액은 약 33만 원 줄지만 총이자는 약 3,182만 원 늘어요. 비용까지 더하면 약 3,349만 원 손해예요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "대출을 갈아탈 때 인지세도 내야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "새 대출 약정서에 인지세가 붙고 보통 은행과 고객이 절반씩 내요. 고객 부담은 대출 금액 5천만 원 이하면 0원, 1억 원 이하는 35,000원, 10억 원 이하는 75,000원, 10억 원 초과는 175,000원이에요. 상품마다 다를 수 있으니 금융회사에 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "손익분기 시점은 무슨 뜻인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "갈아탄 뒤 매달 아낀 이자를 쌓은 금액이 중도상환수수료와 인지세 같은 비용을 넘어서고 그 뒤로도 계속 앞서는 첫 달이에요. 예를 들어 15개월째부터 이득이라면 15개월이 지나야 갈아타는 데 쓴 비용을 되찾는다는 뜻이에요. 그 전에 다시 대출을 갚거나 바꾸면 손해일 수 있어요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "대출 갈아타기 이자 비교 계산기",
+            "item": "https://financialdiary.co.kr/apps/loan-refinance-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="lr-header">
@@ -263,6 +375,62 @@
     <p class="lr-disclaimer">
       ※ 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 실제 대출 <strong>한도·금리 심사, DSR 규제, 변동금리의 금리 변화, 거치 기간, 연체·우대 조건</strong>은 반영하지 않습니다. 이자는 매달 "연 금리 ÷ 12"로 계산해 원 단위로 반올림했기 때문에 일 단위로 계산하는 실제 금융회사 금액과 차이가 날 수 있습니다. 중도상환수수료율·부과 방식은 <strong>계약 시점(2025년 1월 13일 전후)과 상품마다 다르니</strong> 약정서나 금융회사에서 꼭 확인하세요. 인지세는 은행과 고객이 절반씩 낸다고 가정했습니다.
     </p>
+    <section class="lr-explain" aria-labelledby="lr-explain-title">
+      <h2 class="lr-explain-title" id="lr-explain-title">이렇게 계산해요</h2>
+      <p class="lr-explain-lead">두 대출의 남은 이자를 매달 계산해 비교하고, 갈아타는 비용을 빼요.</p>
+      <ol class="lr-explain-steps">
+        <li><strong>매달 이자</strong> 그달 남은 원금에 연 금리 ÷ 12를 곱해 원 단위로 반올림해요. 기존 대출과 새 대출 각각 남은 기간 동안의 이자를 모두 더해요.<span class="lr-formula">이번 달 이자 = 남은 원금 × 연 금리 ÷ 12</span></li>
+        <li><strong>갈아타기 비용</strong> 중도상환수수료, 인지세(고객 부담분), 기타 비용을 더해요. 부과 기간이 지나면 중도상환수수료는 0원이에요.<span class="lr-formula">중도상환수수료 = 갚는 원금 × 수수료율 × (부과 기간 − 지난 기간) ÷ 부과 기간</span></li>
+        <li><strong>순절감액</strong><span class="lr-formula">기존 대출 총이자 − 새 대출 총이자 − 갈아타기 비용</span></li>
+        <li><strong>손익분기</strong> 매달 아낀 이자를 쌓은 금액이 비용 이상이 되고, 그 뒤로도 계속 유지되는 첫 달이에요.</li>
+      </ol>
+      <div class="lr-example">
+        <p class="lr-example-title"><strong>예시</strong> 남은 원금 2억 원, 남은 기간 240개월, 원리금균등, 연 4.5% → 3.8%, 수수료율 1.2%·부과 기간 36개월·지난 기간 12개월</p>
+        <dl class="lr-example-rows">
+          <div class="lr-example-row"><dt>월 상환액(첫 달)</dt><dd>1,265,298원 → <strong>1,190,987원</strong></dd></div>
+          <div class="lr-example-row"><dt>아끼는 이자</dt><dd>103,671,811 − 85,837,005 = <strong>17,834,806원</strong></dd></div>
+          <div class="lr-example-row"><dt>중도상환수수료</dt><dd>2억 × 1.2% × 24 ÷ 36 = <strong>1,600,000원</strong></dd></div>
+          <div class="lr-example-row"><dt>갈아타기 비용</dt><dd>1,600,000 + 인지세 75,000 = <strong>1,675,000원</strong></dd></div>
+          <div class="lr-example-row"><dt>순절감액</dt><dd>17,834,806 − 1,675,000 = <strong>16,159,806원</strong></dd></div>
+          <div class="lr-example-row"><dt>손익분기</dt><dd><strong>15개월째부터 이득</strong></dd></div>
+        </dl>
+      </div>
+      <p class="lr-explain-sub"><strong>금융회사 계산과 다를 수 있어요</strong></p>
+      <ul class="lr-explain-notes">
+        <li>실제 금융회사는 이자를 일 단위로 계산하고 원 단위 처리 방식도 달라 몇 원에서 몇십 원 차이가 날 수 있어요.</li>
+        <li>한도·금리 심사, DSR 규제, 변동금리의 금리 변화, 거치 기간은 반영하지 않아요. 인지세는 은행과 고객이 절반씩 낸다고 가정했어요.</li>
+      </ul>
+    </section>
+
+    <section class="lr-faq" aria-labelledby="lr-faq-title">
+      <h2 class="lr-faq-title" id="lr-faq-title">자주 묻는 질문</h2>
+      <details class="lr-faq-item">
+        <summary class="lr-faq-q">중도상환수수료는 어떻게 계산하나요?</summary>
+        <p class="lr-faq-a">보통 갚는 원금 × 수수료율 × (부과 기간 − 대출받은 뒤 지난 기간) ÷ 부과 기간으로 계산해요. 예를 들어 2억 원, 수수료율 1.2%, 부과 기간 36개월 중 12개월이 지났다면 1,600,000원이에요. 부과 기간은 보통 3년이고 3년이 지나면 0원이에요.</p>
+      </details>
+      <details class="lr-faq-item">
+        <summary class="lr-faq-q">2025년 1월 13일 이후에 받은 대출은 중도상환수수료가 낮아졌나요?</summary>
+        <p class="lr-faq-a">네. 2025년 1월 13일부터 중도상환수수료는 실제 드는 비용 안에서만 받도록 바뀌었어요. 5대 시중은행 평균으로 주택담보대출 고정금리는 약 1.4%에서 약 0.65%로 낮아졌어요. 그 전에 계약한 대출은 옛 수수료율이 그대로 적용되니 약정서를 확인하세요.</p>
+      </details>
+      <details class="lr-faq-item">
+        <summary class="lr-faq-q">금리가 얼마나 낮아야 대출을 갈아타는 게 이득인가요?</summary>
+        <p class="lr-faq-a">정해진 기준은 없고 남은 원금, 남은 기간, 중도상환수수료에 따라 달라요. 2억 원을 20년 남기고 4.5%에서 3.8%로 바꾸면 비용을 빼고도 약 1,616만 원을 아끼지만, 3억 원을 5년 남기고 4.0%에서 3.8%로 바꾸면 수수료 350만 원 때문에 약 195만 원 손해예요. 내 숫자로 직접 계산해 보세요.</p>
+      </details>
+      <details class="lr-faq-item">
+        <summary class="lr-faq-q">대출 기간을 늘려서 갈아타면 이득인가요?</summary>
+        <p class="lr-faq-a">월 상환액은 줄지만 이자를 내는 기간이 늘어 총이자는 늘어날 수 있어요. 2억 원, 남은 기간 20년, 4.5% 대출을 3.8%의 30년 대출로 바꾸면 월 상환액은 약 33만 원 줄지만 총이자는 약 3,182만 원 늘어요. 비용까지 더하면 약 3,349만 원 손해예요.</p>
+      </details>
+      <details class="lr-faq-item">
+        <summary class="lr-faq-q">대출을 갈아탈 때 인지세도 내야 하나요?</summary>
+        <p class="lr-faq-a">새 대출 약정서에 인지세가 붙고 보통 은행과 고객이 절반씩 내요. 고객 부담은 대출 금액 5천만 원 이하면 0원, 1억 원 이하는 35,000원, 10억 원 이하는 75,000원, 10억 원 초과는 175,000원이에요. 상품마다 다를 수 있으니 금융회사에 확인하세요.</p>
+      </details>
+      <details class="lr-faq-item">
+        <summary class="lr-faq-q">손익분기 시점은 무슨 뜻인가요?</summary>
+        <p class="lr-faq-a">갈아탄 뒤 매달 아낀 이자를 쌓은 금액이 중도상환수수료와 인지세 같은 비용을 넘어서고 그 뒤로도 계속 앞서는 첫 달이에요. 예를 들어 15개월째부터 이득이라면 15개월이 지나야 갈아타는 데 쓴 비용을 되찾는다는 뜻이에요. 그 전에 다시 대출을 갚거나 바꾸면 손해일 수 있어요.</p>
+      </details>
+    </section>
+
+    <p class="lr-related">관련 글: <a href="../../posts/2026-loan-refinancing-guide.html">대출 금리 낮추는 가장 쉬운 방법, 온라인 대환대출 활용법</a> · <a href="../../posts/2026-mortgage-fixed-vs-variable-rate-guide.html">주택담보대출 고정금리 vs 변동금리, 내 상황에 맞게 고르는 법</a></p>
   </main>
 
   <script src="../../js/theme.js"></script>

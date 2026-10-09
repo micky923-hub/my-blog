@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>환전 수수료 계산기 (우대율 반영)</title>
-  <meta name="description" content="통화·금액·매매기준율·우대율만 넣으면 살 때/팔 때 적용 환율, 실제로 내는 수수료, 우대 쿠폰으로 아낀 금액을 바로 계산해요.">
+  <title>환전 수수료 계산기 (환율 우대율 반영·달러·엔화) — Financial Diary</title>
+  <meta name="description" content="환전 수수료를 환율 우대율까지 넣어 계산해요. 달러·엔·유로·위안 금액과 매매기준율, 스프레드, 우대율을 넣으면 살 때·팔 때 적용 환율과 실제 수수료, 우대로 아낀 금액을 보여 줘요. 매매기준율은 한국수출입은행 고시값이 자동으로 채워져요.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/exchange-fee-calculator/">
+  <meta property="og:title" content="환전 수수료 계산기 (환율 우대율 반영·달러·엔화) — Financial Diary">
+  <meta property="og:description" content="환전 수수료를 환율 우대율까지 넣어 계산해요. 달러·엔·유로·위안 금액과 매매기준율, 스프레드, 우대율을 넣으면 살 때·팔 때 적용 환율과 실제 수수료, 우대로 아낀 금액을 보여 줘요. 매매기준율은 한국수출입은행 고시값이 자동으로 채워져요.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/exchange-fee-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>
     (function(){ var t = localStorage.getItem('theme');
@@ -12,6 +21,109 @@
   </script>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/exchange-fee-calculator/#app",
+        "name": "환전 수수료 계산기",
+        "url": "https://financialdiary.co.kr/apps/exchange-fee-calculator/",
+        "description": "환전 수수료를 환율 우대율까지 넣어 계산해요. 달러·엔·유로·위안 금액과 매매기준율, 스프레드, 우대율을 넣으면 살 때·팔 때 적용 환율과 실제 수수료, 우대로 아낀 금액을 보여 줘요. 매매기준율은 한국수출입은행 고시값이 자동으로 채워져요.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/exchange-fee-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "환율 우대 90%면 환전 수수료가 얼마나 줄어드나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "우대율 90%는 스프레드의 10%만 낸다는 뜻이에요. 스프레드가 1.75%라면 실제 수수료율은 0.175%가 돼요. 매매기준율 1,300원에 1만 달러를 살 때 수수료가 227,500원에서 22,750원으로 줄어 204,750원을 아낄 수 있어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "매매기준율은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "은행이 정하는 수수료가 붙지 않은 기준 가격이에요. 은행 앱의 환율 화면에서 확인할 수 있어요. 실제로 외화를 살 때는 이 값보다 비싸게, 팔 때는 싸게 거래돼요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "외화를 살 때와 팔 때 환율이 왜 다른가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "은행이 매매기준율에 수수료(스프레드)를 얹기 때문이에요. 살 때 적용 환율은 매매기준율 × (1 + 실제 수수료율), 팔 때는 매매기준율 × (1 − 실제 수수료율)이에요. 그래서 같은 날 샀다가 바로 팔면 두 번의 수수료만큼 손해를 봐요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "엔화 환율은 왜 100엔 기준인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "은행 환율 화면과 한국수출입은행 고시값이 엔화를 100엔당 환율로 보여 주기 때문에 이 계산기도 100엔당 값으로 넣어요. 금액은 실제 엔으로 넣으면 돼요. 예를 들어 100엔당 900원일 때 300,000엔의 기준 원화는 2,700,000원이에요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "현찰 환전과 송금(전신환)은 수수료가 다른가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 해외송금이나 외화예금에 쓰이는 전신환은 현찰보다 스프레드가 낮은 경우가 많아요. 내 거래에 맞는 스프레드를 은행 앱에서 확인해 계산기의 스프레드 칸에 넣으세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "자동으로 채워지는 매매기준율은 실시간 환율인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 한국수출입은행이 영업일마다 고시한 매매기준율이라 실시간 환율이 아니에요. 주말과 공휴일에는 직전 영업일 환율이 보여요. 내 은행 매매기준율과 조금 다를 수 있으니 은행 앱 값을 알면 직접 고쳐 넣으세요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "환전 수수료 계산기",
+            "item": "https://financialdiary.co.kr/apps/exchange-fee-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="fx-header">
@@ -145,6 +257,63 @@
     <p class="fx-disclaimer">
       ※ 자동으로 채워지는 매매기준율은 한국수출입은행이 영업일에 고시한 값으로, <strong>실시간 환율이 아니며 은행마다 다릅니다.</strong> 이 계산기는 이해를 돕기 위한 <strong>참고용</strong>입니다. 환율과 환전 수수료(스프레드)는 <strong>은행·지점·시간대마다 다르고</strong>, <strong>현찰과 송금(전신환)의 수수료도 다릅니다</strong>. 실제 은행은 적용 환율을 소수점 아래에서 끊어 계산하므로 몇 원 차이가 날 수 있습니다. 정확한 금액은 환전하려는 은행 앱이나 창구에서 확인하세요.
     </p>
+    <section class="fx-explain" aria-labelledby="fx-explain-title">
+      <h2 class="fx-explain-title" id="fx-explain-title">이렇게 계산해요</h2>
+      <p class="fx-explain-lead">은행이 매매기준율에 얹는 수수료(스프레드)를 우대율만큼 깎아서 계산해요.</p>
+      <ol class="fx-explain-steps">
+        <li><strong>실제 수수료율</strong><span class="fx-formula">스프레드 × (1 − 우대율)</span></li>
+        <li><strong>적용 환율</strong> 살 때와 팔 때 방향이 반대예요.<span class="fx-formula">살 때 = 매매기준율 × (1 + 실제 수수료율), 팔 때 = 매매기준율 × (1 − 실제 수수료율)</span></li>
+        <li><strong>수수료</strong> 원 단위로 반올림해요.<span class="fx-formula">외화 금액 × 매매기준율 × 실제 수수료율</span></li>
+        <li><strong>필요한 원화와 받는 원화</strong><span class="fx-formula">살 때 = 기준 원화 + 수수료, 팔 때 = 기준 원화 − 수수료</span></li>
+        <li><strong>아낀 금액</strong><span class="fx-formula">우대 없을 때 수수료 − 낸 수수료</span></li>
+        <li><strong>엔화</strong> 매매기준율이 100엔당 값이라 이렇게 기준 원화를 구해요.<span class="fx-formula">엔 금액 ÷ 100 × 매매기준율</span></li>
+      </ol>
+      <div class="fx-example">
+        <p class="fx-example-title"><strong>예시</strong> 매매기준율이 1,300원이라면, 달러 살 때 10,000달러, 스프레드 1.75%, 우대율 90%</p>
+        <dl class="fx-example-rows">
+          <div class="fx-example-row"><dt>실제 수수료율</dt><dd>1.75% × (1 − 0.9) = <strong>0.175%</strong></dd></div>
+          <div class="fx-example-row"><dt>적용 환율</dt><dd>1,300 × 1.00175 = <strong>1,302.275원</strong></dd></div>
+          <div class="fx-example-row"><dt>수수료</dt><dd>13,000,000 × 0.175% = <strong>22,750원</strong></dd></div>
+          <div class="fx-example-row"><dt>필요한 원화</dt><dd>13,000,000 + 22,750 = <strong>13,022,750원</strong></dd></div>
+          <div class="fx-example-row"><dt>아낀 금액</dt><dd>우대 없을 때 227,500 − 22,750 = <strong>204,750원</strong></dd></div>
+        </dl>
+      </div>
+      <p class="fx-explain-sub"><strong>은행 계산과 다를 수 있어요</strong></p>
+      <ul class="fx-explain-notes">
+        <li>은행은 적용 환율을 소수점 아래에서 끊어 고시하고 계산하는 경우가 많아 몇 원 차이가 날 수 있어요.</li>
+        <li>스프레드는 은행, 통화, 현찰과 송금(전신환)마다 달라요. 자동으로 채워지는 매매기준율은 한국수출입은행 고시값이라 내 은행 값과 조금 다를 수 있어요.</li>
+      </ul>
+    </section>
+
+    <section class="fx-faq" aria-labelledby="fx-faq-title">
+      <h2 class="fx-faq-title" id="fx-faq-title">자주 묻는 질문</h2>
+      <details class="fx-faq-item">
+        <summary class="fx-faq-q">환율 우대 90%면 환전 수수료가 얼마나 줄어드나요?</summary>
+        <p class="fx-faq-a">우대율 90%는 스프레드의 10%만 낸다는 뜻이에요. 스프레드가 1.75%라면 실제 수수료율은 0.175%가 돼요. 매매기준율 1,300원에 1만 달러를 살 때 수수료가 227,500원에서 22,750원으로 줄어 204,750원을 아낄 수 있어요.</p>
+      </details>
+      <details class="fx-faq-item">
+        <summary class="fx-faq-q">매매기준율은 무엇인가요?</summary>
+        <p class="fx-faq-a">은행이 정하는 수수료가 붙지 않은 기준 가격이에요. 은행 앱의 환율 화면에서 확인할 수 있어요. 실제로 외화를 살 때는 이 값보다 비싸게, 팔 때는 싸게 거래돼요.</p>
+      </details>
+      <details class="fx-faq-item">
+        <summary class="fx-faq-q">외화를 살 때와 팔 때 환율이 왜 다른가요?</summary>
+        <p class="fx-faq-a">은행이 매매기준율에 수수료(스프레드)를 얹기 때문이에요. 살 때 적용 환율은 매매기준율 × (1 + 실제 수수료율), 팔 때는 매매기준율 × (1 − 실제 수수료율)이에요. 그래서 같은 날 샀다가 바로 팔면 두 번의 수수료만큼 손해를 봐요.</p>
+      </details>
+      <details class="fx-faq-item">
+        <summary class="fx-faq-q">엔화 환율은 왜 100엔 기준인가요?</summary>
+        <p class="fx-faq-a">은행 환율 화면과 한국수출입은행 고시값이 엔화를 100엔당 환율로 보여 주기 때문에 이 계산기도 100엔당 값으로 넣어요. 금액은 실제 엔으로 넣으면 돼요. 예를 들어 100엔당 900원일 때 300,000엔의 기준 원화는 2,700,000원이에요.</p>
+      </details>
+      <details class="fx-faq-item">
+        <summary class="fx-faq-q">현찰 환전과 송금(전신환)은 수수료가 다른가요?</summary>
+        <p class="fx-faq-a">네. 해외송금이나 외화예금에 쓰이는 전신환은 현찰보다 스프레드가 낮은 경우가 많아요. 내 거래에 맞는 스프레드를 은행 앱에서 확인해 계산기의 스프레드 칸에 넣으세요.</p>
+      </details>
+      <details class="fx-faq-item">
+        <summary class="fx-faq-q">자동으로 채워지는 매매기준율은 실시간 환율인가요?</summary>
+        <p class="fx-faq-a">아니요. 한국수출입은행이 영업일마다 고시한 매매기준율이라 실시간 환율이 아니에요. 주말과 공휴일에는 직전 영업일 환율이 보여요. 내 은행 매매기준율과 조금 다를 수 있으니 은행 앱 값을 알면 직접 고쳐 넣으세요.</p>
+      </details>
+    </section>
+
+    <p class="fx-related">관련 글: <a href="../../posts/2026-dollar-investment-guide.html">달러 투자 방법, 달러예금부터 달러ETF까지 환테크 완전 가이드</a></p>
   </main>
 
   <script src="../../js/theme.js"></script>
