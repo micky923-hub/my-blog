@@ -1,0 +1,388 @@
+/* ==============================
+   오늘의 생활경제 (ed-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다. 새 색 없음.
+   오름/내림은 색이 아니라 ▲▼ 기호로 구분한다(증시 관습 색을 쓰지 않음).
+   ============================== */
+
+:root {
+  --ed-radius: 10px;
+  --ed-touch: 44px;
+  --ed-width: calc(var(--content-width) + 200px);
+}
+
+/* ---------- Header ---------- */
+
+.ed-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.ed-header-inner {
+  max-width: var(--ed-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ed-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ed-touch);
+  font-weight: 600;
+}
+
+.ed-theme-toggle {
+  min-width: var(--ed-touch);
+  min-height: var(--ed-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.ed-main {
+  max-width: var(--ed-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.ed-intro {
+  margin-bottom: 1.25rem;
+}
+
+.ed-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ed-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.ed-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ed-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.ed-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--ed-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.ed-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.ed-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ed-guide-steps,
+.ed-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.ed-guide-steps li,
+.ed-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.ed-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- 상태·경고 ---------- */
+
+.ed-status {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--ed-radius);
+  color: var(--color-text-secondary);
+  text-align: center;
+  word-break: keep-all;
+}
+
+.ed-status[hidden],
+#ed-dashboard[hidden],
+.ed-warnings[hidden],
+.ed-fallback-links[hidden] {
+  display: none;
+}
+
+.ed-fallback-links {
+  margin: 0 0 1.5rem;
+}
+
+.ed-fallback-links p {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.ed-warn {
+  margin: 0 0 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+/* ---------- 오늘의 한 줄 요약 ---------- */
+
+.ed-summary-wrap {
+  margin-bottom: 1.25rem;
+}
+
+.ed-summary {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border-radius: var(--ed-radius);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 카드 ---------- */
+
+.ed-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+
+.ed-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ed-radius);
+  padding: 0.9rem 1rem;
+  min-width: 0;
+}
+
+.ed-card-title {
+  font-size: 1.05rem;
+  margin: 0 0 0.35rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ed-badge {
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border-radius: 999px;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
+.ed-big {
+  margin: 0 0 0.3rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ed-unit {
+  margin-left: 0.15rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.ed-big-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.ed-sep {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.ed-changes {
+  list-style: none;
+  margin: 0 0 0.35rem;
+  padding: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ed-changes li {
+  margin-bottom: 0.15rem;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ed-basis,
+.ed-note {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ed-spark {
+  display: block;
+  width: 100%;
+  height: 36px;
+  margin: 0.15rem 0 0.6rem;
+}
+
+.ed-spark polyline {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.ed-wallet {
+  margin: 0 0 0.5rem;
+  padding: 0.65rem 0.8rem;
+  background: var(--color-surface);
+  border-radius: 8px;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ed-wallet strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-tag-text);
+}
+
+.ed-empty {
+  margin: 0 0 0.5rem;
+  padding: 0.75rem 0.8rem;
+  background: var(--color-surface);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ed-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.ed-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ed-touch);
+  padding: 0 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  word-break: keep-all;
+}
+
+.ed-link:hover {
+  border-color: var(--color-accent);
+}
+
+.ed-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- 출처·면책 ---------- */
+
+.ed-sources-wrap {
+  margin-bottom: 0.75rem;
+}
+
+.ed-sources-title {
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.ed-sources {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ed-sources li {
+  margin-bottom: 0.2rem;
+}
+
+.ed-footnote {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ed-footnote p {
+  margin: 0 0 0.5rem;
+}
+
+.ed-footnote a {
+  display: inline-block;
+  min-height: 1.6em;
+}
+
+@media (min-width: 600px) {
+  .ed-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .ed-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ed-card-wide {
+    grid-column: 1 / -1;
+  }
+}

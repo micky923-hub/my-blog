@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="오늘의 생활경제 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#a7f3d0"/>
+      <stop offset="0.55" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ecfdf5"/>
+    </linearGradient>
+    <linearGradient id="barA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#93c5fd"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="barB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdba74"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="barC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f9a8d4"/>
+      <stop offset="1" stop-color="#db2777"/>
+    </linearGradient>
+    <radialGradient id="coin" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#fef9c3"/>
+      <stop offset="0.5" stop-color="#fde047"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 대시보드 판 -->
+  <rect x="86" y="118" width="340" height="290" rx="34" fill="#064e3b" opacity="0.3" transform="translate(8 12)"/>
+  <rect x="86" y="118" width="340" height="290" rx="34" fill="url(#board)"/>
+
+  <!-- 막대 3개 (환율·금리·물가) -->
+  <rect x="128" y="262" width="54" height="108" rx="12" fill="url(#barA)"/>
+  <rect x="206" y="216" width="54" height="154" rx="12" fill="url(#barB)"/>
+  <rect x="284" y="240" width="54" height="130" rx="12" fill="url(#barC)"/>
+
+  <!-- 추이 선 -->
+  <polyline points="134,236 202,186 262,208 344,150" fill="none" stroke="#0f766e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="344" cy="150" r="16" fill="#0f766e"/>
+
+  <!-- 원화 동전 -->
+  <circle cx="392" cy="372" r="74" fill="#78350f" opacity="0.3" transform="translate(6 10)"/>
+  <circle cx="392" cy="372" r="74" fill="url(#coin)"/>
+  <circle cx="392" cy="372" r="56" fill="none" stroke="#fffbeb" stroke-width="6" opacity="0.85"/>
+  <text x="392" y="404" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="900" fill="#78350f">₩</text>
+</svg>

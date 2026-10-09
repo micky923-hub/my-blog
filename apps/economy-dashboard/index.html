@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘의 생활경제 — 환율·금리·물가·장바구니를 한 번에</title>
+  <meta name="description" content="한국은행 경제통계시스템(ECOS)·기상청·aT KAMIS 자료로 원/달러 환율, 기준금리, 소비자물가, 대출·예금 평균금리, 국고채 금리, 장바구니 시세를 매일 아침 한 페이지에 모아 '내 지갑엔' 어떤 의미인지 단순 계산으로 보여줘요.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ try { var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="ed-header">
+    <div class="ed-header-inner">
+      <a href="../../" class="ed-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle ed-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="ed-main" id="main-content">
+    <div class="ed-intro">
+      <h1 class="ed-title">📊 오늘의 생활경제</h1>
+      <p class="ed-subtitle">환율·금리·물가·장바구니를 한 번에</p>
+    </div>
+
+    <details class="ed-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="ed-guide-steps">
+        <li>매일 아침 <strong>한국은행·기상청·aT</strong> 자료를 자동으로 모아요.</li>
+        <li>실시간이 아니라 <strong>전일·최근 발표 기준</strong>이고, 카드마다 기준일이 있어요.</li>
+        <li>"내 지갑엔"은 <strong>단순 계산·참고용</strong>이며 투자·대출 권유가 아니에요.</li>
+        <li>카드 아래 <strong>계산기 링크</strong>로 내 숫자를 넣어 보세요.</li>
+      </ol>
+      <p class="ed-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="ed-guide-terms">
+        <li>▲는 올랐다, ▼는 내렸다는 뜻이에요. <strong>%p</strong>는 금리끼리 뺀 차이예요(예: 3.00% → 3.25%는 0.25%p).</li>
+        <li>"1주 전"은 7일 전 이전의 마지막 영업일 값이에요. 주말·공휴일엔 직전 영업일 값이 보여요.</li>
+        <li>물가·대출·예금 금리는 <strong>한 달에 한 번</strong> 발표돼서 숫자가 자주 바뀌지 않아요.</li>
+      </ul>
+    </details>
+
+    <p class="ed-status" id="ed-status" role="status">불러오는 중…</p>
+
+    <nav class="ed-fallback-links" id="ed-fallback-links" aria-label="계산기 바로가기" hidden>
+      <p>그동안 계산기로 직접 확인해 보세요.</p>
+      <div class="ed-links">
+        <a class="ed-link" href="../exchange-fee-calculator/">환전 수수료 계산기</a>
+        <a class="ed-link" href="../loan-refinance-calculator/">대출 갈아타기 계산기</a>
+        <a class="ed-link" href="../savings-calculator/">적금·예금 계산기</a>
+        <a class="ed-link" href="../weather-economy/">날씨×장바구니</a>
+      </div>
+    </nav>
+
+    <div id="ed-dashboard" hidden>
+      <div id="ed-warnings" class="ed-warnings" hidden></div>
+
+      <section class="ed-summary-wrap" aria-labelledby="ed-summary-title">
+        <h2 class="visually-hidden" id="ed-summary-title">오늘의 한 줄 요약</h2>
+        <p class="ed-summary" id="ed-summary"></p>
+      </section>
+
+      <div class="ed-cards" id="ed-cards" aria-live="polite"></div>
+
+      <section class="ed-sources-wrap" aria-labelledby="ed-sources-title">
+        <h2 class="ed-sources-title" id="ed-sources-title">자료 기준 시각</h2>
+        <ul class="ed-sources" id="ed-sources"></ul>
+      </section>
+    </div>
+
+    <footer class="ed-footnote">
+      <p><strong>자료</strong>: 한국은행 경제통계시스템(<a href="https://ecos.bok.or.kr/" rel="noopener" target="_blank">ECOS</a>), 기상청 단기예보(공공데이터포털, 공공누리 제1유형 · 출처 표시), aT KAMIS 농산물유통정보 소매가격, 한국수출입은행 매매기준율.</p>
+      <p>※ 투자·대출·구매 권유가 아니며 참고용이에요. "내 지갑엔" 숫자는 평균값으로 한 단순 계산이라 실제 은행·매장 조건과 다를 수 있어요. 소비자물가 상승률은 한국은행 ECOS 지수로 계산해 통계청 발표와 0.1%p 정도 다를 수 있어요.</p>
+    </footer>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
