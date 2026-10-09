@@ -21,7 +21,8 @@
 
   function showCopied(label) {
     label.textContent = '복사됨!';
-    setTimeout(function() { label.textContent = 'URL 복사'; }, 2000);
+    label.parentNode.classList.add('is-copied');
+    setTimeout(function() { label.textContent = '링크 복사'; label.parentNode.classList.remove('is-copied'); }, 2000);
   }
 
   section.querySelector('[data-share="url"]').addEventListener('click', function() {
