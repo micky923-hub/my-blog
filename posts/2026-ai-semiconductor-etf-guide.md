@@ -3,7 +3,7 @@ title: AI·반도체 ETF, 지금 들어가도 될까? 초보자를 위한 투자
 date: 2026-10-09
 tags: [투자, 주식, ETF, 반도체]
 summary: AI·반도체 테마가 뜨겁다 보니 관련 ETF에 관심 갖는 분들이 많습니다. 국내·미국 상장 AI 반도체 ETF의 차이, 세금, 투자 시 체크포인트를 정리했습니다.
-image: https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop
 ---
 
 ## 왜 AI·반도체 ETF에 관심이 몰릴까

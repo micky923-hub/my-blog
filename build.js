@@ -314,11 +314,32 @@ function relatedHtml(list) {
   return html;
 }
 
+// 대표 이미지 금지 목록(blocked-images.json)에 있는 이미지를 쓴 글이 있으면 빌드를 멈춘다.
+// Unsplash 사진은 photo-… ID로 비교해서 크기 옵션(?w=…)이 달라도 걸러낸다.
+function checkBlockedImages(postsDir, files) {
+  if (!fs.existsSync('blocked-images.json')) return;
+  var blocked = JSON.parse(fs.readFileSync('blocked-images.json', 'utf-8')).blocked || [];
+  var problems = [];
+  files.forEach(function(filename) {
+    var image = parseFrontmatter(fs.readFileSync(path.join(postsDir, filename), 'utf-8')).metadata.image || '';
+    blocked.forEach(function(b) {
+      if (b.id && image.indexOf(b.id) !== -1) {
+        problems.push('  - posts/' + filename + ' → ' + b.id + ' (' + (b.reason || '금지된 이미지') + ')');
+      }
+    });
+  });
+  if (problems.length > 0) {
+    console.error('\n[빌드 중단] 금지된 대표 이미지를 쓴 글이 있습니다. 다른 이미지로 바꿔 주세요.\n' + problems.join('\n') + '\n');
+    process.exit(1);
+  }
+}
+
 function buildPosts() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
 
   var files = fs.readdirSync(postsDir).filter(function(f) { return f.endsWith('.md'); });
+  checkBlockedImages(postsDir, files);
   var posts = [];
 
   // 1단계: 모든 글을 읽어 정보 모으기
