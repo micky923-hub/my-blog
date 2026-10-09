@@ -45,7 +45,9 @@ fail() {
 # 실패한 단계의 wrangler 출력에서 알려진 문장을 찾아 한국어 안내를 붙인다(계획서 6절).
 explain() {
   local log="$1" hint=""
-  if grep -qiE "register a workers\.dev subdomain" "$log"; then
+  if grep -qiE "Invalid access token|code: 9109" "$log"; then
+    hint="Cloudflare가 토큰을 알아보지 못했습니다. ① 토큰 TTL 시작 날짜가 미래로 되어 있지 않은지(비우거나 오늘), ② 토큰을 복사 버튼으로 빠짐없이 복사했는지 확인한 뒤 Secret CLOUDFLARE_API_TOKEN 을 덮어쓰세요. ③ Secret CLOUDFLARE_ACCOUNT_ID 가 영역(Zone) ID가 아닌 계정 ID인지도 확인하세요."
+  elif grep -qiE "register a workers\.dev subdomain" "$log"; then
     hint="계정에 workers.dev 서브도메인이 없습니다. Cloudflare 대시보드 Workers & Pages 에서 서브도메인을 한 번 만든 뒤 다시 실행하세요(계획서 4절 2번)."
   elif grep -qiE "Authentication error|code: 10000|not authorized" "$log"; then
     hint="토큰 권한 부족·만료·계정 제한 문제입니다. 토큰 권한 3개(Workers Scripts:Edit, D1:Edit, Account Settings:Read)와 Account Resources 를 확인하고, 만료됐으면 새 토큰으로 Secret CLOUDFLARE_API_TOKEN 을 바꾸세요(계획서 3절)."
@@ -185,7 +187,24 @@ run_step "d1-execute-schema" "${WR[@]}" d1 execute "$DB_NAME" --remote --file sc
 
 # ---------- 5단계: Worker 배포 ----------
 export WRANGLER_OUTPUT_FILE_PATH="$OUTPUT_FILE"
-run_step "deploy" "${WR[@]}" deploy
+# 처음 배포할 때 Worker 업로드 직후 트리거 설정이 "Worker 없음(10007)"으로 실패할 수 있어
+# (Cloudflare 반영 지연) 그 경우에만 10초 기다렸다가 한 번 더 시도한다.
+deploy_once() { "${WR[@]}" deploy; }
+deploy_with_retry() {
+  local first="$LOGS/deploy-first.log" rc
+  set +e
+  deploy_once 2>&1 | tee "$first"
+  rc=${PIPESTATUS[0]}
+  set -e
+  if [ "$rc" -ne 0 ] && grep -qE "code: 10007" "$first"; then
+    say "Worker 반영 지연(10007) — 10초 뒤 다시 배포합니다."
+    sleep 10
+    deploy_once
+  else
+    return "$rc"
+  fi
+}
+run_step "deploy" deploy_with_retry
 unset WRANGLER_OUTPUT_FILE_PATH
 
 # ---------- 6단계: 비밀값 HASH_SALT (stdin 으로만) ----------
