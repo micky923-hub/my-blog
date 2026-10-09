@@ -7,7 +7,7 @@
 :root {
   --ed-radius: 10px;
   --ed-touch: 44px;
-  --ed-width: calc(var(--content-width) + 200px);
+  --ed-width: 1100px;
 }
 
 /* ---------- Header ---------- */
@@ -384,5 +384,15 @@
   }
   .ed-card-wide {
     grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1100px) {
+  .ed-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  /* 3열에서는 넓은 카드(날씨×장바구니)가 2칸만 차지해 원/달러 옆에 붙는다 */
+  .ed-card-wide {
+    grid-column: span 2;
   }
 }

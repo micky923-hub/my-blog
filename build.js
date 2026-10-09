@@ -424,7 +424,7 @@ function buildPosts() {
     });
 
     var pageContent =
-      '  <main id="main-content" class="container">\n'
+      '  <main id="main-content" class="container post-main">\n'
       + '    <a href="' + base + '" class="back-link">&larr; 목록으로</a>\n'
       + '    <article>\n'
       + '      <header class="post-header">\n'

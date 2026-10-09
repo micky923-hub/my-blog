@@ -16,7 +16,8 @@
   --color-tag-text: #2563eb;
   --color-blockquote-bg: #f9fafb;
   --color-blockquote-border: #2563eb;
-  --content-width: 680px;
+  --content-width: 760px;
+  --wide-width: 1200px;
 }
 
 [data-theme="dark"] {
@@ -420,7 +421,7 @@ a:focus-visible {
    ============================== */
 
 .container-wide {
-  max-width: 960px;
+  max-width: var(--wide-width);
 }
 
 .list-header {
@@ -1133,7 +1134,7 @@ a:focus-visible {
 }
 
 .pre-footer-inner {
-  max-width: 960px;
+  max-width: var(--wide-width);
   margin: 0 auto;
   padding: 0 1.25rem;
   display: grid;
@@ -1520,6 +1521,46 @@ a:focus-visible {
 
   .post-title {
     font-size: 2.5rem;
+  }
+}
+
+/* 넓은 화면: 메인 글 목록은 한 줄에 더 많이 보여 준다 */
+@media (min-width: 1100px) {
+  .post-grid.view-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .post-grid.view-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 넓은 화면: 글 본문 폭은 그대로 두고, 목차를 오른쪽에 붙여 따라 내려오게 한다 */
+@media (min-width: 1200px) {
+  .post-main {
+    max-width: calc(var(--content-width) + 300px);
+  }
+
+  .post-main > article {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    column-gap: 40px;
+  }
+
+  .post-main > article > * {
+    grid-column: 1;
+  }
+
+  .post-main > article > .post-toc {
+    grid-column: 2;
+    grid-row: 1 / span 30;
+    align-self: start;
+    position: sticky;
+    top: 1.5rem;
+    margin: 0;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    font-size: 0.9rem;
   }
 }
 
