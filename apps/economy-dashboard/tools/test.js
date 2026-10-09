@@ -264,13 +264,13 @@ test('mask: 경로 속 키 원문·인코딩·ECOS 주소 모두 가림', functi
 
 /* ---------- 출처 표기 (spec-attribution.md) ---------- */
 
-test('edSrcLine: 한국은행·국가데이터처·미확인(org null)·날짜 대비책·날짜 없음', function () {
+test('edSrcLine: 한국은행·국가데이터처·날짜 대비책·날짜 없음', function () {
   assert.strictEqual(app.edSrcLine('baseRate', { fetchedAt: '2026-10-09' }, null), '출처 : ECOS(한국은행, 한국은행 기준금리 및 여수신금리), 2026.10.9.');
-  assert.strictEqual(app.edSrcLine('mortgageRate', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 예금은행 가중평균금리(대출, 신규취급액)), 2026.10.9.');
-  assert.strictEqual(app.edSrcLine('depositRate', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 예금은행 가중평균금리(수신, 신규취급액)), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('mortgageRate', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 예금은행 대출금리(신규취급액 기준)), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('depositRate', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 예금은행 수신금리(신규취급액 기준)), 2026.10.9.');
   assert.strictEqual(app.edSrcLine('cpi', { fetchedAt: '2026-10-09' }), '출처 : ECOS(국가데이터처, 소비자물가지수), 2026.10.9.');
-  assert.strictEqual(app.edSrcLine('ktb3y', { fetchedAt: '2026-10-09' }), '출처 : ECOS(시장금리(일별)), 2026.10.9.');
-  assert.strictEqual(app.edSrcLine('usdkrw', { fetchedAt: '2026-10-09' }), '출처 : ECOS(주요국 통화의 대원화환율), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('ktb3y', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 시장금리(일별)), 2026.10.9.');
+  assert.strictEqual(app.edSrcLine('usdkrw', { fetchedAt: '2026-10-09' }), '출처 : ECOS(한국은행, 주요국 통화의 대원화환율), 2026.10.9.');
   // fetchedAt 없음 → generatedAt 날짜, 둘 다 없음 → 날짜 생략
   assert.strictEqual(app.edSrcLine('cpi', {}, '2026-10-08T18:21:00+09:00'), '출처 : ECOS(국가데이터처, 소비자물가지수), 2026.10.8.');
   assert.strictEqual(app.edSrcLine('cpi', { fetchedAt: 'x' }, 'bad'), '출처 : ECOS(국가데이터처, 소비자물가지수)');
@@ -278,10 +278,14 @@ test('edSrcLine: 한국은행·국가데이터처·미확인(org null)·날짜 �
   // 앞자리 0 없음·끝 점, 고정 표에 없는 키는 'ECOS'만
   assert.strictEqual(app.dateDot('2026-01-05'), '2026.1.5.');
   assert.strictEqual(app.edSrcLine('nope', { fetchedAt: '2026-01-05' }), '출처 : ECOS, 2026.1.5.');
-  // 미확인 기관은 이름을 지어내지 않음
-  assert.strictEqual(app.ED_DEFS.usdkrw.org, null);
-  assert.strictEqual(app.ED_DEFS.ktb3y.org, null);
-  assert.strictEqual(app.ED_DEFS.ktb10y.org, null);
+  // 2026-10-09 사용자 확인: 원/달러·국고채도 한국은행 작성·발표
+  assert.strictEqual(app.ED_DEFS.usdkrw.org, '한국은행');
+  assert.strictEqual(app.ED_DEFS.ktb3y.org, '한국은행');
+  assert.strictEqual(app.ED_DEFS.ktb10y.org, '한국은행');
+  // org가 없을 때는 기관명 없이 통계표명만 (지어내지 않음)
+  var saved = app.ED_DEFS.usdkrw.org; app.ED_DEFS.usdkrw.org = null;
+  assert.strictEqual(app.edSrcLine('usdkrw', { fetchedAt: '2026-10-09' }), '출처 : ECOS(주요국 통화의 대원화환율), 2026.10.9.');
+  app.ED_DEFS.usdkrw.org = saved;
 });
 
 test('통계표명 대조: 앞 번호·공백 무시', function () {
@@ -461,7 +465,7 @@ var SCENARIOS = [
   } },
   { name: '출처 확인 호출(ORG_NAME 있음·null·오류·접속 실패·한도) → 무시, 지표 값은 같음', args: OK.concat(['--fixture', f('ecos-meta.json')], PREV), check: function (r) {
     assert.ok(/\[meta\] 722Y001 ORG_NAME="한국은행" \(고정 표 작성기관: 한국은행\)/.test(r.log), r.log);
-    assert.ok(/\[meta\] 731Y001 ORG_NAME=null \(고정 표 작성기관: 미확인\)/.test(r.log), r.log);
+    assert.ok(/\[meta\] 731Y001 ORG_NAME=null \(고정 표 작성기관: 한국은행\)/.test(r.log), r.log);
     assert.ok(/\[meta\] 901Y009 ORG_NAME=null \(고정 표 작성기관: 국가데이터처\), 통계표명 "4\.2\.1\. 소비자물가지수" = 고정 표/.test(r.log), r.log);
     assert.ok(/\[meta\] 817Y002 통계표 정보 fixture, RESULT\.CODE=ERROR-500.*→ 무시/.test(r.log), r.log);
     assert.ok(/\[meta\] 121Y006 통계표 정보 요청 실패.*→ 무시/.test(r.log), r.log);
@@ -632,11 +636,11 @@ test('renderApp: 출처 줄 — ECOS 카드 6줄(국고채 1줄), 대비책 환�
   var srcs = (v.cardsHtml.match(/<p class="ed-src">[^<]*<\/p>/g) || []).map(function (x) { return x.replace(/<[^>]+>/g, '').replace(/&#39;/g, "'"); });
   assert.deepStrictEqual(srcs, [
     '출처 : ECOS(국가데이터처, 소비자물가지수), 2026.10.9.',
-    '출처 : ECOS(주요국 통화의 대원화환율), 2026.10.9.',
+    '출처 : ECOS(한국은행, 주요국 통화의 대원화환율), 2026.10.9.',
     '출처 : ECOS(한국은행, 한국은행 기준금리 및 여수신금리), 2026.10.9.',
-    '출처 : ECOS(한국은행, 예금은행 가중평균금리(대출, 신규취급액)), 2026.10.9.',
-    '출처 : ECOS(한국은행, 예금은행 가중평균금리(수신, 신규취급액)), 2026.10.9.',
-    '출처 : ECOS(시장금리(일별)), 2026.10.9.'
+    '출처 : ECOS(한국은행, 예금은행 대출금리(신규취급액 기준)), 2026.10.9.',
+    '출처 : ECOS(한국은행, 예금은행 수신금리(신규취급액 기준)), 2026.10.9.',
+    '출처 : ECOS(한국은행, 시장금리(일별)), 2026.10.9.'
   ]);
   assert.ok(v.cardsHtml.indexOf('· 한국은행 ECOS') < 0);
   assert.ok(/<p class="ed-basis">10월 8일\(목\) 기준<\/p>/.test(v.cardsHtml), '기준 줄 1줄');
@@ -653,11 +657,11 @@ test('renderApp: 출처 줄 — ECOS 카드 6줄(국고채 1줄), 대비책 환�
   var only10 = ecoOk();
   delete only10.indicators.ktb3y;
   var o10 = app.renderApp({ eco: only10, weather: null, rates: null }, NOW_MS);
-  assert.ok(/<article[^>]+id="ed-card-ktb"[\s\S]*?출처 : ECOS\(시장금리\(일별\)\), 2026\.10\.9\.[\s\S]*?<\/article>/.test(o10.cardsHtml));
+  assert.ok(/<article[^>]+id="ed-card-ktb"[\s\S]*?출처 : ECOS\(한국은행, 시장금리\(일별\)\), 2026\.10\.9\.[\s\S]*?<\/article>/.test(o10.cardsHtml));
   // 국고채 수집일이 다르면 더 이른 날
   var mixed = ecoOk();
   mixed.indicators.ktb10y.fetchedAt = '2026-10-07';
-  assert.ok(/출처 : ECOS\(시장금리\(일별\)\), 2026\.10\.7\./.test(app.renderApp({ eco: mixed, weather: null, rates: null }, NOW_MS).cardsHtml));
+  assert.ok(/출처 : ECOS\(한국은행, 시장금리\(일별\)\), 2026\.10\.7\./.test(app.renderApp({ eco: mixed, weather: null, rates: null }, NOW_MS).cardsHtml));
 });
 
 test('renderApp: 옛 data.json(fetchedAt 없음) → generatedAt 날짜, version 1 그대로', function () {
@@ -675,8 +679,8 @@ test('renderApp: 옛 data.json(fetchedAt 없음) → generatedAt 날짜, version
 test('출처 문구: 하단 문단이 고정 표와 일치, "통계청" 단독·"출처: KOSIS" 0건', function () {
   var html = fs.readFileSync(path.join(APP_DIR, 'index.html'), 'utf8');
   assert.ok(html.indexOf('원작성: 국가데이터처(옛 통계청) — 소비자물가지수 (공공누리 제1유형 · 출처 표시)') >= 0);
-  assert.ok(/한국은행 작성: 기준금리, 예금은행 가중평균금리\(주담대·정기예금\)/.test(html));
-  assert.ok(/원\/달러 환율\(주요국 통화의 대원화환율\), 국고채 금리\(시장금리\(일별\)\)는 ECOS에서 받은 값이며 원작성기관 확인 중/.test(html));
+  assert.ok(/한국은행 작성·발표: 기준금리, 예금은행 대출·수신금리\(주담대·정기예금\), 원\/달러 환율\(주요국 통화의 대원화환율\), 국고채 금리\(시장금리\(일별\)\)/.test(html));
+  assert.ok(!/원작성기관 확인 중/.test(html));
   assert.ok(html.indexOf('국가데이터처(옛 통계청) 발표와') >= 0);
   var v = app.renderApp({ eco: ecoOk(), weather: WX, rates: RATES }, NOW_MS);
   [html, v.cardsHtml + v.sources.join()].forEach(function (t) {
