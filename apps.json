@@ -1,5 +1,13 @@
 [
   {
+    "path": "apps/economy-dashboard/",
+    "emoji": "📊",
+    "title": "오늘의 생활경제 대시보드",
+    "description": "환율·기준금리·물가·대출·예금 금리와 오늘 날씨×장바구니를 한 화면에. 숫자마다 \"내 지갑엔\" 얼마나 영향이 있는지 함께 보여줘요.",
+    "icon": "apps/economy-dashboard/icon.svg",
+    "shortTitle": "오늘 경제"
+  },
+  {
     "path": "apps/savings-calculator/",
     "emoji": "💰",
     "title": "적금·예금 이자 계산기",
