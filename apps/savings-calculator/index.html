@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>적금·예금 이자 계산기 (세후 만기 수령액·단리·월복리) — Financial Diary</title>
-  <meta name="description" content="적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·세금우대 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.">
+  <meta name="description" content="적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·조합 예탁금 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.">
   <link rel="canonical" href="https://financialdiary.co.kr/apps/savings-calculator/">
   <meta property="og:title" content="적금·예금 이자 계산기 (세후 만기 수령액·단리·월복리) — Financial Diary">
-  <meta property="og:description" content="적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·세금우대 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.">
+  <meta property="og:description" content="적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·조합 예탁금 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://financialdiary.co.kr/apps/savings-calculator/">
   <meta property="og:locale" content="ko_KR">
@@ -30,7 +30,7 @@
         "@id": "https://financialdiary.co.kr/apps/savings-calculator/#app",
         "name": "적금·예금 이자 계산기",
         "url": "https://financialdiary.co.kr/apps/savings-calculator/",
-        "description": "적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·세금우대 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.",
+        "description": "적금 이자와 예금 이자를 세금까지 계산해요. 월 납입액(예치 금액)·기간·연 이자율을 넣으면 단리·월복리 이자와 이자소득세 15.4%(비과세·조합 예탁금 선택)를 뺀 만기 세후 수령액을 바로 보여 주고, 계산 공식과 예시도 설명해요.",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
@@ -152,7 +152,8 @@
         <li><strong>단리</strong>: 원금에만 이자가 붙어요. 대부분의 은행 예·적금이 단리입니다.</li>
         <li><strong>월복리</strong>: 매달 붙은 이자에도 다시 이자가 붙어요.</li>
         <li><strong>일반과세 15.4%</strong>: 이자소득세 14% + 지방소득세 1.4%. 보통 이 경우입니다.</li>
-        <li><strong>세금우대 9.5%</strong>: 조합 예탁금 등 일부 상품에 적용되는 낮은 세율입니다.</li>
+        <li><strong>조합 예탁금 1.4%</strong>: 농협·수협·신협·새마을금고 등에 맡긴 돈은 1인 3,000만 원까지 이자소득세가 없고 농어촌특별세 1.4%만 내요. 해당 조합의 조합원이나 준조합원으로 가입해야 해요. 3,000만 원을 넘는 부분은 일반 15.4%예요.</li>
+        <li>총급여 7,000만 원을 넘는 준조합원은 2026년에 생긴 이자에 5%, 2027년부터 9%가 붙어요. 이 계산기에는 넣지 않았어요.</li>
         <li><strong>비과세</strong>: 세금이 없어요. 청년도약계좌, ISA 한도 내 이익 등이 해당됩니다.</li>
       </ul>
     </details>
@@ -216,8 +217,8 @@
           <label for="sc-tax-general">일반 15.4%</label>
           <input type="radio" name="sc-tax" id="sc-tax-free" value="0">
           <label for="sc-tax-free">비과세</label>
-          <input type="radio" name="sc-tax" id="sc-tax-preferential" value="95">
-          <label for="sc-tax-preferential">세금우대 9.5%</label>
+          <input type="radio" name="sc-tax" id="sc-tax-coop" value="14">
+          <label for="sc-tax-coop">조합 1.4%</label>
         </div>
       </fieldset>
     </form>
@@ -248,7 +249,7 @@
         <li><strong>예금(단리)</strong> 목돈 전체에 기간만큼 이자가 붙어요.<span class="sc-formula">세전 이자 = 예치 금액 × 연 이자율 × 기간(개월) ÷ 12</span></li>
         <li><strong>적금(단리)</strong> 첫 달에 넣은 돈은 기간 내내, 마지막 달에 넣은 돈은 한 달만 이자가 붙어요. 12개월이면 1부터 12까지 더한 78개월 치 이자예요.<span class="sc-formula">세전 이자 = 월 납입액 × 연 이자율 ÷ 12 × (1 + 2 + … + 기간)</span></li>
         <li><strong>월복리</strong> 매달 붙은 이자를 원금에 더해 다음 달 이자를 계산해요.</li>
-        <li><strong>세금</strong> 세전 이자에 세율(일반 15.4%, 세금우대 9.5%, 비과세 0%)을 곱해요. 세전 이자와 세금은 원 단위로 반올림해요.<span class="sc-formula">이자 과세액 = 세전 이자 × 세율</span></li>
+        <li><strong>세금</strong> 세전 이자에 세율(일반 15.4%, 조합 예탁금 1.4%, 비과세 0%)을 곱해요. 세전 이자와 세금은 원 단위로 반올림해요.<span class="sc-formula">이자 과세액 = 세전 이자 × 세율</span></li>
         <li><strong>세후 수령액</strong><span class="sc-formula">원금 합계 + 세전 이자 − 이자 과세액</span></li>
       </ol>
       <div class="sc-example">
