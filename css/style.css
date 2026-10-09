@@ -762,7 +762,13 @@ a:focus-visible {
   line-height: 1.5;
 }
 
-/* 읽는 시간 */
+/* 읽는 시간·업데이트 날짜: 항목 안에서는 줄바꿈하지 않는다 */
+.post-meta time,
+.post-meta .post-updated,
+.post-meta .post-reading-time {
+  white-space: nowrap;
+}
+
 .post-meta-sep {
   margin: 0 0.15rem;
 }
@@ -1028,6 +1034,8 @@ a:focus-visible {
 
 .post-content th,
 .post-content td {
+  /* 단어 중간에서 끊지 않는다. 표가 화면보다 넓어지면 표만 옆으로 넘겨 본다(table은 overflow-x: auto) */
+  word-break: keep-all;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--color-border);
   text-align: left;

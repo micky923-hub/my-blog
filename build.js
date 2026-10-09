@@ -114,7 +114,8 @@ function htmlTemplate(opts) {
   var ogType = opts.ogType || 'website';
   var ogImage = opts.ogImage || '';
   var pathPrefix = opts.pathPrefix || base;
-  var robots = opts.robots || 'index, follow';
+  // max-image-preview:large — 구글 디스커버 등에서 큰 대표 이미지로 보여 줄 수 있게 허용
+  var robots = opts.robots || 'index, follow, max-image-preview:large';
   var extraMeta = opts.extraMeta || '';
 
   var preFooterTagsHtml = '';
@@ -358,6 +359,7 @@ function buildPosts() {
       info: {
         title: meta.title || slug,
         date: meta.date || '',
+        updated: meta.updated && meta.updated > (meta.date || '') ? meta.updated : '',
         tags: meta.tags || [],
         summary: meta.summary || '',
         image: meta.image || '',
@@ -429,7 +431,9 @@ function buildPosts() {
       + '    <article>\n'
       + '      <header class="post-header">\n'
       + '        <h1 class="post-title">' + escapeHtml(meta.title || slug) + '</h1>\n'
-      + '        <div class="post-meta"><time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time><span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-reading-time">약 ' + entry.info.minutes + '분 읽기</span></div>\n'
+      + '        <div class="post-meta"><time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time>'
+        + (entry.info.updated ? '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-updated"><time datetime="' + escapeHtml(entry.info.updated) + '">' + formatDate(entry.info.updated) + '</time> 업데이트</span>' : '')
+        + '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-reading-time">약 ' + entry.info.minutes + '분 읽기</span></div>\n'
       + tagsHtml
       + '      </header>\n'
       + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" loading="lazy">\n' : '')
@@ -742,7 +746,7 @@ function buildSitemap(posts) {
   posts.forEach(function(post) {
     urls.push({
       loc: siteUrl + '/posts/' + post.slug + '.html',
-      lastmod: post.date,
+      lastmod: post.updated || post.date,
       priority: '0.8',
       changefreq: 'monthly'
     });
