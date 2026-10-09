@@ -6,6 +6,8 @@ on:
   schedule:
     - cron: '30 2 * * 1-5'   # 평일 11:30 KST (수출입은행 매매기준율 발표 직후)
     - cron: '30 6 * * 1-5'   # 평일 15:30 KST (11:30 실패·지연 대비 재시도)
+    - cron: '20 21 * * *'    # 매일 06:20 KST (기상청 05시 발표 후 날씨)
+    - cron: '20 9 * * *'     # 매일 18:20 KST (17시 발표·당일 시세)
   workflow_dispatch:
 
 permissions:
@@ -39,6 +41,15 @@ jobs:
           KOREAEXIM_API_KEY: ${{ secrets.KOREAEXIM_API_KEY }}
         continue-on-error: true
         timeout-minutes: 3
+
+      - name: Fetch weather & produce prices (KMA, KAMIS)
+        run: node apps/weather-economy/tools/fetch-weather-economy.js --out dist/apps/weather-economy/data.json
+        env:
+          KMA_SERVICE_KEY: ${{ secrets.KMA_SERVICE_KEY }}
+          KAMIS_CERT_KEY: ${{ secrets.KAMIS_CERT_KEY }}
+          KAMIS_CERT_ID: ${{ secrets.KAMIS_CERT_ID }}
+        continue-on-error: true
+        timeout-minutes: 4
 
       - uses: actions/configure-pages@v5
 

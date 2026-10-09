@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날씨 × 장바구니 — 오늘 날씨가 장바구니 물가에 주는 신호</title>
+  <meta name="description" content="기상청 단기예보와 KAMIS 농산물 소매가격을 매일 모아, 폭염·장마·한파 같은 날씨가 배추·상추·사과 같은 장바구니 물가에 줄 수 있는 신호를 실제 숫자와 함께 보여줘요.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ try { var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="we-header">
+    <div class="we-header-inner">
+      <a href="../../" class="we-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle we-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="we-main" id="main-content">
+    <div class="we-intro">
+      <h1 class="we-title">🌦️ 날씨 × 장바구니</h1>
+      <p class="we-subtitle">오늘 날씨가 내 장바구니 물가에 주는 신호</p>
+    </div>
+
+    <details class="we-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="we-guide-steps">
+        <li>매일 아침 <strong>기상청 단기예보</strong>와 <strong>aT(KAMIS) 소매가격</strong>을 자동으로 모아 보여줘요.</li>
+        <li><strong>도시 버튼</strong>으로 날씨를 바꿔 볼 수 있어요(시세는 전국 평균이라 그대로예요). 고른 도시는 이 브라우저에 기억돼요.</li>
+        <li>해설은 "과거에 이런 날씨면 이런 경우가 많았다"는 <strong>참고용 규칙</strong>이고, 가격을 예측하거나 보장하지 않아요.</li>
+        <li>시세는 <strong>평일에만 조사</strong>돼서 주말·공휴일엔 직전 조사일 값이 보여요.</li>
+      </ol>
+      <p class="we-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="we-guide-terms">
+        <li>날씨 신호는 서울·부산·대구·광주·대전 <strong>5개 도시 예보</strong> 기준이에요. 실제 산지 날씨와는 다를 수 있어요.</li>
+        <li>▲는 올랐다, ▼는 내렸다는 뜻이에요. <strong>1개월 전·평년 값</strong>은 KAMIS가 낸 5일 이동평균이에요.</li>
+        <li>평년보다 30% 넘게 차이 나는 품목은 표에서 굵게 표시해요. 원인이 날씨라는 뜻은 아니에요.</li>
+      </ul>
+    </details>
+
+    <p class="we-status" id="we-status" role="status">불러오는 중…</p>
+
+    <div id="we-dashboard" hidden>
+      <div id="we-warnings" class="we-warnings" hidden></div>
+
+      <section class="we-headline-wrap" aria-labelledby="we-headline-title">
+        <h2 class="we-section-title visually-hidden" id="we-headline-title">오늘의 날씨 경제 한 줄</h2>
+        <p class="we-headline" id="we-headline"></p>
+      </section>
+
+      <section class="we-section" aria-labelledby="we-weather-title">
+        <h2 class="we-section-title" id="we-weather-title">3일 날씨</h2>
+        <div id="we-city-wrap">
+          <div class="we-cities" id="we-cities" role="group" aria-label="도시 선택"></div>
+        </div>
+        <div id="we-weather" aria-live="polite"></div>
+      </section>
+
+      <section class="we-section" id="we-signals-wrap" aria-labelledby="we-signals-title" hidden>
+        <h2 class="we-section-title" id="we-signals-title">날씨가 보내는 장바구니 신호</h2>
+        <div class="we-cards" id="we-signals"></div>
+      </section>
+
+      <section class="we-section" aria-labelledby="we-prices-title">
+        <h2 class="we-section-title" id="we-prices-title">장바구니 시세</h2>
+        <div id="we-prices"></div>
+      </section>
+
+      <p class="we-source" id="we-source"></p>
+    </div>
+
+    <footer class="we-footnote">
+      <p><strong>출처</strong>: 기상청 단기예보 조회서비스(<a href="https://www.data.go.kr/data/15084084/openapi.do" rel="noopener" target="_blank">공공데이터포털</a>, 공공누리 제1유형 · 출처 표시), <a href="https://www.kamis.or.kr/" rel="noopener" target="_blank">KAMIS 농산물유통정보</a>(한국농수산식품유통공사 aT) 소매가격.</p>
+      <p>※ 이 화면은 이해를 돕기 위한 참고용이에요. 투자·구매 권유가 아니며 실제 매장 가격과 다를 수 있어요. 해설은 날씨와 시세의 일반적인 경향을 단순화한 규칙이라 실제 가격 움직임과 다를 수 있어요.</p>
+    </footer>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

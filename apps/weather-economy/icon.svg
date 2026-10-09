@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="날씨 × 장바구니 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#bae6fd"/>
+      <stop offset="0.55" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#fef9c3"/>
+      <stop offset="0.5" stop-color="#fde047"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </radialGradient>
+    <linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="basket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdba74"/>
+      <stop offset="0.5" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bbf7d0"/>
+      <stop offset="0.5" stop-color="#4ade80"/>
+      <stop offset="1" stop-color="#15803d"/>
+    </linearGradient>
+    <radialGradient id="apple" cx="0.35" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="#fecaca"/>
+      <stop offset="0.45" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#b91c1c"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 해 -->
+  <g stroke="#fde047" stroke-width="18" stroke-linecap="round" opacity="0.95">
+    <line x1="352" y1="40" x2="352" y2="66"/>
+    <line x1="352" y1="210" x2="352" y2="236"/>
+    <line x1="254" y1="138" x2="280" y2="138"/>
+    <line x1="424" y1="138" x2="450" y2="138"/>
+    <line x1="283" y1="69" x2="301" y2="87"/>
+    <line x1="403" y1="189" x2="421" y2="207"/>
+    <line x1="421" y1="69" x2="403" y2="87"/>
+  </g>
+  <circle cx="352" cy="138" r="62" fill="url(#sun)"/>
+
+  <!-- 구름 -->
+  <g transform="translate(6 10)" opacity="0.3" fill="#0c4a6e">
+    <path d="M118 244h196a50 50 0 0 0 0-100 70 70 0 0 0-128-22 58 58 0 0 0-68 122z"/>
+  </g>
+  <path d="M118 244h196a50 50 0 0 0 0-100 70 70 0 0 0-128-22 58 58 0 0 0-68 122z" fill="url(#cloud)"/>
+
+  <!-- 잎채소·사과 -->
+  <ellipse cx="206" cy="300" rx="44" ry="66" fill="url(#leaf)" transform="rotate(-18 206 300)"/>
+  <path d="M206 250 L196 352" stroke="#166534" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <ellipse cx="272" cy="292" rx="40" ry="70" fill="url(#leaf)" transform="rotate(12 272 292)"/>
+  <path d="M270 236 L280 350" stroke="#166534" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="336" cy="322" r="44" fill="url(#apple)"/>
+  <path d="M336 280 q4 -18 18 -24" stroke="#78350f" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="358" cy="266" rx="14" ry="7" fill="#4ade80" transform="rotate(-25 358 266)"/>
+
+  <!-- 장바구니 -->
+  <g transform="translate(8 12)" opacity="0.3" fill="#0c4a6e">
+    <path d="M104 336h304l-34 120a20 20 0 0 1-19 14H157a20 20 0 0 1-19-14z"/>
+  </g>
+  <path d="M104 336h304l-34 120a20 20 0 0 1-19 14H157a20 20 0 0 1-19-14z" fill="url(#basket)"/>
+  <rect x="92" y="320" width="328" height="34" rx="17" fill="#fed7aa"/>
+  <g stroke="#9a3412" stroke-width="9" stroke-linecap="round" opacity="0.55">
+    <line x1="188" y1="372" x2="196" y2="448"/>
+    <line x1="256" y1="372" x2="256" y2="448"/>
+    <line x1="324" y1="372" x2="316" y2="448"/>
+  </g>
+</svg>

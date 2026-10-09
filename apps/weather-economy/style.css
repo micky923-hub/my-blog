@@ -1,0 +1,502 @@
+/* ==============================
+   날씨 × 장바구니 (we-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다. 새 색 없음.
+   오름/내림은 색이 아니라 ▲▼ 기호로 구분한다.
+   ============================== */
+
+:root {
+  --we-radius: 10px;
+  --we-touch: 44px;
+  --we-width: calc(var(--content-width) + 200px);
+}
+
+/* ---------- Header ---------- */
+
+.we-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.we-header-inner {
+  max-width: var(--we-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.we-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--we-touch);
+  font-weight: 600;
+}
+
+.we-theme-toggle {
+  min-width: var(--we-touch);
+  min-height: var(--we-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.we-main {
+  max-width: var(--we-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.we-intro {
+  margin-bottom: 1.25rem;
+}
+
+.we-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.we-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.we-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--we-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.we-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--we-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.we-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.we-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.we-guide-steps,
+.we-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.we-guide-steps li,
+.we-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.we-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- 상태·경고 ---------- */
+
+.we-status {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--we-radius);
+  color: var(--color-text-secondary);
+  text-align: center;
+  word-break: keep-all;
+}
+
+.we-status[hidden],
+#we-dashboard[hidden],
+.we-warnings[hidden],
+.we-section[hidden],
+#we-city-wrap[hidden] {
+  display: none;
+}
+
+.we-warn {
+  margin: 0 0 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+/* ---------- 오늘의 한 줄 ---------- */
+
+.we-headline-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.we-headline {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border-radius: var(--we-radius);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* ---------- Section ---------- */
+
+.we-section {
+  margin-bottom: 1.75rem;
+}
+
+.we-section-title {
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-text);
+}
+
+.we-empty {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--we-radius);
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- 도시 칩 ---------- */
+
+.we-cities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.we-chip {
+  flex: 1 1 auto;
+  min-width: 3.5rem;
+  min-height: var(--we-touch);
+  padding: 0 0.75rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.we-chip:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.we-chip:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.we-chip[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.we-chip:disabled {
+  cursor: not-allowed;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  opacity: 0.8;
+}
+
+.we-chip-sub {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+/* ---------- 3일 날씨 ---------- */
+
+.we-days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.we-day {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--we-radius);
+  padding: 0.8rem 1rem;
+  min-width: 0;
+}
+
+.we-day-head {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.we-day-date {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.we-day-sky {
+  margin: 0.25rem 0 0.4rem;
+  color: var(--color-text);
+}
+
+.we-day-icon {
+  font-size: 1.4rem;
+  vertical-align: -0.15em;
+}
+
+.we-day-rows {
+  margin: 0;
+}
+
+.we-day-rows div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.15rem 0;
+}
+
+.we-day-rows dt {
+  color: var(--color-text-secondary);
+}
+
+.we-day-rows dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.we-day-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- 해설 카드 ---------- */
+
+.we-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.we-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--we-radius);
+  padding: 0.9rem 1rem;
+  min-width: 0;
+}
+
+.we-card-title {
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.we-card-text {
+  margin: 0 0 0.5rem;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.we-card-prices {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.we-card-prices li {
+  margin-bottom: 0.25rem;
+  word-break: keep-all;
+}
+
+.we-card-note,
+.we-card-basis {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- 시세 표 ---------- */
+
+.we-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.we-table th,
+.we-table td {
+  padding: 0.55rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: right;
+}
+
+.we-table thead th {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.we-table th:first-child {
+  text-align: left;
+}
+
+.we-table tbody th {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.we-unit {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.we-badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.we-price {
+  font-weight: 700;
+}
+
+.we-strong {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.we-na {
+  color: var(--color-text-secondary);
+  text-align: right;
+}
+
+/* 좁은 화면: 표를 품목별 카드로 */
+@media (max-width: 599px) {
+  .we-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .we-table,
+  .we-table tbody,
+  .we-table tr,
+  .we-table th,
+  .we-table td {
+    display: block;
+    width: 100%;
+  }
+  .we-table tr {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .we-table th,
+  .we-table td {
+    border: none;
+    padding: 0.15rem 0;
+  }
+  .we-table tbody th {
+    text-align: left;
+    margin-bottom: 0.2rem;
+  }
+  .we-table td[data-label] {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .we-table td[data-label]::before {
+    content: attr(data-label);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .we-table td.we-na {
+    text-align: left;
+  }
+}
+
+/* ---------- 출처·면책 ---------- */
+
+.we-source {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.we-footnote {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.we-footnote p {
+  margin: 0 0 0.5rem;
+}
+
+.we-footnote a {
+  display: inline-block;
+  min-height: 1.6em;
+}
+
+@media (min-width: 600px) {
+  .we-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .we-days {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .we-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

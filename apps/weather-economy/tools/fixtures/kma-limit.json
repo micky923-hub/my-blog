@@ -1,0 +1,1 @@
+{"*":"<OpenAPI_ServiceResponse>\n\t<cmmMsgHeader>\n\t\t<errMsg>SERVICE ERROR</errMsg>\n\t\t<returnAuthMsg>LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR</returnAuthMsg>\n\t\t<returnReasonCode>22</returnReasonCode>\n\t</cmmMsgHeader>\n</OpenAPI_ServiceResponse>"}
