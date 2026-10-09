@@ -11,7 +11,7 @@
  *   - 요청 출처(Origin)가 블로그 주소일 때만 허용
  *   - slug 는 영문 소문자·숫자·하이픈, 1~100자
  *   - 원본 IP는 저장하지 않고 SHA-256(IP|날짜|HASH_SALT) 해시만 저장 → 같은 글 하루 1회
- *   - 30일 지난 해시는 매일 cron 과 가끔 요청 처리 중에 삭제
+ *   - 30일 지난 해시는 매일 cron(설정한 경우)과 좋아요 요청 처리 뒤에 삭제
  */
 
 var ALLOWED_ORIGINS = [
@@ -115,8 +115,9 @@ async function handleLike(request, env, ctx, origin) {
       .run();
   }
 
-  // 가끔(약 1%) 요청 처리 뒤에 오래된 기록 정리. cron 을 설정하지 않은 경우의 보조 수단.
-  if (Math.random() < 0.01 && ctx && typeof ctx.waitUntil === 'function') {
+  // 좋아요 요청마다 응답 뒤에 오래된 기록 정리(day 인덱스 사용, 가벼움).
+  // 대시보드 붙여넣기 방식은 cron 이 없을 수 있어서, 방문이 뜸해도 30일 보관 약속을 지키기 위한 보조 수단.
+  if (ctx && typeof ctx.waitUntil === 'function') {
     ctx.waitUntil(cleanupOldLogs(env, now).catch(function() {}));
   }
 

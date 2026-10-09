@@ -111,8 +111,9 @@ D1 데이터베이스
 4. **Workers & Pages → Create → Worker** 에서 이름 `likes-api` 로 만든 뒤, `Edit code` 에 `workers/likes/worker.js` 내용을 붙여넣고 `Deploy`.
 5. 그 Worker의 **Settings → Bindings** 에서 D1 바인딩 추가: 변수 이름 `DB`, 데이터베이스 `blog-likes`.
 6. **Settings → Variables and Secrets** 에서 비밀 값 `HASH_SALT` 를 추가한다(아무 긴 무작위 문자열. 채팅에 붙여넣지 말 것).
-7. Worker 주소(예: `https://likes-api.내계정.workers.dev`)를 복사해서 Claude에게 알려 준다. 이 주소는 공개돼도 괜찮다. Claude가 `site.config.json` 의 `likeApi` 에 넣는다.
-8. (선택) 나중에 봇이 많아지면 Cloudflare Turnstile을 추가할 수 있다. 처음에는 넣지 않는다.
+7. 같은 Worker의 **Settings → Triggers → Cron Triggers** 에서 `Add` → 매일 한 번(예: `17 3 * * *`)을 추가한다. 30일 지난 기록을 매일 지우는 예약이다.
+8. Worker 주소(예: `https://likes-api.내계정.workers.dev`)를 복사해서 Claude에게 알려 준다. 이 주소는 공개돼도 괜찮다. Claude가 `site.config.json` 의 `likeApi` 에 넣는다.
+9. (선택) 나중에 봇이 많아지면 Cloudflare Turnstile을 추가할 수 있다. 처음에는 넣지 않는다.
 
 > 사용자가 터미널을 쓸 줄 알면 2~6단계는 `npx wrangler` 명령 몇 줄로 대신할 수 있다. 어느 쪽이든 Claude는 Cloudflare 계정 비밀번호·API 토큰을 받지 않는다.
 
