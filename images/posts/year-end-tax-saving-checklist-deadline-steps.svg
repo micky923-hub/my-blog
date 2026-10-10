@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">12월 31일까지의 연말 절세 마감 순서</title>
+  <desc id="d">11월 말까지 홈택스 미리보기로 카드 사용액과 결정세액을 확인하고 무주택 확인서를 냅니다. 12월 중순까지 연금저축·IRP 남은 한도를 넣고 고향사랑기부를 합니다. 12월 31일에 올해 공제가 마감되고, 1월에는 간소화 자료를 확인한 뒤 월세·안경 서류를 회사에 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">12월 31일까지, 이 순서로</text>
+    <text x="32" y="88" font-size="18" fill="#475569">돈을 넣고 쓰는 일은 해가 바뀌면 끝나요</text>
+
+    <line x1="62" y1="128" x2="62" y2="456" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">11월 말까지 확인</text>
+    <text x="98" y="158" font-size="16" fill="#475569">미리보기 카드·결정세액, 무주택 확인서</text>
+
+    <circle cx="62" cy="216" r="20" fill="#3b82f6"/>
+    <text x="62" y="223" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="212" font-size="21" font-weight="800" fill="#0f172a">12월 초 카드 바꾸기</text>
+    <text x="98" y="238" font-size="16" fill="#475569">25% 넘었으면 체크카드·현금영수증</text>
+
+    <circle cx="62" cy="296" r="20" fill="#3b82f6"/>
+    <text x="62" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="292" font-size="21" font-weight="800" fill="#0f172a">12월 중순까지 입금</text>
+    <text x="98" y="318" font-size="16" fill="#475569">연금저축·IRP 남은 한도, 고향사랑기부</text>
+
+    <circle cx="62" cy="376" r="20" fill="#dc2626"/>
+    <text x="62" y="383" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">!</text>
+    <text x="98" y="372" font-size="21" font-weight="800" fill="#991b1b">12월 31일 올해 공제 마감</text>
+    <text x="98" y="398" font-size="16" fill="#475569">마지막 날 입금은 내년으로 잡힐 수 있어요</text>
+
+    <circle cx="62" cy="456" r="20" fill="#16a34a"/>
+    <text x="62" y="463" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="452" font-size="21" font-weight="800" fill="#166534">1월 서류 제출</text>
+    <text x="98" y="478" font-size="16" fill="#475569">간소화 확인 후 월세·안경 영수증 추가</text>
+
+    <rect x="32" y="510" width="496" height="70" rx="12" fill="#fef3c7"/>
+    <text x="52" y="538" font-size="17" font-weight="800" fill="#92400e">12월 마지막 주는 이체가 몰려요</text>
+    <text x="52" y="564" font-size="16" fill="#92400e">입금과 기부는 중순까지 끝내 두세요</text>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">한 자녀에게 10년마다 나눠 주는 증여 일정</title>
+  <desc id="d">태어났을 때 2,000만 원, 만 10세 2,000만 원, 만 20세 5,000만 원, 만 30세 5,000만 원, 결혼할 때 혼인 공제 1억 원을 쓰면 누적 2억 4,000만 원을 증여세 없이 줄 수 있습니다. 각 증여 사이에는 10년이 꽉 차게 간격을 둡니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">10년마다 나눠 주면</text>
+    <text x="32" y="88" font-size="18" fill="#475569">세금 없이 쌓이는 금액(누적)</text>
+
+    <text x="32" y="138" font-size="19" font-weight="700" fill="#0f172a">태어났을 때 <tspan fill="#64748b" font-weight="400">+2,000만</tspan></text>
+    <rect x="32" y="150" width="33" height="36" rx="7" fill="#93c5fd"/>
+    <text x="77" y="175" font-size="18" font-weight="800" fill="#0f172a">2,000만 원</text>
+
+    <text x="32" y="222" font-size="19" font-weight="700" fill="#0f172a">만 10세 <tspan fill="#64748b" font-weight="400">+2,000만</tspan></text>
+    <rect x="32" y="234" width="67" height="36" rx="7" fill="#60a5fa"/>
+    <text x="111" y="259" font-size="18" font-weight="800" fill="#0f172a">4,000만 원</text>
+
+    <text x="32" y="306" font-size="19" font-weight="700" fill="#0f172a">만 20세 <tspan fill="#64748b" font-weight="400">+5,000만</tspan></text>
+    <rect x="32" y="318" width="150" height="36" rx="7" fill="#3b82f6"/>
+    <text x="194" y="343" font-size="18" font-weight="800" fill="#0f172a">9,000만 원</text>
+
+    <text x="32" y="390" font-size="19" font-weight="700" fill="#0f172a">만 30세 <tspan fill="#64748b" font-weight="400">+5,000만</tspan></text>
+    <rect x="32" y="402" width="233" height="36" rx="7" fill="#2563eb"/>
+    <text x="277" y="427" font-size="18" font-weight="800" fill="#0f172a">1억 4,000만 원</text>
+
+    <text x="32" y="474" font-size="19" font-weight="700" fill="#0f172a">결혼할 때 <tspan fill="#16a34a" font-weight="400">+1억 (혼인 공제)</tspan></text>
+    <rect x="32" y="486" width="233" height="36" rx="7" fill="#2563eb"/>
+    <rect x="265" y="486" width="167" height="36" rx="7" fill="#16a34a"/>
+    <text x="348" y="511" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2억 4,000만 원</text>
+
+    <text x="32" y="566" font-size="16" fill="#475569">각 증여 사이는 10년이 꽉 차야 합산되지 않아요</text>
+  </g>
+</svg>

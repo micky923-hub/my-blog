@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">성년 자녀 증여 금액별 증여세</title>
+  <desc id="d">10년 동안 다른 증여가 없는 성년 자녀에게 주고 기한 안에 신고하면, 공제 5,000만 원을 빼고 신고세액공제 3%를 적용해 1억 원은 485만 원, 2억 원은 1,940만 원, 3억 원은 3,880만 원을 냅니다. 준 돈은 세 배지만 세금은 여덟 배입니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">성년 자녀에게 주면 세금은</text>
+    <text x="32" y="90" font-size="18" fill="#475569">공제 5,000만 원 · 기한 내 신고 3% 공제 후</text>
+
+    <text x="32" y="142" font-size="21" font-weight="700" fill="#0f172a">1억 원 증여</text>
+    <rect x="32" y="154" width="45" height="44" rx="8" fill="#3b82f6"/>
+    <text x="91" y="184" font-size="20" font-weight="800" fill="#0f172a">485만 원</text>
+
+    <text x="32" y="236" font-size="21" font-weight="700" fill="#0f172a">2억 원 증여</text>
+    <rect x="32" y="248" width="180" height="44" rx="8" fill="#f59e0b"/>
+    <text x="226" y="278" font-size="20" font-weight="800" fill="#0f172a">1,940만 원</text>
+
+    <text x="32" y="330" font-size="21" font-weight="700" fill="#0f172a">3억 원 증여</text>
+    <rect x="32" y="342" width="360" height="44" rx="8" fill="#dc2626"/>
+    <text x="406" y="372" font-size="20" font-weight="800" fill="#0f172a">3,880만 원</text>
+
+    <rect x="32" y="412" width="496" height="68" rx="12" fill="#fee2e2"/>
+    <text x="52" y="440" font-size="18" font-weight="800" fill="#7f1d1d">준 돈은 3배, 세금은 8배</text>
+    <text x="52" y="466" font-size="16" fill="#7f1d1d">과세표준 1억 원을 넘으면 세율이 20%로 올라요</text>
+  </g>
+</svg>
