@@ -336,12 +336,61 @@ function checkBlockedImages(postsDir, files) {
   }
 }
 
+// 글 요약 영상(frontmatter `video:`)
+// ID 11자(A-Z a-z 0-9 _ -) 또는 유튜브 주소를 받아 ID만 돌려준다. 형식이 틀리면 null.
+var VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
+function parseVideoId(value) {
+  var v = String(value || '').trim().replace(/^["']|["']$/g, '');
+  if (VIDEO_ID_RE.test(v)) return v;
+  var m = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:shorts\/|embed\/|live\/|watch\?(?:[^#]*&)?v=)|youtube-nocookie\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{11})(?:[?&#\/].*)?$/.exec(v);
+  return m ? m[1] : null;
+}
+
+// video: 값이 틀린 글이 있으면 빌드를 멈춘다 (checkBlockedImages와 같은 방식)
+function checkVideoIds(postsDir, files) {
+  var problems = [];
+  files.forEach(function(filename) {
+    var meta = parseFrontmatter(fs.readFileSync(path.join(postsDir, filename), 'utf-8')).metadata;
+    if (!('video' in meta)) return;
+    if (!parseVideoId(meta.video)) {
+      problems.push('  - posts/' + filename + ' → video: "' + meta.video + '"');
+    }
+  });
+  if (problems.length > 0) {
+    console.error('\n[빌드 중단] video: 값이 유튜브 영상 ID(11자) 또는 유튜브 주소 형식이 아닙니다.\n' + problems.join('\n') + '\n');
+    process.exit(1);
+  }
+}
+
+// 가벼운 삽입: 처음엔 우리 포스터 + 재생 버튼만, 누르면 js/video.js가 iframe으로 바꾼다
+function videoHtml(videoId, videoTitle, slug) {
+  var t = escapeHtml(videoTitle);
+  return '<figure class="post-video">\n'
+    + '  <a class="video-lite" href="https://www.youtube.com/shorts/' + videoId + '"'
+    + ' data-video-id="' + videoId + '" data-video-title="' + t + '"'
+    + ' aria-label="영상 재생: ' + t + ' (약 40초, 자막 있음)">\n'
+    + '    <img src="' + base + 'images/posts/' + escapeHtml(slug) + '-video-poster.jpg" alt=""'
+    + ' width="540" height="960" loading="lazy">\n'
+    + '    <span class="video-play" aria-hidden="true"></span>\n'
+    + '  </a>\n'
+    + '  <figcaption>40초 요약 영상 · 소리 없이 자막으로 볼 수 있어요</figcaption>\n'
+    + '</figure>\n';
+}
+
+// 첫 <h2 앞에 넣는다. 소제목이 없으면 본문 끝에 넣는다.
+function insertVideo(html, block) {
+  var i = html.indexOf('<h2');
+  if (i === -1) return html + '\n' + block;
+  return html.slice(0, i) + block + html.slice(i);
+}
+
 function buildPosts() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
 
   var files = fs.readdirSync(postsDir).filter(function(f) { return f.endsWith('.md'); });
   checkBlockedImages(postsDir, files);
+  checkVideoIds(postsDir, files);
   var posts = [];
 
   // 1단계: 모든 글을 읽어 정보 모으기
@@ -352,7 +401,9 @@ function buildPosts() {
     var meta = parsed.metadata;
     var slug = filename.replace(/\.md$/, '');
     var withIds = addHeadingIds(marked.parse(parsed.content));
+    var videoId = 'video' in meta ? parseVideoId(meta.video) : null;
     entries.push({
+      videoId: videoId,
       meta: meta,
       slug: slug,
       htmlContent: withIds.html,
@@ -382,6 +433,10 @@ function buildPosts() {
     var slug = entry.slug;
     var htmlContent = entry.htmlContent;
     var hasCode = htmlContent.indexOf('<code') !== -1;
+    if (entry.videoId) {
+      var videoTitle = meta.videoTitle || ((meta.title || slug) + ' — 40초 요약 영상');
+      htmlContent = insertVideo(htmlContent, videoHtml(entry.videoId, videoTitle, slug));
+    }
 
     var tagsHtml = '';
     // 글 2개 이상이 함께 쓰는 태그만 링크로 보여 준다 (1개뿐인 태그는 눌러도 이 글만 나오므로 검색엔진 키워드로만 쓴다)
@@ -500,6 +555,7 @@ function buildPosts() {
       pathPrefix: sharePathPrefix,
       extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + Date.now() + '"></script>\n'
         + '  <script src="' + sharePathPrefix + 'js/like.js?v=' + Date.now() + '" defer></script>\n'
+        + (entry.videoId ? '  <script src="' + sharePathPrefix + 'js/video.js?v=' + Date.now() + '" defer></script>\n' : '')
     });
 
     ensureDir(path.join(DIST, 'posts'));
@@ -839,6 +895,9 @@ if (fs.existsSync('js/share.js')) {
 }
 if (fs.existsSync('js/like.js')) {
   fs.copyFileSync('js/like.js', path.join(DIST, 'js', 'like.js'));
+}
+if (fs.existsSync('js/video.js')) {
+  fs.copyFileSync('js/video.js', path.join(DIST, 'js', 'video.js'));
 }
 
 // 글 본문에 넣는 설명 그림(images/posts/*.svg 등)

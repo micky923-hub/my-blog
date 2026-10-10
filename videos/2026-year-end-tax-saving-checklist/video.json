@@ -1,0 +1,69 @@
+{
+  "slug": "2026-year-end-tax-saving-checklist",
+  "post": "posts/2026-year-end-tax-saving-checklist.md",
+  "updated": "2026-10-10",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 4,
+      "chip": "연말 절세",
+      "lines": ["연말정산 환급액,", "[[12월 31일]]에", "이미 정해집니다"],
+      "captions": ["연말정산 환급액,", "사실 12월 31일에 이미 정해집니다."]
+    },
+    {
+      "type": "point",
+      "duration": 10,
+      "chip": "할 일 1",
+      "lines": ["연금저축·IRP", "[[900만 원]]까지 채우세요"],
+      "big": "+99만 원",
+      "label": "총급여 5,000만 원, 남은 600만 원을 채우면 늘어나는 환급",
+      "captions": [
+        "연금저축·IRP에 올해 넣은 돈을 확인하고,",
+        "900만 원까지 남은 금액을 12월 중순까지 채우세요.",
+        "총급여 5,000만 원, 300만 원 넣은 사람이",
+        "남은 600만 원을 채우면 환급이 99만 원 늘어납니다."
+      ]
+    },
+    {
+      "type": "figure",
+      "duration": 10,
+      "chip": "할 일 2",
+      "lines": ["문턱을 넘었다면", "[[체크카드]]로 바꾸세요"],
+      "big": "약 7만 4천 원",
+      "label": "12월 300만 원을 체크카드로",
+      "svg": "images/posts/year-end-tax-saving-checklist-action-bars.svg",
+      "captions": [
+        "카드 사용액이 총급여의 25%를 넘었다면",
+        "남은 기간은 체크카드·현금영수증으로 쓰세요.",
+        "총급여 5,000만 원, 12월에 쓸 300만 원만 바꿔도",
+        "세금이 약 7만 4천 원 줄어듭니다."
+      ]
+    },
+    {
+      "type": "figure",
+      "duration": 10,
+      "chip": "할 일 3",
+      "lines": ["고향사랑기부 [[10만 원]],", "서류는 12월 안에"],
+      "big": "12월 31일",
+      "label": "올해 공제 마감",
+      "svg": "images/posts/year-end-tax-saving-checklist-deadline-steps.svg",
+      "captions": [
+        "고향사랑기부 10만 원은 전액 세액공제로 돌아오고,",
+        "답례품도 3만 원어치 받습니다.",
+        "월세·안경 서류는 12월이 가기 전에 챙기세요."
+      ]
+    },
+    {
+      "type": "outro",
+      "duration": 6,
+      "chip": "더 자세히",
+      "lines": ["연봉별 계산 예시는", "[[블로그]]에서 보세요"],
+      "site": "financialdiary.co.kr",
+      "search": ["Financial Diary에서", "[[‘연말 절세’]] 검색"],
+      "captions": [
+        "연봉별 계산 예시와 자주 하는 실수는 블로그에서 보세요.",
+        "Financial Diary에서 ‘연말 절세’를 검색하세요."
+      ]
+    }
+  ]
+}

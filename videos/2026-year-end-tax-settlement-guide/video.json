@@ -1,0 +1,70 @@
+{
+  "slug": "2026-year-end-tax-settlement-guide",
+  "post": "posts/2026-year-end-tax-settlement-guide.md",
+  "updated": "2026-10-10",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 4,
+      "chip": "연말정산",
+      "lines": ["동료는 [[50만 원]] 환급", "나는 [[12만 원]]", "추가 납부"],
+      "sub": ["차이는 1월 전 1년에 있습니다"],
+      "captions": ["옆자리 동료는 50만 원 돌려받는데,", "나는 왜 12만 원을 더 낼까요?"]
+    },
+    {
+      "type": "point",
+      "duration": 10,
+      "chip": "할 일 1",
+      "lines": ["홈택스 [[미리보기]]부터", "열어 보세요"],
+      "big": "12월 31일",
+      "label": "이날까지 쓰고 넣은 돈으로 환급액이 정해집니다",
+      "captions": [
+        "연말정산은 12월 31일까지 쓰고 넣은 돈으로 계산합니다.",
+        "홈택스 연말정산 미리보기로",
+        "지금까지 쓴 카드 금액부터 확인하세요."
+      ]
+    },
+    {
+      "type": "figure",
+      "duration": 10,
+      "chip": "할 일 2",
+      "lines": ["25%를 넘었다면", "[[체크카드]]로 쓰세요"],
+      "big": "90만 → 180만 원",
+      "label": "체크카드로 쓰면 공제 2배",
+      "svg": "images/posts/year-end-tax-settlement-guide-card-mix.svg",
+      "captions": [
+        "카드 사용액이 총급여의 25%를 넘었다면",
+        "남은 기간은 체크카드·현금영수증으로 쓰세요.",
+        "총급여 4,000만 원, 문턱 넘은 600만 원을 체크카드로 쓰면",
+        "소득공제가 90만 원에서 180만 원으로 늘어납니다."
+      ]
+    },
+    {
+      "type": "figure",
+      "duration": 10,
+      "chip": "할 일 3",
+      "lines": ["자동으로 안 잡히는 서류,", "[[12월 전에]] 모으세요"],
+      "big": "11월",
+      "label": "부양가족·안경·월세 서류",
+      "svg": "images/posts/year-end-tax-settlement-guide-timeline.svg",
+      "captions": [
+        "부양가족·안경·월세처럼 자동으로 안 잡히는 항목은",
+        "12월 전에 서류를 모아 두세요.",
+        "연금계좌 납입과 기부는",
+        "12월 중순까지 끝내는 편이 안전합니다."
+      ]
+    },
+    {
+      "type": "outro",
+      "duration": 6,
+      "chip": "더 자세히",
+      "lines": ["연봉별 계산 예시는", "[[블로그]]에서 보세요"],
+      "site": "financialdiary.co.kr",
+      "search": ["Financial Diary에서", "[[‘연말정산’]] 검색"],
+      "captions": [
+        "연봉별 계산 예시와 체크리스트는 블로그에서 보세요.",
+        "Financial Diary에서 ‘연말정산’을 검색하세요."
+      ]
+    }
+  ]
+}
