@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">청약통장 소득공제로 줄어드는 세금</title>
+  <desc id="d">1년에 300만 원을 넣으면 40%인 120만 원이 소득에서 빠집니다. 지방소득세 포함 세율 16.5% 구간이면 세금이 19만 8천 원, 6.6% 구간이면 7만 9,200원 줄어듭니다. 무주택 세대주이고 총급여 7,000만 원 이하여야 합니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">300만 원 넣으면 세금은?</text>
+    <text x="32" y="88" font-size="18" fill="#475569">무주택 세대주 · 총급여 7,000만 원 이하</text>
+
+    <rect x="32" y="116" width="496" height="64" rx="12" fill="#dbeafe"/>
+    <text x="52" y="156" font-size="21" font-weight="800" fill="#1e3a8a">1년 납입 300만 원 <tspan font-weight="400" font-size="17">(월 25만 원)</tspan></text>
+
+    <text x="280" y="214" text-anchor="middle" font-size="20" font-weight="800" fill="#64748b">↓ × 40%</text>
+
+    <rect x="32" y="232" width="496" height="64" rx="12" fill="#bfdbfe"/>
+    <text x="52" y="272" font-size="21" font-weight="800" fill="#1e3a8a">소득공제 120만 원</text>
+
+    <text x="280" y="330" text-anchor="middle" font-size="20" font-weight="800" fill="#64748b">↓ × 내 세율</text>
+
+    <rect x="32" y="348" width="240" height="96" rx="12" fill="#dcfce7"/>
+    <text x="152" y="382" text-anchor="middle" font-size="17" fill="#166534">16.5% 구간</text>
+    <text x="152" y="418" text-anchor="middle" font-size="22" font-weight="800" fill="#166534">19만 8천 원</text>
+
+    <rect x="288" y="348" width="240" height="96" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+    <text x="408" y="382" text-anchor="middle" font-size="17" fill="#166534">6.6% 구간</text>
+    <text x="408" y="418" text-anchor="middle" font-size="22" font-weight="800" fill="#166534">7만 9,200원</text>
+
+    <text x="32" y="486" font-size="17" fill="#0f172a">은행에 <tspan font-weight="800">무주택 확인서</tspan>를 내야 공제됩니다</text>
+  </g>
+</svg>

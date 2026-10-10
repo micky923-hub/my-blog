@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">청년도약계좌와 청년미래적금 월 기여금 비교</title>
+  <desc id="d">청년도약계좌는 소득 2,400만 원 이하가 월 70만 원을 넣으면 기여금이 월 3만 3천 원, 1년 39만 6천 원입니다. 청년미래적금 일반형은 월 50만 원에 6%인 3만 원, 1년 36만 원이고, 우대형은 12%인 6만 원, 1년 72만 원입니다. 도약계좌 만기는 5년, 미래적금은 3년입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">갈아타면 기여금은?</text>
+    <text x="32" y="88" font-size="18" fill="#475569">한 달에 받는 정부기여금 · 꽉 채워 넣을 때</text>
+
+    <text x="32" y="138" font-size="19" font-weight="700" fill="#0f172a">도약계좌 <tspan font-weight="400" fill="#475569">(2,400만 원 이하, 70만 원)</tspan></text>
+    <rect x="32" y="150" width="220" height="40" rx="8" fill="#3b82f6"/>
+    <text x="262" y="177" font-size="19" font-weight="800" fill="#1e3a8a">3만 3천 원</text>
+    <text x="32" y="214" font-size="16" fill="#475569">1년 39만 6천 원 · 만기 5년</text>
+
+    <text x="32" y="262" font-size="19" font-weight="700" fill="#0f172a">미래적금 일반형 <tspan font-weight="400" fill="#475569">(50만 원 × 6%)</tspan></text>
+    <rect x="32" y="274" width="200" height="40" rx="8" fill="#14b8a6"/>
+    <text x="242" y="301" font-size="19" font-weight="800" fill="#115e59">3만 원</text>
+    <text x="32" y="338" font-size="16" fill="#475569">1년 36만 원 · 만기 3년</text>
+
+    <text x="32" y="386" font-size="19" font-weight="700" fill="#0f172a">미래적금 우대형 <tspan font-weight="400" fill="#475569">(50만 원 × 12%)</tspan></text>
+    <rect x="32" y="398" width="400" height="40" rx="8" fill="#0d9488"/>
+    <text x="442" y="425" font-size="19" font-weight="800" fill="#115e59">6만 원</text>
+    <text x="32" y="462" font-size="16" fill="#475569">1년 72만 원 · 만기 3년</text>
+
+    <rect x="32" y="478" width="496" height="1" fill="#e2e8f0"/>
+    <text x="32" y="504" font-size="16" fill="#0f172a"><tspan font-weight="800">우대형 대상</tspan>이면 갈아타기를 먼저 검토하세요</text>
+  </g>
+</svg>

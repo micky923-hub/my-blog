@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 590" role="img" aria-labelledby="t d">
+  <title id="t">청년도약계좌 소득 구간별 월 정부기여금</title>
+  <desc id="d">월 70만 원을 넣을 때 정부기여금은 개인소득 2,400만 원 이하 월 3만 3천 원, 3,600만 원 이하 2만 9천 원, 4,800만 원 이하 약 2만 5천 원, 6,000만 원 이하 2만 1천 원입니다. 7,500만 원 이하는 기여금 없이 이자 비과세만 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="590" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">내 소득이면 기여금은 얼마?</text>
+    <text x="32" y="88" font-size="18" fill="#475569">월 70만 원 납입 · 2025년 1월 납입분부터</text>
+
+    <text x="32" y="134" font-size="19" font-weight="700" fill="#0f172a">2,400만 원 이하</text>
+    <rect x="32" y="146" width="400" height="36" rx="8" fill="#2563eb"/>
+    <text x="442" y="171" font-size="18" font-weight="800" fill="#1e3a8a">3만 3천 원</text>
+
+    <text x="32" y="216" font-size="19" font-weight="700" fill="#0f172a">3,600만 원 이하</text>
+    <rect x="32" y="228" width="352" height="36" rx="8" fill="#3b82f6"/>
+    <text x="394" y="253" font-size="18" font-weight="800" fill="#1e3a8a">2만 9천 원</text>
+
+    <text x="32" y="298" font-size="19" font-weight="700" fill="#0f172a">4,800만 원 이하</text>
+    <rect x="32" y="310" width="305" height="36" rx="8" fill="#60a5fa"/>
+    <text x="347" y="335" font-size="18" font-weight="800" fill="#1e3a8a">약 2만 5천 원</text>
+
+    <text x="32" y="380" font-size="19" font-weight="700" fill="#0f172a">6,000만 원 이하</text>
+    <rect x="32" y="392" width="255" height="36" rx="8" fill="#93c5fd"/>
+    <text x="297" y="417" font-size="18" font-weight="800" fill="#1e3a8a">2만 1천 원</text>
+
+    <text x="32" y="462" font-size="19" font-weight="700" fill="#0f172a">7,500만 원 이하</text>
+    <rect x="32" y="474" width="496" height="36" rx="8" fill="#e2e8f0"/>
+    <text x="48" y="499" font-size="17" fill="#475569">기여금 없음 · 이자 비과세만</text>
+
+    <rect x="32" y="526" width="496" height="44" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="555" font-size="17" fill="#075985"><tspan font-weight="800">5년 합계</tspan> 198만 · 174만 · 약 150만 · 126만 원</text>
+  </g>
+</svg>
