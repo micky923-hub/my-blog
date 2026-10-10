@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">연말정산 준비 순서</title>
+  <desc id="d">10~11월에는 홈택스 미리보기로 카드 사용액과 예상 세액을 확인하고, 11월에는 부양가족 확인과 월세·안경 영수증을 모읍니다. 12월 중순까지 연금저축·IRP 남은 한도를 채우고 기부를 마칩니다. 1월 15일 무렵 간소화 자료를 열람하고 1~2월에 회사에 제출합니다. 빠뜨린 공제는 5년 안에 경정청구로 돌려받습니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">연말정산, 이 순서로 움직이세요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">환급액은 12월 31일까지 정해집니다</text>
+
+    <line x1="62" y1="128" x2="62" y2="452" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">10~11월 · 미리보기</text>
+    <text x="98" y="158" font-size="16" fill="#475569">카드 사용액이 총급여 25%를 넘었는지</text>
+
+    <circle cx="62" cy="216" r="20" fill="#3b82f6"/>
+    <text x="62" y="223" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="212" font-size="21" font-weight="800" fill="#0f172a">11월 · 서류 모으기</text>
+    <text x="98" y="238" font-size="16" fill="#475569">부양가족 확인, 월세·안경 영수증</text>
+
+    <circle cx="62" cy="296" r="20" fill="#3b82f6"/>
+    <text x="62" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="292" font-size="21" font-weight="800" fill="#0f172a">12월 중순까지 · 납입·기부</text>
+    <text x="98" y="318" font-size="16" fill="#475569">연금저축·IRP 남은 한도, 고향사랑기부</text>
+
+    <circle cx="62" cy="376" r="20" fill="#3b82f6"/>
+    <text x="62" y="383" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">4</text>
+    <text x="98" y="372" font-size="21" font-weight="800" fill="#0f172a">1월 15일 무렵 · 간소화 자료</text>
+    <text x="98" y="398" font-size="16" fill="#475569">빠진 영수증은 직접 추가</text>
+
+    <circle cx="62" cy="452" r="20" fill="#16a34a"/>
+    <text x="62" y="459" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="448" font-size="21" font-weight="800" fill="#166534">1~2월 · 회사에 제출</text>
+    <text x="98" y="474" font-size="16" fill="#475569">공제 신고서와 서류를 함께</text>
+
+    <rect x="32" y="502" width="496" height="78" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="532" font-size="18" font-weight="800" fill="#075985">빠뜨렸다면 5년 안에 경정청구</text>
+    <text x="52" y="560" font-size="16" fill="#075985">홈택스에서 신청하고 영수증을 첨부하세요</text>
+  </g>
+</svg>
