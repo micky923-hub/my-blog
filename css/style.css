@@ -1793,3 +1793,100 @@ a:focus-visible {
     animation: none;
   }
 }
+
+/* ==============================
+   Post Video (글 요약 쇼츠, 가벼운 삽입)
+   ============================== */
+
+/* 세로(9:16) 영상이라 글 폭을 다 채우지 않고 최대 320px로 가운데 둔다.
+   색은 CSS 변수만 써서 다크 모드에서도 자동으로 바뀐다. */
+.post-video {
+  max-width: 320px;
+  width: 80%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.post-video .video-lite,
+.post-video iframe {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.post-content .post-video .video-lite {
+  text-decoration: none;
+}
+
+.post-content .post-video img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.post-video .video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 3px solid var(--color-bg);
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+/* 재생 삼각형 */
+.post-video .video-play::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: 13px 0 13px 21px;
+  border-color: transparent transparent transparent var(--color-bg);
+  transform: translate(-50%, -50%);
+}
+
+.post-video .video-lite:hover .video-play,
+.post-video .video-lite:focus-visible .video-play {
+  background-color: var(--color-accent-hover);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.post-video .video-lite:focus-visible,
+.post-video iframe:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.post-video figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-video .video-play {
+    transition: none;
+  }
+
+  .post-video .video-lite:hover .video-play,
+  .post-video .video-lite:focus-visible .video-play {
+    transform: translate(-50%, -50%);
+  }
+}
