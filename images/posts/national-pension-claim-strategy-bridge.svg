@@ -15,8 +15,8 @@
     <text x="32" y="186" font-size="20" font-weight="800" fill="#166534">✓ 사적연금으로 메우기</text>
     <rect x="32" y="200" width="178" height="96" rx="10" fill="#3b82f6"/>
     <text x="121" y="232" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">월 115만</text>
-    <text x="121" y="258" text-anchor="middle" font-size="15" fill="#ffffff">IRP 90만</text>
-    <text x="121" y="280" text-anchor="middle" font-size="15" fill="#ffffff">연금저축 25만</text>
+    <text x="121" y="258" text-anchor="middle" font-size="16" fill="#ffffff">IRP 90만</text>
+    <text x="121" y="280" text-anchor="middle" font-size="16" fill="#ffffff">연금저축 25만</text>
     <rect x="218" y="200" width="310" height="96" rx="10" fill="#16a34a"/>
     <text x="373" y="236" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">국민연금 월 100만</text>
     <text x="373" y="266" text-anchor="middle" font-size="16" fill="#ffffff">+ 남은 사적연금</text>
