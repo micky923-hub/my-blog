@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">대출 금리가 1%p 오를 때 LTV별 배당 재원 변화</title>
+  <desc id="d">1조 원 건물에서 1년 임대순이익 500억 원이 나오는 리츠가 대출 금리 4%에서 5%로 오르면, LTV 40%(대출 4,000억 원)는 배당 재원이 340억 원에서 300억 원으로 약 12% 줄고, LTV 60%(대출 6,000억 원)는 260억 원에서 200억 원으로 약 23% 줄어듭니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">금리 1%p 오르면, 배당 재원은</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1조 원 건물 · 임대순이익 연 500억 원</text>
+    <text x="32" y="116" font-size="18" fill="#475569">대출 금리 4% → 5% · 단순 계산</text>
+
+    <text x="32" y="166" font-size="21" font-weight="800" fill="#0f172a">LTV 40% <tspan font-size="17" font-weight="400" fill="#475569">(대출 4,000억 원)</tspan></text>
+    <text x="32" y="198" font-size="16" fill="#475569">금리 4%</text>
+    <rect x="112" y="178" width="400" height="34" rx="7" fill="#93c5fd"/>
+    <text x="500" y="201" text-anchor="end" font-size="17" font-weight="800" fill="#1e3a8a">340억 원</text>
+    <text x="32" y="244" font-size="16" fill="#475569">금리 5%</text>
+    <rect x="112" y="224" width="353" height="34" rx="7" fill="#3b82f6"/>
+    <text x="453" y="247" text-anchor="end" font-size="17" font-weight="800" fill="#ffffff">300억 원</text>
+    <text x="32" y="292" font-size="19" font-weight="800" fill="#1e3a8a">약 12% 줄어요</text>
+
+    <text x="32" y="350" font-size="21" font-weight="800" fill="#0f172a">LTV 60% <tspan font-size="17" font-weight="400" fill="#475569">(대출 6,000억 원)</tspan></text>
+    <text x="32" y="382" font-size="16" fill="#475569">금리 4%</text>
+    <rect x="112" y="362" width="306" height="34" rx="7" fill="#fca5a5"/>
+    <text x="406" y="385" text-anchor="end" font-size="17" font-weight="800" fill="#7f1d1d">260억 원</text>
+    <text x="32" y="428" font-size="16" fill="#475569">금리 5%</text>
+    <rect x="112" y="408" width="235" height="34" rx="7" fill="#dc2626"/>
+    <text x="335" y="431" text-anchor="end" font-size="17" font-weight="800" fill="#ffffff">200억 원</text>
+    <text x="32" y="476" font-size="19" font-weight="800" fill="#b91c1c">약 23% 줄어요</text>
+
+    <rect x="32" y="504" width="496" height="76" rx="12" fill="#fef3c7"/>
+    <text x="52" y="536" font-size="18" font-weight="800" fill="#92400e">대출이 많을수록 배당이 더 줄어요</text>
+    <text x="52" y="562" font-size="16" fill="#92400e">배당 재원 = 임대순이익 − 대출 이자</text>
+  </g>
+</svg>

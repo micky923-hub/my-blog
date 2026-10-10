@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 620" role="img" aria-labelledby="t d">
+  <title id="t">매매차익 1,000만 원일 때 ETF 종류별 세금</title>
+  <desc id="d">매매차익 1,000만 원에 대해 국내 주식형 ETF는 세금이 없고, 국내 상장 해외 ETF는 일반 계좌에서 15.4%인 154만 원, 해외 상장 ETF는 250만 원을 뺀 750만 원의 22%인 165만 원, 국내 상장 해외 ETF를 ISA 일반형에 담으면 200만 원을 뺀 800만 원의 9.9%인 79만 2천 원을 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="620" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">같은 1,000만 원, 다른 세금</text>
+    <text x="32" y="90" font-size="18" fill="#475569">매매차익 1,000만 원 · 단순 계산</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">국내 주식형 ETF</text>
+    <text x="32" y="166" font-size="16" fill="#475569">코스피200 등 · 매매차익 비과세</text>
+    <rect x="32" y="178" width="6" height="44" rx="3" fill="#16a34a"/>
+    <text x="52" y="208" font-size="20" font-weight="800" fill="#166534">0원</text>
+
+    <text x="32" y="262" font-size="20" font-weight="700" fill="#0f172a">국내 상장 해외 ETF</text>
+    <text x="32" y="288" font-size="16" fill="#475569">일반 계좌 · 1,000만 원 × 15.4%</text>
+    <rect x="32" y="300" width="373" height="44" rx="8" fill="#94a3b8"/>
+    <text x="218" y="330" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">154만 원</text>
+
+    <text x="32" y="384" font-size="20" font-weight="700" fill="#0f172a">해외 상장 ETF</text>
+    <text x="32" y="410" font-size="16" fill="#475569">250만 원 공제 · 750만 원 × 22%</text>
+    <rect x="32" y="422" width="400" height="44" rx="8" fill="#f59e0b"/>
+    <text x="232" y="452" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">165만 원</text>
+
+    <text x="32" y="506" font-size="20" font-weight="700" fill="#0f172a">국내 상장 해외 ETF (ISA 일반형)</text>
+    <text x="32" y="532" font-size="16" fill="#475569">200만 원 비과세 · 800만 원 × 9.9%</text>
+    <rect x="32" y="544" width="192" height="44" rx="8" fill="#3b82f6"/>
+    <text x="238" y="574" font-size="20" font-weight="800" fill="#1e3a8a">79만 2천 원</text>
+  </g>
+</svg>

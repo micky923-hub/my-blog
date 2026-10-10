@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">리츠 배당 60만 원, 계좌별로 받는 돈</title>
+  <desc id="d">배당수익률 6% 리츠에 1,000만 원을 넣으면 1년 세전 배당은 60만 원입니다. 일반 계좌는 15.4%를 떼고 50만 7,600원, 공모리츠 분리과세는 9.9%를 떼고 54만 600원, ISA 비과세 한도 안에서는 60만 원을 그대로 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">같은 배당, 계좌별 세후</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1,000만 원 · 배당수익률 6% · 세전 60만 원</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">일반 계좌</text>
+    <text x="32" y="170" font-size="16" fill="#475569">15.4% · 세금 9만 2,400원</text>
+    <rect x="32" y="182" width="338" height="44" rx="8" fill="#94a3b8"/>
+    <text x="201" y="212" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">50만 7,600원</text>
+
+    <text x="32" y="270" font-size="20" font-weight="700" fill="#0f172a">공모리츠 분리과세</text>
+    <text x="32" y="296" font-size="16" fill="#475569">9.9% · 세금 5만 9,400원</text>
+    <rect x="32" y="308" width="360" height="44" rx="8" fill="#3b82f6"/>
+    <text x="212" y="338" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">54만 600원</text>
+
+    <text x="32" y="396" font-size="20" font-weight="700" fill="#0f172a">ISA (비과세 한도 안)</text>
+    <text x="32" y="422" font-size="16" fill="#475569">세금 0원</text>
+    <rect x="32" y="434" width="400" height="44" rx="8" fill="#16a34a"/>
+    <text x="232" y="464" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">60만 원</text>
+
+    <text x="32" y="512" font-size="16" fill="#475569">분리과세는 2026년 말까지 산 금액 기준 · 연장 여부 확인</text>
+  </g>
+</svg>

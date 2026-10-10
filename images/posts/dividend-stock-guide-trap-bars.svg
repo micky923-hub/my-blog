@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">배당 트랩: 배당률 8%가 만들어지는 과정</title>
+  <desc id="d">주가 1만 원에 1주당 배당 500원이면 배당률은 5%입니다. 실적이 나빠져 주가가 6,250원으로 떨어지면 같은 500원 배당이 8%로 보입니다. 다음 해 배당이 250원으로 깎이면 6,250원에 산 사람의 실제 배당률은 4%입니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">배당률 8%의 함정</text>
+    <text x="32" y="90" font-size="18" fill="#475569">배당률 = 1주당 배당금 ÷ 주가</text>
+
+    <text x="32" y="142" font-size="20" font-weight="700" fill="#0f172a">평소: 주가 1만 원 · 배당 500원</text>
+    <rect x="32" y="154" width="250" height="44" rx="8" fill="#3b82f6"/>
+    <text x="157" y="184" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">5%</text>
+
+    <text x="32" y="246" font-size="20" font-weight="700" fill="#0f172a">주가 하락: 6,250원 · 배당 500원</text>
+    <rect x="32" y="258" width="400" height="44" rx="8" fill="#f59e0b"/>
+    <text x="232" y="288" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">8%로 보임</text>
+
+    <text x="32" y="350" font-size="20" font-weight="700" fill="#0f172a">다음 해: 배당 250원으로 삭감</text>
+    <rect x="32" y="362" width="200" height="44" rx="8" fill="#94a3b8"/>
+    <text x="132" y="392" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">4%</text>
+    <text x="246" y="392" font-size="16" fill="#475569">6,250원에 산 사람 기준</text>
+
+    <rect x="32" y="430" width="496" height="86" rx="12" fill="#fee2e2"/>
+    <text x="52" y="464" font-size="18" font-weight="800" fill="#7f1d1d">높은 배당률은 작년 배당 기준이에요</text>
+    <text x="52" y="494" font-size="16" fill="#7f1d1d">8%가 넘으면 주가가 왜 떨어졌는지부터 확인</text>
+  </g>
+</svg>

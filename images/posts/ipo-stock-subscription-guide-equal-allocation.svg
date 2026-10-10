@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 580" role="img" aria-labelledby="t d">
+  <title id="t">균등배정 계산 예시</title>
+  <desc id="d">공모가 2만 원, 최소 청약 10주인 공모주에 청약하면 청약 금액은 20만 원이고 증거금 50%인 10만 원만 넣으면 됩니다. 개인 몫 40만 주 중 절반인 20만 주를 균등배정으로 나누는데, 청약자가 50만 명이면 1인당 0.4주가 되어 10명 중 4명이 추첨으로 1주를 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="580" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">10만 원으로 균등배정 받기</text>
+    <text x="32" y="90" font-size="18" fill="#475569">공모가 2만 원 · 최소 10주 청약 예시</text>
+
+    <rect x="32" y="116" width="496" height="80" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="148" font-size="20" font-weight="800" fill="#075985">증거금 10만 원</text>
+    <text x="52" y="176" font-size="16" fill="#075985">청약 금액 20만 원(10주 × 2만 원)의 50%</text>
+
+    <text x="32" y="240" font-size="20" font-weight="700" fill="#0f172a">개인 몫 40만 주</text>
+    <rect x="32" y="252" width="248" height="52" rx="8" fill="#3b82f6"/>
+    <rect x="280" y="252" width="248" height="52" rx="8" fill="#94a3b8"/>
+    <text x="156" y="285" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">균등 20만 주</text>
+    <text x="404" y="285" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">비례 20만 주</text>
+    <text x="32" y="330" font-size="16" fill="#475569">균등: 최소 수량만 넣으면 모두 같은 몫</text>
+
+    <text x="32" y="380" font-size="20" font-weight="700" fill="#0f172a">청약자 50만 명이면</text>
+    <text x="32" y="410" font-size="16" fill="#475569">20만 주 ÷ 50만 명 = 1인당 0.4주</text>
+    <g fill="#cbd5e1">
+      <circle cx="52" cy="450" r="16" fill="#3b82f6"/><circle cx="100" cy="450" r="16" fill="#3b82f6"/><circle cx="148" cy="450" r="16" fill="#3b82f6"/><circle cx="196" cy="450" r="16" fill="#3b82f6"/>
+      <circle cx="244" cy="450" r="16"/><circle cx="292" cy="450" r="16"/><circle cx="340" cy="450" r="16"/><circle cx="388" cy="450" r="16"/><circle cx="436" cy="450" r="16"/><circle cx="484" cy="450" r="16"/>
+    </g>
+
+    <rect x="32" y="492" width="496" height="68" rx="12" fill="#dcfce7"/>
+    <text x="52" y="533" font-size="19" font-weight="800" fill="#166534">10명 중 4명이 추첨으로 1주</text>
+  </g>
+</svg>
