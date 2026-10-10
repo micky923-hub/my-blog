@@ -38,6 +38,49 @@ var basePath = (config.basePath || '/').replace(/\/$/, '');
 var base = basePath + '/';
 var allTopTags = [];
 
+// 뉴스레터 구독 주소 (site.config.json의 newsletterUrl)
+// 비어 있으면 구독 상자·띠·바로가기 링크·newsletter.html·sitemap 항목이 모두 빠진다.
+// https:// 로 시작하는 주소만 허용하고, 아니면 빌드를 멈춘다.
+var NEWSLETTER_URL = checkNewsletterUrl(config.newsletterUrl);
+
+function checkNewsletterUrl(value) {
+  var v = String(value == null ? '' : value).trim();
+  if (v === '') return '';
+  var ok = false;
+  try {
+    var u = new URL(v);
+    ok = u.protocol === 'https:' && !!u.hostname && /^https:\/\/[^\s"'<>`\\]+$/.test(v);
+  } catch (e) {
+    ok = false;
+  }
+  if (!ok) {
+    console.error('\n[빌드 중단] site.config.json의 newsletterUrl 값이 올바르지 않습니다: "' + v + '"\n'
+      + '  https:// 로 시작하는 구독 페이지 주소를 넣거나, 뉴스레터를 끄려면 빈 값("")으로 두세요.\n');
+    process.exit(1);
+  }
+  return v;
+}
+
+// pages/*.md 안의 뉴스레터 조건부 블록을 처리한다 (마커 줄 자체는 출력하지 않음)
+//   <!-- newsletter:start --> … <!-- newsletter:end -->           newsletterUrl이 있을 때만 보임
+//   <!-- newsletter:else:start --> … <!-- newsletter:else:end -->  newsletterUrl이 비었을 때만 보임
+// 본문의 {{newsletterUrl}} 은 구독 주소(HTML 이스케이프)로 바뀐다.
+var NL_BLOCK_RE = /^[ \t]*<!-- newsletter:start -->[ \t]*\r?\n([\s\S]*?)^[ \t]*<!-- newsletter:end -->[ \t]*(?:\r?\n|$)/gm;
+var NL_ELSE_RE = /^[ \t]*<!-- newsletter:else:start -->[ \t]*\r?\n([\s\S]*?)^[ \t]*<!-- newsletter:else:end -->[ \t]*(?:\r?\n|$)/gm;
+function applyNewsletterBlocks(text, filename) {
+  var on = !!NEWSLETTER_URL;
+  var out = text
+    .replace(NL_ELSE_RE, function(m, inner) { return on ? '' : inner; })
+    .replace(NL_BLOCK_RE, function(m, inner) { return on ? inner : ''; });
+  if (out.indexOf('<!-- newsletter:') !== -1) {
+    console.error('\n[빌드 중단] ' + filename + '의 뉴스레터 조건부 블록 마커가 짝이 맞지 않습니다.\n'
+      + '  <!-- newsletter:start --> / <!-- newsletter:end --> 와\n'
+      + '  <!-- newsletter:else:start --> / <!-- newsletter:else:end --> 를 각각 한 줄에 따로 쓰세요.\n');
+    process.exit(1);
+  }
+  return out.replace(/\{\{newsletterUrl\}\}/g, on ? escapeHtml(NEWSLETTER_URL) : '');
+}
+
 // 유틸리티
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -143,6 +186,7 @@ function htmlTemplate(opts) {
     + '        <h3 class="pre-footer-heading">바로가기</h3>\n'
     + '        <a href="' + base + '">홈</a>\n'
     + '        <a href="' + base + 'about.html">소개</a>\n'
+    + (NEWSLETTER_URL ? '        <a href="' + base + 'newsletter.html">뉴스레터</a>\n' : '')
     + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
     + '      </div>\n'
     + '    </div>\n'
@@ -314,6 +358,26 @@ function relatedHtml(list) {
   html += '        </ul>\n'
     + '      </section>\n';
   return html;
+}
+
+// 글 끝 구독 상자 (관련 글 아래, 마지막 광고 앞). 주소가 비면 출력 안 함.
+function newsletterBoxHtml() {
+  if (!NEWSLETTER_URL) return '';
+  return '      <aside class="newsletter-box" aria-labelledby="newsletter-title">\n'
+    + '        <h2 id="newsletter-title" class="newsletter-title"><span aria-hidden="true">✉️</span> 놓치기 쉬운 돈 일정, 메일로 받기</h2>\n'
+    + '        <p class="newsletter-desc">연말정산·종소세 시즌 알림과 이달의 할 일을 한 달에 한 번 보내 드려요.</p>\n'
+    + '        <a class="newsletter-btn" href="' + escapeHtml(NEWSLETTER_URL) + '" rel="noopener">무료로 구독하기 &rarr;</a>\n'
+    + '        <p class="newsletter-note">이메일 주소만 받아요. 언제든 메일 아래 링크로 해지할 수 있어요.</p>\n'
+    + '      </aside>\n';
+}
+
+// 홈 "무료 도구" 아래 얇은 띠. 주소가 비면 출력 안 함.
+function newsletterStripHtml() {
+  if (!NEWSLETTER_URL) return '';
+  return '    <aside class="newsletter-strip" aria-labelledby="newsletter-strip-text">\n'
+    + '      <p id="newsletter-strip-text" class="newsletter-strip-text"><span aria-hidden="true">✉️</span> 한 달에 한 번, 이달의 돈 할 일을 메일로 받아 보세요</p>\n'
+    + '      <a class="newsletter-strip-btn" href="' + escapeHtml(NEWSLETTER_URL) + '" rel="noopener">구독하기</a>\n'
+    + '    </aside>\n';
 }
 
 // 대표 이미지 금지 목록(blocked-images.json)에 있는 이미지를 쓴 글이 있으면 빌드를 멈춘다.
@@ -531,6 +595,7 @@ function buildPosts() {
       + '        </div>\n'
       + '      </section>\n'
       + relatedHtml(relatedPosts(entry.info, allInfo, tagCount, 3))
+      + newsletterBoxHtml()
       + adSlot()
       + '    </article>\n'
       + '  </main>';
@@ -688,6 +753,7 @@ function buildIndex(posts) {
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
     + (appsHtml ? appsHtml + '\n' : '')
+    + (NEWSLETTER_URL ? newsletterStripHtml() + '\n' : '')
     + '    <div class="list-header">\n'
     + '      <span id="post-count" class="post-count">총 ' + posts.length + '개</span>\n'
     + '      <div class="list-header-right">\n'
@@ -752,7 +818,9 @@ function buildStaticPages() {
     var parsed = parseFrontmatter(raw);
     var meta = parsed.metadata;
     var slug = filename.replace(/\.md$/, '');
-    var htmlContent = marked.parse(parsed.content);
+    // requires: newsletter 인 페이지(pages/newsletter.md)는 구독 주소가 있을 때만 만든다
+    if (meta.requires === 'newsletter' && !NEWSLETTER_URL) return;
+    var htmlContent = marked.parse(applyNewsletterBlocks(parsed.content, 'pages/' + filename));
 
     var pageContent =
       '  <main id="main-content" class="container">\n'
@@ -812,6 +880,9 @@ function buildSitemap(posts) {
     { loc: siteUrl + '/about.html', priority: '0.3', changefreq: 'monthly' },
     { loc: siteUrl + '/privacy.html', priority: '0.1', changefreq: 'yearly' }
   ];
+  if (NEWSLETTER_URL && fs.existsSync('pages/newsletter.md')) {
+    urls.push({ loc: siteUrl + '/newsletter.html', priority: '0.3', changefreq: 'monthly' });
+  }
   if (fs.existsSync('apps.json')) {
     JSON.parse(fs.readFileSync('apps.json', 'utf-8')).forEach(function(app) {
       urls.push({ loc: siteUrl + '/' + app.path, priority: '0.7', changefreq: 'monthly' });
