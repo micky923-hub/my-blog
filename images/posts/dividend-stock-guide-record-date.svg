@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 580" role="img" aria-labelledby="t d">
   <title id="t">배당 받는 날짜 흐름</title>
   <desc id="d">국내 주식은 배당기준일 2영업일 전까지 사야 배당을 받습니다. 기준일 1영업일 전이 배당락일로, 이날부터 사면 이번 배당은 받지 못합니다. 기준일에 주주명부가 확정되고, 배당 결정 뒤 한 달 안에 계좌로 입금됩니다.</desc>
-  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <rect x="0" y="0" width="560" height="580" rx="22" fill="#f8fafc"/>
   <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
     <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">배당, 언제까지 사야 할까</text>
     <text x="32" y="88" font-size="18" fill="#475569">국내 주식 · 사고 2영업일 뒤 결제</text>
@@ -29,8 +29,8 @@
     <text x="98" y="432" font-size="21" font-weight="800" fill="#0f172a">계좌로 입금</text>
     <text x="98" y="458" font-size="16" fill="#475569">배당 결정 뒤 한 달 안에</text>
 
-    <rect x="32" y="482" width="496" height="58" rx="12" fill="#e0f2fe"/>
-    <text x="52" y="508" font-size="16" font-weight="800" fill="#075985">기준일은 회사마다 달라요</text>
-    <text x="52" y="530" font-size="16" fill="#075985">사기 전에 배당 공시에서 날짜를 확인하세요</text>
+    <rect x="32" y="482" width="496" height="74" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="511" font-size="17" font-weight="800" fill="#075985">기준일은 회사마다 달라요</text>
+    <text x="52" y="539" font-size="16" fill="#075985">사기 전에 배당 공시에서 날짜를 확인하세요</text>
   </g>
 </svg>

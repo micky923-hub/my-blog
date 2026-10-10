@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 620" role="img" aria-labelledby="t d">
   <title id="t">매매차익 1,000만 원일 때 ETF 종류별 세금</title>
   <desc id="d">매매차익 1,000만 원에 대해 국내 주식형 ETF는 세금이 없고, 국내 상장 해외 ETF는 일반 계좌에서 15.4%인 154만 원, 해외 상장 ETF는 250만 원을 뺀 750만 원의 22%인 165만 원, 국내 상장 해외 ETF를 ISA 일반형에 담으면 200만 원을 뺀 800만 원의 9.9%인 79만 2천 원을 냅니다.</desc>
-  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <rect x="0" y="0" width="560" height="620" rx="22" fill="#f8fafc"/>
   <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
     <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">같은 1,000만 원, 다른 세금</text>
     <text x="32" y="90" font-size="18" fill="#475569">매매차익 1,000만 원 · 단순 계산</text>
