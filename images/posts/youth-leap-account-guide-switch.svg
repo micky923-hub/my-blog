@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 532" role="img" aria-labelledby="t d">
   <title id="t">청년도약계좌와 청년미래적금 월 기여금 비교</title>
   <desc id="d">청년도약계좌는 소득 2,400만 원 이하가 월 70만 원을 넣으면 기여금이 월 3만 3천 원, 1년 39만 6천 원입니다. 청년미래적금 일반형은 월 50만 원에 6%인 3만 원, 1년 36만 원이고, 우대형은 12%인 6만 원, 1년 72만 원입니다. 도약계좌 만기는 5년, 미래적금은 3년입니다.</desc>
-  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <rect x="0" y="0" width="560" height="532" rx="22" fill="#f8fafc"/>
   <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
     <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">갈아타면 기여금은?</text>
     <text x="32" y="88" font-size="18" fill="#475569">한 달에 받는 정부기여금 · 꽉 채워 넣을 때</text>

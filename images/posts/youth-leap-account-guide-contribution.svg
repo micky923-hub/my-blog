@@ -7,20 +7,20 @@
     <text x="32" y="88" font-size="18" fill="#475569">월 70만 원 납입 · 2025년 1월 납입분부터</text>
 
     <text x="32" y="134" font-size="19" font-weight="700" fill="#0f172a">2,400만 원 이하</text>
-    <rect x="32" y="146" width="400" height="36" rx="8" fill="#2563eb"/>
-    <text x="442" y="171" font-size="18" font-weight="800" fill="#1e3a8a">3만 3천 원</text>
+    <rect x="32" y="146" width="370" height="36" rx="8" fill="#2563eb"/>
+    <text x="412" y="171" font-size="18" font-weight="800" fill="#1e3a8a">3만 3천 원</text>
 
     <text x="32" y="216" font-size="19" font-weight="700" fill="#0f172a">3,600만 원 이하</text>
-    <rect x="32" y="228" width="352" height="36" rx="8" fill="#3b82f6"/>
-    <text x="394" y="253" font-size="18" font-weight="800" fill="#1e3a8a">2만 9천 원</text>
+    <rect x="32" y="228" width="325" height="36" rx="8" fill="#3b82f6"/>
+    <text x="367" y="253" font-size="18" font-weight="800" fill="#1e3a8a">2만 9천 원</text>
 
     <text x="32" y="298" font-size="19" font-weight="700" fill="#0f172a">4,800만 원 이하</text>
-    <rect x="32" y="310" width="305" height="36" rx="8" fill="#60a5fa"/>
-    <text x="347" y="335" font-size="18" font-weight="800" fill="#1e3a8a">약 2만 5천 원</text>
+    <rect x="32" y="310" width="283" height="36" rx="8" fill="#60a5fa"/>
+    <text x="325" y="335" font-size="18" font-weight="800" fill="#1e3a8a">약 2만 5천 원</text>
 
     <text x="32" y="380" font-size="19" font-weight="700" fill="#0f172a">6,000만 원 이하</text>
-    <rect x="32" y="392" width="255" height="36" rx="8" fill="#93c5fd"/>
-    <text x="297" y="417" font-size="18" font-weight="800" fill="#1e3a8a">2만 1천 원</text>
+    <rect x="32" y="392" width="235" height="36" rx="8" fill="#93c5fd"/>
+    <text x="277" y="417" font-size="18" font-weight="800" fill="#1e3a8a">2만 1천 원</text>
 
     <text x="32" y="462" font-size="19" font-weight="700" fill="#0f172a">7,500만 원 이하</text>
     <rect x="32" y="474" width="496" height="36" rx="8" fill="#e2e8f0"/>
