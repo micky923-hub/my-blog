@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">깡통전세 계산 예시</title>
+  <desc id="d">매매가 3억 원 빌라에 근저당 3천만 원과 보증금 2억 7천만 원이 있으면 합계가 집값의 100%가 됩니다. 경매 낙찰가가 시세의 75%인 2억 2,500만 원이면 은행 몫 3천만 원을 먼저 갚고 세입자는 1억 9,500만 원만 돌려받아 7,500만 원을 잃습니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">깡통전세, 숫자로 보면</text>
+    <text x="32" y="90" font-size="19" fill="#475569">매매가 3억 원 빌라 · 단순 계산</text>
+
+    <text x="32" y="142" font-size="21" font-weight="700" fill="#0f172a">집값</text>
+    <rect x="32" y="154" width="496" height="44" rx="8" fill="#cbd5e1"/>
+    <text x="280" y="184" text-anchor="middle" font-size="21" font-weight="800" fill="#0f172a">3억 원</text>
+
+    <text x="32" y="236" font-size="21" font-weight="700" fill="#0f172a">집주인 빚 + 내 보증금 <tspan fill="#dc2626">= 100%</tspan></text>
+    <rect x="32" y="248" width="50" height="44" rx="8" fill="#f59e0b"/>
+    <rect x="82" y="248" width="446" height="44" rx="8" fill="#3b82f6"/>
+    <text x="57" y="277" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">빚</text>
+    <text x="305" y="278" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">내 보증금 2억 7천만 원</text>
+    <text x="32" y="316" font-size="16" fill="#92400e">주황: 근저당 3천만 원</text>
+
+    <text x="32" y="362" font-size="21" font-weight="700" fill="#0f172a">경매 낙찰가 (시세의 75%)</text>
+    <rect x="32" y="374" width="372" height="44" rx="8" fill="#64748b"/>
+    <text x="218" y="404" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">2억 2,500만 원</text>
+    <line x1="404" y1="366" x2="404" y2="426" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6"/>
+
+    <rect x="32" y="440" width="496" height="60" rx="12" fill="#fee2e2"/>
+    <text x="52" y="465" font-size="18" font-weight="800" fill="#7f1d1d">돌려받는 돈 1억 9,500만 원</text>
+    <text x="52" y="490" font-size="18" fill="#7f1d1d">보증금 중 <tspan font-weight="800">7,500만 원</tspan>이 사라집니다</text>
+  </g>
+</svg>
