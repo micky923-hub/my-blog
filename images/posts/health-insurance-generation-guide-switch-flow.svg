@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">5세대 실손 전환 판단 순서</title>
+  <desc id="d">최근 3년 비급여 이용액을 확인해 손익이 같아지는 금액보다 많으면 기존 실손을 유지하고, 적으면 전환을 검토합니다. 전환 후 보험금을 받지 않았으면 6개월, 받았으면 3개월 안에 한 번 이전 계약으로 되돌릴 수 있습니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">전환할까, 유지할까</text>
+    <text x="32" y="88" font-size="18" fill="#475569">기억 말고 기록으로 판단하세요</text>
+
+    <rect x="32" y="112" width="496" height="84" rx="12" fill="#e2e8f0"/>
+    <text x="280" y="148" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">최근 3년 비급여 진료비 확인</text>
+    <text x="280" y="176" text-anchor="middle" font-size="16" fill="#475569">손익분기 = 아낀 보험료 ÷ 늘어난 부담률</text>
+
+    <line x1="150" y1="196" x2="150" y2="230" stroke="#94a3b8" stroke-width="4"/>
+    <line x1="410" y1="196" x2="410" y2="230" stroke="#94a3b8" stroke-width="4"/>
+
+    <rect x="32" y="232" width="236" height="104" rx="12" fill="#fee2e2"/>
+    <text x="150" y="266" text-anchor="middle" font-size="17" font-weight="700" fill="#7f1d1d">손익분기보다 많다</text>
+    <text x="150" y="304" text-anchor="middle" font-size="22" font-weight="800" fill="#b91c1c">기존 실손 유지</text>
+
+    <rect x="292" y="232" width="236" height="104" rx="12" fill="#dcfce7"/>
+    <text x="410" y="266" text-anchor="middle" font-size="17" font-weight="700" fill="#166534">손익분기보다 적다</text>
+    <text x="410" y="304" text-anchor="middle" font-size="22" font-weight="800" fill="#15803d">5세대 전환 검토</text>
+
+    <line x1="410" y1="336" x2="410" y2="370" stroke="#94a3b8" stroke-width="4"/>
+
+    <rect x="32" y="372" width="496" height="140" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="406" font-size="19" font-weight="800" fill="#075985">전환 후 되돌릴 수 있는 기간 (1회)</text>
+    <text x="52" y="442" font-size="17" fill="#075985">보험금 안 받았다면 → <tspan font-weight="800">6개월</tspan> 안</text>
+    <text x="52" y="474" font-size="17" fill="#075985">보험금 받았다면 → <tspan font-weight="800">3개월</tspan> 안</text>
+    <text x="52" y="500" font-size="16" fill="#475569">철회 시 보험료 차액 정산</text>
+
+    <rect x="32" y="532" width="496" height="48" rx="12" fill="#fef3c7"/>
+    <text x="52" y="562" font-size="16" font-weight="700" fill="#92400e">도수치료 등 자주 받는 항목이 빠지면 유지 쪽으로</text>
+  </g>
+</svg>

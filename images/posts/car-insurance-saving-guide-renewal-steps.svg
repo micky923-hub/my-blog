@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">자동차보험 갱신 전 순서</title>
+  <desc id="d">갱신 4주 전 주행거리와 운전자 범위를 확인하고, 3주 전 할인 특약 서류를 준비하고, 2주 전 같은 조건으로 다이렉트 견적을 3곳 이상 비교하고, 1주 전 가입하며 마일리지 사진을 등록합니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">갱신 전, 이 순서로 하세요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">만기 문자를 받은 주부터 시작</text>
+
+    <line x1="62" y1="128" x2="62" y2="412" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">4주 전 · 내 상황 확인</text>
+    <text x="98" y="158" font-size="16" fill="#475569">계기판 주행거리, 운전자 범위·연령</text>
+
+    <circle cx="62" cy="226" r="20" fill="#3b82f6"/>
+    <text x="62" y="233" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="222" font-size="21" font-weight="800" fill="#0f172a">3주 전 · 할인 서류 준비</text>
+    <text x="98" y="248" font-size="16" fill="#475569">블랙박스 사진, 가족관계증명서</text>
+
+    <circle cx="62" cy="316" r="20" fill="#3b82f6"/>
+    <text x="62" y="323" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="312" font-size="21" font-weight="800" fill="#0f172a">2주 전 · 견적 3곳 이상</text>
+    <text x="98" y="338" font-size="16" fill="#475569">보험다모아에서 같은 조건으로 비교</text>
+
+    <circle cx="62" cy="406" r="20" fill="#16a34a"/>
+    <text x="62" y="413" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="402" font-size="21" font-weight="800" fill="#166534">1주 전 · 가입하고 사진 등록</text>
+    <text x="98" y="428" font-size="16" fill="#475569">마일리지 특약 계기판 사진 제출</text>
+
+    <rect x="32" y="462" width="496" height="76" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="492" font-size="18" font-weight="800" fill="#075985">조건을 똑같이 맞춰야 비교가 됩니다</text>
+    <text x="52" y="520" font-size="16" fill="#075985">운전자 범위·대물 한도·자차·특약 동일하게</text>
+  </g>
+</svg>

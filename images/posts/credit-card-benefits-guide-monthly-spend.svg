@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">전월실적 계산 예시</title>
+  <desc id="d">지난달 62만 원을 썼지만 관리비 18만 원과 상품권 15만 원이 실적에서 빠져 인정 실적은 29만 원입니다. 30만 원 조건에 1만 원이 모자라 통신비 할인 1만 원이 0원이 됩니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">62만 원 썼는데 할인 0원?</text>
+    <text x="32" y="90" font-size="18" fill="#475569">전월실적 조건 30만 원 카드 예시</text>
+
+    <text x="32" y="142" font-size="20" font-weight="700" fill="#0f172a">지난달 쓴 돈 62만 원</text>
+    <rect x="32" y="154" width="496" height="44" rx="8" fill="#cbd5e1"/>
+    <text x="280" y="183" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">62만 원</text>
+
+    <text x="32" y="240" font-size="20" font-weight="700" fill="#0f172a">실적에서 빠지는 돈</text>
+    <rect x="32" y="252" width="144" height="44" rx="8" fill="#f59e0b"/>
+    <rect x="176" y="252" width="120" height="44" rx="8" fill="#fb923c"/>
+    <text x="104" y="281" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">관리비 18만</text>
+    <text x="236" y="281" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">상품권 15만</text>
+
+    <text x="32" y="338" font-size="20" font-weight="700" fill="#0f172a">인정 실적 <tspan fill="#dc2626">29만 원</tspan></text>
+    <rect x="32" y="350" width="232" height="44" rx="8" fill="#3b82f6"/>
+    <text x="148" y="379" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">29만 원</text>
+    <line x1="272" y1="342" x2="272" y2="402" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="284" y="379" font-size="16" font-weight="700" fill="#dc2626">← 30만 원 조건</text>
+
+    <rect x="32" y="420" width="496" height="60" rx="12" fill="#fee2e2"/>
+    <text x="52" y="445" font-size="17" font-weight="800" fill="#7f1d1d">1만 원이 모자라 통신비 할인 1만 원 → 0원</text>
+    <text x="52" y="469" font-size="16" fill="#7f1d1d">빠지는 항목은 상품설명서에서 먼저 확인하세요</text>
+  </g>
+</svg>
