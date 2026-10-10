@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">순이익 1,000만 원일 때 계좌별 세금</title>
+  <desc id="d">순이익 1,000만 원에 대해 일반 계좌는 15.4%인 154만 원, ISA 일반형은 200만 원을 뺀 800만 원의 9.9%인 79만 2천 원, ISA 서민형은 400만 원을 뺀 600만 원의 9.9%인 59만 4천 원을 세금으로 냅니다. 서민형은 일반 계좌보다 94만 6천 원을 덜 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">같은 1,000만 원, 다른 세금</text>
+    <text x="32" y="90" font-size="19" fill="#475569">순이익 1,000만 원 · 지방소득세 포함</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">일반 계좌</text>
+    <text x="32" y="170" font-size="16" fill="#475569">1,000만 원 × 15.4%</text>
+    <rect x="32" y="182" width="400" height="44" rx="8" fill="#94a3b8"/>
+    <text x="232" y="212" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">154만 원</text>
+
+    <text x="32" y="270" font-size="20" font-weight="700" fill="#0f172a">ISA 일반형</text>
+    <text x="32" y="296" font-size="16" fill="#475569">200만 원 비과세 · 800만 원 × 9.9%</text>
+    <rect x="32" y="308" width="206" height="44" rx="8" fill="#3b82f6"/>
+    <text x="252" y="338" font-size="20" font-weight="800" fill="#1e3a8a">79만 2천 원</text>
+
+    <text x="32" y="396" font-size="20" font-weight="700" fill="#0f172a">ISA 서민형</text>
+    <text x="32" y="422" font-size="16" fill="#475569">400만 원 비과세 · 600만 원 × 9.9%</text>
+    <rect x="32" y="434" width="154" height="44" rx="8" fill="#16a34a"/>
+    <text x="200" y="464" font-size="20" font-weight="800" fill="#166534">59만 4천 원</text>
+
+    <text x="32" y="504" font-size="16" fill="#475569">서민형이면 일반 계좌보다 94만 6천 원 덜 내요</text>
+  </g>
+</svg>
