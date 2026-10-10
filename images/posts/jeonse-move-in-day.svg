@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">잔금 날 순서와 보증금이 보호되는 시점</title>
+  <desc id="d">잔금 날 등기부등본을 다시 확인하고, 소유자 계좌로 잔금을 보낸 뒤, 같은 날 전입신고와 확정일자를 받습니다. 보증금 보호(대항력)는 다음 날 0시부터 생기므로, 그 사이 집주인이 대출을 받으면 은행이 먼저 순서를 차지할 수 있습니다. 계약서 특약으로 막아 둡니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">잔금 날, 이 순서로 움직이세요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">보증금이 보호되는 건 다음 날 0시부터</text>
+
+    <line x1="62" y1="128" x2="62" y2="452" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">등기부등본 한 번 더</text>
+    <text x="98" y="158" font-size="16" fill="#475569">새 대출·소유자 변경이 없는지 확인</text>
+
+    <circle cx="62" cy="216" r="20" fill="#3b82f6"/>
+    <text x="62" y="223" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="212" font-size="21" font-weight="800" fill="#0f172a">잔금은 소유자 계좌로</text>
+    <text x="98" y="238" font-size="16" fill="#475569">중개사·대리인 계좌는 거절</text>
+
+    <circle cx="62" cy="296" r="20" fill="#3b82f6"/>
+    <text x="62" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="292" font-size="21" font-weight="800" fill="#0f172a">전입신고 + 확정일자</text>
+    <text x="98" y="318" font-size="16" fill="#475569">이사한 당일, 주민센터나 정부24에서</text>
+
+    <circle cx="62" cy="436" r="20" fill="#16a34a"/>
+    <text x="62" y="443" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="432" font-size="21" font-weight="800" fill="#166534">다음 날 0시, 보증금 보호 시작</text>
+    <text x="98" y="458" font-size="16" fill="#475569">대항력·우선변제권이 이때 생겨요</text>
+
+    <rect x="98" y="342" width="430" height="58" rx="10" fill="#fef3c7"/>
+    <text x="114" y="366" font-size="16" font-weight="800" fill="#92400e">⚠ 빈틈: 잔금 날 ~ 다음 날 0시</text>
+    <text x="114" y="390" font-size="16" fill="#92400e">이때 집주인이 대출을 받으면 은행이 먼저</text>
+
+    <rect x="32" y="496" width="496" height="80" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="526" font-size="18" font-weight="800" fill="#075985">빈틈은 계약서 특약으로 막으세요</text>
+    <text x="52" y="554" font-size="16" fill="#075985">"잔금일 다음 날까지 새 근저당 설정 금지"</text>
+  </g>
+</svg>
