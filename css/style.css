@@ -1833,9 +1833,10 @@ a:focus-visible {
   object-fit: cover;
 }
 
+/* 포스터 가운데에는 훅 문구가 있어서, 재생 버튼은 문구 아래 빈 곳(세로 72%)에 둔다 */
 .post-video .video-play {
   position: absolute;
-  top: 50%;
+  top: 72%;
   left: 50%;
   width: 68px;
   height: 68px;
@@ -1878,6 +1879,7 @@ a:focus-visible {
   font-size: 0.85rem;
   color: var(--color-text-secondary);
   line-height: 1.5;
+  word-break: keep-all;
 }
 
 @media (prefers-reduced-motion: reduce) {
