@@ -1,3 +1,8 @@
 node_modules/
 dist/
 .claude/
+
+# 쇼츠 영상 생성물(스크립트로 다시 만듦)
+videos/**/scenes/
+videos/**/*.mp4
+videos/fonts/
