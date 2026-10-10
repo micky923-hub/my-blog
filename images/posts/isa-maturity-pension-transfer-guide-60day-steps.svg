@@ -21,7 +21,7 @@
     <circle cx="62" cy="296" r="20" fill="#3b82f6"/>
     <text x="62" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
     <text x="98" y="292" font-size="21" font-weight="800" fill="#0f172a">"연금계좌 이전" 메뉴로 신청</text>
-    <text x="98" y="318" font-size="16" fill="#475569">내 통장으로 출금했다 넣으면 안 돼요</text>
+    <text x="98" y="318" font-size="16" fill="#475569">내 통장으로 출금했다 넣으면 인정 안 될 수 있어요</text>
 
     <circle cx="62" cy="376" r="20" fill="#3b82f6"/>
     <text x="62" y="383" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">4</text>
