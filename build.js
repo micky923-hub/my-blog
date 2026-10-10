@@ -841,6 +841,10 @@ if (fs.existsSync('js/like.js')) {
   fs.copyFileSync('js/like.js', path.join(DIST, 'js', 'like.js'));
 }
 
+// 글 본문에 넣는 설명 그림(images/posts/*.svg 등)
+if (fs.existsSync('images')) {
+  copyDir('images', path.join(DIST, 'images'));
+}
 if (fs.existsSync('apps')) {
   copyDir('apps', path.join(DIST, 'apps'));
   console.log('  apps/ 폴더 복사 완료');
