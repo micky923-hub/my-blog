@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">2026년 주택연금 월지급금과 초기보증료 변화</title>
+  <desc id="d">2026년 3월 1일 이후 신규 신청자부터, 72세·주택가격 4억 원 기준 월지급금이 129만 7천 원에서 133만 8천 원으로 약 3.13% 올랐습니다. 가입할 때 내는 초기보증료는 주택가격의 1.5%인 600만 원에서 1.0%인 400만 원으로 내려갔습니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">2026년 3월부터 달라진 점</text>
+    <text x="32" y="88" font-size="17" fill="#475569">72세 · 주택가격 4억 원 · 신규 신청자 기준</text>
+
+    <text x="32" y="140" font-size="20" font-weight="800" fill="#0f172a">매달 받는 돈</text>
+    <rect x="32" y="152" width="331" height="40" rx="8" fill="#94a3b8"/>
+    <text x="375" y="179" font-size="17" font-weight="700" fill="#334155">129만 7천 원</text>
+    <rect x="32" y="200" width="341" height="40" rx="8" fill="#16a34a"/>
+    <text x="385" y="227" font-size="17" font-weight="800" fill="#166534">133만 8천 원</text>
+    <text x="32" y="266" font-size="16" fill="#166534">약 3.13% 인상 · 기존 가입자는 그대로</text>
+
+    <text x="32" y="322" font-size="20" font-weight="800" fill="#0f172a">가입할 때 보증료</text>
+    <rect x="32" y="334" width="341" height="40" rx="8" fill="#94a3b8"/>
+    <text x="385" y="361" font-size="17" font-weight="700" fill="#334155">600만 원 (1.5%)</text>
+    <rect x="32" y="382" width="227" height="40" rx="8" fill="#2563eb"/>
+    <text x="271" y="409" font-size="17" font-weight="800" fill="#1e40af">400만 원 (1.0%)</text>
+
+    <rect x="32" y="444" width="496" height="56" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="478" font-size="17" font-weight="800" fill="#075985">보증료는 대출 잔액에 더해져요(현금 X)</text>
+  </g>
+</svg>

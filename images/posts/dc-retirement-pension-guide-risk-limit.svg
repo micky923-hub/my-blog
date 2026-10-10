@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">DC형 위험자산 70% 한도 예시</title>
+  <desc id="d">적립금이 5,000만 원이면 주식형 펀드나 ETF 같은 위험자산은 70%인 3,500만 원까지 담고, 예금이나 채권형 같은 안전자산에 30%인 1,500만 원 이상을 둡니다. 요건을 갖춘 적격 TDF는 100%까지 담을 수 있습니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">적립금 5,000만 원이라면</text>
+    <text x="32" y="88" font-size="17" fill="#475569">위험자산은 계좌 전체의 70%까지</text>
+
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">일반 상품으로 나눌 때</text>
+    <rect x="32" y="154" width="347" height="52" rx="8" fill="#2563eb"/>
+    <rect x="379" y="154" width="149" height="52" rx="8" fill="#94a3b8"/>
+    <text x="205" y="187" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">위험자산 70%</text>
+    <text x="453" y="187" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">안전 30%</text>
+    <text x="32" y="234" font-size="17" fill="#1e40af">주식형 ETF·펀드 3,500만 원까지</text>
+    <text x="32" y="260" font-size="17" fill="#334155">예금·채권형 1,500만 원 이상</text>
+
+    <text x="32" y="316" font-size="19" font-weight="700" fill="#0f172a">적격 TDF로 담을 때</text>
+    <rect x="32" y="330" width="496" height="52" rx="8" fill="#16a34a"/>
+    <text x="280" y="363" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">적격 TDF 100% 가능</text>
+
+    <rect x="32" y="408" width="496" height="72" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="438" font-size="18" font-weight="800" fill="#075985">한도는 계좌 전체 합계로 따져요</text>
+    <text x="52" y="464" font-size="16" fill="#075985">주식이 오르면 비중도 커지니 1년에 두 번 점검</text>
+  </g>
+</svg>

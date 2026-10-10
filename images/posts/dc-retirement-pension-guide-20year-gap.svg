@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">DC형 퇴직연금 수익률별 20년 뒤 금액</title>
+  <desc id="d">매년 400만 원씩 20년 동안 원금 8,000만 원을 넣을 때, 연 2%로 굴리면 약 9,700만 원, 연 4%면 약 1억 1,900만 원, 연 6%면 약 1억 4,700만 원이 됩니다. 2%와 6%의 차이는 약 5,000만 원입니다. 연봉이 오르지 않는다고 가정한 단순 계산입니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">같은 돈, 20년 뒤 계좌는?</text>
+    <text x="32" y="88" font-size="17" fill="#475569">매년 400만 원씩 20년 · 연봉 그대로 가정</text>
+
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">넣은 원금</text>
+    <rect x="32" y="152" width="239" height="40" rx="8" fill="#cbd5e1"/>
+    <text x="283" y="179" font-size="18" font-weight="800" fill="#334155">8,000만 원</text>
+
+    <text x="32" y="232" font-size="19" font-weight="700" fill="#0f172a">연 2% (예금에 방치)</text>
+    <rect x="32" y="244" width="290" height="40" rx="8" fill="#94a3b8"/>
+    <text x="334" y="271" font-size="18" font-weight="800" fill="#334155">약 9,700만 원</text>
+
+    <text x="32" y="324" font-size="19" font-weight="700" fill="#0f172a">연 4%</text>
+    <rect x="32" y="336" width="356" height="40" rx="8" fill="#60a5fa"/>
+    <text x="400" y="363" font-size="18" font-weight="800" fill="#1e40af">약 1억 1,900만</text>
+
+    <text x="32" y="416" font-size="19" font-weight="700" fill="#0f172a">연 6%</text>
+    <rect x="32" y="428" width="440" height="40" rx="8" fill="#2563eb"/>
+    <text x="172" y="455" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">약 1억 4,700만 원</text>
+    <line x1="322" y1="236" x2="322" y2="476" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6"/>
+
+    <rect x="32" y="492" width="496" height="48" rx="12" fill="#dbeafe"/>
+    <text x="52" y="523" font-size="18" font-weight="800" fill="#1e3a8a">2%와 6%의 차이 약 5,000만 원</text>
+  </g>
+</svg>
