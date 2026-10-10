@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
+  <title id="t">2026년 하반기 금융 마감 순서</title>
+  <desc id="d">10~11월에는 연말정산 미리보기로 카드 사용액을 확인하고 퇴직연금 디폴트옵션과 실손 세대를 점검합니다. 11월에는 1·2세대 실손의 5세대 전환 할인이 시행될 예정입니다. 12월 중순까지 연금저축·IRP를 입금하고 고향사랑기부를 합니다. 12월 31일에 올해 공제가 마감되고, 코인 보유 수량과 시세를 기록합니다. 2027년 1월 1일부터 가상자산 과세가 시작될 예정입니다.</desc>
+  <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">하반기, 이 순서로 챙기세요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">돌려받을 세금은 12월 31일에 정해집니다</text>
+
+    <line x1="62" y1="128" x2="62" y2="532" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="20" font-weight="800" fill="#0f172a">10~11월 · 미리보기</text>
+    <text x="98" y="158" font-size="16" fill="#475569">카드 25% 문턱, 디폴트옵션·실손 점검</text>
+
+    <circle cx="62" cy="226" r="20" fill="#3b82f6"/>
+    <text x="62" y="233" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="222" font-size="20" font-weight="800" fill="#0f172a">11월 · 실손 전환 할인(예정)</text>
+    <text x="98" y="248" font-size="16" fill="#475569">1·2세대 → 5세대, 3년간 50% 할인</text>
+
+    <circle cx="62" cy="316" r="20" fill="#3b82f6"/>
+    <text x="62" y="323" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="312" font-size="20" font-weight="800" fill="#0f172a">12월 중순 · 연금계좌 입금</text>
+    <text x="98" y="338" font-size="16" fill="#475569">연금저축·IRP 900만 원, 고향사랑기부</text>
+
+    <circle cx="62" cy="406" r="20" fill="#dc2626"/>
+    <text x="62" y="413" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">!</text>
+    <text x="98" y="402" font-size="20" font-weight="800" fill="#991b1b">12월 31일 · 올해 공제 마감</text>
+    <text x="98" y="428" font-size="16" fill="#475569">코인 보유 수량·시세도 이날 기록</text>
+
+    <circle cx="62" cy="496" r="20" fill="#16a34a"/>
+    <text x="62" y="503" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="492" font-size="20" font-weight="800" fill="#166534">2027년 1월 1일 · 코인 과세</text>
+    <text x="98" y="518" font-size="16" fill="#475569">250만 원 넘는 수익에 22% (예정)</text>
+
+    <rect x="32" y="556" width="496" height="64" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="584" font-size="17" font-weight="800" fill="#075985">ISA 만기라면 60일 안에 연금계좌로</text>
+    <text x="52" y="608" font-size="16" fill="#075985">옮긴 돈의 10%, 최대 300만 원 추가 공제</text>
+  </g>
+</svg>
