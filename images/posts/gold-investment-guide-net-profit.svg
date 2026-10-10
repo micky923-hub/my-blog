@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 620" role="img" aria-labelledby="t d">
+  <title id="t">1,000만 원으로 산 금이 20% 올랐을 때 방법별로 남는 이익</title>
+  <desc id="d">1,000만 원으로 금을 사서 금값이 20% 오른 뒤 팔면 KRX 금시장은 수수료 0.3%씩을 빼고 세금이 없어 192만 8천 원, 일반 계좌 금ETF는 15.4%를 떼고 169만 2천 원, 금통장은 스프레드 1%씩과 15.4% 세금을 빼고 약 149만 원, 골드바는 살 때 15%를 더 내 약 43만 5천 원이 남습니다. 단순 계산입니다.</desc>
+  <rect x="0" y="0" width="560" height="620" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">금값 20% 올랐을 때 남는 이익</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1,000만 원 투자 · 수수료·세금 뺀 단순 계산</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">KRX 금시장</text>
+    <text x="32" y="164" font-size="16" fill="#475569">수수료 0.3%씩 · 비과세</text>
+    <rect x="32" y="176" width="400" height="42" rx="8" fill="#16a34a"/>
+    <text x="232" y="205" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">192만 8천 원</text>
+
+    <text x="32" y="258" font-size="20" font-weight="700" fill="#0f172a">금ETF (일반 계좌)</text>
+    <text x="32" y="282" font-size="16" fill="#475569">이익의 15.4% 세금</text>
+    <rect x="32" y="294" width="351" height="42" rx="8" fill="#3b82f6"/>
+    <text x="207" y="323" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">169만 2천 원</text>
+
+    <text x="32" y="376" font-size="20" font-weight="700" fill="#0f172a">금통장</text>
+    <text x="32" y="400" font-size="16" fill="#475569">스프레드 1%씩 + 15.4% 세금</text>
+    <rect x="32" y="412" width="309" height="42" rx="8" fill="#f59e0b"/>
+    <text x="186" y="441" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">약 149만 원</text>
+
+    <text x="32" y="494" font-size="20" font-weight="700" fill="#0f172a">골드바</text>
+    <text x="32" y="518" font-size="16" fill="#475569">살 때 부가세·수수료 15%</text>
+    <rect x="32" y="530" width="90" height="42" rx="8" fill="#dc2626"/>
+    <text x="136" y="559" font-size="20" font-weight="800" fill="#7f1d1d">약 43만 5천 원</text>
+
+    <text x="32" y="602" font-size="16" fill="#475569">ETF 매매 수수료·보수, 골드바 매도 차감은 제외</text>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">금리가 1%p 오를 때 만기별 채권 가격 하락폭</title>
+  <desc id="d">표면금리 3% 채권에서 시장금리가 3%에서 4%로 1%p 오르면 3년 만기는 약 2.8%, 10년 만기는 약 8.1%, 30년 만기는 약 17.3% 가격이 내립니다. 만기가 길수록 금리에 더 크게 흔들립니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">금리 1%p 오르면, 채권값은</text>
+    <text x="32" y="90" font-size="18" fill="#475569">표면금리 3% 채권 · 시장금리 3% → 4%</text>
+
+    <text x="32" y="144" font-size="21" font-weight="700" fill="#0f172a">3년 만기</text>
+    <rect x="32" y="156" width="64" height="44" rx="8" fill="#3b82f6"/>
+    <text x="110" y="186" font-size="21" font-weight="800" fill="#1e3a8a">−2.8%</text>
+
+    <text x="32" y="246" font-size="21" font-weight="700" fill="#0f172a">10년 만기</text>
+    <rect x="32" y="258" width="188" height="44" rx="8" fill="#f59e0b"/>
+    <text x="234" y="288" font-size="21" font-weight="800" fill="#92400e">−8.1%</text>
+
+    <text x="32" y="348" font-size="21" font-weight="700" fill="#0f172a">30년 만기</text>
+    <rect x="32" y="360" width="400" height="44" rx="8" fill="#dc2626"/>
+    <text x="446" y="390" font-size="21" font-weight="800" fill="#7f1d1d">−17.3%</text>
+
+    <rect x="32" y="424" width="496" height="56" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="459" font-size="17" font-weight="800" fill="#075985">만기가 길수록 더 크게 흔들려요</text>
+  </g>
+</svg>

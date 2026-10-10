@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">1년에 한 번 금 비중 맞추기</title>
+  <desc id="d">금융자산 5,000만 원 중 금 500만 원(10%)을 담았는데 금값이 50% 올라 750만 원이 되면 전체 5,250만 원 중 금 비중이 약 14.3%가 됩니다. 금 225만 원어치를 팔아 525만 원으로 맞추면 다시 10%가 됩니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">금 비중, 1년에 한 번 맞추기</text>
+    <text x="32" y="90" font-size="18" fill="#475569">금융자산 5,000만 원 · 금 목표 10%</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">처음 <tspan font-size="17" font-weight="400" fill="#475569">· 전체 5,000만 원</tspan></text>
+    <rect x="32" y="156" width="472" height="42" rx="8" fill="#cbd5e1"/>
+    <rect x="32" y="156" width="47" height="42" rx="8" fill="#f59e0b"/>
+    <text x="96" y="184" font-size="18" font-weight="800" fill="#92400e">금 500만 원 (10%)</text>
+
+    <text x="32" y="246" font-size="20" font-weight="700" fill="#0f172a">금값 50% 오른 뒤 <tspan font-size="17" font-weight="400" fill="#475569">· 5,250만 원</tspan></text>
+    <rect x="32" y="258" width="496" height="42" rx="8" fill="#cbd5e1"/>
+    <rect x="32" y="258" width="71" height="42" rx="8" fill="#dc2626"/>
+    <text x="118" y="286" font-size="18" font-weight="800" fill="#7f1d1d">금 750만 원 (약 14.3%)</text>
+
+    <text x="32" y="348" font-size="20" font-weight="700" fill="#0f172a">맞춘 뒤 <tspan font-size="17" font-weight="400" fill="#475569">· 5,250만 원</tspan></text>
+    <rect x="32" y="360" width="496" height="42" rx="8" fill="#cbd5e1"/>
+    <rect x="32" y="360" width="50" height="42" rx="8" fill="#16a34a"/>
+    <text x="98" y="388" font-size="18" font-weight="800" fill="#166534">금 525만 원 (10%)</text>
+
+    <rect x="32" y="430" width="496" height="86" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="464" font-size="18" font-weight="800" fill="#075985">금 225만 원어치를 팔아 맞춰요</text>
+    <text x="52" y="492" font-size="16" fill="#075985">판 돈은 덜 오른 자산에 보태기</text>
+  </g>
+</svg>
