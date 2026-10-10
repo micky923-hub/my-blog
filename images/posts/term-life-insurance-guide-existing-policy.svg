@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">이미 가입한 종신보험 정리 순서</title>
+  <desc id="d">먼저 사망보장이 아직 필요한지 봅니다. 필요하면 유지하거나 보장금액을 줄이는 감액을 합니다. 보험료가 부담되면 더 내지 않고 보장만 줄이는 감액완납을 묻습니다. 만 55세 이상이고 납입을 마친 금리확정형 종신보험이면 사망보험금의 최대 90%를 연금처럼 받는 유동화를 검토합니다. 해지는 새 보험 가입 승인을 받은 뒤 마지막에 합니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">종신보험, 해지 전에 이 순서로</text>
+    <text x="32" y="88" font-size="18" fill="#475569">해지는 언제나 마지막 선택입니다</text>
+
+    <line x1="62" y1="128" x2="62" y2="372" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="20" font-weight="800" fill="#0f172a">사망보장이 아직 필요한가요?</text>
+    <text x="98" y="158" font-size="16" fill="#475569">필요하면 유지, 크면 보장금액 감액</text>
+
+    <circle cx="62" cy="226" r="20" fill="#3b82f6"/>
+    <text x="62" y="233" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="222" font-size="20" font-weight="800" fill="#0f172a">보험료가 부담되나요?</text>
+    <text x="98" y="248" font-size="16" fill="#475569">감액완납: 더 안 내고 보장만 줄이기</text>
+
+    <circle cx="62" cy="316" r="20" fill="#3b82f6"/>
+    <text x="62" y="323" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="312" font-size="20" font-weight="800" fill="#0f172a">55세 이상, 납입을 마쳤나요?</text>
+    <text x="98" y="338" font-size="16" fill="#475569">사망보험금 유동화: 최대 90%를</text>
+    <text x="98" y="360" font-size="16" fill="#475569">살아 있을 때 연금처럼 받기</text>
+
+    <rect x="32" y="398" width="496" height="84" rx="12" fill="#fef3c7"/>
+    <text x="52" y="430" font-size="18" font-weight="800" fill="#92400e">⚠ 해지는 새 보험 승인 뒤에</text>
+    <text x="52" y="458" font-size="16" fill="#92400e">순서를 바꾸면 보장 없는 기간이 생겨요</text>
+
+    <rect x="32" y="500" width="496" height="80" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="530" font-size="18" font-weight="800" fill="#075985">초반 해지환급금은 낸 돈보다 적어요</text>
+    <text x="52" y="558" font-size="16" fill="#075985">콜센터에 감액완납·유동화부터 물어보세요</text>
+  </g>
+</svg>

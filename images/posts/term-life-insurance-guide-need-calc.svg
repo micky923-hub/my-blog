@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 590" role="img" aria-labelledby="t d">
+  <title id="t">필요한 사망보험금 계산 예시</title>
+  <desc id="d">40세 외벌이 가장, 자녀 둘인 집의 예시입니다. 남은 대출 2억 원, 가족 생활비 부족분 1억 8,000만 원, 자녀 교육비 4,000만 원을 더하면 4억 2,000만 원입니다. 예금·퇴직금 7,000만 원과 회사 단체보험 5,000만 원, 합계 1억 2,000만 원을 빼면 필요한 사망보험금은 3억 원입니다. 1억 원짜리 종신보험으로는 2억 원이 모자랍니다.</desc>
+  <rect x="0" y="0" width="560" height="590" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">필요한 사망보험금 계산</text>
+    <text x="32" y="90" font-size="18" fill="#475569">40세 외벌이 가장 · 자녀 둘 예시</text>
+
+    <text x="32" y="142" font-size="20" font-weight="700" fill="#0f172a">가족에게 비는 돈 <tspan fill="#b45309">4억 2,000만 원</tspan></text>
+    <rect x="32" y="154" width="236" height="46" rx="8" fill="#f59e0b"/>
+    <rect x="268" y="154" width="213" height="46" fill="#fb923c"/>
+    <rect x="481" y="154" width="47" height="46" rx="8" fill="#fdba74"/>
+    <text x="150" y="184" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">대출 2억</text>
+    <text x="374" y="184" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">생활비 1억 8천</text>
+    <text x="32" y="228" font-size="16" fill="#475569">생활비 = 월 150만 원 × 12개월 × 10년</text>
+    <text x="32" y="252" font-size="16" fill="#475569">맨 오른쪽 칸: 자녀 교육비 4,000만 원</text>
+
+    <text x="32" y="306" font-size="20" font-weight="700" fill="#0f172a">이미 준비된 돈 <tspan fill="#475569">− 1억 2,000만 원</tspan></text>
+    <rect x="32" y="318" width="142" height="46" rx="8" fill="#94a3b8"/>
+    <text x="103" y="348" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1억 2천</text>
+    <text x="32" y="392" font-size="16" fill="#475569">예금·퇴직금 7,000만 + 단체보험 5,000만</text>
+
+    <text x="32" y="446" font-size="20" font-weight="700" fill="#0f172a">필요한 사망보험금</text>
+    <rect x="32" y="458" width="354" height="46" rx="8" fill="#3b82f6"/>
+    <text x="209" y="489" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">3억 원</text>
+
+    <rect x="32" y="522" width="496" height="48" rx="12" fill="#fee2e2"/>
+    <text x="52" y="553" font-size="17" font-weight="800" fill="#7f1d1d">1억 원 보험으로는 2억 원이 모자랍니다</text>
+  </g>
+</svg>

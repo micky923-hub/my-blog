@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">자녀세액공제 인상 전후 비교</title>
+  <desc id="d">8세 이상 20세 이하 자녀에 대한 자녀세액공제가 2025년 귀속부터 1명당 10만 원씩 올랐습니다. 자녀 1명은 15만 원에서 25만 원, 2명은 35만 원에서 55만 원, 3명은 65만 원에서 95만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">자녀세액공제, 이만큼 올랐어요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">8세 이상 20세 이하 자녀 · 2025년 귀속부터</text>
+
+    <rect x="32" y="110" width="18" height="18" rx="4" fill="#cbd5e1"/>
+    <text x="58" y="125" font-size="16" fill="#475569">예전</text>
+    <rect x="112" y="110" width="18" height="18" rx="4" fill="#3b82f6"/>
+    <text x="138" y="125" font-size="16" fill="#475569">지금</text>
+
+    <text x="32" y="172" font-size="20" font-weight="700" fill="#0f172a">자녀 1명</text>
+    <rect x="32" y="184" width="60" height="30" rx="6" fill="#cbd5e1"/>
+    <text x="102" y="206" font-size="17" fill="#475569">15만 원</text>
+    <rect x="32" y="220" width="100" height="30" rx="6" fill="#3b82f6"/>
+    <text x="142" y="242" font-size="17" font-weight="800" fill="#1d4ed8">25만 원</text>
+
+    <text x="32" y="294" font-size="20" font-weight="700" fill="#0f172a">자녀 2명</text>
+    <rect x="32" y="306" width="140" height="30" rx="6" fill="#cbd5e1"/>
+    <text x="182" y="328" font-size="17" fill="#475569">35만 원</text>
+    <rect x="32" y="342" width="220" height="30" rx="6" fill="#3b82f6"/>
+    <text x="262" y="364" font-size="17" font-weight="800" fill="#1d4ed8">55만 원</text>
+
+    <text x="32" y="416" font-size="20" font-weight="700" fill="#0f172a">자녀 3명</text>
+    <rect x="32" y="428" width="260" height="30" rx="6" fill="#cbd5e1"/>
+    <text x="302" y="450" font-size="17" fill="#475569">65만 원</text>
+    <rect x="32" y="464" width="380" height="30" rx="6" fill="#3b82f6"/>
+    <text x="422" y="486" font-size="17" font-weight="800" fill="#1d4ed8">95만 원</text>
+
+    <text x="32" y="530" font-size="16" fill="#475569">출산·입양한 해에는 30만~70만 원이 따로 붙어요</text>
+  </g>
+</svg>
