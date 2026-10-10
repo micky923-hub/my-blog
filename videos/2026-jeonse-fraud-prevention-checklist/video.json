@@ -1,0 +1,70 @@
+{
+  "slug": "2026-jeonse-fraud-prevention-checklist",
+  "post": "posts/2026-jeonse-fraud-prevention-checklist.md",
+  "updated": "2026-10-10",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 4,
+      "chip": "전세 계약",
+      "lines": ["도장 찍기 전 [[10분]],", "이 세 가지만", "확인하세요"],
+      "captions": ["도장 찍기 전 10분,", "이 세 가지만 확인하세요."]
+    },
+    {
+      "type": "point",
+      "duration": 10,
+      "chip": "할 일 1",
+      "lines": ["등기부등본을", "[[세 번]] 떼어 보세요"],
+      "big": "3번",
+      "label": "집 볼 때 · 계약할 때 · 잔금 날",
+      "captions": [
+        "등기부등본은 집 볼 때, 계약할 때,",
+        "잔금 날, 세 번 떼어 보세요.",
+        "계약서의 임대인과 등기부등본 소유자가",
+        "같은지 대조하세요."
+      ]
+    },
+    {
+      "type": "figure",
+      "duration": 11,
+      "chip": "할 일 2",
+      "lines": ["집값의 [[70~80%]] 넘으면", "다시 생각하세요"],
+      "big": "7,500만 원",
+      "label": "시세 75%에 낙찰되면 잃는 돈",
+      "svg": "images/posts/jeonse-ratio-risk.svg",
+      "captions": [
+        "집주인 빚과 내 보증금을 더해",
+        "집값의 70~80%를 넘으면 계약을 다시 생각하세요.",
+        "근저당 3천만 원, 보증금 2억 7천만 원인",
+        "3억 원 빌라가 시세의 75%에 낙찰되면",
+        "보증금 7,500만 원을 잃습니다."
+      ]
+    },
+    {
+      "type": "figure",
+      "duration": 9,
+      "chip": "할 일 3",
+      "lines": ["이사 당일 [[전입신고]]·", "확정일자, 반환보증까지"],
+      "big": "다음 날 0시",
+      "label": "보증금 보호가 시작되는 때",
+      "svg": "images/posts/jeonse-move-in-day.svg",
+      "captions": [
+        "이사 당일 전입신고와 확정일자를 끝내세요.",
+        "효력은 다음 날 0시부터 생깁니다.",
+        "마지막으로 전세보증금 반환보증까지 가입하세요."
+      ]
+    },
+    {
+      "type": "outro",
+      "duration": 6,
+      "chip": "더 자세히",
+      "lines": ["계약 전 체크리스트는", "[[블로그]]에서 보세요"],
+      "site": "financialdiary.co.kr",
+      "search": ["Financial Diary에서", "[[‘전세사기’]] 검색"],
+      "captions": [
+        "계약 전 체크리스트는 블로그에서 보세요.",
+        "Financial Diary에서 ‘전세사기’를 검색하세요."
+      ]
+    }
+  ]
+}
