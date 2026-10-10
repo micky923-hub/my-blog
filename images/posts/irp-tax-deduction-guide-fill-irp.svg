@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">연금저축 납입액에 따라 IRP에 채울 금액</title>
+  <desc id="d">공제 한도 900만 원을 채우려면 연금저축 0원일 때 IRP 900만 원, 연금저축 300만 원일 때 IRP 600만 원, 연금저축 600만 원일 때 IRP 300만 원을 넣습니다. 연금저축에 800만 원을 넣었다면 600만 원만 공제되고 200만 원은 공제되지 않으므로, IRP에 300만 원을 따로 넣어야 900만 원이 채워집니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">900만 원, 이렇게 나눠 채우세요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">IRP = 900만 원 − 연금저축(최대 600만 원)</text>
+
+    <rect x="32" y="110" width="20" height="20" rx="4" fill="#3b82f6"/>
+    <text x="60" y="126" font-size="16" fill="#0f172a">연금저축</text>
+    <rect x="150" y="110" width="20" height="20" rx="4" fill="#16a34a"/>
+    <text x="178" y="126" font-size="16" fill="#0f172a">IRP</text>
+    <rect x="236" y="110" width="20" height="20" rx="4" fill="#cbd5e1"/>
+    <text x="264" y="126" font-size="16" fill="#0f172a">공제 안 됨</text>
+
+    <text x="32" y="174" font-size="19" font-weight="700" fill="#0f172a">연금저축 0원</text>
+    <rect x="32" y="186" width="360" height="42" rx="8" fill="#16a34a"/>
+    <text x="212" y="214" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">IRP 900만 원</text>
+
+    <text x="32" y="266" font-size="19" font-weight="700" fill="#0f172a">연금저축 300만 원</text>
+    <rect x="32" y="278" width="120" height="42" rx="8" fill="#3b82f6"/>
+    <rect x="152" y="278" width="240" height="42" rx="8" fill="#16a34a"/>
+    <text x="92" y="306" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">300만</text>
+    <text x="272" y="306" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">IRP 600만 원</text>
+
+    <text x="32" y="358" font-size="19" font-weight="700" fill="#0f172a">연금저축 600만 원</text>
+    <rect x="32" y="370" width="240" height="42" rx="8" fill="#3b82f6"/>
+    <rect x="272" y="370" width="120" height="42" rx="8" fill="#16a34a"/>
+    <text x="152" y="398" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">600만 원</text>
+    <text x="332" y="398" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">IRP 300만</text>
+
+    <text x="32" y="450" font-size="19" font-weight="700" fill="#0f172a">연금저축 800만 원</text>
+    <rect x="32" y="462" width="240" height="42" rx="8" fill="#3b82f6"/>
+    <rect x="272" y="462" width="80" height="42" rx="8" fill="#cbd5e1"/>
+    <rect x="352" y="462" width="120" height="42" rx="8" fill="#16a34a"/>
+    <text x="152" y="490" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">600만 원</text>
+    <text x="312" y="490" text-anchor="middle" font-size="16" font-weight="800" fill="#334155">200만</text>
+    <text x="412" y="490" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">IRP 300만</text>
+
+    <rect x="32" y="526" width="496" height="54" rx="12" fill="#fef3c7"/>
+    <text x="52" y="559" font-size="17" font-weight="800" fill="#92400e">연금저축은 600만 원까지만 공제돼요</text>
+  </g>
+</svg>
