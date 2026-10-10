@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 534" role="img" aria-labelledby="t d">
+  <title id="t">대환대출 기간 연장의 함정</title>
+  <desc id="d">2억 원 대출의 남은 기간 총이자를 비교합니다. 지금 대출 4.5% 20년은 1억 367만 원(월 126만 5천 원), 3.8%로 20년 그대로 갈아타면 8,584만 원(월 119만 1천 원), 3.8%로 30년으로 늘리면 1억 3,549만 원(월 93만 2천 원)입니다. 30년으로 늘리면 월 상환액은 33만 원 넘게 줄지만 비용까지 약 3,349만 원 손해입니다.</desc>
+  <rect x="0" y="0" width="560" height="534" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">기간을 늘리면 생기는 함정</text>
+    <text x="32" y="90" font-size="18" fill="#475569">2억 원 대출의 남은 기간 총이자</text>
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">지금 대출 · 4.5% · 20년</text>
+    <text x="528" y="140" text-anchor="end" font-size="16" fill="#475569">월 126만 5천 원</text>
+    <rect x="32" y="152" width="379.5" height="44" rx="8" fill="#64748b"/>
+    <text x="397.5" y="181" text-anchor="end" font-size="19" font-weight="800" fill="#ffffff">1억 367만 원</text>
+    <text x="32" y="236" font-size="19" font-weight="700" fill="#0f172a">갈아타기 · 3.8% · 20년</text>
+    <text x="528" y="236" text-anchor="end" font-size="16" fill="#475569">월 119만 1천 원</text>
+    <rect x="32" y="248" width="314.2" height="44" rx="8" fill="#3b82f6"/>
+    <text x="332.2" y="277" text-anchor="end" font-size="19" font-weight="800" fill="#ffffff">8,584만 원</text>
+    <text x="32" y="332" font-size="19" font-weight="700" fill="#0f172a">갈아타기 · 3.8% · 30년</text>
+    <text x="528" y="332" text-anchor="end" font-size="16" fill="#475569">월 93만 2천 원</text>
+    <rect x="32" y="344" width="496.0" height="44" rx="8" fill="#dc2626"/>
+    <text x="514.0" y="373" text-anchor="end" font-size="19" font-weight="800" fill="#ffffff">1억 3,549만 원</text>
+    <rect x="32" y="420" width="496" height="90" rx="12" fill="#fee2e2"/>
+    <text x="52" y="450" font-size="18" fill="#7f1d1d">30년으로 늘리면 월 33만 원 줄지만</text>
+    <text x="52" y="477" font-size="18" font-weight="800" fill="#7f1d1d">비용까지 약 3,349만 원 손해예요</text>
+  </g>
+</svg>

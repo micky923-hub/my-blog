@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 476" role="img" aria-labelledby="t d">
+  <title id="t">대환대출 비용과 아끼는 이자 비교</title>
+  <desc id="d">주담대 잔액 2억 원, 남은 기간 20년을 금리 4.5%에서 3.8%로 갈아타면 20년 동안 아끼는 이자는 약 1,783만 원이고, 갈아타는 비용은 중도상환수수료 160만 원과 인지세 7만 5천 원을 더한 167만 5천 원입니다. 비용을 빼도 약 1,616만 원 이득이며 15개월째부터 이득이 됩니다.</desc>
+  <rect x="0" y="0" width="560" height="476" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">갈아타면 얼마 남을까</text>
+    <text x="32" y="90" font-size="18" fill="#475569">2억 원 · 남은 20년 · 4.5% → 3.8%</text>
+    <text x="32" y="142" font-size="19" font-weight="700" fill="#0f172a">20년 동안 아끼는 이자</text>
+    <rect x="32" y="154" width="496.0" height="44" rx="8" fill="#3b82f6"/>
+    <text x="514.0" y="183" text-anchor="end" font-size="19" font-weight="800" fill="#ffffff">약 1,783만 원</text>
+    <text x="32" y="236" font-size="19" font-weight="700" fill="#0f172a">갈아타는 비용</text>
+    <rect x="32" y="248" width="46.6" height="44" rx="8" fill="#f59e0b"/>
+    <text x="88.6" y="277" font-size="19" font-weight="800" fill="#92400e">167만 5천 원</text>
+    <text x="32" y="330" font-size="16" fill="#475569">중도상환수수료 160만 원 + 인지세 7만 5천 원</text>
+    <rect x="32" y="360" width="496" height="90" rx="12" fill="#dcfce7"/>
+    <text x="52" y="390" font-size="18" font-weight="800" fill="#166534">비용 빼고 약 1,616만 원 이득</text>
+    <text x="52" y="417" font-size="18" fill="#166534">15개월째부터 이득이 시작돼요</text>
+  </g>
+</svg>
