@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">12월에 할 수 있는 일별 줄어드는 세금</title>
+  <desc id="d">총급여 5,000만 원 기준 예시입니다. 연금저축·IRP에 600만 원을 더 넣으면 99만 원, ISA 만기 자금 3,000만 원을 연금계좌로 옮기면 49만 5천 원, 고향사랑기부 20만 원이면 14만 4천 원과 답례품 6만 원어치, 문턱을 넘은 뒤 카드 300만 원을 체크카드로 쓰면 약 7만 4천 원의 세금이 줄어듭니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">12월에 하면 줄어드는 세금</text>
+    <text x="32" y="90" font-size="18" fill="#475569">총급여 5,000만 원 · 지방소득세 포함</text>
+
+    <text x="32" y="142" font-size="20" font-weight="700" fill="#0f172a">연금저축·IRP 600만 원 추가</text>
+    <rect x="32" y="154" width="400" height="44" rx="8" fill="#3b82f6"/>
+    <text x="446" y="184" font-size="20" font-weight="800" fill="#0f172a">99만 원</text>
+
+    <text x="32" y="236" font-size="20" font-weight="700" fill="#0f172a">ISA 만기 3,000만 원 이전</text>
+    <rect x="32" y="248" width="200" height="44" rx="8" fill="#6366f1"/>
+    <text x="246" y="278" font-size="20" font-weight="800" fill="#0f172a">49만 5천 원</text>
+
+    <text x="32" y="330" font-size="20" font-weight="700" fill="#0f172a">고향사랑기부 20만 원</text>
+    <rect x="32" y="342" width="58" height="44" rx="8" fill="#16a34a"/>
+    <text x="104" y="372" font-size="20" font-weight="800" fill="#0f172a">14만 4천 원 <tspan font-size="16" font-weight="400" fill="#475569">+ 답례품 6만 원어치</tspan></text>
+
+    <text x="32" y="424" font-size="20" font-weight="700" fill="#0f172a">카드 300만 원 → 체크카드</text>
+    <rect x="32" y="436" width="30" height="44" rx="8" fill="#f59e0b"/>
+    <text x="76" y="466" font-size="20" font-weight="800" fill="#0f172a">약 7만 4천 원</text>
+
+    <rect x="32" y="496" width="496" height="46" rx="12" fill="#dbeafe"/>
+    <text x="52" y="526" font-size="17" font-weight="800" fill="#1e3a8a">연금계좌부터 채우는 게 효과가 가장 커요</text>
+  </g>
+</svg>

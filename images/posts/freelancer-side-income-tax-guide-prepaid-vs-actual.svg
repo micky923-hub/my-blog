@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">3.3%로 미리 낸 세금과 실제 세금 비교</title>
+  <desc id="d">소득세 기준 예시입니다. 수입 1,200만 원 프리랜서는 미리 36만 원을 냈지만 실제 세금은 12만 8천 원이라 23만 2천 원을 돌려받습니다. 수입 3,000만 원 프리랜서는 90만 원을 냈지만 실제 114만 5천 원이라 24만 5천 원을 더 냅니다. 부업 수입 500만 원 직장인은 15만 원을 냈지만 실제 약 30만 원이라 약 15만 원을 더 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">미리 낸 세금 vs 실제 세금</text>
+    <text x="32" y="88" font-size="18" fill="#475569">소득세 기준 · 지방소득세 10% 별도</text>
+    <rect x="32" y="106" width="18" height="18" rx="4" fill="#94a3b8"/>
+    <text x="58" y="121" font-size="16" fill="#334155">미리 낸 3%</text>
+    <rect x="170" y="106" width="18" height="18" rx="4" fill="#3b82f6"/>
+    <text x="196" y="121" font-size="16" fill="#334155">실제 세금</text>
+
+    <text x="32" y="168" font-size="20" font-weight="700" fill="#0f172a">A 프리랜서 · 수입 1,200만 원</text>
+    <rect x="32" y="180" width="94" height="30" rx="6" fill="#94a3b8"/>
+    <text x="138" y="202" font-size="17" fill="#334155">36만 원</text>
+    <rect x="32" y="216" width="34" height="30" rx="6" fill="#3b82f6"/>
+    <text x="78" y="238" font-size="17" fill="#334155">12만 8천 원</text>
+    <text x="528" y="238" text-anchor="end" font-size="18" font-weight="800" fill="#166534">23만 2천 원 환급</text>
+
+    <text x="32" y="294" font-size="20" font-weight="700" fill="#0f172a">B 프리랜서 · 수입 3,000만 원</text>
+    <rect x="32" y="306" width="236" height="30" rx="6" fill="#94a3b8"/>
+    <text x="280" y="328" font-size="17" fill="#334155">90만 원</text>
+    <rect x="32" y="342" width="300" height="30" rx="6" fill="#3b82f6"/>
+    <text x="344" y="364" font-size="17" fill="#334155">114만 5천 원</text>
+    <text x="528" y="398" text-anchor="end" font-size="18" font-weight="800" fill="#b91c1c">24만 5천 원 추가 납부</text>
+
+    <text x="32" y="444" font-size="20" font-weight="700" fill="#0f172a">C 직장인 · 부업 수입 500만 원</text>
+    <rect x="32" y="456" width="39" height="30" rx="6" fill="#94a3b8"/>
+    <text x="83" y="478" font-size="17" fill="#334155">15만 원</text>
+    <rect x="32" y="492" width="79" height="30" rx="6" fill="#3b82f6"/>
+    <text x="123" y="514" font-size="17" fill="#334155">약 30만 원</text>
+    <text x="528" y="514" text-anchor="end" font-size="18" font-weight="800" fill="#b91c1c">약 15만 원 추가 납부</text>
+
+    <text x="32" y="568" font-size="16" fill="#475569">A·C는 경비율 60% 가정, B는 장부로 실제 경비 1,200만 원</text>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 450" role="img" aria-labelledby="t d">
+  <title id="t">1,000만 원을 1년 넣었을 때 세후 이자</title>
+  <desc id="d">예시 금리로 1,000만 원을 1년 넣으면 세후 이자는 입출금통장 연 0.1%에서 8,460원, 파킹통장 연 2%에서 16만 9,200원, 정기예금 연 3%에서 25만 3,800원입니다. 이자소득세 15.4%를 뺀 금액입니다.</desc>
+  <rect x="0" y="0" width="560" height="450" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1,000만 원, 1년 뒤 이자</text>
+    <text x="32" y="88" font-size="18" fill="#475569">세금 15.4% 뺀 금액 · 예시 금리</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">입출금통장 <tspan font-weight="400" fill="#475569">연 0.1%</tspan></text>
+    <rect x="32" y="152" width="12" height="40" rx="4" fill="#94a3b8"/>
+    <text x="54" y="179" font-size="19" font-weight="800" fill="#334155">8,460원</text>
+
+    <text x="32" y="240" font-size="20" font-weight="700" fill="#0f172a">파킹통장 <tspan font-weight="400" fill="#475569">연 2%</tspan></text>
+    <rect x="32" y="252" width="240" height="40" rx="8" fill="#60a5fa"/>
+    <text x="282" y="279" font-size="19" font-weight="800" fill="#1e3a8a">16만 9,200원</text>
+
+    <text x="32" y="340" font-size="20" font-weight="700" fill="#0f172a">정기예금 <tspan font-weight="400" fill="#475569">연 3%</tspan></text>
+    <rect x="32" y="352" width="360" height="40" rx="8" fill="#2563eb"/>
+    <text x="402" y="379" font-size="19" font-weight="800" fill="#1e3a8a">25만 3,800원</text>
+
+    <text x="32" y="428" font-size="17" fill="#0f172a">어디에 두느냐로 1년에 <tspan font-weight="800" fill="#dc2626">24만 원</tspan> 넘게 차이</text>
+  </g>
+</svg>

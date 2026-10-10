@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">작년 수입으로 고르는 종합소득세 신고 유형</title>
+  <desc id="d">직원 없이 혼자 디자인·강의·개발 같은 인적용역을 하는 프리랜서 기준입니다. 작년 수입이 3,600만 원 미만이면 단순경비율과 장부 중 세금이 적은 쪽으로, 3,600만 원 이상 7,500만 원 미만이면 증빙을 모아 간편장부로, 7,500만 원 이상이면 복식부기 장부로 신고합니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">작년 수입으로 고르세요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">직원 없는 인적용역 프리랜서 기준</text>
+
+    <rect x="32" y="116" width="496" height="104" rx="14" fill="#dcfce7"/>
+    <text x="52" y="150" font-size="18" font-weight="700" fill="#166534">3,600만 원 미만</text>
+    <text x="52" y="180" font-size="21" font-weight="800" fill="#14532d">단순경비율 또는 장부</text>
+    <text x="52" y="206" font-size="16" fill="#166534">두 방식으로 계산해 세금이 적은 쪽</text>
+
+    <rect x="32" y="236" width="496" height="104" rx="14" fill="#dbeafe"/>
+    <text x="52" y="270" font-size="18" font-weight="700" fill="#1e40af">3,600만~7,500만 원 미만</text>
+    <text x="52" y="300" font-size="21" font-weight="800" fill="#1e3a8a">증빙 모아 간편장부</text>
+    <text x="52" y="326" font-size="16" fill="#1e40af">기준경비율은 인정 경비가 크게 줄어요</text>
+
+    <rect x="32" y="356" width="496" height="104" rx="14" fill="#fef3c7"/>
+    <text x="52" y="390" font-size="18" font-weight="700" fill="#92400e">7,500만 원 이상</text>
+    <text x="52" y="420" font-size="21" font-weight="800" fill="#78350f">복식부기 장부</text>
+    <text x="52" y="446" font-size="16" fill="#92400e">세무대리인 도움을 받는 편이 안전해요</text>
+
+    <rect x="32" y="478" width="496" height="62" rx="12" fill="#e2e8f0"/>
+    <text x="52" y="504" font-size="17" font-weight="800" fill="#334155">내 유형은 홈택스 신고도움서비스에서</text>
+    <text x="52" y="528" font-size="16" fill="#475569">업종 코드별 경비율도 함께 확인하세요</text>
+  </g>
+</svg>
