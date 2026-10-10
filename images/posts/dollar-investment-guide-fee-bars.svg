@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 576" role="img" aria-labelledby="t d">
+  <title id="t">환전 우대율별 수수료</title>
+  <desc id="d">환율 1,400원에 1만 달러(1,400만 원)를 바꿀 때 현찰 기준 스프레드 1.75%로 단순 계산하면 수수료는 우대 없음 24만 5천 원, 우대 50% 12만 2,500원, 우대 90% 2만 4,500원입니다. 팔 때도 수수료가 한 번 더 붙습니다.</desc>
+  <rect x="0" y="0" width="560" height="576" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">우대율이 수수료를 가릅니다</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1만 달러 · 환율 1,400원 · 스프레드 1.75%</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">우대 없음</text>
+    <text x="32" y="166" font-size="16" fill="#475569">스프레드 1.75% 그대로</text>
+    <rect x="32" y="178" width="440" height="44" rx="8" fill="#94a3b8"/>
+    <text x="252" y="208" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">24만 5천 원</text>
+
+    <text x="32" y="262" font-size="20" font-weight="700" fill="#0f172a">우대 50%</text>
+    <text x="32" y="288" font-size="16" fill="#475569">스프레드 0.875%</text>
+    <rect x="32" y="300" width="220" height="44" rx="8" fill="#f59e0b"/>
+    <text x="142" y="330" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">12만 2,500원</text>
+
+    <text x="32" y="384" font-size="20" font-weight="700" fill="#0f172a">우대 90%</text>
+    <text x="32" y="410" font-size="16" fill="#475569">스프레드 0.175%</text>
+    <rect x="32" y="422" width="44" height="44" rx="8" fill="#3b82f6"/>
+    <text x="90" y="452" font-size="20" font-weight="800" fill="#1e3a8a">2만 4,500원</text>
+
+    <rect x="32" y="496" width="496" height="60" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="533" font-size="18" font-weight="800" fill="#075985">팔 때도 한 번 더 붙어요</text>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 586" role="img" aria-labelledby="t d">
+  <title id="t">1년 코인 수익별 세금</title>
+  <desc id="d">1년 코인 수익에서 250만 원을 뺀 뒤 22%를 냅니다. 수익 200만 원이면 0원, 800만 원이면 550만 원의 22%인 121만 원, 2,000만 원이면 1,750만 원의 22%인 385만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="586" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">코인 수익별 세금</text>
+    <text x="32" y="90" font-size="18" fill="#475569">250만 원 공제 후 22% · 손실·수수료 뺀 순수익</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">1년 수익 200만 원</text>
+    <text x="32" y="166" font-size="16" fill="#475569">250만 원 공제 안</text>
+    <rect x="32" y="178" width="6" height="44" rx="3" fill="#16a34a"/>
+    <text x="52" y="208" font-size="20" font-weight="800" fill="#166534">0원</text>
+
+    <text x="32" y="262" font-size="20" font-weight="700" fill="#0f172a">1년 수익 800만 원</text>
+    <text x="32" y="288" font-size="16" fill="#475569">550만 원 × 22%</text>
+    <rect x="32" y="300" width="138" height="44" rx="8" fill="#f59e0b"/>
+    <text x="184" y="330" font-size="20" font-weight="800" fill="#92400e">121만 원</text>
+
+    <text x="32" y="384" font-size="20" font-weight="700" fill="#0f172a">1년 수익 2,000만 원</text>
+    <text x="32" y="410" font-size="16" fill="#475569">1,750만 원 × 22%</text>
+    <rect x="32" y="422" width="440" height="44" rx="8" fill="#3b82f6"/>
+    <text x="252" y="452" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">385만 원</text>
+
+    <rect x="32" y="496" width="496" height="60" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="533" font-size="18" font-weight="800" fill="#075985">같은 해 손실은 합쳐서 빼 줘요</text>
+  </g>
+</svg>

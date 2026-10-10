@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">가상자산 과세 시작 흐름</title>
+  <desc id="d">2026년 12월 31일 당시 시가와 실제로 산 가격 가운데 큰 금액이 취득가액이 됩니다. 2027년 1월 1일 이후 판 코인부터 과세하고, 2027년 한 해 수익은 2028년 5월에 신고합니다. 예를 들어 4,000만 원에 산 비트코인의 2026년 말 시세가 1억 원이면 취득가액은 1억 원이고, 2027년에 1억 2,000만 원에 팔면 수익은 2,000만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">과세는 이렇게 시작돼요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">현재 법 기준 · 국회 논의로 바뀔 수 있음</text>
+
+    <line x1="62" y1="128" x2="62" y2="372" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">2026년 12월 31일</text>
+    <text x="98" y="158" font-size="16" fill="#475569">이날 시가와 산 가격 중 큰 금액이</text>
+    <text x="98" y="180" font-size="16" fill="#475569">취득가액 · 보유 수량과 시세 캡처</text>
+
+    <circle cx="62" cy="246" r="20" fill="#3b82f6"/>
+    <text x="62" y="253" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="242" font-size="21" font-weight="800" fill="#0f172a">2027년 1월 1일부터</text>
+    <text x="98" y="268" font-size="16" fill="#475569">판 코인 수익에 과세 시작</text>
+    <text x="98" y="290" font-size="16" fill="#475569">250만 원 공제 후 22%</text>
+
+    <circle cx="62" cy="356" r="20" fill="#16a34a"/>
+    <text x="62" y="363" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="352" font-size="21" font-weight="800" fill="#166534">2028년 5월, 첫 신고</text>
+    <text x="98" y="378" font-size="16" fill="#475569">2027년 한 해 수익을 직접 신고</text>
+
+    <rect x="32" y="420" width="496" height="156" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="452" font-size="18" font-weight="800" fill="#075985">예시: 비트코인 1개</text>
+    <text x="52" y="482" font-size="16" fill="#075985">산 가격 4,000만 원 · 2026년 말 시세 1억 원</text>
+    <text x="52" y="508" font-size="16" fill="#075985">→ 취득가액 1억 원</text>
+    <text x="52" y="534" font-size="16" fill="#075985">2027년에 1억 2,000만 원에 팔면</text>
+    <text x="52" y="560" font-size="16" font-weight="800" fill="#075985">→ 수익 2,000만 원으로 계산</text>
+  </g>
+</svg>

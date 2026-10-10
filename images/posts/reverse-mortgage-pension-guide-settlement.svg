@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">주택연금 사망 후 정산 예시</title>
+  <desc id="d">부부가 모두 세상을 떠나면 집을 처분해 그동안 받은 돈을 정산합니다. 집을 처분한 금액이 5억 원이고 받은 돈이 3억 원이면 차액 2억 원은 상속인에게 갑니다. 집값이 3억 원인데 받은 돈이 4억 원이면 부족한 1억 원을 상속인에게 청구하지 않습니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">부부가 떠난 뒤, 집은 이렇게</text>
+    <text x="32" y="88" font-size="17" fill="#475569">받은 돈 = 연금 + 이자 + 보증료 · 예시</text>
+
+    <text x="32" y="140" font-size="20" font-weight="800" fill="#166534">집값이 더 많으면</text>
+    <text x="32" y="174" font-size="16" fill="#334155">집 처분</text>
+    <rect x="108" y="154" width="420" height="32" rx="6" fill="#cbd5e1"/>
+    <text x="318" y="176" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">5억 원</text>
+    <text x="32" y="218" font-size="16" fill="#334155">받은 돈</text>
+    <rect x="108" y="198" width="252" height="32" rx="6" fill="#64748b"/>
+    <text x="234" y="220" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">3억 원</text>
+    <rect x="362" y="199" width="165" height="30" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="444" y="220" text-anchor="middle" font-size="16" font-weight="800" fill="#166534">남는 2억</text>
+    <rect x="32" y="246" width="496" height="44" rx="10" fill="#dcfce7"/>
+    <text x="52" y="275" font-size="17" font-weight="800" fill="#166534">남은 2억 원은 상속인에게 돌아가요</text>
+
+    <text x="32" y="346" font-size="20" font-weight="800" fill="#1e40af">받은 돈이 더 많으면</text>
+    <text x="32" y="380" font-size="16" fill="#334155">집 처분</text>
+    <rect x="108" y="360" width="252" height="32" rx="6" fill="#cbd5e1"/>
+    <text x="234" y="382" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">3억 원</text>
+    <text x="32" y="424" font-size="16" fill="#334155">받은 돈</text>
+    <rect x="108" y="404" width="336" height="32" rx="6" fill="#64748b"/>
+    <text x="276" y="426" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">4억 원</text>
+    <line x1="360" y1="352" x2="360" y2="444" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="452" y="426" font-size="16" font-weight="700" fill="#dc2626">부족 1억</text>
+    <rect x="32" y="456" width="496" height="44" rx="10" fill="#dbeafe"/>
+    <text x="52" y="485" font-size="17" font-weight="800" fill="#1e3a8a">부족한 1억 원은 청구하지 않아요</text>
+
+    <text x="32" y="540" font-size="16" fill="#475569">가입자가 먼저 떠나도 배우자가 계속 받아요</text>
+    <text x="32" y="566" font-size="16" fill="#475569">자녀가 받은 돈을 갚고 집을 물려받을 수도 있어요</text>
+  </g>
+</svg>

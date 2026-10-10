@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
+  <title id="t">국민연금 수령 시기별 나이별 누적 수령액</title>
+  <desc id="d">정상 수령 시 월 100만 원인 사람이 60세부터 조기수령하면 월 70만 원, 65세 정상 수령은 월 100만 원, 70세까지 연기하면 월 136만 원을 받습니다. 물가 인상을 빼고 더하면 75세까지는 조기 1억 2,600만 원, 정상 1억 2,000만 원, 연기 8,160만 원입니다. 85세까지는 조기 2억 1,000만 원, 정상 2억 4,000만 원, 연기 2억 4,480만 원이고, 90세까지는 조기 2억 5,200만 원, 정상 3억 원, 연기 3억 2,640만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">몇 살까지 받으면 얼마?</text>
+    <text x="32" y="88" font-size="17" fill="#475569">정상 월 100만 원 기준 · 물가 인상 제외</text>
+
+    <rect x="32" y="108" width="16" height="16" rx="3" fill="#f59e0b"/>
+    <text x="54" y="122" font-size="16" fill="#334155">조기 70만</text>
+    <rect x="150" y="108" width="16" height="16" rx="3" fill="#94a3b8"/>
+    <text x="172" y="122" font-size="16" fill="#334155">정상 100만</text>
+    <rect x="278" y="108" width="16" height="16" rx="3" fill="#2563eb"/>
+    <text x="300" y="122" font-size="16" fill="#334155">연기 136만</text>
+
+    <text x="32" y="170" font-size="20" font-weight="800" fill="#0f172a">75세까지</text>
+    <rect x="32" y="182" width="116" height="28" rx="6" fill="#f59e0b"/>
+    <text x="156" y="202" font-size="16" font-weight="700" fill="#92400e">1억 2,600만</text>
+    <rect x="32" y="216" width="110" height="28" rx="6" fill="#94a3b8"/>
+    <text x="150" y="236" font-size="16" font-weight="700" fill="#334155">1억 2,000만</text>
+    <rect x="32" y="250" width="75" height="28" rx="6" fill="#2563eb"/>
+    <text x="115" y="270" font-size="16" font-weight="700" fill="#1e40af">8,160만</text>
+
+    <text x="32" y="324" font-size="20" font-weight="800" fill="#0f172a">85세까지</text>
+    <rect x="32" y="336" width="193" height="28" rx="6" fill="#f59e0b"/>
+    <text x="233" y="356" font-size="16" font-weight="700" fill="#92400e">2억 1,000만</text>
+    <rect x="32" y="370" width="221" height="28" rx="6" fill="#94a3b8"/>
+    <text x="261" y="390" font-size="16" font-weight="700" fill="#334155">2억 4,000만</text>
+    <rect x="32" y="404" width="225" height="28" rx="6" fill="#2563eb"/>
+    <text x="265" y="424" font-size="16" font-weight="700" fill="#1e40af">2억 4,480만</text>
+
+    <text x="32" y="478" font-size="20" font-weight="800" fill="#0f172a">90세까지</text>
+    <rect x="32" y="490" width="232" height="28" rx="6" fill="#f59e0b"/>
+    <text x="272" y="510" font-size="16" font-weight="700" fill="#92400e">2억 5,200만</text>
+    <rect x="32" y="524" width="276" height="28" rx="6" fill="#94a3b8"/>
+    <text x="316" y="544" font-size="16" font-weight="700" fill="#334155">3억</text>
+    <rect x="32" y="558" width="300" height="28" rx="6" fill="#2563eb"/>
+    <text x="340" y="578" font-size="16" font-weight="700" fill="#1e40af">3억 2,640만</text>
+
+    <text x="32" y="618" font-size="16" fill="#475569">손익분기: 조기 vs 정상 약 77세 · 연기 vs 정상 약 84세</text>
+  </g>
+</svg>
