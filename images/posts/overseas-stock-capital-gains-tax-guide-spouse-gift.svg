@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">배우자 증여 후 양도 시기별 세금</title>
+  <desc id="d">2,000만 원에 산 해외주식이 6,000만 원이 되었을 때, 직접 팔면 (4,000만 원 − 250만 원) × 22%로 825만 원, 배우자에게 증여하고 1년 안에 팔면 이월과세로 똑같이 825만 원, 1년이 지난 뒤 같은 값에 팔면 0원입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">배우자 증여, 1년이 갈림길</text>
+    <text x="32" y="90" font-size="18" fill="#475569">2,000만 원에 산 주식 → 지금 6,000만 원</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">내가 직접 팔면</text>
+    <text x="32" y="170" font-size="16" fill="#475569">이익 4,000만 원 · (4,000만 − 250만) × 22%</text>
+    <rect x="32" y="184" width="440" height="46" rx="8" fill="#94a3b8"/>
+    <text x="252" y="215" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">825만 원</text>
+
+    <text x="32" y="274" font-size="20" font-weight="700" fill="#0f172a">증여 후 1년 안에 팔면</text>
+    <text x="32" y="300" font-size="16" fill="#475569">이월과세: 처음 산 값 2,000만 원으로 계산</text>
+    <rect x="32" y="314" width="440" height="46" rx="8" fill="#f59e0b"/>
+    <text x="252" y="345" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">825만 원</text>
+
+    <text x="32" y="404" font-size="20" font-weight="700" fill="#0f172a">증여 후 1년 지나 같은 값에 팔면</text>
+    <text x="32" y="430" font-size="16" fill="#475569">취득가액 6,000만 원 · 이익 0원</text>
+    <rect x="32" y="444" width="6" height="46" rx="3" fill="#16a34a"/>
+    <text x="52" y="476" font-size="21" font-weight="800" fill="#166534">0원</text>
+    <text x="528" y="476" text-anchor="end" font-size="15" fill="#475569">부부 증여공제 10년 6억 원</text>
+  </g>
+</svg>
