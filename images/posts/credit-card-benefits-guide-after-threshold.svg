@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 480" role="img" aria-labelledby="t d">
+  <title id="t">25% 문턱을 넘은 뒤 100만 원을 쓸 때 줄어드는 세금</title>
+  <desc id="d">카드 사용액이 총급여의 25%를 넘은 뒤 100만 원을 더 쓰면, 세율 16.5% 기준으로 신용카드는 15만 원이 공제돼 세금이 약 2만 5천 원 줄고, 체크카드는 30만 원이 공제돼 약 5만 원 줄어듭니다. 차이는 약 2만 5천 원으로 쓴 돈의 약 2.5%입니다.</desc>
+  <rect x="0" y="0" width="560" height="480" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">문턱 넘은 뒤 100만 원 쓰면</text>
+    <text x="32" y="90" font-size="18" fill="#475569">세율 16.5%(지방세 포함) 가정 · 한도 안</text>
+
+    <text x="32" y="146" font-size="20" font-weight="700" fill="#0f172a">신용카드 <tspan font-size="17" font-weight="400" fill="#475569">· 15만 원 공제</tspan></text>
+    <rect x="32" y="158" width="200" height="48" rx="8" fill="#94a3b8"/>
+    <text x="246" y="190" font-size="20" font-weight="800" fill="#0f172a">세금 약 2만 5천 원↓</text>
+
+    <text x="32" y="254" font-size="20" font-weight="700" fill="#0f172a">체크카드 <tspan font-size="17" font-weight="400" fill="#475569">· 30만 원 공제</tspan></text>
+    <rect x="32" y="266" width="400" height="48" rx="8" fill="#3b82f6"/>
+    <text x="232" y="298" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">세금 약 5만 원↓</text>
+
+    <rect x="32" y="346" width="496" height="110" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="380" font-size="19" font-weight="800" fill="#075985">차이 약 2만 5천 원 = 쓴 돈의 약 2.5%</text>
+    <text x="52" y="410" font-size="16" fill="#075985">신용카드 혜택이 2.5%보다 낮은 결제는</text>
+    <text x="52" y="434" font-size="16" fill="#075985">체크카드로 옮기는 편이 유리해요</text>
+  </g>
+</svg>

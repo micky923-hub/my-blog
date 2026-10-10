@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">자차 자기부담금 계산 예시</title>
+  <desc id="d">자기차량손해 자기부담금은 수리비의 20%를 내되 최소 20만 원, 최대 50만 원입니다. 수리비 50만 원이면 20만 원, 150만 원이면 30만 원, 300만 원이면 50만 원을 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">자차 자기부담금, 얼마 낼까</text>
+    <text x="32" y="90" font-size="18" fill="#475569">수리비의 20% · 최소 20만~최대 50만 원</text>
+
+    <rect x="32" y="112" width="18" height="18" rx="4" fill="#cbd5e1"/>
+    <text x="58" y="127" font-size="16" fill="#475569">보험사가 내는 돈</text>
+    <rect x="212" y="112" width="18" height="18" rx="4" fill="#ef4444"/>
+    <text x="238" y="127" font-size="16" fill="#475569">내가 내는 돈</text>
+
+    <text x="32" y="176" font-size="20" font-weight="700" fill="#0f172a">수리비 50만 원</text>
+    <rect x="32" y="188" width="73" height="40" rx="6" fill="#cbd5e1"/>
+    <rect x="32" y="188" width="29" height="40" rx="6" fill="#ef4444"/>
+    <text x="118" y="215" font-size="18" font-weight="800" fill="#b91c1c">20만 원 <tspan font-size="16" font-weight="400" fill="#475569">(최소 금액)</tspan></text>
+
+    <text x="32" y="276" font-size="20" font-weight="700" fill="#0f172a">수리비 150만 원</text>
+    <rect x="32" y="288" width="220" height="40" rx="6" fill="#cbd5e1"/>
+    <rect x="32" y="288" width="44" height="40" rx="6" fill="#ef4444"/>
+    <text x="266" y="315" font-size="18" font-weight="800" fill="#b91c1c">30만 원 <tspan font-size="16" font-weight="400" fill="#475569">(20%)</tspan></text>
+
+    <text x="32" y="376" font-size="20" font-weight="700" fill="#0f172a">수리비 300만 원</text>
+    <rect x="32" y="388" width="440" height="40" rx="6" fill="#cbd5e1"/>
+    <rect x="32" y="388" width="73" height="40" rx="6" fill="#ef4444"/>
+    <text x="120" y="415" font-size="18" font-weight="800" fill="#b91c1c">50만 원 <tspan font-size="16" font-weight="400" fill="#475569">(최대 금액)</tspan></text>
+
+    <rect x="32" y="452" width="496" height="48" rx="12" fill="#fef3c7"/>
+    <text x="52" y="482" font-size="16" font-weight="700" fill="#92400e">수리비 20만 원 안팎이면 보험금이 거의 없어요</text>
+  </g>
+</svg>

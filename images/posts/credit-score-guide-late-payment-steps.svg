@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 516" role="img" aria-labelledby="t d">
+  <title id="t">연체 기간별로 생기는 일</title>
+  <desc id="d">연체 첫날부터 연체 가산금리(최대 연 3%p)가 붙고, 10만 원 이상을 5영업일 이상 밀리면 신용평가사에 공유되어 점수가 떨어집니다. 90일(3개월) 이상 밀리면 장기연체로 등록되어 갚은 뒤에도 기록이 남습니다. 월급날 다음 날 자동이체로 막고, 연체했다면 바로 갚습니다.</desc>
+  <rect x="0" y="0" width="560" height="516" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">연체는 이렇게 무거워져요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">날짜가 지날수록 단계가 올라갑니다</text>
+    <line x1="62" y1="128" x2="62" y2="356" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="62" cy="136" r="20" fill="#f59e0b"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">연체 첫날</text>
+    <text x="98" y="158" font-size="16" fill="#475569">연체 가산금리(최대 연 3%p)가 붙어요</text>
+    <circle cx="62" cy="236" r="20" fill="#ea580c"/>
+    <text x="62" y="243" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="232" font-size="21" font-weight="800" fill="#0f172a">10만 원 이상 · 5영업일 이상</text>
+    <text x="98" y="258" font-size="16" fill="#475569">신용평가사에 공유, 점수가 떨어져요</text>
+    <circle cx="62" cy="336" r="20" fill="#dc2626"/>
+    <text x="62" y="343" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="332" font-size="21" font-weight="800" fill="#0f172a">90일(3개월) 이상</text>
+    <text x="98" y="358" font-size="16" fill="#475569">장기연체 등록, 갚아도 기록이 남아요</text>
+    <rect x="32" y="400" width="496" height="90" rx="12" fill="#dcfce7"/>
+    <text x="52" y="430" font-size="18" font-weight="800" fill="#166534">막는 법: 월급날 다음 날 자동이체</text>
+    <text x="52" y="457" font-size="18" fill="#166534">연체했다면 오늘 바로 갚으세요</text>
+  </g>
+</svg>

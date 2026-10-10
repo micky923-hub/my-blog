@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 526" role="img" aria-labelledby="t d">
+  <title id="t">소득 대비 주담대 월 상환액 비율</title>
+  <desc id="d">3억 원을 변동금리 4.0%로 빌려 월 143만 원을 내다가 금리가 2%p 올라 177만 원이 되는 경우입니다. 월 소득 600만 원 맞벌이 가구는 약 24%에서 약 30%로 40% 안쪽이고, 월 소득 400만 원 외벌이 가구는 약 36%에서 약 44%로 40%를 넘습니다.</desc>
+  <rect x="0" y="0" width="560" height="526" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">월 소득에서 상환액이 차지하는 몫</text>
+    <text x="32" y="90" font-size="18" fill="#475569">3억 원 · 변동 4.0% 시작 · 2%p 오를 때</text>
+    <text x="32" y="138" font-size="20" font-weight="800" fill="#0f172a">맞벌이 · 월 소득 600만 원</text>
+    <rect x="32" y="152" width="230.4" height="40" rx="8" fill="#3b82f6"/>
+    <text x="46" y="179" font-size="17" font-weight="700" fill="#ffffff">지금 143만 원</text>
+    <text x="528" y="179" text-anchor="end" font-size="17" font-weight="800" fill="#0f172a">약 24%</text>
+    <rect x="32" y="202" width="288.0" height="40" rx="8" fill="#f59e0b"/>
+    <text x="46" y="229" font-size="17" font-weight="700" fill="#ffffff">2%p 오르면 177만 원</text>
+    <text x="528" y="229" text-anchor="end" font-size="17" font-weight="800" fill="#0f172a">약 30%</text>
+    <text x="32" y="282" font-size="20" font-weight="800" fill="#0f172a">외벌이 · 월 소득 400만 원</text>
+    <rect x="32" y="296" width="345.6" height="40" rx="8" fill="#3b82f6"/>
+    <text x="46" y="323" font-size="17" font-weight="700" fill="#ffffff">지금 143만 원</text>
+    <text x="528" y="323" text-anchor="end" font-size="17" font-weight="800" fill="#0f172a">약 36%</text>
+    <rect x="32" y="346" width="422.4" height="40" rx="8" fill="#dc2626"/>
+    <text x="46" y="373" font-size="17" font-weight="700" fill="#ffffff">2%p 오르면 177만 원</text>
+    <text x="528" y="373" text-anchor="end" font-size="17" font-weight="800" fill="#0f172a">약 44%</text>
+    <line x1="416.0" y1="118" x2="416.0" y2="396" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="410.0" y="112" text-anchor="end" font-size="16" font-weight="800" fill="#dc2626">40% 선</text>
+    <rect x="32" y="416" width="496" height="90" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="446" font-size="18" font-weight="800" fill="#075985">40%를 넘는 쪽은 고정·혼합형이 편해요</text>
+    <text x="52" y="473" font-size="18" fill="#075985">내 소득으로 바꿔 넣어 계산해 보세요</text>
+  </g>
+</svg>

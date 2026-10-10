@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 630" role="img" aria-labelledby="t d">
+  <title id="t">3년 뒤 변동금리 시나리오별 월 상환액</title>
+  <desc id="d">변동금리 4.0%로 3억 원을 빌려 3년을 갚으면 남은 원금은 약 2억 8,350만 원입니다. 이때 금리가 3.5%로 내리면 월 약 135만 원, 그대로면 약 143만 원, 5.0%로 오르면 약 160만 원, 6.0%로 오르면 약 177만 원을 내 고정금리 4.5%의 약 152만 원과 비교됩니다.</desc>
+  <rect x="0" y="0" width="560" height="630" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">3년 뒤 변동금리가 바뀌면</text>
+    <text x="32" y="90" font-size="18" fill="#475569">남은 원금 약 2억 8,350만 원 · 남은 27년</text>
+    <text x="32" y="142" font-size="19" font-weight="700" fill="#0f172a">3.5%로 내림</text>
+    <rect x="32" y="154" width="328.0" height="44" rx="8" fill="#16a34a"/>
+    <text x="46" y="183" font-size="19" font-weight="800" fill="#ffffff">약 135만 원</text>
+    <text x="32" y="232" font-size="19" font-weight="700" fill="#0f172a">4.0% 그대로</text>
+    <rect x="32" y="244" width="347.4" height="44" rx="8" fill="#3b82f6"/>
+    <text x="46" y="273" font-size="19" font-weight="800" fill="#ffffff">약 143만 원</text>
+    <text x="32" y="322" font-size="19" font-weight="700" fill="#0f172a">5.0%로 오름</text>
+    <rect x="32" y="334" width="388.7" height="44" rx="8" fill="#f59e0b"/>
+    <text x="46" y="363" font-size="19" font-weight="800" fill="#ffffff">약 160만 원</text>
+    <text x="32" y="412" font-size="19" font-weight="700" fill="#0f172a">6.0%로 오름</text>
+    <rect x="32" y="424" width="430.0" height="44" rx="8" fill="#dc2626"/>
+    <text x="46" y="453" font-size="19" font-weight="800" fill="#ffffff">약 177만 원</text>
+    <line x1="401.3" y1="146" x2="401.3" y2="476" stroke="#0f172a" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="32" y="506" font-size="17" font-weight="800" fill="#0f172a">점선 = 고정 4.5%의 월 약 152만 원</text>
+    <rect x="32" y="520" width="496" height="90" rx="12" fill="#fef3c7"/>
+    <text x="52" y="550" font-size="18" font-weight="800" fill="#92400e">1%p 오르면 매달 약 16만 원 더</text>
+    <text x="52" y="577" font-size="18" fill="#92400e">내리면 아끼고, 오르면 고정보다 더 내요</text>
+  </g>
+</svg>
