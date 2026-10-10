@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">연봉·월세별 월세 세액공제 예시</title>
+  <desc id="d">총급여 3,000만 원에 월세 40만 원이면 480만 원의 17%인 81만 6천 원, 총급여 5,000만 원에 월세 60만 원이면 720만 원의 17%인 122만 4천 원, 총급여 7,000만 원에 월세 90만 원이면 한도 1,000만 원의 15%인 150만 원을 소득세에서 공제받습니다. 지방소득세까지 합치면 1.1배가 줄어듭니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">월세로 돌려받는 세금</text>
+    <text x="32" y="90" font-size="19" fill="#475569">1년 월세 × 공제율 · 소득세 기준</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">총급여 3,000만 · 월세 40만</text>
+    <text x="32" y="170" font-size="16" fill="#475569">480만 원 × 17%</text>
+    <rect x="32" y="182" width="218" height="44" rx="8" fill="#93c5fd"/>
+    <text x="264" y="212" font-size="20" font-weight="800" fill="#1e3a8a">81만 6천 원</text>
+
+    <text x="32" y="270" font-size="20" font-weight="700" fill="#0f172a">총급여 5,000만 · 월세 60만</text>
+    <text x="32" y="296" font-size="16" fill="#475569">720만 원 × 17%</text>
+    <rect x="32" y="308" width="326" height="44" rx="8" fill="#3b82f6"/>
+    <text x="372" y="338" font-size="20" font-weight="800" fill="#1e3a8a">122만 4천 원</text>
+
+    <text x="32" y="396" font-size="20" font-weight="700" fill="#0f172a">총급여 7,000만 · 월세 90만</text>
+    <text x="32" y="422" font-size="16" fill="#475569">1,080만 원 중 한도 1,000만 원 × 15%</text>
+    <rect x="32" y="434" width="400" height="44" rx="8" fill="#1d4ed8"/>
+    <text x="232" y="464" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">150만 원</text>
+
+    <text x="32" y="516" font-size="16" fill="#475569">지방소득세까지 합치면 1.1배가 줄어요</text>
+  </g>
+</svg>

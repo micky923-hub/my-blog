@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">ISA 이전으로 늘어나는 연금계좌 세액공제 대상</title>
+  <desc id="d">연금저축 600만 원과 IRP 300만 원을 합친 기본 한도 900만 원에, ISA 만기 자금 3,000만 원을 옮겨 생긴 추가분 300만 원을 더하면 공제 대상이 1,200만 원이 됩니다. 공제율 16.5%면 198만 원, 기본 한도만 채웠을 때보다 49만 5천 원을 더 돌려받습니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">공제 대상이 1,200만 원으로</text>
+    <text x="32" y="90" font-size="19" fill="#475569">총급여 5,000만 원 · ISA 3,000만 원 이전</text>
+
+    <text x="32" y="144" font-size="21" font-weight="700" fill="#0f172a">기본 한도 900만 원</text>
+    <rect x="32" y="156" width="248" height="48" rx="8" fill="#3b82f6"/>
+    <rect x="280" y="156" width="124" height="48" rx="8" fill="#0ea5e9"/>
+    <text x="156" y="187" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">연금저축 600만</text>
+    <text x="342" y="187" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">IRP 300만</text>
+
+    <text x="32" y="250" font-size="21" font-weight="700" fill="#0f172a">+ ISA 이전 추가분 <tspan fill="#16a34a">300만 원</tspan></text>
+    <rect x="32" y="262" width="248" height="48" rx="8" fill="#3b82f6"/>
+    <rect x="280" y="262" width="124" height="48" rx="8" fill="#0ea5e9"/>
+    <rect x="404" y="262" width="124" height="48" rx="8" fill="#16a34a"/>
+    <text x="466" y="293" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">ISA 300만</text>
+    <text x="32" y="336" font-size="16" fill="#475569">옮긴 3,000만 원의 10% · 이 추가분은 300만 원이 최대</text>
+
+    <rect x="32" y="362" width="496" height="114" rx="12" fill="#dcfce7"/>
+    <text x="52" y="396" font-size="18" font-weight="800" fill="#166534">1,200만 원 × 16.5% = 198만 원</text>
+    <text x="52" y="426" font-size="16" fill="#166534">기본 한도만 채웠을 때 148만 5천 원보다</text>
+    <text x="52" y="452" font-size="16" fill="#166534"><tspan font-weight="800">49만 5천 원</tspan>을 더 돌려받아요</text>
+  </g>
+</svg>

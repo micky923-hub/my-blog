@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">연금계좌에 넣은 금액별 돌려받는 세금</title>
+  <desc id="d">총급여 5,500만 원 이하로 공제율 16.5%를 적용하면, 연금계좌 공제 대상이 300만 원이면 49만 5천 원, 600만 원이면 99만 원, 900만 원이면 148만 5천 원, ISA 만기 자금 추가 공제 300만 원을 더한 1,200만 원이면 198만 원을 돌려받습니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">넣은 만큼 돌려받는 세금</text>
+    <text x="32" y="90" font-size="18" fill="#475569">총급여 5,500만 원 이하 · 공제율 16.5%</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">300만 원</text>
+    <rect x="32" y="152" width="100" height="44" rx="8" fill="#93c5fd"/>
+    <text x="146" y="182" font-size="20" font-weight="800" fill="#0f172a">49만 5천 원</text>
+
+    <text x="32" y="236" font-size="20" font-weight="700" fill="#0f172a">600만 원 <tspan fill="#64748b" font-weight="400" font-size="17">연금저축 한도</tspan></text>
+    <rect x="32" y="248" width="200" height="44" rx="8" fill="#60a5fa"/>
+    <text x="246" y="278" font-size="20" font-weight="800" fill="#0f172a">99만 원</text>
+
+    <text x="32" y="332" font-size="20" font-weight="700" fill="#0f172a">900만 원 <tspan fill="#64748b" font-weight="400" font-size="17">IRP 합산 한도</tspan></text>
+    <rect x="32" y="344" width="300" height="44" rx="8" fill="#3b82f6"/>
+    <text x="346" y="374" font-size="20" font-weight="800" fill="#0f172a">148만 5천 원</text>
+
+    <text x="32" y="428" font-size="20" font-weight="700" fill="#0f172a">1,200만 원 <tspan fill="#64748b" font-weight="400" font-size="17">ISA 이전 포함</tspan></text>
+    <rect x="32" y="440" width="400" height="44" rx="8" fill="#16a34a"/>
+    <text x="446" y="470" font-size="20" font-weight="800" fill="#0f172a">198만 원</text>
+
+    <text x="32" y="530" font-size="16" fill="#475569">총급여 5,500만 원 초과라면 13.2%로 계산하세요</text>
+  </g>
+</svg>

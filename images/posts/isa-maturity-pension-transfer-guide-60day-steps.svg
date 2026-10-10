@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">ISA 만기 자금 연금계좌 이전 순서</title>
+  <desc id="d">ISA 만기일을 확인하고 60일 마감일을 적어 둡니다. 연금저축이나 IRP 계좌를 준비한 뒤, 직접 출금하지 말고 증권사의 ISA 만기 자금 연금계좌 이전 메뉴로 신청합니다. 만기일부터 60일 안에 이전을 끝내고, 다음 연말정산에서 ISA 전환금액이 반영됐는지 확인합니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">60일 안에, 이 순서로</text>
+    <text x="32" y="88" font-size="18" fill="#475569">만기일부터 60일이 지나면 추가 공제가 없어요</text>
+
+    <line x1="62" y1="128" x2="62" y2="452" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">만기일 확인</text>
+    <text x="98" y="158" font-size="16" fill="#475569">60일째 되는 날을 달력에 적기</text>
+
+    <circle cx="62" cy="216" r="20" fill="#3b82f6"/>
+    <text x="62" y="223" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="212" font-size="21" font-weight="800" fill="#0f172a">연금저축·IRP 계좌 준비</text>
+    <text x="98" y="238" font-size="16" fill="#475569">같은 증권사면 더 간단해요</text>
+
+    <circle cx="62" cy="296" r="20" fill="#3b82f6"/>
+    <text x="62" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="292" font-size="21" font-weight="800" fill="#0f172a">"연금계좌 이전" 메뉴로 신청</text>
+    <text x="98" y="318" font-size="16" fill="#475569">내 통장으로 출금했다 넣으면 인정 안 될 수 있어요</text>
+
+    <circle cx="62" cy="376" r="20" fill="#3b82f6"/>
+    <text x="62" y="383" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">4</text>
+    <text x="98" y="372" font-size="21" font-weight="800" fill="#0f172a">60일 안에 이전 완료</text>
+    <text x="98" y="398" font-size="16" fill="#475569">넘기면 일반 납입(900만 원 한도)으로</text>
+
+    <circle cx="62" cy="456" r="20" fill="#16a34a"/>
+    <text x="62" y="463" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="452" font-size="21" font-weight="800" fill="#166534">다음 연말정산에서 확인</text>
+    <text x="98" y="478" font-size="16" fill="#475569">간소화 자료에 ISA 전환금액이 있는지</text>
+
+    <rect x="32" y="512" width="496" height="66" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="540" font-size="18" font-weight="800" fill="#075985">3,000만 원까지 옮기면 추가 공제 300만 원</text>
+    <text x="52" y="564" font-size="16" fill="#075985">나머지는 새 ISA나 예금으로 나눠도 돼요</text>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">연금저축 계좌를 증권사로 옮기는 순서</title>
+  <desc id="d">옮겨 갈 증권사 앱에서 연금저축펀드 계좌를 만들고, 같은 앱에서 계좌이체를 신청한 뒤, 기존 금융사의 확인 연락을 받으면 며칠 뒤 돈이 옮겨집니다. 해지가 아니라서 세금이 없고 받은 세액공제도 그대로입니다. 보험은 해지환급금 기준으로 옮겨져 낸 돈보다 적을 수 있습니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">해지 말고 옮기세요</text>
+    <text x="32" y="88" font-size="18" fill="#475569">보험·신탁 → 증권사 연금저축펀드</text>
+
+    <line x1="62" y1="128" x2="62" y2="372" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="136" r="20" fill="#3b82f6"/>
+    <text x="62" y="143" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="132" font-size="21" font-weight="800" fill="#0f172a">새 증권사에 계좌 만들기</text>
+    <text x="98" y="158" font-size="16" fill="#475569">앱에서 연금저축펀드 계좌 개설</text>
+
+    <circle cx="62" cy="216" r="20" fill="#3b82f6"/>
+    <text x="62" y="223" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="212" font-size="21" font-weight="800" fill="#0f172a">같은 앱에서 이전 신청</text>
+    <text x="98" y="238" font-size="16" fill="#475569">기존 금융사에 갈 필요 없어요</text>
+
+    <circle cx="62" cy="296" r="20" fill="#3b82f6"/>
+    <text x="62" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="292" font-size="21" font-weight="800" fill="#0f172a">기존 금융사 확인 연락</text>
+    <text x="98" y="318" font-size="16" fill="#475569">이전 의사만 확인해 주면 끝</text>
+
+    <circle cx="62" cy="376" r="20" fill="#16a34a"/>
+    <text x="62" y="383" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">✓</text>
+    <text x="98" y="372" font-size="21" font-weight="800" fill="#166534">며칠 뒤 이전 완료</text>
+    <text x="98" y="398" font-size="16" fill="#475569">들어온 돈으로 ETF·펀드 사기</text>
+
+    <rect x="32" y="430" width="496" height="66" rx="12" fill="#dcfce7"/>
+    <text x="52" y="458" font-size="17" font-weight="800" fill="#166534">해지가 아니라 세금 0원</text>
+    <text x="52" y="482" font-size="16" fill="#166534">그동안 받은 세액공제도 그대로 인정돼요</text>
+
+    <rect x="32" y="510" width="496" height="70" rx="12" fill="#fef3c7"/>
+    <text x="52" y="539" font-size="17" font-weight="800" fill="#92400e">⚠ 보험은 해지환급금 기준으로 옮겨져요</text>
+    <text x="52" y="563" font-size="16" fill="#92400e">가입 초기라면 낸 돈보다 적을 수 있어요</text>
+  </g>
+</svg>

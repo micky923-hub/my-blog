@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">놓친 월세 세액공제를 돌려받는 세 번의 기회</title>
+  <desc id="d">첫 번째 기회는 1월 회사 연말정산, 두 번째는 5월 종합소득세 신고, 세 번째는 법정신고기한(다음 해 5월 31일)부터 5년 안에 하는 경정청구입니다. 2026년 10월 기준으로 2021년 귀속분은 2027년 5월 31일까지 청구할 수 있습니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">놓쳐도 기회는 세 번</text>
+    <text x="32" y="88" font-size="18" fill="#475569">서류는 세 번 모두 같아요</text>
+
+    <line x1="62" y1="138" x2="62" y2="358" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="62" cy="146" r="20" fill="#3b82f6"/>
+    <text x="62" y="153" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="142" font-size="21" font-weight="800" fill="#0f172a">1월 · 회사 연말정산</text>
+    <text x="98" y="168" font-size="16" fill="#475569">계약서·등본·이체 내역을 회사에 제출</text>
+
+    <circle cx="62" cy="246" r="20" fill="#3b82f6"/>
+    <text x="62" y="253" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="242" font-size="21" font-weight="800" fill="#0f172a">5월 · 종합소득세 신고</text>
+    <text x="98" y="268" font-size="16" fill="#475569">홈택스에서 월세 공제만 더해 직접 신고</text>
+
+    <circle cx="62" cy="346" r="20" fill="#16a34a"/>
+    <text x="62" y="353" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="342" font-size="21" font-weight="800" fill="#166534">5년 안 · 경정청구</text>
+    <text x="98" y="368" font-size="16" fill="#475569">다음 해 5월 31일부터 5년 안에 신청</text>
+
+    <rect x="32" y="406" width="496" height="104" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="438" font-size="18" font-weight="800" fill="#075985">2021년에 낸 월세도 아직 늦지 않았어요</text>
+    <text x="52" y="466" font-size="16" fill="#075985">2021년 귀속분 → 2027년 5월 31일까지</text>
+    <text x="52" y="492" font-size="16" fill="#075985">예전 해는 그해 한도·소득 기준으로 계산</text>
+  </g>
+</svg>

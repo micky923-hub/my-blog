@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">연금저축에서 1,000만 원을 꺼낼 때 내는 세금</title>
+  <desc id="d">세액공제를 받은 원금과 수익 1,000만 원을 55세 전에 꺼내면 16.5%인 165만 원을 세금으로 냅니다. 55세 이후 연금으로 받으면 70세 미만은 5.5%인 55만 원, 70~79세는 4.4%인 44만 원, 80세 이상은 3.3%인 33만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">언제 꺼내느냐가 세금을 바꿔요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">세액공제받은 원금 + 수익 1,000만 원</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">55세 전에 꺼내기 <tspan fill="#64748b" font-weight="400">16.5%</tspan></text>
+    <rect x="32" y="152" width="400" height="44" rx="8" fill="#dc2626"/>
+    <text x="446" y="182" font-size="20" font-weight="800" fill="#7f1d1d">165만 원</text>
+
+    <text x="32" y="236" font-size="20" font-weight="700" fill="#0f172a">연금 · 70세 미만 <tspan fill="#64748b" font-weight="400">5.5%</tspan></text>
+    <rect x="32" y="248" width="133" height="44" rx="8" fill="#3b82f6"/>
+    <text x="179" y="278" font-size="20" font-weight="800" fill="#0f172a">55만 원</text>
+
+    <text x="32" y="332" font-size="20" font-weight="700" fill="#0f172a">연금 · 70~79세 <tspan fill="#64748b" font-weight="400">4.4%</tspan></text>
+    <rect x="32" y="344" width="107" height="44" rx="8" fill="#3b82f6"/>
+    <text x="153" y="374" font-size="20" font-weight="800" fill="#0f172a">44만 원</text>
+
+    <text x="32" y="428" font-size="20" font-weight="700" fill="#0f172a">연금 · 80세 이상 <tspan fill="#64748b" font-weight="400">3.3%</tspan></text>
+    <rect x="32" y="440" width="80" height="44" rx="8" fill="#16a34a"/>
+    <text x="126" y="470" font-size="20" font-weight="800" fill="#0f172a">33만 원</text>
+
+    <text x="32" y="530" font-size="16" fill="#475569">공제받지 않은 원금은 언제 꺼내도 세금이 없어요</text>
+  </g>
+</svg>

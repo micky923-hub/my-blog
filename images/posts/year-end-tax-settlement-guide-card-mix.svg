@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">카드 사용액 소득공제 계산 예시</title>
+  <desc id="d">총급여 4,000만 원인 사람이 1년에 1,600만 원을 쓰면 총급여의 25%인 1,000만 원까지는 공제가 없고, 넘는 600만 원이 공제 대상입니다. 이 600만 원을 신용카드로 쓰면 90만 원, 체크카드·현금영수증이면 180만 원, 전통시장·대중교통이면 240만 원이 소득공제됩니다. 세율 15% 구간이면 줄어드는 세금은 신용카드 약 14만 8천 원, 체크카드 약 29만 7천 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">넘는 600만 원, 무엇으로 쓸까</text>
+    <text x="32" y="90" font-size="18" fill="#475569">총급여 4,000만 원 · 1년 카드 사용 1,600만 원</text>
+
+    <rect x="32" y="114" width="496" height="58" rx="12" fill="#e2e8f0"/>
+    <text x="52" y="139" font-size="17" font-weight="800" fill="#334155">문턱: 총급여의 25% = 1,000만 원</text>
+    <text x="52" y="161" font-size="16" fill="#475569">여기까지는 무엇으로 써도 공제 0원</text>
+
+    <text x="32" y="214" font-size="20" font-weight="700" fill="#0f172a">신용카드 <tspan fill="#64748b" font-weight="400">15%</tspan></text>
+    <rect x="32" y="226" width="150" height="44" rx="8" fill="#94a3b8"/>
+    <text x="196" y="256" font-size="20" font-weight="800" fill="#0f172a">90만 원</text>
+
+    <text x="32" y="308" font-size="20" font-weight="700" fill="#0f172a">체크카드·현금영수증 <tspan fill="#64748b" font-weight="400">30%</tspan></text>
+    <rect x="32" y="320" width="300" height="44" rx="8" fill="#3b82f6"/>
+    <text x="346" y="350" font-size="20" font-weight="800" fill="#0f172a">180만 원</text>
+
+    <text x="32" y="402" font-size="20" font-weight="700" fill="#0f172a">전통시장·대중교통 <tspan fill="#64748b" font-weight="400">40%</tspan></text>
+    <rect x="32" y="414" width="400" height="44" rx="8" fill="#16a34a"/>
+    <text x="446" y="444" font-size="20" font-weight="800" fill="#0f172a">240만 원</text>
+
+    <rect x="32" y="478" width="496" height="62" rx="12" fill="#dcfce7"/>
+    <text x="52" y="504" font-size="17" font-weight="800" fill="#166534">세율 15% 구간이면 줄어드는 세금</text>
+    <text x="52" y="528" font-size="17" fill="#166534">신용카드 약 14만 8천 원 → 체크카드 약 29만 7천 원</text>
+  </g>
+</svg>
