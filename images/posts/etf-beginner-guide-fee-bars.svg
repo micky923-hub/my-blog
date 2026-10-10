@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">총보수에 따른 20년 뒤 금액</title>
+  <desc id="d">1,000만 원을 20년 동안 연 7%로 굴린다고 가정하면 총보수 0.05%일 때 약 3,834만 원, 0.5%일 때 약 3,524만 원, 1.0%일 때 약 3,207만 원이 됩니다. 0.05%와 0.5%의 차이는 약 310만 원입니다. 세금 전 단순 계산입니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">총보수, 20년 뒤엔 이만큼</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1,000만 원 · 연 7% · 20년 · 세금 전</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">총보수 0.05%</text>
+    <rect x="32" y="156" width="460" height="44" rx="8" fill="#16a34a"/>
+    <text x="262" y="186" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">약 3,834만 원</text>
+
+    <text x="32" y="246" font-size="20" font-weight="700" fill="#0f172a">총보수 0.5%</text>
+    <rect x="32" y="258" width="423" height="44" rx="8" fill="#3b82f6"/>
+    <text x="243" y="288" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">약 3,524만 원</text>
+
+    <text x="32" y="348" font-size="20" font-weight="700" fill="#0f172a">총보수 1.0%</text>
+    <rect x="32" y="360" width="385" height="44" rx="8" fill="#94a3b8"/>
+    <text x="224" y="390" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">약 3,207만 원</text>
+
+    <rect x="32" y="424" width="496" height="56" rx="12" fill="#dcfce7"/>
+    <text x="52" y="459" font-size="18" font-weight="800" fill="#166534">0.05%와 0.5% 차이: 약 310만 원</text>
+  </g>
+</svg>

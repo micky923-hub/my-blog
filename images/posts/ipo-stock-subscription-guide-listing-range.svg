@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">상장 첫날 가격 범위</title>
+  <desc id="d">공모가 2만 원인 공모주는 상장 첫날 공모가의 60%인 1만 2천 원부터 400%인 8만 원까지 움직일 수 있습니다. 1주를 배정받았다면 첫날 손익은 -8천 원에서 +6만 원 사이입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">상장 첫날, 이 범위에서 움직여요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">공모가 2만 원 · 공모가의 60~400%</text>
+
+    <text x="32" y="142" font-size="20" font-weight="700" fill="#0f172a">최저 (공모가의 60%)</text>
+    <rect x="32" y="154" width="72" height="44" rx="8" fill="#dc2626"/>
+    <text x="118" y="184" font-size="20" font-weight="800" fill="#7f1d1d">1만 2천 원</text>
+
+    <text x="32" y="246" font-size="20" font-weight="700" fill="#0f172a">공모가</text>
+    <rect x="32" y="258" width="120" height="44" rx="8" fill="#64748b"/>
+    <text x="166" y="288" font-size="20" font-weight="800" fill="#334155">2만 원</text>
+
+    <text x="32" y="350" font-size="20" font-weight="700" fill="#0f172a">최고 (공모가의 400%)</text>
+    <rect x="32" y="362" width="480" height="44" rx="8" fill="#16a34a"/>
+    <text x="272" y="392" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">8만 원</text>
+
+    <rect x="32" y="430" width="496" height="70" rx="12" fill="#fef3c7"/>
+    <text x="52" y="460" font-size="18" font-weight="800" fill="#92400e">1주 받았다면 첫날 손익</text>
+    <text x="52" y="486" font-size="17" fill="#92400e">-8천 원 ~ +6만 원 · 오를지는 아무도 몰라요</text>
+  </g>
+</svg>
