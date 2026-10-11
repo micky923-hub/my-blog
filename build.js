@@ -400,6 +400,29 @@ function checkBlockedImages(postsDir, files) {
   }
 }
 
+// 두 글 이상이 같은 대표 이미지를 쓰면 빌드를 멈춘다.
+// Unsplash 사진은 photo-… ID로, 그 밖의 이미지는 ? 앞 주소로 비교한다.
+function imageKey(image) {
+  var m = /photo-[0-9]+-[0-9a-f]+/.exec(image);
+  return m ? m[0] : image.split('?')[0];
+}
+function checkDuplicateImages(postsDir, files) {
+  var seen = {};
+  files.forEach(function(filename) {
+    var image = parseFrontmatter(fs.readFileSync(path.join(postsDir, filename), 'utf-8')).metadata.image || '';
+    if (!image) return;
+    var key = imageKey(image);
+    (seen[key] = seen[key] || []).push('posts/' + filename);
+  });
+  var problems = Object.keys(seen).filter(function(k) { return seen[k].length > 1; }).map(function(k) {
+    return '  - ' + k + '\n      ' + seen[k].join('\n      ');
+  });
+  if (problems.length > 0) {
+    console.error('\n[빌드 중단] 같은 대표 이미지를 쓰는 글이 있습니다. 새로 쓴 글의 image를 다른 이미지로 바꿔 주세요.\n' + problems.join('\n') + '\n');
+    process.exit(1);
+  }
+}
+
 // 글 요약 영상(frontmatter `video:`)
 // ID 11자(A-Z a-z 0-9 _ -) 또는 유튜브 주소를 받아 ID만 돌려준다. 형식이 틀리면 null.
 var VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
@@ -454,6 +477,7 @@ function buildPosts() {
 
   var files = fs.readdirSync(postsDir).filter(function(f) { return f.endsWith('.md'); });
   checkBlockedImages(postsDir, files);
+  checkDuplicateImages(postsDir, files);
   checkVideoIds(postsDir, files);
   var posts = [];
 
