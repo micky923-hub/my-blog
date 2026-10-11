@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">맞벌이 부부 항목별 몰아주기 기준</title>
+  <desc id="d">자녀·부모님 기본공제, 자녀세액공제, 자녀 교육비·보험료는 세율 높은 배우자에게 몰아줍니다. 의료비와 신용카드는 총급여가 낮아 문턱이 낮은 배우자에게 모읍니다. 연금저축·IRP, 월세, 본인 보험료는 각자 명의대로 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">누구 이름으로 받을까</text>
+    <text x="32" y="90" font-size="18" fill="#475569">맞벌이 부부 공제 나누는 기준</text>
+
+    <rect x="32" y="114" width="496" height="128" rx="14" fill="#dbeafe"/>
+    <text x="52" y="148" font-size="21" font-weight="800" fill="#1e3a8a">세율 높은 배우자에게</text>
+    <text x="52" y="180" font-size="18" fill="#1e3a8a">· 자녀·부모님 기본공제 (1명당 150만 원)</text>
+    <text x="52" y="208" font-size="18" fill="#1e3a8a">· 자녀세액공제 · 출산 세액공제</text>
+    <text x="66" y="230" font-size="16" fill="#1e40af">자녀 교육비·보험료도 이 사람이 내세요</text>
+
+    <rect x="32" y="258" width="496" height="128" rx="14" fill="#dcfce7"/>
+    <text x="52" y="292" font-size="21" font-weight="800" fill="#14532d">총급여 낮은 배우자에게</text>
+    <text x="52" y="324" font-size="18" fill="#14532d">· 의료비 (총급여 3% 넘는 금액부터)</text>
+    <text x="52" y="352" font-size="18" fill="#14532d">· 신용카드 (총급여 25% 넘는 금액부터)</text>
+    <text x="66" y="374" font-size="16" fill="#166534">문턱이 낮아 공제가 먼저 시작됩니다</text>
+
+    <rect x="32" y="402" width="496" height="128" rx="14" fill="#fef3c7"/>
+    <text x="52" y="436" font-size="21" font-weight="800" fill="#78350f">각자 명의대로</text>
+    <text x="52" y="468" font-size="18" fill="#78350f">· 연금저축·IRP (각자 900만 원 한도)</text>
+    <text x="52" y="496" font-size="18" fill="#78350f">· 월세 · 본인이 계약한 보험료</text>
+    <text x="66" y="518" font-size="16" fill="#92400e">계약서 명의자가 공제받습니다</text>
+  </g>
+</svg>
