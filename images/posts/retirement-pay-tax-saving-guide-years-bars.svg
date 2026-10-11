@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">퇴직금 1억 원, 근속연수별 퇴직소득세</title>
+  <desc id="d">퇴직금 1억 원을 한 번에 받을 때 지방소득세를 포함한 퇴직소득세는 근속 5년이면 약 1,036만 원, 10년이면 약 426만 원, 20년이면 약 123만 원, 30년이면 약 26만 원입니다. 근속연수가 길수록 세금이 크게 줄어듭니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">같은 1억 원, 세금은 몇 년 일했나로</text>
+    <text x="32" y="88" font-size="17" fill="#475569">퇴직금 1억 원 일시금 · 지방소득세 포함</text>
+
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">근속 5년</text>
+    <rect x="32" y="152" width="440" height="40" rx="8" fill="#dc2626"/>
+    <text x="252" y="179" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">약 1,036만 원</text>
+
+    <text x="32" y="232" font-size="19" font-weight="700" fill="#0f172a">근속 10년</text>
+    <rect x="32" y="244" width="181" height="40" rx="8" fill="#f97316"/>
+    <text x="225" y="271" font-size="18" font-weight="800" fill="#9a3412">약 426만 원</text>
+
+    <text x="32" y="324" font-size="19" font-weight="700" fill="#0f172a">근속 20년</text>
+    <rect x="32" y="336" width="52" height="40" rx="8" fill="#60a5fa"/>
+    <text x="96" y="363" font-size="18" font-weight="800" fill="#1e40af">약 123만 원</text>
+
+    <text x="32" y="416" font-size="19" font-weight="700" fill="#0f172a">근속 30년</text>
+    <rect x="32" y="428" width="12" height="40" rx="4" fill="#2563eb"/>
+    <text x="56" y="455" font-size="18" font-weight="800" fill="#1e40af">약 26만 원</text>
+
+    <rect x="32" y="492" width="496" height="48" rx="12" fill="#dbeafe"/>
+    <text x="52" y="523" font-size="18" font-weight="800" fill="#1e3a8a">5년과 20년의 세금 차이 약 8배</text>
+  </g>
+</svg>

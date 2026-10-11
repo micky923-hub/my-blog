@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">퇴직금을 연금으로 받을 때 줄어드는 세금</title>
+  <desc id="d">퇴직소득세가 558만 원인 퇴직금을 일시금으로 받으면 558만 원을 모두 냅니다. IRP에 넣고 연금으로 받으면 1~10년차에는 70%인 약 391만 원, 11~20년차에는 60%인 약 335만 원, 21년차부터는 50%인 약 279만 원만 냅니다. 21년차 50% 구간은 2026년부터 적용됩니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">오래 나눠 받을수록 덜 냅니다</text>
+    <text x="32" y="88" font-size="17" fill="#475569">퇴직소득세 558만 원 기준 · 구간별 내는 세금</text>
+
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">일시금으로 받기</text>
+    <rect x="32" y="152" width="400" height="40" rx="8" fill="#94a3b8"/>
+    <text x="232" y="179" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">558만 원 (100%)</text>
+
+    <text x="32" y="232" font-size="19" font-weight="700" fill="#0f172a">연금 1~10년차</text>
+    <rect x="32" y="244" width="280" height="40" rx="8" fill="#93c5fd"/>
+    <text x="324" y="271" font-size="18" font-weight="800" fill="#1e40af">약 391만 원 (70%)</text>
+
+    <text x="32" y="324" font-size="19" font-weight="700" fill="#0f172a">연금 11~20년차</text>
+    <rect x="32" y="336" width="240" height="40" rx="8" fill="#60a5fa"/>
+    <text x="284" y="363" font-size="18" font-weight="800" fill="#1e40af">약 335만 원 (60%)</text>
+
+    <text x="32" y="416" font-size="19" font-weight="700" fill="#0f172a">연금 21년차부터 (2026년 신설)</text>
+    <rect x="32" y="428" width="200" height="40" rx="8" fill="#2563eb"/>
+    <text x="244" y="455" font-size="18" font-weight="800" fill="#1e40af">약 279만 원 (50%)</text>
+
+    <rect x="32" y="492" width="496" height="48" rx="12" fill="#dbeafe"/>
+    <text x="52" y="523" font-size="18" font-weight="800" fill="#1e3a8a">25년에 나눠 받으면 약 346만 원</text>
+  </g>
+</svg>
