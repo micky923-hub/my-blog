@@ -1576,6 +1576,11 @@ a:focus-visible {
   .post-grid.view-grid {
     grid-template-columns: 1fr;
   }
+
+  /* 휴대폰에서는 두 보기 모두 1열이라 전환 버튼을 숨긴다 */
+  .view-toggle {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
