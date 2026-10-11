@@ -4,7 +4,7 @@ date: 2026-10-09
 updated: 2026-10-10
 tags: [대출, 부동산, 내집마련, 주택담보대출]
 summary: 주담대를 받을 때 고정금리와 변동금리 중 무엇이 유리한지는 금리 예측보다 내가 감당할 수 있는 월 상환액으로 정하는 편이 안전합니다. 3억 원·30년 대출로 계산한 금리별 월 상환액, 3년 뒤 금리가 오르고 내릴 때의 차이, 혼합형·주기형, DSR 한도 차이까지 정리했습니다.
-image: https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=400&fit=crop
 ---
 
 > **바쁜 분을 위한 3줄 요약**

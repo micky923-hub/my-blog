@@ -4,7 +4,7 @@ date: 2026-10-06
 updated: 2026-10-10
 tags: [저축, 목돈마련, 비과세, 청년도약계좌]
 summary: 청년도약계좌는 2025년 말로 신규 가입이 끝났고, 이미 가입한 사람은 만기까지 정부기여금과 비과세를 그대로 받습니다. 소득 구간별 기여금 계산, 3년 유지 규칙과 특별중도해지, 청년미래적금 갈아타기 판단법까지 기존 가입자가 할 일을 정리했습니다.
-image: https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800&h=400&fit=crop
 ---
 
 > **바쁜 분을 위한 3줄 요약**

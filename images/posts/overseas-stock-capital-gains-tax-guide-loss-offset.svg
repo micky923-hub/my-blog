@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" role="img" aria-labelledby="t d">
+  <title id="t">손실 종목을 연내에 팔면 줄어드는 세금</title>
+  <desc id="d">올해 이익 1,500만 원을 확정한 상태에서 손실 600만 원 종목을 그대로 두면 (1,500만 원 − 250만 원) × 22%로 세금 275만 원, 연내에 함께 팔면 (1,500만 원 − 600만 원 − 250만 원) × 22%로 143만 원이 되어 132만 원이 줄어듭니다.</desc>
+  <rect x="0" y="0" width="560" height="470" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">손실 종목, 팔면 세금이 준다</text>
+    <text x="32" y="90" font-size="18" fill="#475569">이익 1,500만 원 확정 · 손실 600만 원 보유</text>
+
+    <text x="32" y="146" font-size="20" font-weight="700" fill="#0f172a">손실 종목을 그대로 두면</text>
+    <text x="32" y="172" font-size="16" fill="#475569">(1,500만 − 250만) × 22%</text>
+    <rect x="32" y="186" width="440" height="48" rx="8" fill="#94a3b8"/>
+    <text x="252" y="218" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">275만 원</text>
+
+    <text x="32" y="280" font-size="20" font-weight="700" fill="#0f172a">12월 안에 함께 팔면</text>
+    <text x="32" y="306" font-size="16" fill="#475569">(1,500만 − 600만 − 250만) × 22%</text>
+    <rect x="32" y="320" width="229" height="48" rx="8" fill="#16a34a"/>
+    <text x="146" y="352" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">143만 원</text>
+
+    <rect x="32" y="396" width="496" height="48" rx="12" fill="#dcfce7"/>
+    <text x="280" y="427" text-anchor="middle" font-size="19" font-weight="800" fill="#166534">세금 132만 원 절약 · 결제일 기준 연내 매도</text>
+  </g>
+</svg>
