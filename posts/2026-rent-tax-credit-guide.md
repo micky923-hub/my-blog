@@ -4,7 +4,7 @@ date: 2026-10-09
 updated: 2026-10-10
 tags: [세금, 절세, 세액공제, 월세]
 summary: 무주택 세대주이고 총급여 8,000만 원 이하라면 1년 동안 낸 월세의 15~17%를 연말정산에서 돌려받습니다. 받을 수 있는 조건, 연봉·월세별 환급액, 간소화 서비스에 안 뜰 때 낼 서류, 놓친 해를 5년 안에 돌려받는 경정청구까지 순서대로 정리했습니다.
-image: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop
+image: https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=400&fit=crop
 ---
 
 > **바쁜 분을 위한 3줄 요약**
