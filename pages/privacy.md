@@ -96,12 +96,12 @@ description: 파이낸셜 다이어리의 개인정보처리방침입니다.
 
 개인정보 관련 문의사항은 아래로 연락해 주세요.
 
-- 이메일: micky923@gmail.com
+- 이메일: contact@financialdiary.co.kr
 
 시행일: 2026년 9월 15일
 
 <!-- newsletter:else:start -->
-변경일: 2026년 10월 10일
+변경일: 2026년 10월 12일 (문의 이메일 변경)
 <!-- newsletter:else:end -->
 <!-- newsletter:start -->
 변경일: 2026년 10월 10일 (뉴스레터 수집 항목·처리 위탁 추가)

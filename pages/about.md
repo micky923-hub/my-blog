@@ -58,4 +58,4 @@ Financial Diary는 **아울라인(owl-line)이** 운영합니다.
 
 광고·제휴 문의도 아래 이메일로 받습니다.
 
-- 이메일: micky923@gmail.com
+- 이메일: contact@financialdiary.co.kr
