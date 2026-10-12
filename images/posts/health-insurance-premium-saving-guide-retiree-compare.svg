@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">퇴직 후 건강보험료 비교</title>
+  <desc id="d">월급 400만 원을 받다 퇴직하고 재산 보험료가 월 12만 원인 사람의 월 건강보험료입니다. 재직 중 본인 부담 14만 3,800원, 소득 조정 전 지역가입자 40만 7,600원, 임의계속가입 14만 3,800원, 소득 조정 후 지역가입자 12만 원입니다. 재산 보험료가 14만 3,800원보다 크면 임의계속가입이, 작으면 소득 조정이 유리합니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">퇴직 후 건강보험료, 어디가 쌀까</text>
+    <text x="32" y="90" font-size="17" fill="#475569">월급 400만 원 퇴직 · 재산 보험료 월 12만 원 가정</text>
+    <text x="32" y="140" font-size="18" font-weight="700" fill="#0f172a">재직 중 본인 부담</text>
+    <rect x="32" y="152" width="151.7" height="42" rx="8" fill="#94a3b8"/>
+    <text x="195" y="180" font-size="18" font-weight="800" fill="#334155">14만 3,800원</text>
+    <text x="32" y="232" font-size="18" font-weight="700" fill="#0f172a">지역가입자 (소득 조정 전)</text>
+    <rect x="32" y="244" width="430" height="42" rx="8" fill="#dc2626"/>
+    <text x="448" y="272" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">40만 7,600원</text>
+    <text x="32" y="324" font-size="18" font-weight="700" fill="#0f172a">임의계속가입</text>
+    <rect x="32" y="336" width="151.7" height="42" rx="8" fill="#f59e0b"/>
+    <text x="195" y="364" font-size="18" font-weight="800" fill="#92400e">14만 3,800원</text>
+    <text x="32" y="416" font-size="18" font-weight="700" fill="#0f172a">지역가입자 (소득 조정 후)</text>
+    <rect x="32" y="428" width="126.6" height="42" rx="8" fill="#16a34a"/>
+    <text x="170" y="456" font-size="18" font-weight="800" fill="#166534">12만 원</text>
+    <rect x="32" y="496" width="496" height="80" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="527" font-size="17" font-weight="800" fill="#075985">재산 보험료가 14만 3,800원보다 크면</text>
+    <text x="52" y="553" font-size="17" fill="#075985">임의계속가입, 작으면 소득 조정이 유리해요</text>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
+  <title id="t">피부양자 판정 순서</title>
+  <desc id="d">연 소득이 2,000만 원 이하인지 먼저 봅니다. 사업자등록이 있으면서 사업소득이 있으면 탈락합니다. 재산세 과세표준이 5억 4천만 원 이하면 유지됩니다. 5억 4천만 원을 넘어도 9억 원 이하이면서 연 소득이 1,000만 원 이하면 유지되고, 아니면 탈락합니다.</desc>
+  <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">피부양자, 이 순서로 확인하세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">하나라도 '아니요'면 지역가입자로 바뀝니다</text>
+    <g font-size="17">
+      <rect x="32" y="112" width="340" height="76" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="50" y="143" font-weight="800" fill="#0f172a">① 연 소득 2,000만 원 이하?</text>
+      <text x="50" y="170" fill="#475569">공적연금·금융·사업소득 합산</text>
+      <rect x="392" y="126" width="136" height="48" rx="10" fill="#fee2e2"/>
+      <text x="460" y="156" text-anchor="middle" font-weight="800" fill="#b91c1c">아니요 → 탈락</text>
+      <text x="56" y="214" font-weight="700" fill="#16a34a">예 ↓</text>
+
+      <rect x="32" y="228" width="340" height="76" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="50" y="259" font-weight="800" fill="#0f172a">② 사업자등록 + 사업소득?</text>
+      <text x="50" y="286" fill="#475569">등록 없으면 연 500만 원까지 OK</text>
+      <rect x="392" y="242" width="136" height="48" rx="10" fill="#fee2e2"/>
+      <text x="460" y="272" text-anchor="middle" font-weight="800" fill="#b91c1c">예 → 탈락</text>
+      <text x="56" y="330" font-weight="700" fill="#16a34a">아니요 ↓</text>
+
+      <rect x="32" y="344" width="340" height="76" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="50" y="375" font-weight="800" fill="#0f172a">③ 재산 과표 5억 4천만 원 이하?</text>
+      <text x="50" y="402" fill="#475569">재산세 과세표준 기준</text>
+      <rect x="392" y="358" width="136" height="48" rx="10" fill="#dcfce7"/>
+      <text x="460" y="388" text-anchor="middle" font-weight="800" fill="#166534">예 → 유지</text>
+      <text x="56" y="446" font-weight="700" fill="#b45309">아니요 ↓</text>
+
+      <rect x="32" y="460" width="340" height="76" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="50" y="491" font-weight="800" fill="#0f172a">④ 과표 9억 원 이하이면서</text>
+      <text x="50" y="518" font-weight="800" fill="#0f172a">    연 소득 1,000만 원 이하?</text>
+      <rect x="392" y="460" width="136" height="34" rx="10" fill="#dcfce7"/>
+      <text x="460" y="483" text-anchor="middle" font-weight="800" fill="#166534">예 → 유지</text>
+      <rect x="392" y="502" width="136" height="34" rx="10" fill="#fee2e2"/>
+      <text x="460" y="525" text-anchor="middle" font-weight="800" fill="#b91c1c">아니요 → 탈락</text>
+    </g>
+    <rect x="32" y="560" width="496" height="56" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="594" font-size="17" font-weight="800" fill="#075985">국민연금은 월 166만 원까지가 안전선이에요</text>
+  </g>
+</svg>
