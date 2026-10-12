@@ -2077,6 +2077,8 @@ a:focus-visible {
 
 .post-content .affiliate-box p {
   margin: 0 0 0.75rem;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .post-content .affiliate-box .affiliate-box-note {
