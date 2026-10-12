@@ -2026,3 +2026,67 @@ a:focus-visible {
     padding: 1.5rem 1.5rem;
   }
 }
+
+/* ==============================
+   쿠팡 파트너스 제휴 링크 (coupang: true 인 글에만 출력됨)
+   ============================== */
+/* 글 머리(날짜·태그 아래) 대가성 문구: 본문과 같은 글자색, 작게 만들지 않는다 */
+.affiliate-notice {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-text-secondary);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 글 끝 제휴 링크 상자: 점선 테두리 + 작은 라벨, 애드센스 칸(.ad-container)과 다른 모양 */
+.affiliate-box {
+  margin: 2rem 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.post-content .affiliate-box-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+}
+
+.post-content .affiliate-box ul,
+.post-content .affiliate-box ol {
+  margin: 0 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.post-content .affiliate-box li {
+  margin-bottom: 0.5rem;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.post-content .affiliate-box p {
+  margin: 0 0 0.75rem;
+}
+
+.post-content .affiliate-box .affiliate-box-note {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.affiliate-ext {
+  white-space: nowrap;
+}

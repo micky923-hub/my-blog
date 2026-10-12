@@ -471,6 +471,210 @@ function insertVideo(html, block) {
   return html.slice(0, i) + block + html.slice(i);
 }
 
+// ==============================
+// 쿠팡 파트너스 제휴 링크 (계획서 coupang-spec.md)
+//   - 글 frontmatter `coupang: true` 와 쿠팡 링크 유무가 같아야 한다.
+//   - 쿠팡 링크는 <!-- coupang:start --> / <!-- coupang:end --> 상자 하나 안에만, 3개까지.
+//   - 대가성 문구(글 머리)와 rel·target은 빌드가 자동으로 붙인다.
+//   - 쿠팡 링크가 없는 글은 아무것도 바뀌지 않는다.
+// ==============================
+var COUPANG_NOTICE = '이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.';
+var COUPANG_BOX_NOTE = '위 링크는 쿠팡 파트너스 링크입니다. 구매하시면 블로그가 일정액의 수수료를 받습니다.';
+var COUPANG_MAX_LINKS = 3;
+var COUPANG_REL = 'sponsored nofollow noopener';
+var COUPANG_BOX_RE = /^[ \t]*<!-- coupang:start -->[ \t]*\r?\n([\s\S]*?)^[ \t]*<!-- coupang:end -->[ \t]*(?:\r?\n|$)/gm;
+var COUPANG_BOX_PLACEHOLDER = '<!--COUPANG-BOX-PLACEHOLDER-->';
+// 마크다운 원문 안의 쿠팡 주소(https://, //, www. 로 시작하는 것). 링크 참조 정의·자동 링크까지 잡는다.
+var COUPANG_RAW_URL_RE = /(?:(?:https?:)?\/\/|(?:^|[^a-z0-9.\/-])www\.)(?:[a-z0-9-]+\.)*(?:coupang\.com|coupa\.ng)\.?(?![a-z0-9-])/im;
+
+function coupangFail(message) {
+  console.error('\n[빌드 중단] ' + message + '\n');
+  process.exit(1);
+}
+
+function decodeHtmlAttr(v) {
+  return v.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+}
+
+// link.coupang.com, coupa.ng, coupang.com 과 그 하위 도메인 전부(대소문자 무시)
+function isCoupangHost(hostname) {
+  var h = String(hostname || '').toLowerCase().replace(/\.$/, '');
+  return /(^|\.)coupang\.com$/.test(h) || /(^|\.)coupa\.ng$/.test(h);
+}
+
+function isCoupangHref(href) {
+  var v = decodeHtmlAttr(String(href || '')).trim();
+  if (!v) return false;
+  try {
+    return isCoupangHost(new URL(v, 'https://relative.invalid/').hostname);
+  } catch (e) {
+    return COUPANG_RAW_URL_RE.test(v);
+  }
+}
+
+function getAttr(attrs, name) {
+  var m = new RegExp('\\s' + name + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|([^\\s>]+))', 'i').exec(' ' + attrs);
+  if (!m) return null;
+  return m[1] != null ? m[1] : (m[2] != null ? m[2] : m[3]);
+}
+
+// HTML 안의 쿠팡 <a> 목록
+var A_TAG_RE = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
+function findCoupangAnchors(html) {
+  var list = [];
+  var m;
+  A_TAG_RE.lastIndex = 0;
+  while ((m = A_TAG_RE.exec(html)) !== null) {
+    if (isCoupangHref(getAttr(m[1], 'href'))) list.push({ attrs: m[1], full: m[0] });
+  }
+  return list;
+}
+
+// 쿠팡 <a>에 rel·target을 붙이고, 글자 끝에 ↗ 와 화면 낭독기용 "(새 창)"을 넣는다
+function decorateCoupangLinks(html) {
+  return html.replace(A_TAG_RE, function(full, attrs, inner) {
+    if (!isCoupangHref(getAttr(attrs, 'href'))) return full;
+    var clean = attrs.replace(/\s(?:rel|target)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+    return '<a' + clean + ' target="_blank" rel="' + COUPANG_REL + '">' + inner
+      + '<span class="affiliate-ext" aria-hidden="true"> ↗</span><span class="visually-hidden"> (새 창)</span></a>';
+  });
+}
+
+function coupangNoticeHtml() {
+  return '        <p class="affiliate-notice" role="note">' + COUPANG_NOTICE + '</p>\n';
+}
+
+function coupangBoxHtml(innerHtml) {
+  return '<aside class="affiliate-box" aria-label="제휴 링크">\n'
+    + '  <p class="affiliate-box-label">제휴 링크</p>\n'
+    + innerHtml.trim() + '\n'
+    + '  <p class="affiliate-box-note">' + COUPANG_BOX_NOTE + '</p>\n'
+    + '</aside>\n';
+}
+
+// 글 하나의 쿠팡 처리. 쿠팡 글이 아니면 null 을 돌려주고 본문은 원래대로 렌더링한다.
+// 쿠팡 글이면 { content: 상자 자리를 표시로 바꾼 마크다운, boxHtml: 상자 HTML } 을 돌려준다.
+function prepareCoupang(content, meta, filename) {
+  var where = 'posts/' + filename;
+  var flagRaw = 'coupang' in meta ? String(meta.coupang).trim().replace(/^["']|["']$/g, '') : '';
+  if (flagRaw !== '' && flagRaw !== 'true' && flagRaw !== 'false') {
+    coupangFail(where + '의 coupang: 값은 true 또는 false 여야 합니다. (지금: "' + meta.coupang + '")');
+  }
+  var flag = flagRaw === 'true';
+
+  // 상자 꺼내기 + 마커 짝 검사
+  var boxes = [];
+  var rest = content.replace(COUPANG_BOX_RE, function(m, inner) {
+    boxes.push(inner);
+    return '\n' + COUPANG_BOX_PLACEHOLDER + '\n\n';
+  });
+  if (rest.indexOf('<!-- coupang:') !== -1 || /<!--\s*coupang\s*:/i.test(rest)) {
+    coupangFail(where + '의 쿠팡 상자 마커가 짝이 맞지 않습니다.\n'
+      + '  <!-- coupang:start --> 와 <!-- coupang:end --> 를 각각 한 줄에 따로 쓰세요.');
+  }
+  if (boxes.length > 1) {
+    coupangFail(where + '에 쿠팡 상자가 ' + boxes.length + '개 있습니다. 글당 상자는 1개만 쓸 수 있습니다.');
+  }
+
+  // 상자 밖 쿠팡 링크 검사 (마크다운 원문 + 렌더링 결과 둘 다)
+  var outsideRaw = rest.split(COUPANG_BOX_PLACEHOLDER).join('');
+  var outsideHasLink = COUPANG_RAW_URL_RE.test(outsideRaw) || findCoupangAnchors(marked.parse(outsideRaw)).length > 0;
+  var boxLinks = boxes.length ? findCoupangAnchors(marked.parse(boxes[0])).length : 0;
+  var hasAny = outsideHasLink || boxLinks > 0 || (boxes.length > 0 && COUPANG_RAW_URL_RE.test(boxes[0]));
+
+  if (flag && !hasAny) {
+    coupangFail(where + '에 coupang: true 가 있지만 쿠팡 링크가 없습니다.\n'
+      + '  쿠팡 링크를 넣지 않을 거라면 coupang: 줄을 지우세요.');
+  }
+  if (!flag && hasAny) {
+    coupangFail(where + '에 쿠팡 링크가 있지만 frontmatter에 coupang: true 가 없습니다.\n'
+      + '  사용자가 고른 글이 맞다면 coupang: true 를 넣고, 아니라면 쿠팡 링크를 지우세요.');
+  }
+  if (!flag && boxes.length > 0) {
+    coupangFail(where + '에 쿠팡 상자가 있지만 frontmatter에 coupang: true 가 없습니다.');
+  }
+  if (!flag) return null;
+
+  if (outsideHasLink) {
+    coupangFail(where + '의 쿠팡 링크가 <!-- coupang:start --> / <!-- coupang:end --> 상자 밖에 있습니다.\n'
+      + '  쿠팡 링크는 글 끝 상자 안에만 넣으세요. (본문 중간·3줄 요약·표 안 금지)');
+  }
+  if (boxes.length === 0) {
+    coupangFail(where + '에 쿠팡 상자(<!-- coupang:start --> … <!-- coupang:end -->)가 없습니다.');
+  }
+  var inner = boxes[0];
+  if (/<img\b|!\[|<iframe\b|<script\b/i.test(inner)) {
+    coupangFail(where + '의 쿠팡 상자 안에 이미지·iframe·script가 있습니다. 텍스트 링크만 쓰세요.');
+  }
+  if (boxLinks === 0) {
+    coupangFail(where + '의 쿠팡 상자 안에 쿠팡 링크가 없습니다.');
+  }
+  if (boxLinks > COUPANG_MAX_LINKS) {
+    coupangFail(where + '의 쿠팡 상자에 링크가 ' + boxLinks + '개 있습니다. 글당 ' + COUPANG_MAX_LINKS + '개까지만 넣을 수 있습니다.');
+  }
+
+  // 상자 위치: 마지막 ## 소제목 뒤가 아니면 경고만
+  var lines = rest.split('\n');
+  var lastH2 = -1;
+  var boxLine = -1;
+  var inFence = false;
+  lines.forEach(function(line, i) {
+    if (/^\s*(```|~~~)/.test(line)) inFence = !inFence;
+    if (inFence) return;
+    if (/^##\s/.test(line)) lastH2 = i;
+    if (line.indexOf(COUPANG_BOX_PLACEHOLDER) !== -1) boxLine = i;
+  });
+  if (lastH2 === -1 || boxLine < lastH2) {
+    console.warn('  [경고] ' + where + '의 쿠팡 상자가 마지막 ## 소제목 뒤에 있지 않습니다. 글 끝(관련 계산기 링크 다음)에 두세요.');
+  }
+
+  return { content: rest, boxHtml: coupangBoxHtml(marked.parse(inner)) };
+}
+
+// 렌더링된 본문에 상자를 넣고 쿠팡 링크에 rel·target을 붙인다
+function applyCoupangBox(html, boxHtml, filename) {
+  var i = html.indexOf(COUPANG_BOX_PLACEHOLDER);
+  if (i === -1 || html.indexOf(COUPANG_BOX_PLACEHOLDER, i + 1) !== -1) {
+    coupangFail('posts/' + filename + '의 쿠팡 상자를 본문에 넣지 못했습니다. 마커를 목록·인용 안이 아닌 맨 앞 칸에 쓰세요.');
+  }
+  return decorateCoupangLinks(html.slice(0, i) + boxHtml + html.slice(i + COUPANG_BOX_PLACEHOLDER.length));
+}
+
+// 완성된 글 HTML 최종 검사: 쿠팡 <a>마다 rel 세 값, 대가성 문구는 글 머리에 정확히 한 번
+function checkCoupangOutput(fullHtml, isCoupang, filename) {
+  var where = 'posts/' + filename;
+  var anchors = findCoupangAnchors(fullHtml);
+  anchors.forEach(function(a) {
+    var rel = (getAttr(a.attrs, 'rel') || '').toLowerCase().split(/\s+/);
+    ['sponsored', 'nofollow', 'noopener'].forEach(function(need) {
+      if (rel.indexOf(need) === -1) {
+        coupangFail(where + '의 쿠팡 링크에 rel="' + need + '"가 빠졌습니다: ' + a.full.slice(0, 120));
+      }
+    });
+  });
+  var noticeCount = fullHtml.split('class="affiliate-notice"').length - 1;
+  var textCount = fullHtml.split(COUPANG_NOTICE).length - 1;
+  if (!isCoupang) {
+    if (anchors.length > 0 || noticeCount > 0) {
+      coupangFail(where + '는 쿠팡 글이 아닌데 쿠팡 링크나 대가성 문구가 출력되었습니다.');
+    }
+    return;
+  }
+  var header = /<header class="post-header">([\s\S]*?)<\/header>/.exec(fullHtml);
+  var inHeader = header ? header[1].split(COUPANG_NOTICE).length - 1 : 0;
+  if (noticeCount !== 1 || textCount !== 1 || inHeader !== 1) {
+    coupangFail(where + '의 대가성 문구가 글 머리에 정확히 한 번 있어야 합니다. (머리 ' + inHeader + '번, 전체 ' + textCount + '번)\n'
+      + '  본문에 문구를 직접 쓰지 마세요. build.js가 자동으로 넣습니다.');
+  }
+}
+
+// pages/*.md 에는 쿠팡 링크·상자를 넣을 수 없다 (소개·개인정보 페이지 보호)
+function checkPageCoupang(rawContent, htmlContent, filename) {
+  if (COUPANG_RAW_URL_RE.test(rawContent) || findCoupangAnchors(htmlContent).length > 0 || /<!--\s*coupang\s*:/i.test(rawContent)) {
+    coupangFail('pages/' + filename + '에 쿠팡 링크가 있습니다. 소개·개인정보 등 페이지에는 쿠팡 링크를 넣지 않습니다.');
+  }
+}
+
 function buildPosts() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
@@ -488,10 +692,16 @@ function buildPosts() {
     var parsed = parseFrontmatter(raw);
     var meta = parsed.metadata;
     var slug = filename.replace(/\.md$/, '');
-    var withIds = addHeadingIds(marked.parse(parsed.content));
+    var coupang = prepareCoupang(parsed.content, meta, filename);
+    var rendered = coupang
+      ? applyCoupangBox(marked.parse(coupang.content), coupang.boxHtml, filename)
+      : marked.parse(parsed.content);
+    var withIds = addHeadingIds(rendered);
     var videoId = 'video' in meta ? parseVideoId(meta.video) : null;
     entries.push({
       videoId: videoId,
+      coupang: !!coupang,
+      filename: filename,
       meta: meta,
       slug: slug,
       htmlContent: withIds.html,
@@ -579,6 +789,7 @@ function buildPosts() {
         + (entry.info.updated ? '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-updated"><time datetime="' + escapeHtml(entry.info.updated) + '">' + formatDate(entry.info.updated) + '</time> 업데이트</span>' : '')
         + '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-reading-time">약 ' + entry.info.minutes + '분 읽기</span></div>\n'
       + tagsHtml
+      + (entry.coupang ? coupangNoticeHtml() : '')
       + '      </header>\n'
       + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" loading="lazy">\n' : '')
       + adSlot()
@@ -646,6 +857,8 @@ function buildPosts() {
         + '  <script src="' + sharePathPrefix + 'js/like.js?v=' + Date.now() + '" defer></script>\n'
         + (entry.videoId ? '  <script src="' + sharePathPrefix + 'js/video.js?v=' + Date.now() + '" defer></script>\n' : '')
     });
+
+    checkCoupangOutput(fullHtml, entry.coupang, entry.filename);
 
     ensureDir(path.join(DIST, 'posts'));
     fs.writeFileSync(path.join(DIST, 'posts', slug + '.html'), fullHtml);
@@ -845,6 +1058,7 @@ function buildStaticPages() {
     // requires: newsletter 인 페이지(pages/newsletter.md)는 구독 주소가 있을 때만 만든다
     if (meta.requires === 'newsletter' && !NEWSLETTER_URL) return;
     var htmlContent = marked.parse(applyNewsletterBlocks(parsed.content, 'pages/' + filename));
+    checkPageCoupang(parsed.content, htmlContent, filename);
 
     var pageContent =
       '  <main id="main-content" class="container">\n'
