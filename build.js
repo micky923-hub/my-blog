@@ -485,7 +485,7 @@ var COUPANG_REL = 'sponsored nofollow noopener';
 var COUPANG_BOX_RE = /^[ \t]*<!-- coupang:start -->[ \t]*\r?\n([\s\S]*?)^[ \t]*<!-- coupang:end -->[ \t]*(?:\r?\n|$)/gm;
 var COUPANG_BOX_PLACEHOLDER = '<!--COUPANG-BOX-PLACEHOLDER-->';
 // 마크다운 원문 안의 쿠팡 주소(https://, //, www. 로 시작하는 것). 링크 참조 정의·자동 링크까지 잡는다.
-var COUPANG_RAW_URL_RE = /(?:(?:https?:)?\/\/|(?:^|[^a-z0-9.\/-])www\.)(?:[a-z0-9-]+\.)*(?:coupang\.com|coupa\.ng)\.?(?![a-z0-9-])/im;
+var COUPANG_RAW_URL_RE = /(?:(?:https?:)?\/\/|(?:^|[^a-z0-9.\/-])www\.)(?:[a-z0-9-]+\.)*(?:coupang\.com|coupa\.ng)\.?(?![a-z0-9.-])/im;
 
 function coupangFail(message) {
   console.error('\n[빌드 중단] ' + message + '\n');
