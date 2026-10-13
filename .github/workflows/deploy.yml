@@ -20,9 +20,9 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
+# 동시 실행 묶음(pages)은 워크플로 전체가 아니라 build-and-deploy 작업에만 건다.
+# 그래야 음성 실행 뒤 "할 일 없는" workflow_run 실행(audio-check 만 돌고 끝남)이
+# 대기 중인 진짜 배포(push·예약)를 밀어내 취소하지 않는다.
 
 jobs:
   # workflow_run 으로 시작했을 때만 돈다: 음성 실행이 "audio-uploaded" 표시를 남겼는지 확인한다.
@@ -54,6 +54,9 @@ jobs:
     needs: audio-check
     if: ${{ !cancelled() && (needs.audio-check.result == 'skipped' || needs.audio-check.outputs.go == 'true') }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

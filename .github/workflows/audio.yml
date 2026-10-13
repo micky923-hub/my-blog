@@ -55,16 +55,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      # 수동 실행: 미리 보기(dry_run)가 아니면 배포. push: 이번 push 에 workers/audio 변경이 있을 때만 배포.
+      # 참고: 대기 중이던 음성 실행이 다른 실행에 밀려 취소되면 그 push 의 Worker 변경은 배포되지 않는다.
+      #       Worker 파일을 고친 뒤 배포 Summary 가 안 보이면 수동 실행(dry_run 끔)으로 배포하세요.
       - name: Check worker changes
         id: changed
         env:
           EVENT: ${{ github.event_name }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
         run: |
           deploy=false
           if [ "$EVENT" != "push" ]; then
-            deploy=true
+            if [ "$DRY_RUN" != "true" ]; then deploy=true; fi
           elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             deploy=true
           elif [ -n "$(git diff --name-only "$BEFORE" "$AFTER" -- workers/audio)" ]; then

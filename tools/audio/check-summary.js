@@ -23,16 +23,53 @@ var MAX_CHARS = 1200;
 var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 var SLUG_RE = /^[a-z0-9-]{1,100}$/;
 
-// 숫자 덩어리: 숫자(쉼표·소수점 포함) + 바로 붙은 단위. 쉼표는 지운다.
-var NUMBER_RE = /(\d[\d,]*(?:\.\d+)?)(개월|%|만|억|천|원|년|월|일|세|배|명|분|회|개|번|살)?/g;
+// 숫자 덩어리 뽑기. 쉼표는 지우고 아래 세 가지로 나눠 비교한다.
+//   1) 금액·큰 수(만·억·천·천만·백만·십만이 붙은 수, 또는 "원"이 붙은 수): 값으로 비교
+//      "79만 2천 원" = 792000, "2천만" = "2000만" = 20000000, "9만 9천 원" = "9만 9,000원"
+//   2) 단위가 바로 붙은 수: 숫자+단위로 비교 ("10주" ≠ "10월", "15.4%" = "15.4퍼센트")
+//      목록에 없는 한글이 붙으면 그 한글 1자를 단위로 본다(조사는 제외).
+//   3) 단위 없는 수: 본문 어디에든 같은 수가 있으면 통과
+var MAG = { '억': 1e8, '천만': 1e7, '백만': 1e6, '십만': 1e5, '만': 1e4, '천': 1e3 };
+var NUM = '\\d+(?:\\.\\d+)?';
+var MAGS = '천만|백만|십만|억|만|천';
+var CHAIN_RE = new RegExp('(' + NUM + ')(' + MAGS + ')((?: ?' + NUM + '(?:' + MAGS + '))*)(?: ?(\\d+)(?= ?원))?', 'g');
+var PART_RE = new RegExp('(' + NUM + ')(' + MAGS + ')?', 'g');
+var SINGLE_RE = /(\d+(?:\.\d+)?)(%p|%|퍼센트|개월|시간|가지|등급|달러|가구|kg|km|g|[가-힣])?/g;
+var PARTICLE_RE = /^[은는이가을를에의로와과도며면]$/;
+
+function roundValue(v) {
+  return Math.round(v * 1000) / 1000;
+}
 
 function extractNumbers(text) {
+  var t = String(text).replace(/(\d),(?=\d{3}(?!\d))/g, '$1');
   var out = [];
-  var m;
-  NUMBER_RE.lastIndex = 0;
-  while ((m = NUMBER_RE.exec(text)) !== null) {
-    var num = m[1].replace(/,+$/, '').replace(/,/g, '');
-    out.push({ token: num + (m[2] || ''), number: num, unit: m[2] || '' });
+  var rest = t.replace(CHAIN_RE, function(m) {
+    var value = 0;
+    var nums = [];
+    var pm;
+    PART_RE.lastIndex = 0;
+    while ((pm = PART_RE.exec(m)) !== null) {
+      value += parseFloat(pm[1]) * (pm[2] ? MAG[pm[2]] : 1);
+      nums.push(pm[1]);
+    }
+    out.push({ token: m.trim(), key: 'V:' + roundValue(value), numbers: nums });
+    return ' ';
+  });
+  var sm;
+  SINGLE_RE.lastIndex = 0;
+  while ((sm = SINGLE_RE.exec(rest)) !== null) {
+    var num = sm[1];
+    var unit = sm[2] || '';
+    if (unit && PARTICLE_RE.test(unit)) unit = '';
+    if (unit === '퍼센트') unit = '%';
+    if (unit === '원') {
+      out.push({ token: num + '원', key: 'V:' + roundValue(parseFloat(num)), numbers: [num] });
+    } else if (unit) {
+      out.push({ token: num + unit, key: 'U:' + num + unit, numbers: [num] });
+    } else {
+      out.push({ token: num, key: 'B:' + num, numbers: [num] });
+    }
   }
   return out;
 }
@@ -46,13 +83,15 @@ function bodyForNumbers(content) {
 
 // 대본 숫자 중 본문에 없는 것 목록
 function missingNumbers(summaryBody, postContent) {
-  var body = extractNumbers(bodyForNumbers(postContent));
-  var tokens = {};
+  var keys = {};
   var numbers = {};
-  body.forEach(function(n) { tokens[n.token] = true; numbers[n.number] = true; });
+  extractNumbers(bodyForNumbers(postContent)).forEach(function(n) {
+    keys[n.key] = true;
+    n.numbers.forEach(function(x) { numbers[x] = true; });
+  });
   var missing = [];
   extractNumbers(summaryBody).forEach(function(n) {
-    var ok = n.unit ? tokens[n.token] : numbers[n.number];
+    var ok = n.key.charAt(0) === 'B' ? numbers[n.numbers[0]] : keys[n.key];
     if (!ok && missing.indexOf(n.token) === -1) missing.push(n.token);
   });
   return missing;

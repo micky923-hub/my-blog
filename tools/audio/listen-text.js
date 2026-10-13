@@ -119,7 +119,13 @@ function cleanInline(s) {
 // ---------- 말하기 규칙(기호·숫자·약어) ----------
 function speak(s, pron) {
   var t = String(s);
+  // 도메인(예: applyhome.co.kr)은 읽지 않는다
+  t = t.replace(/(^|[^A-Za-z0-9.@-])[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:co\.kr|or\.kr|go\.kr|re\.kr|ac\.kr|kr|com|net|org)(?![A-Za-z0-9-])/g, '$1');
   t = applyPronunciations(t, pron);
+  // 단위: 0.01g → 0.01그램, 3km → 3킬로미터
+  t = t.replace(/(\d)\s?(kg|km|g)(?![A-Za-z])/g, function(m, d, u) {
+    return d + { kg: '킬로그램', km: '킬로미터', g: '그램' }[u];
+  });
   // 날짜 2026-10-13 → 2026년 10월 13일
   t = t.replace(/\b(\d{4})-(\d{1,2})-(\d{1,2})\b/g, function(m, y, mo, d) {
     return y + '년 ' + Number(mo) + '월 ' + Number(d) + '일';
@@ -127,8 +133,10 @@ function speak(s, pron) {
   // 숫자 사이 쉼표: 1,000만 → 1000만 (끊어 읽기 방지)
   var prev;
   do { prev = t; t = t.replace(/(\d),(\d{3})(?!\d)/g, '$1$2'); } while (t !== prev);
-  // 범위: 200만~400만 → 200만에서 400만, 6~12개월 → 6에서 12개월
-  t = t.replace(/(\d[\d.]*[가-힣%]{0,3})\s*[~〜–]\s*(?=\d)/g, '$1에서 ');
+  // 범위: 1~9월 → 1월에서 9월, 6~12개월 → 6개월에서 12개월 (앞 숫자에 단위가 없으면 뒤 단위를 붙인다)
+  t = t.replace(/(\d[\d.]*)\s*[~〜–]\s*(\d[\d.]*)(개월|시간|년|월|일|주|시|분|초|세|살|배|명|회|번|개|점|평|만|억|천|원|%)/g, '$1$3에서 $2$3');
+  // 200만~400만 → 200만에서 400만, 몇백 원~천 원 → 몇백 원에서 천 원
+  t = t.replace(/([\d가-힣%])\s*[~〜–]\s*(?=[\d가-힣])/g, '$1에서 ');
   t = t.replace(/[~〜]/g, ' ');
   // 빼기: 1000만 − 200만, 10 - 3
   t = t.replace(/\s*−\s*/g, ' 빼기 ');
@@ -139,7 +147,7 @@ function speak(s, pron) {
   t = t.replace(/\+/g, ' 플러스');
   t = t.replace(/×/g, ' 곱하기 ');
   t = t.replace(/÷/g, ' 나누기 ');
-  t = t.replace(/\s*=\s*/g, ' 은 ');
+  t = t.replace(/\s*=\s*/g, ' 하면 ');
   t = t.replace(/([^\s,.]+)\s+<\s+([^\s,.]+)/g, '$1, $2보다 작음');
   t = t.replace(/([^\s,.]+)\s+>\s+([^\s,.]+)/g, '$1, $2보다 큼');
   t = t.replace(/(^|[\s(,])-(?=\d)/g, '$1마이너스 ');
@@ -159,8 +167,17 @@ function speak(s, pron) {
     var after = str.charAt(offset + m.length);
     return /\d/.test(before) && /\d/.test(after) ? m : ' 또는 ';
   });
-  // 괄호는 쉼표로 감싼다: 서민형(400만 원) → 서민형, 400만 원,
-  do { prev = t; t = t.replace(/\s*[(（]([^()（）]*)[)）]/g, ', $1,'); } while (t !== prev);
+  // 괄호는 쉼표로 감싼다: 서민형(400만 원) 기준 → 서민형, 400만 원, 기준
+  // 닫는 괄호 바로 뒤가 한글(조사·어미)이면 뒤 쉼표는 붙이지 않는다: 200만 원(서민형 400만 원)까지 → 200만 원, 서민형 400만 원까지
+  do {
+    prev = t;
+    t = t.replace(/\s*[(（]([^()（）]*)[)）]/g, function(m, inner, offset, str) {
+      var body = inner.trim();
+      if (!body) return '';
+      var next = str.charAt(offset + m.length);
+      return /[가-힣]/.test(next) ? ', ' + body : ', ' + body + ',';
+    });
+  } while (t !== prev);
   t = t.replace(/[()（）]/g, ' ');
   // 문장부호·공백 정리
   t = t.replace(/[ \t ]+/g, ' ');
@@ -253,7 +270,7 @@ function splitRow(row) {
   var r = row.trim().replace(/\\\|/g, '\u0001');
   if (r.charAt(0) === '|') r = r.slice(1);
   if (r.charAt(r.length - 1) === '|') r = r.slice(0, -1);
-  return r.split('|').map(function(c) { return c.replace(/\u0001/g, '|').trim(); });
+  return r.split('|').map(function(c) { return c.replace(/\s*\u0001\s*/g, ' 또는 ').trim(); });
 }
 
 function tableSentences(rows) {

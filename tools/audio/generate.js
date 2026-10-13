@@ -14,7 +14,7 @@
  *   TTS_ENDPOINT        TTS 주소(기본: Google). 시험 때 가짜 서버 주소.
  *   AUDIO_BUCKET        R2 버킷(기본: financialdiary-audio)
  *   AUDIO_RUN_LIMIT     한 번 실행 글자 수 상한(기본 150,000)
- *   AUDIO_MONTH_LIMIT   한 달 글자 수 상한(기본 900,000, 결정 D4)
+ *   AUDIO_MONTH_LIMIT   한 달 글자 수 상한(기본 900,000, 결정 D4). 달은 Google 청구 기준(미국 태평양 시간)
  *   AUDIO_BASE          공개 주소(기본: site.config.json audioBase). 시험 때 가짜 주소.
  *   GITHUB_EVENT_NAME   push 면 비밀값이 없을 때 건너뛰고 성공, 그 밖에는 실패
  *   GITHUB_STEP_SUMMARY, GITHUB_OUTPUT   결과 요약·출력(uploaded=true|false)
@@ -100,11 +100,37 @@ function parseArgs(argv) {
   return a;
 }
 
-function kstMonth(date) {
+// 월 사용량은 Google Cloud 청구 달(미국 태평양 시간) 기준으로 센다.
+// 한국 시간 매달 1일 0시~16시(서머타임 15시)는 Google 쪽에서 아직 전달이기 때문이다.
+var USAGE_TZ = 'America/Los_Angeles';
+function billingMonth(date) {
   var p = {};
-  new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit' })
+  new Intl.DateTimeFormat('en-CA', { timeZone: USAGE_TZ, year: 'numeric', month: '2-digit' })
     .formatToParts(date).forEach(function(x) { p[x.type] = x.value; });
   return p.year + '-' + p.month;
+}
+
+function prevMonthKey(key) {
+  var y = Number(key.slice(0, 4));
+  var mo = Number(key.slice(5, 7)) - 1;
+  if (mo === 0) { y--; mo = 12; }
+  return y + '-' + (mo < 10 ? '0' : '') + mo;
+}
+
+// 예전(한국 시간 달 기준) 목록 파일 호환: 한국 시간 K월 기록에는 태평양 시간 (K-1)월 사용분이 섞였을 수 있으므로
+// K월 값을 그대로 두고 (K-1)월에도 더한다. 겹쳐 세지만 적게 세지는 않는다(상한을 안전하게 지킴). 한 번만 한다.
+function migrateUsage(m) {
+  if (!m.usage || typeof m.usage !== 'object') m.usage = {};
+  if (m.usageTimeZone === USAGE_TZ) return false;
+  var old = {};
+  Object.keys(m.usage).forEach(function(k) { old[k] = Number(m.usage[k]) || 0; });
+  var keys = Object.keys(old).filter(function(k) { return /^\d{4}-\d{2}$/.test(k); });
+  keys.forEach(function(k) {
+    var p = prevMonthKey(k);
+    m.usage[p] = (Number(m.usage[p]) || 0) + old[k];
+  });
+  m.usageTimeZone = USAGE_TZ;
+  return keys.length > 0;
 }
 
 // ---------- wrangler ----------
@@ -185,7 +211,7 @@ function r2Delete(key) {
 
 // ---------- 목록 파일 ----------
 function emptyManifest(voice) {
-  return { version: 1, voice: voice, rulesVersion: lt.RULES_VERSION, usage: {}, posts: {} };
+  return { version: 1, voice: voice, rulesVersion: lt.RULES_VERSION, usageTimeZone: USAGE_TZ, usage: {}, posts: {} };
 }
 
 async function loadManifest(config, voice, dryRun) {
@@ -442,15 +468,15 @@ async function main() {
   var loaded = await loadManifest(config, voice, args.dryRun);
   var m = loaded.manifest;
   m.voice = voice;
-  var month = kstMonth(new Date());
-  if (!m.usage || typeof m.usage !== 'object') m.usage = {};
+  var month = billingMonth(new Date());
+  if (migrateUsage(m)) log('예전 한국 시간 기준 사용량 기록을 태평양 시간 기준으로 넉넉하게 옮겼습니다.');
   var plan = buildJobs(m, slugs, ctx, args.force, pron);
   var jobs = plan.jobs;
   var planned = jobs.reduce(function(s, j) { return s + j.chars; }, 0);
 
   log('음성: ' + voice + ', 속도: ' + rate + ', 규칙 버전: ' + lt.RULES_VERSION + ', 목록 파일: ' + loaded.source);
   log('대상 글 ' + slugs.length + '편, 이미 최신 ' + plan.upToDate + '개, 만들 것 ' + jobs.length + '개(' + fmtNum(planned) + '자)');
-  log('이번 달(' + month + ') 사용 ' + fmtNum(m.usage[month] || 0) + '자 / 상한 ' + fmtNum(MONTH_LIMIT) + '자, 한 번 실행 상한 ' + fmtNum(RUN_LIMIT) + '자');
+  log('이번 달(' + month + ', 태평양 시간) 사용 ' + fmtNum(m.usage[month] || 0) + '자 / 상한 ' + fmtNum(MONTH_LIMIT) + '자, 한 번 실행 상한 ' + fmtNum(RUN_LIMIT) + '자');
 
   summary('- 음성: `' + voice + '`, 속도 ' + rate);
   summary('- 이미 최신: ' + plan.upToDate + '개, 만들 것: ' + jobs.length + '개(' + fmtNum(planned) + '자)');
@@ -468,7 +494,7 @@ async function main() {
   var failure = '';
   for (var i = 0; i < jobs.length; i++) {
     var job = jobs[i];
-    var used = m.usage[month] || 0;
+    var used = Number(m.usage[month]) || 0;
     if (runUsed + job.chars > RUN_LIMIT) { stopReason = '한 번 실행 상한(' + fmtNum(RUN_LIMIT) + '자)'; break; }
     if (used + job.chars > MONTH_LIMIT) { stopReason = '이번 달 상한(' + fmtNum(MONTH_LIMIT) + '자)'; break; }
     var spent = { chars: 0 };
@@ -496,8 +522,9 @@ async function main() {
       if (dropped) r2Delete(dropped);
     } catch (e) {
       failure = job.slug + ' ' + kindLabel(job.kind) + ': ' + (e instanceof Fatal ? e.message : '예상하지 못한 오류 ' + (e && e.message));
-      if (!counted && spent.chars > 0) {
-        m.usage[month] = used + spent.chars;
+      if (!counted) m.usage[month] = used + spent.chars;
+      if (spent.chars > 0) {
+        // 쓴 글자 수는 꼭 남긴다. MP3를 올린 뒤 목록 저장이 실패했으면 한 번 더 시도한다.
         try { saveManifest(m); } catch (e2) { warn('쓴 글자 수를 목록 파일에 기록하지 못했습니다: ' + (e2.message || e2)); }
       }
     }
@@ -518,7 +545,7 @@ async function main() {
   }
   if (stopReason) {
     summary('');
-    summary('**' + stopReason + '에 닿아 멈춤.** 남은 ' + remaining + '개는 다음 실행(상한이 풀리면, 이번 달 상한이면 다음 달 첫 실행)에 이어서 만듭니다.');
+    summary('**' + stopReason + '에 닿아 멈춤.** 남은 ' + remaining + '개는 다음 실행(상한이 풀리면, 이번 달 상한이면 Google 청구 기준 다음 달 — 미국 태평양 시간 1일, 한국 시간으로는 1일 오후 4~5시 이후 — 첫 실행)에 이어서 만듭니다.');
     log('::notice::' + stopReason + '에 닿아 멈춤. 남은 ' + remaining + '개는 다음 실행에 이어서 만듭니다.');
   }
   setOutput('uploaded', made.length > 0 ? 'true' : 'false');
@@ -531,7 +558,7 @@ async function main() {
   return 0;
 }
 
-module.exports = { splitChunks: splitChunks, buildJobs: buildJobs, kstMonth: kstMonth };
+module.exports = { splitChunks: splitChunks, buildJobs: buildJobs, billingMonth: billingMonth, migrateUsage: migrateUsage };
 
 if (require.main === module) {
   main().then(function(code) {
