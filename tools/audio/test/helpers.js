@@ -32,16 +32,19 @@ function setConfig(root, patch) {
   fs.writeFileSync(file, JSON.stringify(c, null, 2) + '\n');
 }
 
-var mp3Cache = null;
-function shortMp3() {
-  if (mp3Cache) return mp3Cache;
+var mp3Cache = {};
+// 시험용 짧은 MP3(사인파). seconds 초 길이, 32kbps 모노(Google 출력과 비슷)
+function shortMp3(seconds) {
+  seconds = seconds || 1;
+  if (mp3Cache[seconds]) return mp3Cache[seconds];
   var dir = tmpDir('mp3');
   var file = path.join(dir, 'tone.mp3');
   var r = childProcess.spawnSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-f', 'lavfi', '-i',
-    'sine=frequency=440:duration=1', '-ac', '1', '-ar', '24000', '-b:a', '32k', file], { encoding: 'utf-8' });
+    'sine=frequency=440:duration=' + seconds, '-ac', '1', '-ar', '24000', '-b:a', '32k', file], { encoding: 'utf-8' });
   if (r.status !== 0) throw new Error('ffmpeg 로 시험용 MP3를 만들지 못함: ' + r.stderr);
-  mp3Cache = fs.readFileSync(file);
-  return mp3Cache;
+  mp3Cache[seconds] = fs.readFileSync(file);
+  fs.rmSync(dir, { recursive: true, force: true });
+  return mp3Cache[seconds];
 }
 
 function runNode(script, args, opts) {

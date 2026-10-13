@@ -447,18 +447,21 @@ ISA는 계좌 안의 이익과 손실을 모두 합친 순이익에만 세금을
 
 1. Cloudflare 대시보드 → **R2 Object Storage** → 처음이면 R2 사용 신청(무료 한도 안이어도 결제 수단 등록이 필요할 수 있음, **미확인**).
 2. **버킷 만들기** → 이름 `financialdiary-audio`, 위치 자동(또는 아시아 태평양).
-3. **공개 주소 연결** — 둘 중 하나(결정 D3):
-   - **가. 사용자 도메인**(권장): 버킷 → 설정 → **사용자 지정 도메인 연결** → `audio.financialdiary.co.kr`. **financialdiary.co.kr의 DNS가 Cloudflare에 있어야** 합니다. 지금 DNS가 어디 있는지는 **미확인**입니다(가비아 등이면 나 또는 다 안).
-   - 나. Worker 주소: 좋아요 Worker처럼 `audio.<서브도메인>.workers.dev` Worker가 R2를 읽어 내보냄(Range 요청 처리 코드 필요, 무료 하루 10만 요청).
-   - 다. `r2.dev` 공개 주소: 설정은 가장 쉽지만 **운영용이 아니고 요청 수 제한·캐시 없음**(확인). 권장하지 않음.
-4. 캐시: 사용자 도메인이면 Cloudflare **캐시 규칙**에서 `audio.financialdiary.co.kr/*`를 "모두 캐시"로 둡니다(R2 기본은 일부 파일만 캐시, 확인). MP3 파일 이름에 해시가 있어 1년 캐시해도 안전합니다. `manifest.json`만 1분 캐시.
+3. **공개 주소는 따로 설정하지 않습니다**(결정 D3 = Worker 주소). 버킷의 공개 접근·r2.dev·사용자 지정 도메인은 모두 꺼 둔 채로 둡니다.
+   - 음성 Worker(`workers/audio/`, 이름 `audio`)가 버킷을 읽어 `https://audio.<workers.dev 서브도메인>.workers.dev` 로 내보냅니다. 좋아요 Worker와 같은 서브도메인(`micky923`)을 쓰므로 `site.config.json`의 `audioBase`에 `https://audio.micky923.workers.dev`를 미리 넣어 두었습니다.
+   - Worker는 `audio.yml` 워크플로가 배포합니다. 배포 Summary에 나온 주소가 `audioBase`와 다르면 그 주소를 Claude에게 알려 주세요.
+4. 캐시: Worker가 MP3는 1년(`immutable`, 파일 이름에 해시가 있어 안전), `manifest.json`은 60초 캐시 헤더를 붙입니다. 따로 설정할 것은 없습니다. 무료 Worker는 하루 10만 요청까지입니다.
 5. CORS: `<audio src>` 재생과 빌드 중 목록 파일 받기는 **CORS가 필요 없습니다**. 설정하지 않습니다.
 
-### ③ Cloudflare API 토큰 (R2 올리기용)
+### ③ Cloudflare API 토큰 (R2 올리기 + 음성 Worker 배포용)
 
 1. **내 프로필 → API 토큰 → 토큰 만들기 → 사용자 지정 토큰**.
-2. 권한: 계정 → **Workers R2 Storage → 편집**(화면 이름 **미확인**). 계정 리소스: 내 계정만. 만료 1년.
-3. 기존 좋아요용 `CLOUDFLARE_API_TOKEN`에 권한을 더하지 않고 **새 토큰**을 만듭니다(한 토큰이 새도 다른 쪽은 안전).
+2. 권한(Account 범위, 화면 이름 **미확인**):
+   - **Workers R2 Storage → Edit** (MP3·목록 파일 올리기·지우기)
+   - **Workers Scripts → Edit** (음성 Worker 배포)
+   - (권장) **Account Settings → Read** — 좋아요 토큰과 같은 이유로 넣어 둡니다(읽기 전용, 필요 여부 **미확인**).
+3. 계정 리소스: 내 계정만. 만료 1년.
+4. 기존 좋아요용 `CLOUDFLARE_API_TOKEN`에 권한을 더하지 않고 **새 토큰**을 만듭니다(한 토큰이 새도 다른 쪽은 안전).
 
 ### ④ GitHub Secrets 등록
 
@@ -467,14 +470,14 @@ GitHub 저장소 → **Settings → Secrets and variables → Actions → New re
 | 이름 | 값 | 새로/기존 |
 |---|---|---|
 | `GOOGLE_TTS_API_KEY` | ①-5에서 만든 키 | 새로 |
-| `CLOUDFLARE_R2_API_TOKEN` | ③에서 만든 토큰 | 새로 |
+| `CLOUDFLARE_AUDIO_API_TOKEN` | ③에서 만든 토큰 | 새로 |
 | `CLOUDFLARE_ACCOUNT_ID` | 이미 있음(좋아요 배포용) | **재사용** |
 
 - 버킷 이름·공개 주소는 비밀이 아니므로 `site.config.json`의 `audioBase`와 워크플로에 그대로 적습니다.
 
 ### ⑤ 첫 실행
 
-1. GitHub → **Actions → Generate audio → Run workflow** → `slug`에 시범 글 1편, `dry-run` 끔.
+1. GitHub → **Actions → Generate audio → Run workflow** → `slug`에 시범 글 1편, `dry_run`(미리 보기) 끔. 음성을 바꿔 들어 보려면 `voice`에 음성 이름을 넣습니다. 같은 실행에서 음성 Worker도 배포됩니다.
 2. 끝나면 Summary에 "만든 파일·글자 수·이번 달 누적"이 나옵니다(키·토큰은 안 나옴).
 3. 시범 음성을 휴대폰으로 듣고 음성 이름을 고릅니다(결정 D2).
 
