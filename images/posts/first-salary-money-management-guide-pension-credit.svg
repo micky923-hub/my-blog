@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">연금저축 연 납입액별 세액공제 환급액</title>
+  <desc id="d">총급여 5,500만 원 이하는 연금저축 납입액의 16.5%를 세액공제로 돌려받습니다. 월 10만 원씩 연 120만 원을 넣으면 19만 8천 원, 월 25만 원씩 연 300만 원은 49만 5천 원, 월 50만 원씩 연 600만 원은 99만 원입니다. 낼 세금보다 많이 돌려받지는 못합니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">연금저축, 넣은 만큼 돌려받기</text>
+    <text x="32" y="90" font-size="17" fill="#475569">총급여 5,500만 원 이하 · 세액공제 16.5%</text>
+
+    <text x="32" y="138" font-size="18" font-weight="700" fill="#0f172a">월 10만 원  <tspan font-weight="400" fill="#475569" font-size="16">연 120만 원</tspan></text>
+    <rect x="32" y="150" width="80" height="38" rx="8" fill="#22c55e"/>
+    <text x="122" y="176" font-size="18" font-weight="800" fill="#166534">19만 8천 원</text>
+
+    <text x="32" y="226" font-size="18" font-weight="700" fill="#0f172a">월 25만 원  <tspan font-weight="400" fill="#475569" font-size="16">연 300만 원</tspan></text>
+    <rect x="32" y="238" width="200" height="38" rx="8" fill="#3b82f6"/>
+    <text x="242" y="264" font-size="18" font-weight="800" fill="#1e40af">49만 5천 원</text>
+
+    <text x="32" y="314" font-size="18" font-weight="700" fill="#0f172a">월 50만 원  <tspan font-weight="400" fill="#475569" font-size="16">연 600만 원</tspan></text>
+    <rect x="32" y="326" width="400" height="38" rx="8" fill="#8b5cf6"/>
+    <text x="422" y="352" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">99만 원</text>
+
+    <text x="32" y="400" font-size="16" font-weight="700" fill="#b45309">낼 세금(결정세액)보다 많이 돌려받지는 못해요</text>
+  </g>
+</svg>
