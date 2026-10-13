@@ -1,0 +1,18 @@
+# 글 음성 파일 Worker 설정 (계획서 audio-spec.md 결정 D3: Worker 주소)
+# 배포: GitHub Actions `.github/workflows/audio.yml` 의 worker 작업이 workers/audio/scripts/deploy.sh 로 한다.
+#
+# - account_id 는 넣지 않는다. GitHub Actions 에서는 Secret CLOUDFLARE_ACCOUNT_ID 를 쓴다.
+# - 비밀값이 필요 없다. 버킷은 읽기만 한다(쓰기는 tools/audio/generate.js 가 wrangler 로 한다).
+# - 공개 주소: https://audio.<workers.dev 서브도메인>.workers.dev → site.config.json 의 audioBase
+
+name = "audio"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# workers.dev 주소로 공개(블로그 글 페이지의 <audio> 가 이 주소를 부름). 미리보기 주소는 쓰지 않는다.
+workers_dev = true
+preview_urls = false
+
+[[r2_buckets]]
+binding = "AUDIO"
+bucket_name = "financialdiary-audio"
