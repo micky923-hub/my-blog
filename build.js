@@ -1127,7 +1127,10 @@ function buildIndex(posts) {
     + (appsHtml ? appsHtml + '\n' : '')
     + (NEWSLETTER_URL ? newsletterStripHtml() + '\n' : '')
     + '    <div class="list-header">\n'
-    + '      <span id="post-count" class="post-count">총 ' + posts.length + '개</span>\n'
+    + '      <div class="list-header-left">\n'
+    + '        <h2 id="list-title" class="list-title">전체 글</h2>\n'
+    + '        <span id="post-count" class="post-count">총 ' + posts.length + '개</span>\n'
+    + '      </div>\n'
     + '      <div class="list-header-right">\n'
     + '        <button id="sort-toggle" class="sort-toggle" type="button"><span id="sort-label">최신순</span><svg class="sort-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2 4.5L6 8.5L10 4.5"/></svg></button>\n'
     + '        <div class="view-toggle">\n'
