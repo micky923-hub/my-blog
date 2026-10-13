@@ -133,6 +133,144 @@ function copyDir(src, dest) {
   });
 }
 
+// ===== 메인 "오늘의 글" 히어로 =====
+// 테스트용 환경 변수 (평소 빌드에서는 쓰지 않는다)
+//   BUILD_NOW=2026-10-13T18:00:00+09:00 : 빌드 시각을 흉내 낸다 (그 시각보다 늦게 커밋된 글은 히어로 후보에서 뺀다)
+//   NO_GIT_TIMES=1                       : git 커밋 시각을 쓰지 않는 대체 규칙을 강제한다
+var BUILD_NOW = (function() {
+  var v = process.env.BUILD_NOW;
+  if (!v) return null;
+  var d = new Date(v);
+  if (isNaN(d.getTime())) {
+    console.error('\n[빌드 중단] BUILD_NOW 값이 날짜가 아닙니다: ' + v);
+    process.exit(1);
+  }
+  return d;
+})();
+
+// 한국 시간 기준 날짜(YYYY-MM-DD)와 시(0~23)
+function kstParts(date) {
+  var parts = {};
+  new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23'
+  }).formatToParts(date).forEach(function(p) { parts[p.type] = p.value; });
+  return { date: parts.year + '-' + parts.month + '-' + parts.day, hour: parseInt(parts.hour, 10) };
+}
+
+// 글 파일이 처음 추가된 커밋의 author 시각 { 파일이름: ISO 시각 }
+// git이 없거나 얕은 저장소(fetch-depth 1)면 시각이 틀리므로 빈 객체를 돌려준다.
+function getPostTimes() {
+  if (process.env.NO_GIT_TIMES === '1') {
+    console.log('  [오늘의 글] NO_GIT_TIMES=1 — 커밋 시각 없이 대체 규칙으로 빌드합니다.');
+    return {};
+  }
+  var execSync = require('child_process').execSync;
+  var opts = { encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 16 * 1024 * 1024 };
+  try {
+    if (execSync('git rev-parse --is-shallow-repository', opts).trim() === 'true') {
+      console.warn('  [오늘의 글] 경고: 얕은 저장소라 커밋 시각을 쓰지 않습니다 (아침/저녁 표시 없음). deploy.yml checkout에 fetch-depth: 0 이 있는지 확인하세요.');
+      return {};
+    }
+    var out = execSync('git -c core.quotepath=off log --diff-filter=A --format=%aI --name-only -- posts', opts);
+    var times = {};
+    var current = '';
+    // git log는 최신 커밋부터 나오므로, 뒤에 나오는(더 오래된) 추가 커밋이 덮어써서 "처음 추가된" 시각이 남는다.
+    out.split('\n').forEach(function(line) {
+      line = line.trim();
+      if (!line) return;
+      if (/^\d{4}-\d{2}-\d{2}T/.test(line)) { current = line; return; }
+      if (current && /^posts\/[^/]+\.md$/.test(line)) times[line.slice(6)] = current;
+    });
+    return times;
+  } catch (e) {
+    console.warn('  [오늘의 글] 경고: git 커밋 시각을 읽지 못했습니다 (아침/저녁 표시 없음).');
+    return {};
+  }
+}
+
+// 커밋 시각과 frontmatter로 publishedAt, slot(morning/evening/빈 값)을 정한다.
+// 커밋 시각의 한국 날짜가 글 date와 다르면 시각을 믿지 않는다. frontmatter slot이 있으면 그것이 우선한다.
+function postTiming(meta, iso) {
+  var publishedAt = '';
+  var slot = '';
+  if (iso && meta.date) {
+    var k = kstParts(new Date(iso));
+    if (k.date === meta.date) {
+      publishedAt = iso;
+      slot = k.hour < 12 ? 'morning' : 'evening';
+    }
+  }
+  if (meta.slot === 'morning' || meta.slot === 'evening') slot = meta.slot;
+  return { publishedAt: publishedAt, slot: slot };
+}
+
+// 같은 날짜 글끼리 비교할 시각 (UTC ISO, 모르면 빈 값 → 같은 날짜 안에서 가장 뒤)
+function postSortTime(p) {
+  if (p.publishedAt) return new Date(p.publishedAt).toISOString();
+  if (p.slot && p.date) return new Date(p.date + (p.slot === 'evening' ? 'T12:00:00+09:00' : 'T00:00:00+09:00')).toISOString();
+  return '';
+}
+
+function compareDateThenTime(a, b) {
+  var d = b.date.localeCompare(a.date);
+  if (d !== 0) return d;
+  return postSortTime(b).localeCompare(postSortTime(a));
+}
+
+function shortKoDate(dateStr) {
+  var parts = (dateStr || '').split('-');
+  if (parts.length !== 3) return dateStr || '';
+  return parseInt(parts[1], 10) + '월 ' + parseInt(parts[2], 10) + '일';
+}
+
+// 라벨 글자 (js/today-hero.js 와 같은 규칙)
+function todayHeroLabel(post, isToday) {
+  var d = shortKoDate(post.date);
+  if (!isToday) return { text: '최신 글 · ' + d, aria: '최신 글 · ' + d };
+  if (post.slot === 'morning') return { text: 'TODAY MORNING · ' + d, aria: '오늘 아침 글 · ' + d };
+  if (post.slot === 'evening') return { text: 'TODAY EVENING · ' + d, aria: '오늘 저녁 글 · ' + d };
+  return { text: 'TODAY · ' + d, aria: '오늘의 글 · ' + d };
+}
+
+function todayHeroHtml(posts) {
+  var now = BUILD_NOW || new Date();
+  var today = kstParts(now).date;
+  var candidates = posts.filter(function(p) {
+    if (!p.date || p.date > today) return false; // 미래 날짜 글은 고르지 않는다
+    if (BUILD_NOW && p.publishedAt && new Date(p.publishedAt) > BUILD_NOW) return false; // 시뮬레이션 전용
+    return true;
+  }).sort(function(a, b) {
+    return compareDateThenTime(a, b) || b.slug.localeCompare(a.slug);
+  });
+  if (candidates.length === 0) return '';
+
+  var hero = candidates[0];
+  var isToday = hero.date === today;
+  var label = todayHeroLabel(hero, isToday);
+  var href = base + 'posts/' + hero.slug + '.html';
+  var sub = isToday && candidates[1] && candidates[1].date === today ? candidates[1] : null;
+
+  var html = '    <section class="today-hero" aria-labelledby="today-hero-title" data-date="' + escapeHtml(hero.date) + '" data-slot="' + hero.slot + '">\n'
+    + '      <div class="today-hero-main' + (hero.image ? '' : ' no-image') + '">\n';
+  if (hero.image) {
+    html += '        <div class="today-hero-media"><img src="' + escapeHtml(hero.image) + '" alt="" width="800" height="400" fetchpriority="high" decoding="async"></div>\n';
+  }
+  html += '        <div class="today-hero-body">\n'
+    + '          <p class="today-hero-label"><span class="today-hero-label-text" aria-hidden="true">' + escapeHtml(label.text) + '</span><span class="today-hero-label-sr visually-hidden">' + escapeHtml(label.aria) + '</span></p>\n'
+    + '          <h2 id="today-hero-title" class="today-hero-title"><a href="' + href + '">' + escapeHtml(hero.title) + '</a></h2>\n'
+    + (hero.summary ? '          <p class="today-hero-summary">' + escapeHtml(hero.summary) + '</p>\n' : '')
+    + '          <span class="today-hero-more" aria-hidden="true">읽으러 가기 &rarr;</span>\n'
+    + '        </div>\n'
+    + '      </div>\n';
+  if (sub) {
+    html += '      <a class="today-hero-sub" href="' + base + 'posts/' + sub.slug + '.html" data-date="' + escapeHtml(sub.date) + '" data-slot="' + sub.slot + '">'
+      + '<span class="today-hero-sub-label">' + (sub.slot === 'morning' ? '오늘 아침 글' : '오늘 다른 글') + '</span> · '
+      + '<span class="today-hero-sub-title">' + escapeHtml(sub.title) + '</span></a>\n';
+  }
+  html += '    </section>\n';
+  return html;
+}
+
 function collectAllTags() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
@@ -684,6 +822,7 @@ function buildPosts() {
   checkDuplicateImages(postsDir, files);
   checkVideoIds(postsDir, files);
   var posts = [];
+  var postTimes = getPostTimes();
 
   // 1단계: 모든 글을 읽어 정보 모으기
   var entries = [];
@@ -698,6 +837,7 @@ function buildPosts() {
       : marked.parse(parsed.content);
     var withIds = addHeadingIds(rendered);
     var videoId = 'video' in meta ? parseVideoId(meta.video) : null;
+    var timing = postTiming(meta, postTimes[filename]);
     entries.push({
       videoId: videoId,
       coupang: !!coupang,
@@ -714,7 +854,9 @@ function buildPosts() {
         summary: meta.summary || '',
         image: meta.image || '',
         slug: slug,
-        minutes: readingMinutes(withIds.html)
+        minutes: readingMinutes(withIds.html),
+        publishedAt: timing.publishedAt,
+        slot: timing.slot
       }
     });
   });
@@ -944,21 +1086,14 @@ function buildIndex(posts) {
     + '      </div>\n'
     + '    </div>\n';
 
-  var bannerHtml = '    <div class="hero-banner">\n'
-    + '      <div class="hero-overlay">\n'
-    + '        <div class="hero-content">\n'
-    + '          <p class="hero-badge">Financial Diary</p>\n'
-    + '          <p class="hero-text">하루 30분, 경제가 보이는 시간.<br>어려운 뉴스 대신 핵심만 골라, 오늘 내 지갑과 내일의 자산에 영향을 주는 이야기를 전합니다.</p>\n'
-    + '          <a href="#main-content" class="hero-cta">글 읽으러 가기 &rarr;</a>\n'
-    + '        </div>\n'
-    + '      </div>\n'
-    + '    </div>\n';
+  var heroHtml = todayHeroHtml(posts);
 
   var cardsHtml = '';
   if (posts.length === 0) {
     cardsHtml = '<p class="loading">아직 작성된 글이 없습니다.</p>';
   } else {
-    posts.forEach(function(post) {
+    // 같은 날짜 글은 커밋 시각이 늦은 글을 앞에 둔다 (메인 목록에서만, 시각을 모르면 원래 순서)
+    posts.slice().sort(compareDateThenTime).forEach(function(post) {
       var tagsAttr = post.tags.map(function(t) { return escapeHtml(t); }).join(',');
       var thumbHtml = post.image
         ? '<img class="post-card-thumb" src="' + escapeHtml(post.image) + '" alt="" loading="lazy">'
@@ -985,7 +1120,7 @@ function buildIndex(posts) {
     + '    <div class="container container-wide">\n'
     + searchHtml
     + keywordsHtml
-    + bannerHtml
+    + heroHtml
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
@@ -1040,6 +1175,7 @@ function buildIndex(posts) {
     content: pageContent,
     jsonLd: jsonLd,
     extraScripts: '  <script src="' + base + 'js/list.js?v=' + Date.now() + '"></script>\n'
+      + (heroHtml ? '  <script src="' + base + 'js/today-hero.js?v=' + Date.now() + '" defer></script>\n' : '')
   });
 
   fs.writeFileSync(path.join(DIST, 'index.html'), fullHtml);
@@ -1207,6 +1343,9 @@ if (fs.existsSync('js/like.js')) {
 }
 if (fs.existsSync('js/video.js')) {
   fs.copyFileSync('js/video.js', path.join(DIST, 'js', 'video.js'));
+}
+if (fs.existsSync('js/today-hero.js')) {
+  fs.copyFileSync('js/today-hero.js', path.join(DIST, 'js', 'today-hero.js'));
 }
 
 // 글 본문에 넣는 설명 그림(images/posts/*.svg 등)
