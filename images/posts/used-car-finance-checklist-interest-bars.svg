@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">중고차 할부 금리별 총이자 비교</title>
+  <desc id="d">1,500만 원을 36개월 원리금균등으로 빌리면 금리 연 5%는 월 약 45만 원에 총이자 약 118만 원, 9%는 월 약 48만 원에 약 217만 원, 13%는 월 약 51만 원에 약 319만 원, 18%는 월 약 54만 원에 약 452만 원입니다. 5%와 18%의 총이자 차이는 약 334만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">금리만 달라도 이자가 4배 가까이</text>
+    <text x="32" y="90" font-size="17" fill="#475569">1,500만 원 · 36개월 · 원리금균등 상환</text>
+
+    <text x="32" y="138" font-size="18" font-weight="700" fill="#0f172a">연 5%  <tspan font-weight="400" fill="#475569" font-size="16">월 약 45만 원</tspan></text>
+    <rect x="32" y="150" width="104" height="38" rx="8" fill="#22c55e"/>
+    <text x="146" y="176" font-size="18" font-weight="800" fill="#166534">약 118만 원</text>
+
+    <text x="32" y="226" font-size="18" font-weight="700" fill="#0f172a">연 9%  <tspan font-weight="400" fill="#475569" font-size="16">월 약 48만 원</tspan></text>
+    <rect x="32" y="238" width="191" height="38" rx="8" fill="#3b82f6"/>
+    <text x="233" y="264" font-size="18" font-weight="800" fill="#1e40af">약 217만 원</text>
+
+    <text x="32" y="314" font-size="18" font-weight="700" fill="#0f172a">연 13%  <tspan font-weight="400" fill="#475569" font-size="16">월 약 51만 원</tspan></text>
+    <rect x="32" y="326" width="281" height="38" rx="8" fill="#f59e0b"/>
+    <text x="323" y="352" font-size="18" font-weight="800" fill="#92400e">약 319만 원</text>
+
+    <text x="32" y="402" font-size="18" font-weight="700" fill="#0f172a">연 18%  <tspan font-weight="400" fill="#475569" font-size="16">월 약 54만 원</tspan></text>
+    <rect x="32" y="414" width="398" height="38" rx="8" fill="#ef4444"/>
+    <text x="420" y="440" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">약 452만 원</text>
+
+    <text x="32" y="484" font-size="16" font-weight="700" fill="#b91c1c">5%와 18%의 총이자 차이: 약 334만 원</text>
+  </g>
+</svg>

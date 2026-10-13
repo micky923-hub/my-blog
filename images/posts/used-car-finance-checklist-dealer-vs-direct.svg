@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">매매상사 거래와 개인 직거래 비교</title>
+  <desc id="d">매매상사 거래는 성능·상태 점검기록부와 점검 책임보험(30일 또는 2,000km), 할부 연결이 있지만 매도비와 이전 대행비가 붙습니다. 개인 직거래는 매도비가 없지만 정비소 점검과 할부 신청을 스스로 해야 하고 계약금은 소유자 계좌로만 보냅니다. 어느 쪽이든 사고 이력, 주행거리, 압류·저당은 직접 조회합니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">어디서 사느냐에 따라</text>
+    <text x="32" y="88" font-size="17" fill="#475569">챙겨야 할 일이 달라져요</text>
+
+    <rect x="24" y="110" width="250" height="250" rx="14" fill="#dbeafe"/>
+    <text x="44" y="146" font-size="20" font-weight="800" fill="#1e40af">매매상사</text>
+    <text x="44" y="184" font-size="16" fill="#0f172a">✓ 점검기록부 받기</text>
+    <text x="44" y="212" font-size="16" fill="#0f172a">✓ 점검 책임보험</text>
+    <text x="64" y="236" font-size="15" fill="#475569">30일 또는 2,000km</text>
+    <text x="44" y="264" font-size="16" fill="#0f172a">✓ 할부 연결 쉬움</text>
+    <text x="44" y="306" font-size="16" fill="#b45309">! 매도비·이전 대행비</text>
+    <text x="44" y="334" font-size="16" fill="#b45309">! 항목별 견적서 요청</text>
+
+    <rect x="286" y="110" width="250" height="250" rx="14" fill="#fef3c7"/>
+    <text x="306" y="146" font-size="20" font-weight="800" fill="#92400e">개인 직거래</text>
+    <text x="306" y="184" font-size="16" fill="#0f172a">✓ 매도비 없음</text>
+    <text x="306" y="226" font-size="16" fill="#b45309">! 정비소 점검 직접</text>
+    <text x="306" y="254" font-size="16" fill="#b45309">! 할부 직접 신청</text>
+    <text x="306" y="282" font-size="16" fill="#b45309">! 보상받을 곳 적음</text>
+    <text x="306" y="324" font-size="16" fill="#0f172a">→ 소유자 계좌로만</text>
+    <text x="326" y="346" font-size="15" fill="#475569">계약금·잔금 송금</text>
+
+    <rect x="24" y="380" width="512" height="156" rx="14" fill="#dcfce7"/>
+    <text x="44" y="416" font-size="19" font-weight="800" fill="#166534">어느 쪽이든 직접 조회하세요</text>
+    <text x="44" y="452" font-size="16" fill="#0f172a">카히스토리: 사고·침수 이력</text>
+    <text x="44" y="482" font-size="16" fill="#0f172a">자동차365: 주행거리·소유 이력</text>
+    <text x="44" y="512" font-size="16" fill="#0f172a">등록원부: 압류·저당 → 풀린 뒤 잔금</text>
+  </g>
+</svg>
