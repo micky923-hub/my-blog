@@ -568,6 +568,26 @@ a:focus-visible {
   color: var(--color-accent);
 }
 
+.list-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.list-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+/* 검색·키워드 선택 중에는 결과 글만 보이게 */
+.is-filtering .today-hero,
+.is-filtering .web-apps,
+.is-filtering .newsletter-strip {
+  display: none;
+}
+
 .list-header-right {
   display: flex;
   align-items: center;
@@ -1434,7 +1454,9 @@ a:focus-visible {
    ============================== */
 
 .web-apps {
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .app-shelf-head {
@@ -1523,7 +1545,8 @@ a:focus-visible {
 @media (max-width: 640px) {
   /* 2줄 격자로 늘어난 높이만큼 구역 아래 여백을 줄여 글 목록이 덜 밀리게 한다 */
   .web-apps {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
   }
 
   .app-shelf {

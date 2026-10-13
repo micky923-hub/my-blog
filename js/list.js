@@ -132,6 +132,12 @@
       postCountEl.textContent = '총 ' + filteredCards.length + '개';
     }
 
+    // 검색어나 키워드가 있으면 오늘의 글·무료 도구를 숨기고 결과만 보여 준다
+    var filtering = activeTags.length > 0 || !!searchQuery;
+    document.body.classList.toggle('is-filtering', filtering);
+    var listTitle = document.getElementById('list-title');
+    if (listTitle) listTitle.textContent = filtering ? '검색 결과' : '전체 글';
+
     if (noResults) {
       noResults.style.display = filteredCards.length === 0 ? 'block' : 'none';
     }
