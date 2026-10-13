@@ -2217,3 +2217,244 @@ a:focus-visible {
 .affiliate-ext {
   white-space: nowrap;
 }
+
+/* ==============================
+   Post Audio (글 음성 듣기, 계획서 audio-spec.md 6절)
+   ============================== */
+/* 글 머리(제목·날짜·태그) 아래, 대표 이미지 위. 색은 CSS 변수만 써서 다크 모드에서도 자동으로 바뀐다.
+   버튼은 한 손 엄지로 누르기 쉽게 높이 44px 이상, 글자는 15px 이상. */
+.post-audio {
+  margin: -0.75rem 0 1.75rem;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.post-audio [hidden] {
+  display: none !important;
+}
+
+.post-audio-badge {
+  margin: 0 0 0.6rem;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.post-audio button {
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.post-audio button:disabled,
+.post-audio input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.post-audio button:focus-visible,
+.post-audio input:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.post-audio-svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+/* 큰 버튼: 3분 요약 듣기 */
+.post-audio-main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.post-audio-main:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+}
+
+.post-audio-main-icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.post-audio-main-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.post-audio-main-time {
+  flex: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+/* 작은 글씨 버튼: 전체 듣기 · 28분 · 약 7MB */
+.post-audio-alt,
+.post-audio-switch {
+  display: block;
+  min-height: 44px;
+  margin: 0.35rem auto 0;
+  padding: 0.4rem 0.75rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.post-audio-alt:hover:not(:disabled),
+.post-audio-switch:hover:not(:disabled) {
+  color: var(--color-accent);
+}
+
+.post-audio-resume {
+  margin: 0.25rem 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+/* 재생 중 */
+.post-audio-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.post-audio-seek {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 44px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  background: transparent;
+}
+
+.post-audio-time {
+  flex: none;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.post-audio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.post-audio-back,
+.post-audio-fwd,
+.post-audio-toggle,
+.post-audio-rate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.post-audio-back,
+.post-audio-fwd {
+  gap: 0.15rem;
+  padding: 0 0.7rem;
+  border-radius: 9999px;
+}
+
+.post-audio-fwd {
+  flex-direction: row-reverse;
+}
+
+.post-audio-skip-num {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-audio-toggle {
+  min-width: 56px;
+  min-height: 56px;
+  border: 0;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.post-audio-toggle .post-audio-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.post-audio-rate {
+  min-width: 56px;
+  padding: 0 0.6rem;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-audio-back:hover:not(:disabled),
+.post-audio-fwd:hover:not(:disabled),
+.post-audio-rate:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.post-audio-toggle:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+}
+
+.post-audio-error {
+  margin: 0.6rem 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+@media (max-width: 420px) {
+  .post-audio {
+    padding: 0.8rem 0.8rem 0.9rem;
+  }
+
+  .post-audio-controls {
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-audio-main {
+    transition: none;
+  }
+}

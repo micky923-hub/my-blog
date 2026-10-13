@@ -6,3 +6,4 @@ dist/
 videos/**/scenes/
 videos/**/*.mp4
 videos/fonts/
+audio-manifest.json

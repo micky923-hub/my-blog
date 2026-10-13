@@ -42,6 +42,9 @@
 * 대표 이미지는 다른 글과 겹치지 않게 고른다. 두 글이 같은 이미지(Unsplash는 photo- ID 기준)를 쓰면 `npm run build`가 실패하고 겹치는 글을 알려 준다.
 * `blocked-images.json`에 있는 이미지는 대표 이미지로 쓰지 않는다. 쓰면 `npm run build`가 실패한다. 사용자가 이미지를 교체해 달라고 하면서 다시 쓰지 말라고 하면 이 목록에 추가한다.
 * 요약 영상이 있는 글은 frontmatter에 `video:`(유튜브 ID)를 쓴다. 영상은 본문 그림 2개에 세지 않는다. 글 수치를 바꾸면 `videos/{slug}/script.md`의 수치도 확인하고, 다르면 영상을 다시 만든다.
+* 글을 쓰면 `audio/{글 slug}/summary.md` 3분 요약 대본도 함께 만든다. frontmatter는 `post: {slug}`, `basedOn: {글 updated 또는 date}`. 본문은 귀로 듣는 말하기 문장 900~1,000자(공백 포함), 첫 인사·끝인사 없이, 문단은 빈 줄로 나눈다.
+* 대본 숫자는 본문에 있는 숫자만 본문과 같은 표기(예: `1,000만 원`, `15.4%`)로 쓴다. 표·링크·그림·`**`·목록 기호·이모지·쿠팡 링크는 쓰지 않는다. `npm run build`가 "[빌드 중단] 요약 대본 숫자"를 내면 대본을 본문에 맞게 고친다.
+* 글 수치를 바꾸면 대본 숫자와 `basedOn`도 고친다. 음성 MP3는 push 뒤 GitHub Actions(`Generate audio`)가 만든다. 직접 만들지 않는다. 음성을 끄려면 글 frontmatter에 `audio: false`.
 
 
 ## 쿠팡 파트너스 링크 규칙

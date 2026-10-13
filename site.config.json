@@ -9,5 +9,9 @@
   "gaId": "G-BY556WPKQN",
   "kakaoAppKey": "",
   "likeApi": "https://likes-api.micky923.workers.dev",
+  "audioBase": "https://audio.micky923.workers.dev",
+  "audioVoice": "ko-KR-Chirp3-HD-Kore",
+  "audioSpeakingRate": 1.0,
+  "audioSummaryRequiredFrom": "",
   "newsletterUrl": ""
 }

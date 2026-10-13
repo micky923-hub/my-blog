@@ -5,6 +5,8 @@ var crypto = require('crypto');
 var { marked } = require('marked');
 var { markedHighlight } = require('marked-highlight');
 var hljs = require('highlight.js');
+var audioText = require('./tools/audio/listen-text');
+var audioCheck = require('./tools/audio/check-summary');
 
 // marked + highlight.js 설정
 marked.use(markedHighlight({
@@ -56,6 +58,31 @@ function checkNewsletterUrl(value) {
   if (!ok) {
     console.error('\n[빌드 중단] site.config.json의 newsletterUrl 값이 올바르지 않습니다: "' + v + '"\n'
       + '  https:// 로 시작하는 구독 페이지 주소를 넣거나, 뉴스레터를 끄려면 빈 값("")으로 두세요.\n');
+    process.exit(1);
+  }
+  return v;
+}
+
+// 글 음성 듣기 (계획서 audio-spec.md)
+// site.config.json의 audioBase(음성 Worker 주소)가 비어 있으면 플레이어를 넣지 않는다.
+// https:// 로 시작하는 주소만 허용하고, 아니면 빌드를 멈춘다.
+var AUDIO_BASE = checkAudioBase(config.audioBase);
+
+function checkAudioBase(value) {
+  var v = String(value == null ? '' : value).trim().replace(/\/+$/, '');
+  if (v === '') return '';
+  // 시험(tools/audio/test)에서만 로컬 가짜 서버 주소를 허용한다
+  if (process.env.AUDIO_TEST_LOCAL === '1' && /^http:\/\/127\.0\.0\.1:\d+$/.test(v)) return v;
+  var ok = false;
+  try {
+    var u = new URL(v);
+    ok = u.protocol === 'https:' && !!u.hostname && !u.search && !u.hash && /^https:\/\/[A-Za-z0-9.-]+(?::\d+)?(?:\/[A-Za-z0-9._~-]+)*$/.test(v);
+  } catch (e) {
+    ok = false;
+  }
+  if (!ok) {
+    console.error('\n[빌드 중단] site.config.json의 audioBase 값이 올바르지 않습니다: "' + v + '"\n'
+      + '  https:// 로 시작하는 음성 주소(예: https://audio.<서브도메인>.workers.dev)를 넣거나, 끄려면 빈 값("")으로 두세요.\n');
     process.exit(1);
   }
   return v;
@@ -813,6 +840,131 @@ function checkPageCoupang(rawContent, htmlContent, filename) {
   }
 }
 
+// ==============================
+// 글 음성 듣기 (계획서 audio-spec.md 6·7절)
+//   - 요약 대본 검사(tools/audio/check-summary.js): 문제가 있으면 빌드를 멈춘다.
+//   - 목록 파일(audio-manifest.json, deploy.yml이 빌드 전에 받아 둠)에서 해시가 맞는 음성만 플레이어로 보인다.
+//     글을 고쳐 해시가 달라지면 옛 음성은 숨긴다. 목록 파일이 없으면 플레이어 없이 빌드한다.
+// ==============================
+var AUDIO_PRON = audioText.loadPronunciations('audio/pronunciations.json');
+var AUDIO_HASH_RE = /^[0-9a-f]{8}$/;
+
+function checkAudioSummaries() {
+  var res = audioCheck.checkAll('.', { requiredFrom: config.audioSummaryRequiredFrom, pronunciations: AUDIO_PRON });
+  res.warnings.forEach(function(w) { console.warn('  [경고] ' + w); });
+  if (audioCheck.hasErrors(res.errors)) {
+    console.error('\n' + audioCheck.formatErrors(res.errors) + '\n');
+    process.exit(1);
+  }
+}
+
+function loadAudioManifest() {
+  if (!AUDIO_BASE) return null;
+  var file = process.env.AUDIO_MANIFEST || 'audio-manifest.json';
+  if (!fs.existsSync(file)) {
+    console.warn('  [음성] 목록 파일(' + file + ')이 없어 플레이어 없이 빌드합니다.');
+    return null;
+  }
+  try {
+    var m = JSON.parse(fs.readFileSync(file, 'utf-8'));
+    if (!m || m.version !== 1 || !m.posts || typeof m.posts !== 'object' || Array.isArray(m.posts)) throw new Error('형식이 다름');
+    return m;
+  } catch (e) {
+    console.warn('  [음성] 목록 파일(' + file + ')을 읽지 못해 플레이어 없이 빌드합니다: ' + e.message);
+    return null;
+  }
+}
+
+function audioTrack(manifest, slug, kind, text) {
+  var post = manifest.posts[slug];
+  var e = post && typeof post === 'object' ? post[kind] : null;
+  if (!e || typeof e !== 'object' || text === null) return null;
+  if (!AUDIO_HASH_RE.test(String(e.hash)) || e.file !== slug + '/' + kind + '-' + e.hash + '.mp3') return null;
+  var seconds = Math.round(Number(e.seconds));
+  var bytes = Math.round(Number(e.bytes));
+  if (!(seconds > 0) || !(bytes > 0)) return null;
+  var voice = e.voice || manifest.voice || audioText.DEFAULT_VOICE;
+  var rate = e.rate != null ? Number(e.rate) : audioText.DEFAULT_RATE;
+  if (audioText.audioHash8(text, voice, rate) !== e.hash) return null;
+  return { kind: kind, hash: e.hash, src: AUDIO_BASE + '/' + e.file, seconds: seconds, bytes: bytes };
+}
+
+// 글 하나의 플레이어 정보. 보일 음성이 없으면 null.
+function audioForPost(manifest, slug) {
+  if (!manifest) return null;
+  var t = audioText.loadPostTexts('.', slug, AUDIO_PRON);
+  if (t.disabled) return null;
+  var summary = audioTrack(manifest, slug, 'summary', t.summary);
+  var full = audioTrack(manifest, slug, 'full', t.full);
+  if (!summary && !full) return null;
+  return { summary: summary, full: full };
+}
+
+function audioClock(sec) {
+  var s = Math.max(0, Math.round(sec));
+  var h = Math.floor(s / 3600);
+  var m = Math.floor((s % 3600) / 60);
+  var r = s % 60;
+  return (h ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (r < 10 ? '0' : '') + r;
+}
+
+function audioMinutes(sec) {
+  return Math.max(1, Math.round(sec / 60)) + '분';
+}
+
+function audioMegabytes(bytes) {
+  return '약 ' + Math.max(1, Math.round(bytes / 1000000)) + 'MB';
+}
+
+function audioTrackAttrs(t) {
+  return ' data-kind="' + t.kind + '" data-src="' + escapeHtml(t.src) + '" data-hash="' + t.hash + '"'
+    + ' data-seconds="' + t.seconds + '" data-bytes="' + t.bytes + '"';
+}
+
+var AUDIO_ICON_PLAY = '<svg class="post-audio-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>';
+var AUDIO_ICON_BACK = '<svg class="post-audio-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg><span class="post-audio-skip-num" aria-hidden="true">15</span>';
+var AUDIO_ICON_FWD = '<svg class="post-audio-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z" fill="currentColor"/></svg><span class="post-audio-skip-num" aria-hidden="true">15</span>';
+
+// 제목·날짜·태그 아래(글 머리 바로 다음), 대표 이미지 위에 넣는 플레이어. 자동 재생하지 않는다.
+function audioPlayerHtml(a, slug, title) {
+  var main = a.summary || a.full;
+  var alt = a.summary && a.full ? a.full : null;
+  var mainLabel = main.kind === 'summary' ? '3분 요약 듣기' : '전체 듣기';
+  var mainTime = main.kind === 'summary' ? audioClock(main.seconds) : audioMinutes(main.seconds) + ' · ' + audioMegabytes(main.bytes);
+  var mainAria = (main.kind === 'summary' ? '3분 요약 재생, ' + audioClock(main.seconds).replace(':', '분 ') + '초' : '전체 듣기 재생, ' + audioMinutes(main.seconds) + ', ' + audioMegabytes(main.bytes));
+  var html = '      <section class="post-audio" aria-label="글 듣기" data-slug="' + escapeHtml(slug) + '" data-title="' + escapeHtml(title) + '"'
+    + ' data-artwork="' + base + 'images/audio-artwork-512.png">\n'
+    + '        <p class="post-audio-badge"><span class="post-audio-badge-icon" aria-hidden="true">🎧</span> <span class="post-audio-badge-text">AI 음성으로 읽어 드려요</span></p>\n'
+    + '        <div class="post-audio-start">\n'
+    + '          <button class="post-audio-main" type="button"' + audioTrackAttrs(main) + ' aria-label="' + escapeHtml(mainAria) + '">'
+    + '<span class="post-audio-main-icon">' + AUDIO_ICON_PLAY + '</span>'
+    + '<span class="post-audio-main-label">' + mainLabel + '</span>'
+    + '<span class="post-audio-main-time">' + mainTime + '</span></button>\n';
+  if (alt) {
+    html += '          <button class="post-audio-alt" type="button"' + audioTrackAttrs(alt) + ' aria-label="전체 듣기 재생, ' + audioMinutes(alt.seconds) + ', ' + audioMegabytes(alt.bytes) + '">'
+      + '전체 듣기 · ' + audioMinutes(alt.seconds) + ' · ' + audioMegabytes(alt.bytes) + ' <span aria-hidden="true">▶</span></button>\n';
+  }
+  html += '          <p class="post-audio-resume" hidden></p>\n'
+    + '        </div>\n'
+    + '        <div class="post-audio-player" hidden>\n'
+    + '          <div class="post-audio-progress">\n'
+    + '            <input class="post-audio-seek" type="range" min="0" max="' + main.seconds + '" step="5" value="0" aria-label="재생 위치" aria-valuetext="0초">\n'
+    + '            <span class="post-audio-time" aria-hidden="true"><span class="post-audio-cur">0:00</span> / <span class="post-audio-dur">' + audioClock(main.seconds) + '</span></span>\n'
+    + '          </div>\n'
+    + '          <div class="post-audio-controls">\n'
+    + '            <button class="post-audio-back" type="button" aria-label="15초 뒤로">' + AUDIO_ICON_BACK + '</button>\n'
+    + '            <button class="post-audio-toggle" type="button" aria-label="재생">' + AUDIO_ICON_PLAY + '</button>\n'
+    + '            <button class="post-audio-fwd" type="button" aria-label="15초 앞으로">' + AUDIO_ICON_FWD + '</button>\n'
+    + '            <button class="post-audio-rate" type="button" aria-label="재생 속도 1배">1x</button>\n'
+    + '          </div>\n'
+    + (alt ? '          <button class="post-audio-switch" type="button" hidden></button>\n' : '')
+    + '        </div>\n'
+    + '        <p class="post-audio-error" role="status" tabindex="-1" hidden>지금은 음성을 불러올 수 없어요. 잠시 뒤 다시 시도해 주세요.</p>\n'
+    + '        <audio class="post-audio-el" preload="none"></audio>\n'
+    + '      </section>\n';
+  return html;
+}
+
 function buildPosts() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
@@ -821,6 +973,8 @@ function buildPosts() {
   checkBlockedImages(postsDir, files);
   checkDuplicateImages(postsDir, files);
   checkVideoIds(postsDir, files);
+  checkAudioSummaries();
+  var audioManifest = loadAudioManifest();
   var posts = [];
   var postTimes = getPostTimes();
 
@@ -839,6 +993,7 @@ function buildPosts() {
     var videoId = 'video' in meta ? parseVideoId(meta.video) : null;
     var timing = postTiming(meta, postTimes[filename]);
     entries.push({
+      audio: audioForPost(audioManifest, slug),
       videoId: videoId,
       coupang: !!coupang,
       filename: filename,
@@ -933,6 +1088,7 @@ function buildPosts() {
       + tagsHtml
       + (entry.coupang ? coupangNoticeHtml() : '')
       + '      </header>\n'
+      + (entry.audio ? audioPlayerHtml(entry.audio, slug, meta.title || slug) : '')
       + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" loading="lazy">\n' : '')
       + adSlot()
       + tocHtml(entry.toc)
@@ -998,6 +1154,7 @@ function buildPosts() {
       extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + Date.now() + '"></script>\n'
         + '  <script src="' + sharePathPrefix + 'js/like.js?v=' + Date.now() + '" defer></script>\n'
         + (entry.videoId ? '  <script src="' + sharePathPrefix + 'js/video.js?v=' + Date.now() + '" defer></script>\n' : '')
+        + (entry.audio ? '  <script src="' + sharePathPrefix + 'js/audio.js?v=' + Date.now() + '" defer></script>\n' : '')
     });
 
     checkCoupangOutput(fullHtml, entry.coupang, entry.filename);
@@ -1346,6 +1503,9 @@ if (fs.existsSync('js/like.js')) {
 }
 if (fs.existsSync('js/video.js')) {
   fs.copyFileSync('js/video.js', path.join(DIST, 'js', 'video.js'));
+}
+if (fs.existsSync('js/audio.js')) {
+  fs.copyFileSync('js/audio.js', path.join(DIST, 'js', 'audio.js'));
 }
 if (fs.existsSync('js/today-hero.js')) {
   fs.copyFileSync('js/today-hero.js', path.join(DIST, 'js', 'today-hero.js'));
