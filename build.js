@@ -1092,8 +1092,8 @@ function buildIndex(posts) {
   if (posts.length === 0) {
     cardsHtml = '<p class="loading">아직 작성된 글이 없습니다.</p>';
   } else {
-    // 같은 날짜 글은 커밋 시각이 늦은 글을 앞에 둔다 (메인 목록에서만, 시각을 모르면 원래 순서)
-    posts.slice().sort(compareDateThenTime).forEach(function(post) {
+    // 같은 날짜 글은 커밋 시각이 늦은 글을 앞에 둔다 (메인 목록에서만, 시각을 모르면 히어로와 같은 파일 이름 역순)
+    posts.slice().sort(function(a, b) { return compareDateThenTime(a, b) || b.slug.localeCompare(a.slug); }).forEach(function(post) {
       var tagsAttr = post.tags.map(function(t) { return escapeHtml(t); }).join(',');
       var thumbHtml = post.image
         ? '<img class="post-card-thumb" src="' + escapeHtml(post.image) + '" alt="" loading="lazy">'

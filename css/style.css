@@ -309,7 +309,7 @@ img {
 }
 
 .today-hero-media {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2 / 1;
   background: var(--color-border);
   overflow: hidden;
 }
