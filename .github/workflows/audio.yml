@@ -1,0 +1,157 @@
+name: Generate audio
+
+# 글 음성(3분 요약·전체 듣기)을 만들어 Cloudflare R2에 올리고, R2를 내보내는 Worker(audio)를 배포한다.
+# 계획서: audio-spec.md
+# 필요한 Secrets: GOOGLE_TTS_API_KEY, CLOUDFLARE_AUDIO_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
+# (Secrets 가 없으면 push 실행은 건너뛰고 성공, 수동 실행은 실패로 알린다.)
+# 새 MP3를 실제로 올렸을 때만 "audio-uploaded" 표시(아티팩트)를 남기고,
+# deploy.yml 이 그 표시가 있을 때만 사이트를 다시 배포한다(아무것도 안 만들었으면 재배포 없음).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'posts/**'
+      - 'audio/**'
+      - 'tools/audio/**'
+      - '!tools/audio/test/**'
+      - 'workers/audio/**'
+      - 'site.config.json'
+      - '.github/workflows/audio.yml'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: '만들 글 slug (쉼표로 여러 개, 비우면 전체)'
+        required: false
+        default: ''
+      dry_run:
+        description: '미리 보기만 (켜면 아무것도 만들지 않고 할 일·글자 수만 보여 줌)'
+        type: boolean
+        default: true
+      force:
+        description: '해시가 같아도 다시 만들기 (글자 수 상한은 그대로 적용)'
+        type: boolean
+        default: false
+      voice:
+        description: '시범용 음성 이름 (비우면 site.config.json audioVoice)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audio
+  cancel-in-progress: false
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check worker changes
+        id: changed
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          deploy=false
+          if [ "$EVENT" != "push" ]; then
+            deploy=true
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            deploy=true
+          elif [ -n "$(git diff --name-only "$BEFORE" "$AFTER" -- workers/audio)" ]; then
+            deploy=true
+          fi
+          echo "deploy=$deploy" >> "$GITHUB_OUTPUT"
+          echo "Worker 배포: $deploy"
+
+      - uses: actions/setup-node@v4
+        if: steps.changed.outputs.deploy == 'true'
+        with:
+          node-version: 22
+
+      - name: Deploy audio worker (wrangler 4.136.3)
+        if: steps.changed.outputs.deploy == 'true'
+        run: bash workers/audio/scripts/deploy.sh
+        env:
+          WRANGLER: npx --yes wrangler@4.136.3
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_AUDIO_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check secrets (names only)
+        id: secrets
+        env:
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_AUDIO_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          ok=true
+          [ -n "$GOOGLE_TTS_API_KEY" ] || ok=false
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || ok=false
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || ok=false
+          need=false
+          if [ "$ok" = "true" ] && [ "$DRY_RUN" != "true" ]; then need=true; fi
+          echo "need_ffmpeg=$need" >> "$GITHUB_OUTPUT"
+
+      - name: Install ffmpeg (if missing)
+        if: steps.secrets.outputs.need_ffmpeg == 'true'
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -q
+            sudo apt-get install -y -q ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+
+      - name: Generate audio
+        id: gen
+        run: |
+          args=()
+          if [ -n "$SLUG" ]; then args+=(--slug "$SLUG"); fi
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          if [ "$FORCE" = "true" ]; then args+=(--force); fi
+          if [ -n "$VOICE" ]; then args+=(--voice "$VOICE"); fi
+          node tools/audio/generate.js "${args[@]}"
+        env:
+          SLUG: ${{ inputs.slug }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+          VOICE: ${{ inputs.voice }}
+          WRANGLER: npx --yes wrangler@4.136.3
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_AUDIO_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # 새 MP3를 올렸을 때만 남긴다. deploy.yml(workflow_run)이 이 이름을 보고 재배포 여부를 정한다.
+      - name: Mark uploaded
+        if: always() && steps.gen.outputs.uploaded == 'true'
+        run: |
+          mkdir -p "$RUNNER_TEMP/audio-mark"
+          date -u +%Y-%m-%dT%H:%M:%SZ > "$RUNNER_TEMP/audio-mark/uploaded.txt"
+
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.gen.outputs.uploaded == 'true'
+        with:
+          name: audio-uploaded
+          path: ${{ runner.temp }}/audio-mark/uploaded.txt
+          retention-days: 1

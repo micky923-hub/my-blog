@@ -71,6 +71,8 @@ var AUDIO_BASE = checkAudioBase(config.audioBase);
 function checkAudioBase(value) {
   var v = String(value == null ? '' : value).trim().replace(/\/+$/, '');
   if (v === '') return '';
+  // 시험(tools/audio/test)에서만 로컬 가짜 서버 주소를 허용한다
+  if (process.env.AUDIO_TEST_LOCAL === '1' && /^http:\/\/127\.0\.0\.1:\d+$/.test(v)) return v;
   var ok = false;
   try {
     var u = new URL(v);

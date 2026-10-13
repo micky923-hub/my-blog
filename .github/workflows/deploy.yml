@@ -9,6 +9,11 @@ on:
     - cron: '20 21 * * *'    # 매일 06:20 KST (기상청 05시 발표 후 날씨)
     - cron: '20 9 * * *'     # 매일 18:20 KST (17시 발표·당일 시세)
   workflow_dispatch:
+  # 음성 생성(audio.yml)이 새 MP3를 올렸을 때만 다시 배포한다(아래 audio-check 작업이 판단).
+  workflow_run:
+    workflows: ["Generate audio"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -20,7 +25,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # workflow_run 으로 시작했을 때만 돈다: 음성 실행이 "audio-uploaded" 표시를 남겼는지 확인한다.
+  # (아무것도 만들지 않았거나 비밀값이 없어 건너뛴 실행이면 재배포하지 않는다.)
+  audio-check:
+    if: github.event_name == 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      actions: read
+    outputs:
+      go: ${{ steps.check.outputs.go }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_EVENT: ${{ github.event.workflow_run.event }}
+        run: |
+          go=false
+          if [ "$RUN_EVENT" = "push" ] || [ "$RUN_EVENT" = "workflow_dispatch" ]; then
+            n="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/artifacts" --jq '[.artifacts[] | select(.name == "audio-uploaded")] | length')"
+            if [ "${n:-0}" -gt 0 ]; then go=true; fi
+          fi
+          echo "go=$go" >> "$GITHUB_OUTPUT"
+          echo "새 음성 업로드: $go"
+
   build-and-deploy:
+    needs: audio-check
+    if: ${{ !cancelled() && (needs.audio-check.result == 'skipped' || needs.audio-check.outputs.go == 'true') }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -35,6 +67,13 @@ jobs:
           node-version: 20
 
       - run: npm install
+
+      # 음성 목록 파일(공개 주소, 비밀값 없음). 못 받으면 플레이어 없이 빌드·배포한다.
+      - name: Fetch audio manifest
+        run: node tools/audio/fetch-manifest.js --out audio-manifest.json
+        continue-on-error: true
+        timeout-minutes: 1
+
       - run: npm run build
 
       - name: Fetch exchange rates (Korea Eximbank)
