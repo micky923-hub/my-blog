@@ -18,7 +18,7 @@ var fs = require('fs');
 var path = require('path');
 var crypto = require('crypto');
 
-var RULES_VERSION = 1;
+var RULES_VERSION = 2;
 var DEFAULT_VOICE = 'ko-KR-Chirp3-HD-Kore';
 var DEFAULT_RATE = 1.0;
 var TABLE_MAX_ROWS = 6; // 결정 D8: 6행·3열 이하 표만 문장으로 읽는다
@@ -26,10 +26,11 @@ var TABLE_MAX_COLS = 3;
 
 var TEXT = {
   fullIntro: function(title) { return title + '. 파이낸셜 다이어리가 읽어 드립니다.'; },
-  fullOutro: '이 음성은 AI가 글을 읽은 것입니다. 숫자와 표는 글에서 다시 확인하세요.',
+  fullOutro: '이 음성은 AI가 글을 읽은 것입니다.',
+  visualNote: '표와 그림은 글에서 확인하세요.',
   summaryIntro: function(title) { return title + '. 3분 요약입니다.'; },
   summaryOutro: '자세한 표와 계산은 파이낸셜 다이어리 글에서 확인하세요. 이 음성은 AI가 읽었습니다.',
-  threeLine: '먼저 세 줄 요약입니다.',
+  threeLine: '세 줄 요약입니다.',
   bigTable: '이 부분의 표는 글에서 확인하세요.',
   related: '관련 글과 계산기는 글 아래 링크에서 볼 수 있어요.',
   figure: '그림 설명.'
@@ -99,7 +100,7 @@ function cleanInline(s) {
   var t = String(s);
   t = t.replace(/\\([\\`*_{}\[\]()#+\-.!|>~])/g, function(m, c) { return '\u0000' + c.charCodeAt(0) + '\u0000'; });
   t = t.replace(/`([^`]*)`/g, '$1');
-  t = t.replace(/!\[([^\]]*)\]\([^)]*\)/g, function(m, alt) { return ' ' + TEXT.figure + ' ' + alt + '. '; });
+  t = t.replace(/!\[([^\]]*)\]\([^)]*\)/g, ' '); // 그림은 읽지 않는다(표·그림 안내는 끝에 한 번)
   t = t.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
   t = t.replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1');
   t = t.replace(/<(?:https?:\/\/|mailto:)[^>]*>/gi, '');
@@ -156,7 +157,7 @@ function speak(s, pron) {
   t = t.replace(/%/g, '퍼센트');
   t = t.replace(/㎡/g, '제곱미터');
   t = t.replace(/Ⅱ/g, '2');
-  t = t.replace(/○/g, '');
+  t = t.replace(/○+/g, '몇 ');
   t = t.replace(/&/g, ' 앤 ');
   t = t.replace(/\s*·\s*/g, ', ');
   t = t.replace(/\s*(?:→|⇒|->)\s*/g, ', 그다음 ');
@@ -332,12 +333,8 @@ function blocksToParagraphs(blocks) {
       if (pt) out.push(endSentence(pt));
       return;
     }
-    if (b.type === 'image') {
-      var alt = cleanInline(b.alt);
-      if (alt) out.push(TEXT.figure + ' ' + endSentence(alt));
-      return;
-    }
-    if (b.type === 'table') { out.push.apply(out, tableSentences(b.rows)); return; }
+    // 표와 그림은 귀로 듣기 어려워 읽지 않는다. 있으면 끝에 "표와 그림은 글에서 확인하세요" 한 번.
+    if (b.type === 'image' || b.type === 'table') return;
     if (b.type === 'list') { out.push.apply(out, listSentences(b.items)); return; }
     if (b.type === 'quote') {
       if (isThreeLine(b.lines)) {
@@ -345,14 +342,12 @@ function blocksToParagraphs(blocks) {
         parseBlocks(b.lines).forEach(function(qb) {
           if (qb.type === 'list') items = items.concat(qb.items);
         });
-        var n = 0;
-        var said = items.map(function(it) {
+        // 첫째·둘째·셋째 없이 한 줄씩 문단으로 나눠 사이에 쉼을 준다
+        out.push(TEXT.threeLine);
+        items.forEach(function(it) {
           var t = cleanInline(it.text);
-          if (!t) return '';
-          n++;
-          return endSentence(ordinal(n) + ', ' + t);
-        }).filter(Boolean);
-        out.push([TEXT.threeLine].concat(said).join(' '));
+          if (t) out.push(endSentence(t));
+        });
         return;
       }
       // 글 끝(마지막 --- 뒤)의 인용 상자, "함께 읽으면 좋은 글" 상자는 링크 나열 대신 한 문장
@@ -387,8 +382,11 @@ function postListenText(raw, opts) {
   opts = opts || {};
   var parsed = parseFrontmatter(raw);
   var title = cleanInline(parsed.metadata.title || opts.slug || '');
-  var body = blocksToParagraphs(parseBlocks(stripNonSpoken(parsed.content).split('\n')));
-  return finish([TEXT.fullIntro(title)].concat(body, [TEXT.fullOutro]), opts.pronunciations);
+  var spoken = stripNonSpoken(parsed.content);
+  var body = blocksToParagraphs(parseBlocks(spoken.split('\n')));
+  var hasVisual = /!\[[^\]]*\]\([^)]*\)/.test(spoken) || /^[ \t]*\|.*\|[ \t]*$/m.test(spoken);
+  var outro = (hasVisual ? [TEXT.visualNote] : []).concat([TEXT.fullOutro]);
+  return finish([TEXT.fullIntro(title)].concat(body, outro), opts.pronunciations);
 }
 
 // 요약 대본(audio/{slug}/summary.md 원문) → 요약 듣기 텍스트

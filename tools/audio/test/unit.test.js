@@ -25,39 +25,42 @@ function hasNot(text, part) {
 }
 
 module.exports = function(t) {
-  t.test('시작·끝 문장', function() {
+  t.test('시작·끝 문장 (표·그림 없으면 안내 없음)', function() {
     var out = convert('본문입니다.');
     assert.ok(out.startsWith('시험 글. 파이낸셜 다이어리가 읽어 드립니다.'));
-    assert.ok(out.endsWith('이 음성은 AI가 글을 읽은 것입니다. 숫자와 표는 글에서 다시 확인하세요.'));
+    assert.ok(out.endsWith('이 음성은 AI가 글을 읽은 것입니다.'));
+    hasNot(out, '표와 그림은');
   });
 
-  t.test('작은 표(6행·3열 이하)는 행마다 문장으로', function() {
-    var out = convert('| 유형 | 가입 조건 | 비과세 한도 |\n|---|---|---|\n| 일반형 | 만 19세 이상 | 200만 원 |\n| 서민형 | 총급여 5,000만 원 이하 | 400만 원 |');
-    has(out, '일반형, 가입 조건 만 19세 이상, 비과세 한도 200만 원.');
-    has(out, '서민형, 가입 조건 총급여 5000만 원 이하, 비과세 한도 400만 원.');
+  t.test('표는 읽지 않고, 끝에 "표와 그림은 글에서 확인하세요" 한 번', function() {
+    var out = convert('앞 문장.\n\n| 유형 | 가입 조건 | 비과세 한도 |\n|---|---|---|\n| 일반형 | 만 19세 이상 | 200만 원 |\n\n뒤 문장.');
+    hasNot(out, '일반형');
     hasNot(out, '|');
+    has(out, '앞 문장.');
+    has(out, '뒤 문장.');
+    assert.ok(out.endsWith('표와 그림은 글에서 확인하세요.\n\n이 음성은 AI가 글을 읽은 것입니다.'));
+    assert.strictEqual(out.split('표와 그림은').length - 1, 1);
   });
 
-  t.test('큰 표(7행 또는 4열)는 "글에서 확인하세요"', function() {
-    var rows = '| 가 | 나 |\n|---|---|\n' + [1, 2, 3, 4, 5, 6, 7].map(function(i) { return '| ' + i + '번 | 값 |'; }).join('\n');
-    has(convert(rows), '이 부분의 표는 글에서 확인하세요.');
-    var wide = '| 가 | 나 | 다 | 라 |\n|---|---|---|---|\n| 1 | 2 | 3 | 4 |';
-    has(convert(wide), '이 부분의 표는 글에서 확인하세요.');
-    hasNot(convert(wide), '|');
-  });
-
-  t.test('그림은 alt만, 링크는 글자만, 맨 주소는 읽지 않음', function() {
+  t.test('그림은 읽지 않음, 링크는 글자만, 맨 주소는 읽지 않음', function() {
     var out = convert('![세금 비교 막대 그림](/images/posts/a.svg)\n\n자세한 내용은 [ISA 가이드](/posts/isa.html)를 보세요. 출처 https://example.com/x 입니다.');
-    has(out, '그림 설명. 세금 비교 막대 그림.');
+    hasNot(out, '세금 비교 막대 그림');
+    hasNot(out, '그림 설명');
     has(out, '자세한 내용은 아이에스에이 가이드를 보세요.');
+    has(out, '표와 그림은 글에서 확인하세요.');
     hasNot(out, 'http');
     hasNot(out, '/posts/');
   });
 
-  t.test('3줄 요약 → "먼저 세 줄 요약입니다. 첫째, …"', function() {
+  t.test('3줄 요약 → "세 줄 요약입니다." 다음 한 줄씩 문단으로(첫째·둘째 없음)', function() {
     var out = convert('> **바쁜 분을 위한 3줄 요약**\n>\n> 1. 계좌부터 **먼저** 만드세요.\n> 2. 세금 붙는 상품을 담으세요.\n> 3. 만기 60일을 지키세요.');
-    has(out, '먼저 세 줄 요약입니다. 첫째, 계좌부터 먼저 만드세요. 둘째, 세금 붙는 상품을 담으세요. 셋째, 만기 60일을 지키세요.');
+    has(out, '세 줄 요약입니다.\n\n계좌부터 먼저 만드세요.\n\n세금 붙는 상품을 담으세요.\n\n만기 60일을 지키세요.');
+    hasNot(out, '첫째');
     hasNot(out, '바쁜 분');
+  });
+
+  t.test('○○ 자리표시는 "몇"으로', function() {
+    has(convert('"○○동 ○호 계약"이라고 보내세요.'), '몇 동 몇 호 계약');
   });
 
   t.test('쿠팡 상자는 통째로 읽지 않음, 글 끝 링크 상자는 한 문장', function() {
@@ -112,12 +115,6 @@ module.exports = function(t) {
     has(out, '0.01그램, 3킬로미터, 2킬로그램');
     has(out, 'A 대 B');
     hasNot(out, 'applyhome');
-  });
-
-  t.test('표 칸 안 이스케이프 \\| 는 "또는"(L10)', function() {
-    var out = convert('| 가 | 나 |\n|---|---|\n| A \\| B | 값 |');
-    has(out, 'A 또는 B, 나 값.');
-    hasNot(out, '|');
   });
 
   t.test('38편 모두 "쉼표 + 홀로 남은 조사" 0건(M3)', function() {
