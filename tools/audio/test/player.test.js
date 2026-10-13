@@ -302,11 +302,13 @@ module.exports = async function(t) {
         var box = document.querySelector('.post-audio');
         return {
           text: box.querySelector('.post-audio-error').textContent,
-          disabled: Array.prototype.every.call(box.querySelectorAll('button, input'), function(b) { return b.disabled; })
+          disabled: Array.prototype.every.call(box.querySelectorAll('button, input'), function(b) { return b.disabled; }),
+          focus: document.activeElement ? document.activeElement.className : ''
         };
       });
       assert.ok(/지금은 음성을 불러올 수 없어요/.test(info.text));
       assert.ok(info.disabled, '버튼이 꺼져야 함');
+      assert.strictEqual(info.focus, 'post-audio-error', '초점이 안내 문구로 옮겨져야 함');
       await shotBox(page, 'player-light-error.png');
       await o.context.close();
     } finally {

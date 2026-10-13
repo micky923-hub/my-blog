@@ -959,7 +959,7 @@ function audioPlayerHtml(a, slug, title) {
     + '          </div>\n'
     + (alt ? '          <button class="post-audio-switch" type="button" hidden></button>\n' : '')
     + '        </div>\n'
-    + '        <p class="post-audio-error" role="status" hidden>지금은 음성을 불러올 수 없어요. 잠시 뒤 다시 시도해 주세요.</p>\n'
+    + '        <p class="post-audio-error" role="status" tabindex="-1" hidden>지금은 음성을 불러올 수 없어요. 잠시 뒤 다시 시도해 주세요.</p>\n'
     + '        <audio class="post-audio-el" preload="none"></audio>\n'
     + '      </section>\n';
   return html;

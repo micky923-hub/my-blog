@@ -77,10 +77,11 @@ module.exports = function(t) {
     has(out, '이자, 배당');
     has(out, '가입, 그다음 이전');
     has(out, '참고로, 참고 문장');
-    has(out, '100만 원 곱하기 9.9퍼센트 은 9만 9천 원');
+    has(out, '100만 원 곱하기 9.9퍼센트 하면 9만 9천 원');
     has(out, '1000만 빼기 200만');
     has(out, '나누기 2');
     has(out, '서민형, 400만 원, 기준');
+    has(out, '1000만 빼기 200만, 나누기 2');
     has(out, '연금저축 또는 아이알피 선택');
     ['~', '%', '·', '→', '※', '×', '−', '=', '÷', '(', ')'].forEach(function(c) { hasNot(out, c); });
   });
@@ -99,6 +100,42 @@ module.exports = function(t) {
     has(out, '0원입니다.');
     has(out, '항목 하나. 항목 둘.');
     ['**', '🐷', '메모', 'code()'].forEach(function(c) { hasNot(out, c); });
+  });
+
+  t.test('괄호 뒤 조사: 쉼표 없이 붙임(M3), = 는 "하면", 물결 단위 복사, 도메인·단위', function() {
+    var out = convert('순이익 중 200만 원(서민형 400만 원)까지는 비과세. 옮긴 금액의 10%(최대 300만 원)를 더해 줍니다. 청약홈(applyhome.co.kr)에 로그인. 금액(괄호) 기준. 1~9월, 6~12개월, 5~10%, 몇백 원~천 원. 0.01g, 3km, 2kg. A vs B.');
+    has(out, '200만 원, 서민형 400만 원까지는 비과세');
+    has(out, '10퍼센트, 최대 300만 원를 더해');
+    has(out, '청약홈에 로그인');
+    has(out, '금액, 괄호, 기준');
+    has(out, '1월에서 9월, 6개월에서 12개월, 5퍼센트에서 10퍼센트, 몇백 원에서 천 원');
+    has(out, '0.01그램, 3킬로미터, 2킬로그램');
+    has(out, 'A 대 B');
+    hasNot(out, 'applyhome');
+  });
+
+  t.test('표 칸 안 이스케이프 \\| 는 "또는"(L10)', function() {
+    var out = convert('| 가 | 나 |\n|---|---|\n| A \\| B | 값 |');
+    has(out, 'A 또는 B, 나 값.');
+    hasNot(out, '|');
+  });
+
+  t.test('38편 모두 "쉼표 + 홀로 남은 조사" 0건(M3)', function() {
+    var re = /, (은|는|을|를|에|의|로|으로|과|와|까지|부터|처럼|보다|에서|이나|에는|으로는|로는|이라|이란|이면)[ .,]/;
+    fs.readdirSync(path.join(h.REPO, 'posts')).filter(function(f) { return f.endsWith('.md'); }).forEach(function(f) {
+      var text = lt.loadPostTexts(h.REPO, f.replace(/\.md$/, ''), PRON).full;
+      var m = re.exec(text);
+      assert.ok(!m, f + ': "' + (m ? text.slice(Math.max(0, m.index - 20), m.index + 10) : '') + '"');
+    });
+  });
+
+  t.test('월 사용량은 Google 청구 달(태평양 시간), 예전 한국 시간 기록은 넉넉하게 옮김(M2)', function() {
+    assert.strictEqual(gen.billingMonth(new Date('2026-11-01T05:00:00+09:00')), '2026-10', '한국 1일 아침은 아직 전달');
+    assert.strictEqual(gen.billingMonth(new Date('2026-11-01T18:00:00+09:00')), '2026-11');
+    var m = { usage: { '2026-11': 100, '2026-10': 50 } };
+    assert.strictEqual(gen.migrateUsage(m), true);
+    assert.deepStrictEqual(m.usage, { '2026-11': 100, '2026-10': 150, '2026-09': 50 });
+    assert.strictEqual(gen.migrateUsage(m), false, '한 번만 옮김');
   });
 
   t.test('38편 모두 변환 결과에 남은 기호 없음, 해시가 실행마다 같음', function() {
@@ -132,9 +169,21 @@ module.exports = function(t) {
     assert.deepStrictEqual(lt.validateListenText(out), []);
   });
 
-  t.test('숫자 뽑기: 79만 2천 원 → 79만, 2천 / 1,000만 → 1000만 / 15.4%', function() {
-    var tokens = cs.extractNumbers('79만 2천 원, 1,000만 원, 15.4%, 12개월, 3년').map(function(n) { return n.token; });
-    assert.deepStrictEqual(tokens, ['79만', '2천', '1000만', '15.4%', '12개월', '3년']);
+  t.test('숫자 뽑기: 금액은 값으로, 단위는 숫자+단위로', function() {
+    var got = cs.extractNumbers('79만 2천 원, 1,000만 원, 15.4%, 12개월, 3년, 2천만 원, 9만 9,000원, 10주, 3은').map(function(n) { return n.token + '=' + n.key; });
+    assert.deepStrictEqual(got, ['79만 2천=V:792000', '1000만=V:10000000', '2천만=V:20000000', '9만 9000=V:99000',
+      '15.4%=U:15.4%', '12개월=U:12개월', '3년=U:3년', '10주=U:10주', '3=B:3']);
+  });
+
+  t.test('숫자 대조 빈틈(M4): 틀린 숫자는 막고 같은 값은 통과', function() {
+    var body = '순이익 79만 2천 원, 9만 9,000원, 10월에 냅니다. 15.4%와 1억 1,900만 원.';
+    assert.deepStrictEqual(cs.missingNumbers('2천만 원입니다.', body), ['2천만'], '2천만 ≠ 79만 2천');
+    assert.deepStrictEqual(cs.missingNumbers('10주 뒤에', body), ['10주'], '10주 ≠ 10월');
+    assert.deepStrictEqual(cs.missingNumbers('10시간', body), ['10시간']);
+    assert.deepStrictEqual(cs.missingNumbers('9만 9천 원만 냅니다.', body), [], '9만 9천 원 = 9만 9,000원');
+    assert.deepStrictEqual(cs.missingNumbers('2천만 원, 2000만 원, 1억 1900만 원, 15.4퍼센트, 10월', body + ' 2,000만 원'), []);
+    assert.deepStrictEqual(cs.missingNumbers('79만 원', body), ['79만'], '어림한 금액은 막음');
+    assert.deepStrictEqual(cs.missingNumbers('10은 그대로', body), [], '조사는 단위가 아님');
   });
 
   t.test('숫자 대조: 계획서 예시 대본은 ISA 글과 맞음(통과)', function() {

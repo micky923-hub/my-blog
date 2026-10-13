@@ -188,8 +188,13 @@
 
   function showError() {
     failed = true;
+    var hadFocus = box.contains(document.activeElement);
     if (errorEl) errorEl.hidden = false;
     Array.prototype.forEach.call(box.querySelectorAll('button, input'), function(el) { el.disabled = true; });
+    // 버튼이 꺼지면 초점이 사라지므로 안내 문구로 옮긴다
+    if (errorEl && hadFocus) {
+      try { errorEl.focus(); } catch (e) { /* 무시 */ }
+    }
   }
 
   function track(event, kind) {
