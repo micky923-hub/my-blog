@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">결혼 자금 3,000만 원, 남은 기간별 월 저축액</title>
+  <desc id="d">결혼 자금 3,000만 원을 더 모을 때 남은 기간이 12개월이면 두 사람 합계 월 250만 원(한 사람당 125만 원), 18개월이면 약 167만 원(한 사람당 약 84만 원), 24개월이면 125만 원(한 사람당 약 63만 원)을 모아야 합니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">3,000만 원, 언제까지 모을까</text>
+    <text x="32" y="90" font-size="17" fill="#475569">두 사람 합계 월 저축액 · 괄호는 한 사람당</text>
+
+    <text x="32" y="138" font-size="18" font-weight="700" fill="#0f172a">12개월 남음  <tspan font-weight="400" fill="#475569" font-size="16">(125만 원)</tspan></text>
+    <rect x="32" y="150" width="400" height="38" rx="8" fill="#f97316"/>
+    <text x="422" y="176" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">250만 원</text>
+
+    <text x="32" y="226" font-size="18" font-weight="700" fill="#0f172a">18개월 남음  <tspan font-weight="400" fill="#475569" font-size="16">(약 84만 원)</tspan></text>
+    <rect x="32" y="238" width="267" height="38" rx="8" fill="#3b82f6"/>
+    <text x="309" y="264" font-size="18" font-weight="800" fill="#1e40af">약 167만 원</text>
+
+    <text x="32" y="314" font-size="18" font-weight="700" fill="#0f172a">24개월 남음  <tspan font-weight="400" fill="#475569" font-size="16">(약 63만 원)</tspan></text>
+    <rect x="32" y="326" width="200" height="38" rx="8" fill="#22c55e"/>
+    <text x="242" y="352" font-size="18" font-weight="800" fill="#166534">125만 원</text>
+
+    <text x="32" y="400" font-size="16" font-weight="700" fill="#b45309">1년 일찍 시작하면 한 달 부담이 절반으로 줄어요</text>
+  </g>
+</svg>

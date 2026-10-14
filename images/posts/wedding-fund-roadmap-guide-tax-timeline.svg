@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-labelledby="t d">
+  <title id="t">혼인신고 날짜에 맞춰 챙기는 세금 혜택 두 가지</title>
+  <desc id="d">부모님 지원은 혼인신고일 전 2년부터 후 2년까지 받으면 기본 5,000만 원에 1억 원이 더해져 한 사람당 1억 5,000만 원까지 증여세가 없습니다. 2026년 12월 31일까지 혼인신고를 하면 부부가 각각 50만 원, 합계 100만 원의 결혼 세액공제를 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="440" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">혼인신고일 기준 세금 혜택</text>
+    <text x="32" y="90" font-size="17" fill="#475569">결혼식 날이 아니라 혼인신고 날로 셉니다</text>
+
+    <text x="32" y="136" font-size="18" font-weight="800" fill="#1e40af">① 부모님 지원 1억 원 추가 공제</text>
+    <rect x="40" y="160" width="480" height="40" rx="10" fill="#dbeafe"/>
+    <text x="160" y="187" text-anchor="middle" font-size="17" font-weight="700" fill="#1e40af">이 기간에 받은 돈</text>
+    <text x="400" y="187" text-anchor="middle" font-size="17" font-weight="700" fill="#1e40af">모두 공제 대상</text>
+    <line x1="280" y1="150" x2="280" y2="214" stroke="#0f172a" stroke-width="3"/>
+    <text x="40" y="236" font-size="16" fill="#475569">2년 전</text>
+    <text x="280" y="236" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">혼인신고일</text>
+    <text x="520" y="236" text-anchor="end" font-size="16" fill="#475569">2년 후</text>
+    <text x="32" y="270" font-size="17" fill="#0f172a">기본 5,000만 원 + 1억 원 = <tspan font-weight="800">1인당 1억 5,000만 원</tspan></text>
+
+    <rect x="32" y="298" width="496" height="1" fill="#cbd5e1"/>
+
+    <text x="32" y="338" font-size="18" font-weight="800" fill="#166534">② 결혼 세액공제</text>
+    <text x="32" y="370" font-size="17" fill="#0f172a">2026년 12월 31일까지 혼인신고</text>
+    <rect x="32" y="384" width="496" height="38" rx="10" fill="#22c55e"/>
+    <text x="280" y="410" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">1인당 50만 원 · 부부 합계 100만 원</text>
+  </g>
+</svg>
