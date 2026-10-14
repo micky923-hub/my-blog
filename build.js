@@ -713,10 +713,81 @@ function coupangNoticeHtml() {
   return '        <p class="affiliate-notice" role="note">' + COUPANG_NOTICE + '</p>\n';
 }
 
-function coupangBoxHtml(innerHtml) {
+// 상품 이름으로 아이콘 종류를 고른다 (이미지 대신 쓰는 둥근 타일)
+var COUPANG_ICON_KINDS = [
+  { kind: 'car', emoji: '🚗', re: /블랙박스|OBD|스캐너|진단기|차량|자동차/i },
+  { kind: 'note', emoji: '📒', re: /가계부|다이어리|플래너|노트|수첩/ },
+  { kind: 'file', emoji: '🗂️', re: /파일|정리함|화일|바인더|보관/ },
+  { kind: 'book', emoji: '📚', re: /./ }
+];
+function coupangIconFor(name) {
+  for (var i = 0; i < COUPANG_ICON_KINDS.length; i++) {
+    if (COUPANG_ICON_KINDS[i].re.test(name)) return COUPANG_ICON_KINDS[i];
+  }
+  return COUPANG_ICON_KINDS[COUPANG_ICON_KINDS.length - 1];
+}
+
+// 상자 마크다운을 상품 카드로 읽는다. 모양이 다르면 null (그때는 예전처럼 목록으로 보여 준다)
+//   (머리 문단)
+//   - [상품 이름](쿠팡 링크)
+//     - 고른 이유: ...
+//     - 무료로 하려면: ...   (또는 "대안: ...")
+function parseCoupangCards(md) {
+  var lines = md.replace(/\r\n/g, '\n').split('\n');
+  var intro = [];
+  var items = [];
+  var cur = null;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    if (!line.trim()) { if (!cur && intro.length) intro.push(''); continue; }
+    var top = /^- \[([^\]]+)\]\((\S+?)\)\s*$/.exec(line);
+    var sub = /^\s{2,}- (.+)$/.exec(line);
+    if (top) {
+      if (!isCoupangHref(top[2])) return null;
+      cur = { name: top[1], href: top[2], why: '', alt: null };
+      items.push(cur);
+    } else if (sub && cur) {
+      var t = sub[1].trim();
+      var m = /^([^:：]{1,15})[:：]\s*(.+)$/.exec(t);
+      if (m && /이유/.test(m[1]) && !cur.why) cur.why = m[2];
+      else if (m && !cur.alt) cur.alt = { label: m[1].trim(), text: m[2] };
+      else return null;
+    } else if (!cur && !/^\s*[-*+]\s/.test(line)) {
+      intro.push(line);
+    } else {
+      return null;
+    }
+  }
+  if (!items.length) return null;
+  return { intro: intro.join('\n').trim(), items: items };
+}
+
+function coupangCardHtml(item) {
+  var icon = coupangIconFor(item.name);
+  var name = escapeHtml(item.name);
+  return '  <li class="affiliate-card">\n'
+    + '    <div class="affiliate-card-main">\n'
+    + '      <span class="affiliate-icon affiliate-icon--' + icon.kind + '" aria-hidden="true">' + icon.emoji + '</span>\n'
+    + '      <div class="affiliate-card-body">\n'
+    + '        <p class="affiliate-card-name">' + name + '</p>\n'
+    + (item.why ? '        <p class="affiliate-card-why">' + marked.parseInline(item.why) + '</p>\n' : '')
+    + '      </div>\n'
+    + '    </div>\n'
+    + '    <a class="affiliate-cta" href="' + escapeHtml(item.href) + '" aria-label="쿠팡에서 보기: ' + name + '">쿠팡에서 보기</a>\n'
+    + (item.alt ? '    <p class="affiliate-card-alt"><strong>' + escapeHtml(item.alt.label) + '</strong> ' + marked.parseInline(item.alt.text) + '</p>\n' : '')
+    + '  </li>\n';
+}
+
+function coupangBoxHtml(md) {
+  var cards = parseCoupangCards(md);
+  var body = cards
+    ? (cards.intro ? marked.parse(cards.intro).trim() + '\n' : '')
+      + '<ul class="affiliate-cards">\n' + cards.items.map(coupangCardHtml).join('') + '</ul>'
+    : marked.parse(md).trim();
   return '<aside class="affiliate-box" aria-label="제휴 링크">\n'
-    + '  <p class="affiliate-box-label">제휴 링크</p>\n'
-    + innerHtml.trim() + '\n'
+    + '  <p class="affiliate-box-label"><span class="affiliate-box-title">이 글과 함께 쓰면 좋은 것</span>'
+    + '<span class="affiliate-badge">제휴 링크</span></p>\n'
+    + body + '\n'
     + '  <p class="affiliate-box-note">' + COUPANG_BOX_NOTE + '</p>\n'
     + '</aside>\n';
 }
@@ -797,7 +868,7 @@ function prepareCoupang(content, meta, filename) {
     console.warn('  [경고] ' + where + '의 쿠팡 상자가 마지막 ## 소제목 뒤에 있지 않습니다. 글 끝(관련 계산기 링크 다음)에 두세요.');
   }
 
-  return { content: rest, boxHtml: coupangBoxHtml(marked.parse(inner)) };
+  return { content: rest, boxHtml: coupangBoxHtml(inner) };
 }
 
 // 렌더링된 본문에 상자를 넣고 쿠팡 링크에 rel·target을 붙인다

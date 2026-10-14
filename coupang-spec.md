@@ -154,13 +154,17 @@
 
 ```html
 <aside class="affiliate-box" aria-label="제휴 링크">
-  <p class="affiliate-box-label">제휴 링크</p>
-  <ul>…링크 목록…</ul>
+  <p class="affiliate-box-label"><span class="affiliate-box-title">이 글과 함께 쓰면 좋은 것</span><span class="affiliate-badge">제휴 링크</span></p>
+  (머리 문단이 있으면 여기)
+  <ul class="affiliate-cards">
+    <li class="affiliate-card">아이콘 타일 · 상품 이름 · 고른 이유 · [쿠팡에서 보기] 버튼 · 무료 대안</li>
+  </ul>
   <p class="affiliate-box-note">위 링크는 쿠팡 파트너스 링크입니다. 구매하시면 블로그가 일정액의 수수료를 받습니다.</p>
 </aside>
 ```
 
-- 상자 모양: `var(--color-surface)` 배경, 점선 테두리 `var(--color-border)`, "제휴 링크" 작은 라벨. 애드센스 칸(`.ad-container`)과 다른 모양.
+- 상자 모양(2026-10-14 변경): 위쪽 파란 띠 + "제휴 링크" 배지로 애드센스 칸(`.ad-container`)과 구분한다. 상품마다 카드 한 장, 상품 이미지 대신 종류별 아이콘 타일(📚 책·📒 가계부/노트·🗂️ 서류 파일·🚗 차량용품, 상품 이름으로 자동 선택), 높이 46px "쿠팡에서 보기" 버튼.
+- 마크다운 형식은 그대로다. `- [상품 이름](링크)` 아래 `  - 고른 이유: …`, `  - 무료로 하려면: …`(또는 `대안: …`). 형식이 다르면 예전처럼 목록으로 보여 준다.
 - "구매자 가격은 같습니다"를 덧붙일지는 9장 7번에서 정한다. 쿠팡 공식 근거는 **(미확인)** 이라 기본은 뺀다.
 - 각 항목에 **추천 이유 한 줄 + 무료·대안 한 줄**을 함께 쓴다(5장).
 
