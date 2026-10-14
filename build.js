@@ -1221,10 +1221,12 @@ function buildIndex(posts) {
     return tagCount[b] - tagCount[a];
   });
 
-  var searchHtml = '    <div class="search-box">\n'
-    + '      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>\n'
-    + '      <input type="text" id="search-input" class="search-input" placeholder="검색어를 입력하세요.">\n'
-    + '    </div>\n';
+  // 엔터·돋보기 버튼으로 검색(키보드 내림), 입력 중에도 목록은 바로 거른다. ✕ 로 지우고 전체 글로 돌아간다.
+  var searchHtml = '    <form class="search-box" id="search-form" role="search" action="' + base + '" method="get">\n'
+    + '      <button type="submit" class="search-btn" aria-label="검색"><svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>\n'
+    + '      <input type="search" name="q" id="search-input" class="search-input" placeholder="검색어를 입력하세요." enterkeyhint="search" autocomplete="off" aria-label="글 검색">\n'
+    + '      <button type="button" class="search-clear" id="search-clear" aria-label="검색어 지우기" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>\n'
+    + '    </form>\n';
 
   var displayTags = allTags.slice(0, 15);
 
@@ -1287,6 +1289,7 @@ function buildIndex(posts) {
     + '      <div class="list-header-left">\n'
     + '        <h2 id="list-title" class="list-title">전체 글</h2>\n'
     + '        <span id="post-count" class="post-count">총 ' + posts.length + '개</span>\n'
+    + '        <button type="button" id="show-all" class="show-all-btn" hidden>전체 글 보기</button>\n'
     + '      </div>\n'
     + '      <div class="list-header-right">\n'
     + '        <button id="sort-toggle" class="sort-toggle" type="button"><span id="sort-label">최신순</span><svg class="sort-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2 4.5L6 8.5L10 4.5"/></svg></button>\n'

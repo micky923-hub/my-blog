@@ -31,17 +31,85 @@
     try { localStorage.setItem('viewMode', mode); } catch(e) {}
   }
 
+  var searchForm = document.getElementById('search-form');
+  var searchClear = document.getElementById('search-clear');
+  var showAllBtn = document.getElementById('show-all');
+  var committed = false; // 엔터·검색 버튼을 눌렀는지 (눌렀으면 한 글자여도 결과만 보여 준다)
+
+  function readUrlQuery() {
+    try { return (new URLSearchParams(window.location.search).get('q') || '').trim(); } catch(e) { return ''; }
+  }
+
+  // 주소에 ?q= 를 남긴다. 처음 검색을 시작할 때만 기록을 하나 쌓아, 뒤로 가기로 전체 글에 돌아오게 한다.
+  function syncUrl(q) {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var had = !!(params.get('q') || '').trim();
+      if (q) params.set('q', q); else params.delete('q');
+      var qs = params.toString();
+      var url = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+      if (q && !had) history.pushState({ q: q }, '', url);
+      else history.replaceState({ q: q }, '', url);
+    } catch(e) {}
+  }
+
+  function setQuery(raw, opts) {
+    opts = opts || {};
+    var q = String(raw || '').trim();
+    searchQuery = q.toLowerCase();
+    if (opts.committed !== undefined) committed = opts.committed;
+    if (!q) committed = false;
+    if (searchInput && opts.fill) searchInput.value = q;
+    if (searchClear) searchClear.hidden = !(searchInput && searchInput.value);
+    if (opts.url !== false) syncUrl(q);
+    applyFilters();
+  }
+
+  function scrollToList() {
+    var target = document.getElementById('main-content');
+    if (target) window.scrollTo({ top: Math.max(0, target.offsetTop - 20), behavior: 'smooth' });
+  }
+
   if (searchInput) {
     var debounceTimer;
     searchInput.addEventListener('input', function() {
       clearTimeout(debounceTimer);
       var self = this;
-      debounceTimer = setTimeout(function() {
-        searchQuery = self.value.trim().toLowerCase();
-        applyFilters();
-      }, 200);
+      if (searchClear) searchClear.hidden = !self.value;
+      debounceTimer = setTimeout(function() { setQuery(self.value); }, 200);
+    });
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchInput.value) { e.preventDefault(); clearAll(true); }
     });
   }
+
+  if (searchForm) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      clearTimeout(debounceTimer);
+      setQuery(searchInput ? searchInput.value : '', { committed: true });
+      if (searchInput) searchInput.blur(); // 휴대폰 키보드를 내린다(검색창은 보이게 두어 바로 고쳐 쓸 수 있게)
+    });
+  }
+
+  // 검색어·키워드를 모두 지우고 전체 글로
+  function clearAll(keepFocus) {
+    clearTimeout(debounceTimer);
+    if (searchInput) searchInput.value = '';
+    committed = false;
+    searchQuery = '';
+    syncUrl('');
+    if (searchClear) searchClear.hidden = true;
+    setTags([]);
+    if (keepFocus && searchInput) searchInput.focus();
+  }
+
+  if (searchClear) searchClear.addEventListener('click', function() { clearAll(true); });
+  if (showAllBtn) showAllBtn.addEventListener('click', function() { clearAll(false); scrollToList(); });
+
+  window.addEventListener('popstate', function() {
+    setQuery(readUrlQuery(), { fill: true, url: false, committed: !!readUrlQuery() });
+  });
 
   var keywordBtns = document.querySelectorAll('.keyword-btn');
   var selectedRow = document.getElementById('keyword-selected');
@@ -132,11 +200,13 @@
       postCountEl.textContent = '총 ' + filteredCards.length + '개';
     }
 
-    // 검색어나 키워드가 있으면 오늘의 글·무료 도구를 숨기고 결과만 보여 준다
-    var filtering = activeTags.length > 0 || !!searchQuery;
+    // 키워드를 골랐거나, 검색어가 두 글자 이상이거나, 엔터로 검색했으면 오늘의 글·무료 도구를 숨기고 결과만 보여 준다
+    // (한 글자 입력 중에는 목록만 바뀌어 화면이 덜컹거리지 않게)
+    var filtering = activeTags.length > 0 || searchQuery.length >= 2 || (committed && !!searchQuery);
+    if (showAllBtn) showAllBtn.hidden = !(activeTags.length > 0 || !!searchQuery);
     document.body.classList.toggle('is-filtering', filtering);
     var listTitle = document.getElementById('list-title');
-    if (listTitle) listTitle.textContent = filtering ? '검색 결과' : '전체 글';
+    if (listTitle) listTitle.textContent = (activeTags.length > 0 || !!searchQuery) ? '검색 결과' : '전체 글';
 
     if (noResults) {
       noResults.style.display = filteredCards.length === 0 ? 'block' : 'none';
@@ -225,5 +295,13 @@
   }
 
   window.addEventListener('hashchange', applyHashTag);
+  // 주소에 ?q= 가 있으면(뒤로 가기·공유 링크) 그 검색어로 시작
+  var initialQ = readUrlQuery();
+  if (initialQ && searchInput) {
+    searchInput.value = initialQ;
+    searchQuery = initialQ.toLowerCase();
+    committed = true;
+    if (searchClear) searchClear.hidden = false;
+  }
   applyHashTag();
 })();
