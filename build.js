@@ -259,6 +259,9 @@ function todayHeroLabel(post, isToday) {
   return { text: 'TODAY · ' + d, aria: '오늘의 글 · ' + d };
 }
 
+// 히어로 큰 카드에 나온 글 (메인 목록에서는 검색 중이 아닐 때 숨긴다)
+var HERO_SLUG = '';
+
 function todayHeroHtml(posts) {
   var now = BUILD_NOW || new Date();
   var today = kstParts(now).date;
@@ -272,6 +275,7 @@ function todayHeroHtml(posts) {
   if (candidates.length === 0) return '';
 
   var hero = candidates[0];
+  HERO_SLUG = hero.slug;
   var isToday = hero.date === today;
   var label = todayHeroLabel(hero, isToday);
   var href = base + 'posts/' + hero.slug + '.html';
@@ -1257,7 +1261,7 @@ function buildIndex(posts) {
       var thumbHtml = post.image
         ? '<img class="post-card-thumb" src="' + escapeHtml(post.image) + '" alt="" loading="lazy">'
         : '<div class="post-card-no-thumb"></div>';
-      cardsHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-card" data-tags="' + tagsAttr + '" data-title="' + escapeHtml(post.title) + '" data-summary="' + escapeHtml(post.summary) + '">\n';
+      cardsHtml += '      <a href="' + base + 'posts/' + post.slug + '.html" class="post-card"' + (heroHtml && post.slug === HERO_SLUG ? ' data-hero="1"' : '') + ' data-tags="' + tagsAttr + '" data-title="' + escapeHtml(post.title) + '" data-summary="' + escapeHtml(post.summary) + '">\n';
       cardsHtml += '        ' + thumbHtml + '\n';
       cardsHtml += '        <div class="post-card-body">\n';
       cardsHtml += '          <h3 class="post-card-title">' + escapeHtml(post.title) + '</h3>\n';

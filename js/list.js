@@ -174,7 +174,10 @@
   }
 
   function applyFilters() {
+    var searching = activeTags.length > 0 || !!searchQuery;
     filteredCards = allCards.filter(function(card) {
+      // 맨 위 오늘의 글 카드에 이미 나온 글은 목록에서 빼고, 검색·키워드 결과에는 넣는다
+      if (!searching && card.getAttribute('data-hero') === '1') return false;
       var matchTag = true;
       var matchSearch = true;
 
@@ -197,7 +200,7 @@
     }
 
     if (postCountEl) {
-      postCountEl.textContent = '총 ' + filteredCards.length + '개';
+      postCountEl.textContent = '총 ' + (searching ? filteredCards.length : allCards.length) + '개';
     }
 
     // 키워드를 골랐거나, 검색어가 두 글자 이상이거나, 엔터로 검색했으면 오늘의 글·무료 도구를 숨기고 결과만 보여 준다
