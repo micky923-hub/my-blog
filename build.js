@@ -1593,6 +1593,14 @@ if (fs.existsSync('js/today-hero.js')) {
 if (fs.existsSync('images')) {
   copyDir('images', path.join(DIST, 'images'));
 }
+// 하루 1분 경제 용어: terms.json 형식 검사 (apps/daily-econ/spec.md 7-3). 오류면 빌드 중단
+if (fs.existsSync('apps/daily-econ/tools/check-terms.js')) {
+  var termsCheck = require('child_process').spawnSync(process.execPath, ['apps/daily-econ/tools/check-terms.js'], { stdio: 'inherit' });
+  if (termsCheck.status !== 0) {
+    console.error('\n[빌드 중단] 경제 용어 terms.json 형식 오류입니다. 위 메시지를 보고 apps/daily-econ/terms.json 을 고치세요.\n');
+    process.exit(1);
+  }
+}
 if (fs.existsSync('apps')) {
   copyDir('apps', path.join(DIST, 'apps'));
   console.log('  apps/ 폴더 복사 완료');
