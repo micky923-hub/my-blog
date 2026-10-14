@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">자녀 교육비를 쓸 시기별로 통장 세 개에 나눠 담기</title>
+  <desc id="d">1년 안에 쓸 학원비는 부모 생활비 통장에서 정해 둔 금액만 쓰고, 3~5년 안에 쓸 중고등 교육비는 적금이나 예금에 넣고, 10년 뒤 쓸 대학 등록금은 아이 명의 계좌에 증여 신고 후 지수 ETF로 꾸준히 모읍니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">쓸 날짜로 통장을 나누세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">돈이 필요한 시기가 다르면 담는 곳도 다릅니다</text>
+
+    <rect x="32" y="112" width="496" height="120" rx="14" fill="#e0f2fe"/>
+    <text x="52" y="148" font-size="20" font-weight="800" fill="#075985">1년 안 · 학원비·교재비</text>
+    <text x="52" y="180" font-size="17" fill="#0f172a">부모 생활비 통장에서 상한을 정해 쓰기</text>
+    <text x="52" y="208" font-size="17" fill="#0f172a">→ 교육비 세액공제 영수증 챙기기</text>
+
+    <rect x="32" y="248" width="496" height="120" rx="14" fill="#fef3c7"/>
+    <text x="52" y="284" font-size="20" font-weight="800" fill="#92400e">3~5년 · 중고등 교육비</text>
+    <text x="52" y="316" font-size="17" fill="#0f172a">원금이 지켜지는 적금·예금에 넣기</text>
+    <text x="52" y="344" font-size="17" fill="#0f172a">→ 쓸 해에 맞춰 만기를 잡기</text>
+
+    <rect x="32" y="384" width="496" height="120" rx="14" fill="#dcfce7"/>
+    <text x="52" y="420" font-size="20" font-weight="800" fill="#166534">10년 이상 · 대학 등록금</text>
+    <text x="52" y="452" font-size="17" fill="#0f172a">아이 명의 계좌 + 증여 신고</text>
+    <text x="52" y="480" font-size="17" fill="#0f172a">→ 지수 ETF를 매달 같은 날 사기</text>
+
+    <text x="32" y="536" font-size="16" fill="#64748b">대학 입학 3년 전부터는 예금으로 조금씩 옮기세요</text>
+  </g>
+</svg>
