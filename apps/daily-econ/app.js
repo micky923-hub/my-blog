@@ -270,7 +270,11 @@
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = core;
   }
+  // 블로그 메인의 "오늘의 용어" 띠(js/econ-strip.js)가 같은 계산을 쓰도록 내보낸다
+  if (root) root.DailyEconCore = core;
   if (typeof document === 'undefined') return;
+  // 앱 화면이 아닌 곳(블로그 메인)에서는 계산 함수만 내보내고 화면 코드는 돌리지 않는다
+  if (!document.getElementById('de-today')) return;
 
   /* ====================================================================
    * 화면 코드 (브라우저 전용)

@@ -262,6 +262,38 @@ function todayHeroLabel(post, isToday) {
 // 히어로 큰 카드에 나온 글 (메인 목록에서는 검색 중이 아닐 때 숨긴다)
 var HERO_SLUG = '';
 
+// 메인 "오늘의 용어" 띠 (apps/daily-econ). 오늘 히어로 바로 아래 한 줄.
+// 빌드 날짜(KST) 용어를 미리 넣어 두고, js/econ-strip.js가 브라우저의 오늘 날짜로 다시 고른다.
+// 용어 이름·한 줄 뜻만 담은 작은 목록을 함께 넣는다(앱의 terms.json 전체는 읽지 않음).
+function econStripHtml() {
+  var termsPath = 'apps/daily-econ/terms.json';
+  if (!fs.existsSync(termsPath) || !fs.existsSync('apps/daily-econ/app.js')) return '';
+  var core = require('./apps/daily-econ/app.js');
+  var data = JSON.parse(fs.readFileSync(termsPath, 'utf-8'));
+  var v = core.validateData(data);
+  if (!v.ok) return '';
+  var usable = core.usableFlags(data.terms, v.valid);
+  var pick = core.pickIndex(data.terms.length, usable, data.startDate, core.kstToday());
+  if (!pick) return '';
+  var t = data.terms[pick.index];
+  var lite = { startDate: data.startDate, terms: data.terms.map(function(x, i) {
+    return usable[i] ? { t: x.term, s: x.short } : null;
+  }) };
+  return '    <section class="econ-strip" aria-label="오늘의 경제 용어">\n'
+    + '      <a class="econ-strip-link" href="' + base + 'apps/daily-econ/">\n'
+    + '        <span class="econ-strip-icon" aria-hidden="true">📖</span>\n'
+    + '        <span class="econ-strip-text">\n'
+    + '          <span class="econ-strip-label">오늘의 용어</span>\n'
+    + '          <strong class="econ-strip-term">' + escapeHtml(t.term) + '</strong>\n'
+    + '          <span class="econ-strip-short">' + escapeHtml(t.short) + '</span>\n'
+    + '          <span class="econ-strip-status" hidden></span>\n'
+    + '        </span>\n'
+    + '        <span class="econ-strip-cta">OX 풀기 →</span>\n'
+    + '      </a>\n'
+    + '      <script type="application/json" id="econ-strip-data">' + JSON.stringify(lite).replace(/</g, '\\u003c') + '</script>\n'
+    + '    </section>\n';
+}
+
 function todayHeroHtml(posts) {
   var now = BUILD_NOW || new Date();
   var today = kstParts(now).date;
@@ -1321,6 +1353,7 @@ function buildIndex(posts) {
     + '    </div>\n';
 
   var heroHtml = todayHeroHtml(posts);
+  var econStrip = econStripHtml();
 
   var cardsHtml = '';
   if (posts.length === 0) {
@@ -1355,6 +1388,7 @@ function buildIndex(posts) {
     + searchHtml
     + keywordsHtml
     + heroHtml
+    + econStrip
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
@@ -1414,6 +1448,8 @@ function buildIndex(posts) {
     jsonLd: jsonLd,
     extraScripts: '  <script src="' + base + 'js/list.js?v=' + Date.now() + '"></script>\n'
       + (heroHtml ? '  <script src="' + base + 'js/today-hero.js?v=' + Date.now() + '" defer></script>\n' : '')
+      + (econStrip ? '  <script src="' + base + 'apps/daily-econ/app.js?v=' + Date.now() + '" defer></script>\n'
+        + '  <script src="' + base + 'js/econ-strip.js?v=' + Date.now() + '" defer></script>\n' : '')
   });
 
   fs.writeFileSync(path.join(DIST, 'index.html'), fullHtml);
@@ -1587,6 +1623,9 @@ if (fs.existsSync('js/audio.js')) {
 }
 if (fs.existsSync('js/today-hero.js')) {
   fs.copyFileSync('js/today-hero.js', path.join(DIST, 'js', 'today-hero.js'));
+}
+if (fs.existsSync('js/econ-strip.js')) {
+  fs.copyFileSync('js/econ-strip.js', path.join(DIST, 'js', 'econ-strip.js'));
 }
 
 // 글 본문에 넣는 설명 그림(images/posts/*.svg 등)
