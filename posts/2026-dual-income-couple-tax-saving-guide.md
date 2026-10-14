@@ -4,6 +4,7 @@ date: 2026-10-12
 tags: [절세, 세액공제, 연말정산, 맞벌이]
 summary: 맞벌이 부부는 공제를 누구 이름으로 받느냐에 따라 같은 돈을 쓰고도 환급액이 수십만 원 달라집니다. 부양가족 공제는 세율 높은 쪽, 의료비와 신용카드는 문턱 낮은 쪽으로 나누는 기준과 연봉별 계산 예시, 12월 전에 할 일을 정리했습니다.
 image: https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit=crop
+coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -172,3 +173,9 @@ image: https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit
 
 > 💰 **함께 쓰면 좋은 도구: [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)**  
 > 부부 각자 얼마를 넣으면 얼마를 돌려받는지 바로 계산해 보세요. 카드 문턱 전략은 [신용카드 혜택 챙기는 법](/posts/2026-credit-card-benefits-guide.html), 놓치기 쉬운 공제는 [연말정산 소득공제 총정리](/posts/2026-year-end-tax-settlement-guide.html)에서 더 자세히 볼 수 있어요.
+
+<!-- coupang:start -->
+- [2027 오늘부터 가계부](https://link.coupang.com/a/hP4Qe1kW2S)
+  - 고른 이유: 이 글처럼 누구 카드로 쓸지, 의료비를 누구에게 몰지 정하려면 두 사람의 지출을 한곳에 적어 두는 것이 먼저입니다. 2027년판이라 내년 1월부터 바로 쓸 수 있습니다.
+  - 무료로 하려면: 은행 앱의 가계부나 공유 스프레드시트 하나를 둘이 함께 써도 충분합니다.
+<!-- coupang:end -->
