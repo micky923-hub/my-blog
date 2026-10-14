@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하루 1분 경제 용어 — 매일 용어 하나, OX 퀴즈 하나 — Financial Diary</title>
+  <meta name="description" content="매일 경제 용어 1개를 3줄 설명으로 읽고 OX 퀴즈 1문제를 풀어 카드를 모아요. 연속 학습일·잔디 달력·배지로 쌓인 지식을 확인하고, 용어마다 자세한 블로그 글로 이어져요.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/daily-econ/">
+  <meta property="og:title" content="하루 1분 경제 용어 — Financial Diary">
+  <meta property="og:description" content="매일 경제 용어 1개를 3줄 설명으로 읽고 OX 퀴즈 1문제를 풀어 카드를 모아요. 연속 학습일·잔디 달력·배지로 쌓인 지식을 확인해요.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/daily-econ/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { /* 저장소가 막힌 브라우저: 시스템 테마를 그대로 쓴다 */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/daily-econ/#app",
+        "name": "하루 1분 경제 용어",
+        "url": "https://financialdiary.co.kr/apps/daily-econ/",
+        "description": "매일 경제 용어 1개를 3줄 설명으로 읽고 OX 퀴즈 1문제를 풀어 카드를 모아요. 연속 학습일·잔디 달력·배지로 쌓인 지식을 확인하고, 용어마다 자세한 블로그 글로 이어져요.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "하루 1분 경제 용어",
+            "item": "https://financialdiary.co.kr/apps/daily-econ/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="de-header">
+    <div class="de-header-inner">
+      <a href="../../" class="de-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle de-theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+    </div>
+  </header>
+
+  <main class="de-main" id="main-content">
+    <div class="de-intro">
+      <h1 class="de-title">📖 하루 1분 경제 용어</h1>
+      <p class="de-subtitle">매일 용어 하나, 퀴즈 하나로 쌓아요</p>
+    </div>
+
+    <details class="de-guide" id="de-guide" open>
+      <summary>이렇게 써요</summary>
+      <ol class="de-guide-steps">
+        <li>매일 <strong>자정(한국 시간)</strong>에 새 용어 1개가 나와요. 같은 날에는 누구나 같은 용어를 봐요.</li>
+        <li>3줄 설명을 읽고 <strong>OX 퀴즈</strong>를 풀면 카드를 모아요. 틀려도 해설을 보고 다시 풀 수 있어요.</li>
+        <li>기록은 <strong>이 휴대폰 브라우저에만</strong> 저장돼요. 기기를 바꾸거나 방문 기록을 지우면 사라져요.</li>
+        <li>설명은 블로그 글을 기준으로 써요. <strong>투자 권유가 아니에요.</strong></li>
+      </ol>
+    </details>
+
+    <div class="de-notices" id="de-notices" aria-live="polite"></div>
+
+    <noscript>
+      <p class="de-notice">자바스크립트를 켜야 오늘의 용어와 퀴즈를 볼 수 있어요. <a href="../../">블로그로 돌아가기</a></p>
+    </noscript>
+
+    <section class="de-today" id="de-today" aria-labelledby="de-today-title">
+      <div class="de-today-head">
+        <h2 class="de-section-title" id="de-today-title">오늘의 용어</h2>
+        <span class="de-chip" id="de-today-cat" hidden></span>
+      </div>
+      <div id="de-today-body">
+        <p class="de-loading">용어를 불러오고 있어요…</p>
+      </div>
+    </section>
+
+    <section class="de-quiz" id="de-quiz" aria-labelledby="de-quiz-title" hidden>
+      <h2 class="de-section-title" id="de-quiz-title">OX 퀴즈</h2>
+      <div id="de-quiz-body"></div>
+    </section>
+
+    <section class="de-record" id="de-record" aria-labelledby="de-record-title">
+      <h2 class="de-section-title" id="de-record-title">내 기록</h2>
+      <div id="de-record-body"></div>
+    </section>
+
+    <section class="de-past" id="de-past" aria-labelledby="de-past-title" hidden>
+      <h2 class="de-section-title" id="de-past-title">지난 용어 다시 보기</h2>
+      <p class="de-muted">놓친 날의 용어도 퀴즈를 풀어 카드를 주울 수 있어요. 연속일과 잔디에는 세지 않아요.</p>
+      <div class="de-filters" id="de-filters" role="group" aria-label="카테고리 고르기"></div>
+      <div class="de-past-list" id="de-past-list"></div>
+    </section>
+
+    <div class="de-footer">
+      <button type="button" class="de-btn de-btn-quiet" id="de-reset">기록 지우기</button>
+      <p class="de-disclaimer">
+        ※ 출처·면책: 설명은 Financial Diary 블로그 글을 기준으로 썼고, 투자·대출 권유가 아니에요. 세율·한도 같은 숫자는 카드에 적힌 기준 연도의 내용이니, 실제로 쓰기 전에 국세청·금융회사 안내로 다시 확인하세요.
+      </p>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
