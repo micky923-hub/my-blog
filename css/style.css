@@ -648,6 +648,7 @@ a:focus-visible {
 
 /* 검색·키워드 선택 중에는 결과 글만 보이게 */
 .is-filtering .today-hero,
+.is-filtering .econ-strip,
 .is-filtering .web-apps,
 .is-filtering .newsletter-strip {
   display: none;
@@ -2215,6 +2216,97 @@ a:focus-visible {
   .newsletter-box {
     padding: 1.5rem 1.5rem;
   }
+}
+
+/* ==============================
+   메인 "오늘의 용어" 띠 (apps/daily-econ, js/econ-strip.js)
+   오늘의 글 카드 바로 아래 한 줄. 통째로 앱으로 가는 링크.
+   ============================== */
+.econ-strip {
+  margin: 0.75rem 0 0.5rem;
+}
+
+.econ-strip-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.econ-strip-link:hover,
+.econ-strip-link:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.econ-strip-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: linear-gradient(135deg, #c7d2fe, #6366f1);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.econ-strip-text {
+  flex: 1 1 140px;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.4rem;
+  row-gap: 0.1rem;
+}
+
+.econ-strip-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.econ-strip-term {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.econ-strip-short {
+  flex-basis: 100%;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.econ-strip-status {
+  flex-basis: 100%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.econ-strip-status[hidden] {
+  display: none;
+}
+
+.econ-strip-cta {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 /* ==============================
