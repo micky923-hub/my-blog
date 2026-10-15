@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">금리인하요구 신청 순서</title>
+  <desc id="d">대출받을 때보다 좋아진 조건을 확인하고, 원천징수영수증이나 재직증명서를 준비해 은행 앱에서 신청합니다. 은행은 접수 후 10영업일 안에 결과를 알려 줍니다. 받아들여지면 약정 동의 후 새 금리가 적용되고, 거절되면 사유를 확인한 뒤 재신청하거나 갈아타기를 비교합니다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+  </defs>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">금리인하요구 이렇게 진행돼요</text>
+
+    <rect x="32" y="84" width="496" height="62" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="113" font-size="18" font-weight="800" fill="#075985">① 조건 확인</text>
+    <text x="52" y="135" font-size="16" fill="#0c4a6e">연봉·직급·신용점수가 대출 때보다 올랐나</text>
+    <line x1="280" y1="148" x2="280" y2="166" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="172" width="496" height="62" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="201" font-size="18" font-weight="800" fill="#075985">② 서류 준비</text>
+    <text x="52" y="223" font-size="16" fill="#0c4a6e">원천징수영수증 · 재직증명서</text>
+    <line x1="280" y1="236" x2="280" y2="254" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="260" width="496" height="62" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="289" font-size="18" font-weight="800" fill="#075985">③ 은행 앱에서 신청</text>
+    <text x="52" y="311" font-size="16" fill="#0c4a6e">대출 관리 → 금리인하요구 → 사유·증빙</text>
+    <line x1="280" y1="324" x2="280" y2="342" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="348" width="496" height="62" rx="12" fill="#fef3c7"/>
+    <text x="52" y="377" font-size="18" font-weight="800" fill="#92400e">④ 10영업일 안에 결과 통보</text>
+    <text x="52" y="399" font-size="16" fill="#78350f">문자·앱 알림·전화로 이유와 함께</text>
+    <line x1="160" y1="412" x2="146" y2="436" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+    <line x1="400" y1="412" x2="414" y2="436" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="442" width="240" height="126" rx="12" fill="#dcfce7"/>
+    <text x="50" y="474" font-size="18" font-weight="800" fill="#166534">받아들여지면</text>
+    <text x="50" y="504" font-size="16" fill="#166534">약정 동의 마치기</text>
+    <text x="50" y="530" font-size="16" fill="#166534">새 금리로 이자 납부</text>
+
+    <rect x="288" y="442" width="240" height="126" rx="12" fill="#fee2e2"/>
+    <text x="306" y="474" font-size="18" font-weight="800" fill="#991b1b">거절되면</text>
+    <text x="306" y="504" font-size="16" fill="#991b1b">사유 확인하기</text>
+    <text x="306" y="530" font-size="16" fill="#991b1b">새 증빙 생기면 재신청</text>
+    <text x="306" y="556" font-size="16" fill="#991b1b">갈아타기도 비교</text>
+  </g>
+</svg>

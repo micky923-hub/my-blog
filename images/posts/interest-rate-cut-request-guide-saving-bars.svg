@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">금리인하요구로 1년에 아끼는 이자</title>
+  <desc id="d">이자만 내는 대출 기준으로 신용대출 3,000만 원이 0.5%p 내려가면 1년에 15만 원, 5,000만 원이 0.5%p 내려가면 25만 원, 5,000만 원이 1.0%p 내려가면 50만 원, 주담대 3억 원이 0.2%p 내려가면 60만 원을 아낍니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1년에 아끼는 이자</text>
+    <text x="32" y="88" font-size="17" fill="#475569">남은 잔액 × 내려간 금리 (이자만 내는 대출)</text>
+
+    <text x="32" y="138" font-size="18" font-weight="700" fill="#0f172a">신용대출 3,000만 원 · 0.5%p</text>
+    <rect x="32" y="150" width="124" height="42" rx="8" fill="#93c5fd"/>
+    <text x="166" y="178" font-size="19" font-weight="800" fill="#1e3a8a">15만 원</text>
+
+    <text x="32" y="232" font-size="18" font-weight="700" fill="#0f172a">신용대출 5,000만 원 · 0.5%p</text>
+    <rect x="32" y="244" width="207" height="42" rx="8" fill="#60a5fa"/>
+    <text x="249" y="272" font-size="19" font-weight="800" fill="#1e3a8a">25만 원</text>
+
+    <text x="32" y="326" font-size="18" font-weight="700" fill="#0f172a">신용대출 5,000만 원 · 1.0%p</text>
+    <rect x="32" y="338" width="413" height="42" rx="8" fill="#3b82f6"/>
+    <text x="431" y="366" text-anchor="end" font-size="19" font-weight="800" fill="#ffffff">50만 원</text>
+
+    <text x="32" y="420" font-size="18" font-weight="700" fill="#0f172a">주담대 3억 원 · 0.2%p</text>
+    <rect x="32" y="432" width="496" height="42" rx="8" fill="#1d4ed8"/>
+    <text x="514" y="460" text-anchor="end" font-size="19" font-weight="800" fill="#ffffff">60만 원</text>
+
+    <text x="32" y="503" font-size="15" fill="#475569">신청 비용 0원 · 거절돼도 지금 금리 그대로</text>
+  </g>
+</svg>
