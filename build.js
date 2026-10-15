@@ -1595,6 +1595,15 @@ function buildRobots() {
   // 다음 웹마스터도구 사이트 인증 (site.config.json의 daumWebmasterTool, 다음이 robots.txt 맨 아래에 두라고 안내)
   if (config.daumWebmasterTool) txt += '\n' + String(config.daumWebmasterTool).trim() + '\n';
   fs.writeFileSync(path.join(DIST, 'robots.txt'), txt);
+  // IndexNow 키 파일 (site.config.json의 indexNowKey). 공개용 값이며, 검색엔진이 이 파일로 사이트 주인을 확인한다.
+  var inKey = String(config.indexNowKey || '').trim();
+  if (inKey) {
+    if (!/^[a-zA-Z0-9-]{8,128}$/.test(inKey)) {
+      console.error('\n[빌드 중단] site.config.json의 indexNowKey 형식이 올바르지 않습니다 (영문·숫자·- 8~128자).\n');
+      process.exit(1);
+    }
+    fs.writeFileSync(path.join(DIST, inKey + '.txt'), inKey);
+  }
 }
 
 // 빌드 실행
