@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">은퇴 후 연금 타임라인과 5년 공백</title>
+  <desc id="d">55세부터 연금저축과 IRP를 연금으로 꺼낼 수 있습니다. 60세에 은퇴하면 65세 국민연금 시작까지 5년 공백이 생기고, 이 기간은 퇴직연금과 개인연금으로 메웁니다. 국민연금은 일찍 받으면 1년에 6% 줄고, 70세로 5년 미루면 36% 더 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">60세 은퇴, 65세 국민연금</text>
+    <text x="32" y="88" font-size="17" fill="#475569">그 사이 5년을 무엇으로 버틸까</text>
+
+    <line x1="48" y1="170" x2="512" y2="170" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="70" cy="170" r="9" fill="#2563eb"/>
+    <circle cx="200" cy="170" r="9" fill="#0f172a"/>
+    <circle cx="330" cy="170" r="9" fill="#16a34a"/>
+    <circle cx="460" cy="170" r="9" fill="#7c3aed"/>
+    <text x="70" y="140" font-size="19" font-weight="800" fill="#2563eb" text-anchor="middle">55세</text>
+    <text x="200" y="140" font-size="19" font-weight="800" fill="#0f172a" text-anchor="middle">60세</text>
+    <text x="330" y="140" font-size="19" font-weight="800" fill="#16a34a" text-anchor="middle">65세</text>
+    <text x="460" y="140" font-size="19" font-weight="800" fill="#7c3aed" text-anchor="middle">70세</text>
+    <text x="70" y="204" font-size="15" fill="#334155" text-anchor="middle">연금저축</text>
+    <text x="70" y="224" font-size="15" fill="#334155" text-anchor="middle">수령 가능</text>
+    <text x="200" y="204" font-size="15" fill="#334155" text-anchor="middle">은퇴</text>
+    <text x="330" y="204" font-size="15" fill="#334155" text-anchor="middle">국민연금</text>
+    <text x="330" y="224" font-size="15" fill="#334155" text-anchor="middle">시작</text>
+    <text x="460" y="204" font-size="15" fill="#334155" text-anchor="middle">미루면</text>
+    <text x="460" y="224" font-size="15" fill="#334155" text-anchor="middle">36% 더</text>
+
+    <rect x="200" y="246" width="130" height="44" rx="10" fill="#fee2e2"/>
+    <text x="265" y="275" font-size="17" font-weight="800" fill="#b91c1c" text-anchor="middle">5년 공백</text>
+
+    <rect x="32" y="318" width="496" height="186" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="52" y="354" font-size="19" font-weight="800" fill="#0f172a">공백을 메우는 방법</text>
+    <text x="52" y="390" font-size="17" fill="#334155">① 퇴직연금·연금저축을 먼저 꺼내 쓰기</text>
+    <text x="52" y="422" font-size="17" fill="#334155">② 재취업·파트타임으로 몇 년 더 일하기</text>
+    <text x="52" y="454" font-size="17" fill="#334155">③ 국민연금 시작 시점 조절(1년에 −6%, +7.2%)</text>
+    <text x="52" y="486" font-size="17" fill="#334155">④ 집이 전부라면 주택연금(55세부터)</text>
+  </g>
+</svg>

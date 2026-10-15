@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">45세 A 씨의 노후 자금 계산</title>
+  <desc id="d">60세 은퇴부터 85세까지 필요한 돈은 4억 3,800만 원입니다. 60~65세 공백 1억 5,000만 원과 65세 이후 부족분 2억 8,800만 원을 더한 값입니다. 퇴직연금 1억 4,500만 원과 연금저축·IRP 월 75만 원 15년 원금 1억 3,500만 원을 채워도 1억 5,800만 원이 남습니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">노후 자금, 얼마나 모자랄까?</text>
+    <text x="32" y="88" font-size="17" fill="#475569">45세 A 씨 · 목표 월 250만 원 · 오늘 돈 기준</text>
+
+    <text x="32" y="134" font-size="19" font-weight="700" fill="#0f172a">필요한 돈</text>
+    <rect x="32" y="146" width="178" height="40" rx="8" fill="#f97316"/>
+    <rect x="202" y="146" width="326" height="40" rx="8" fill="#fb923c"/>
+    <rect x="198" y="146" width="16" height="40" fill="#fb923c"/>
+    <text x="44" y="172" font-size="16" font-weight="700" fill="#ffffff">60~65세 1.5억</text>
+    <text x="218" y="172" font-size="16" font-weight="700" fill="#ffffff">65~85세 부족분 2.88억</text>
+    <text x="528" y="212" font-size="18" font-weight="800" fill="#9a3412" text-anchor="end">합계 4억 3,800만 원</text>
+
+    <text x="32" y="262" font-size="19" font-weight="700" fill="#0f172a">채울 재료</text>
+    <rect x="32" y="274" width="172" height="40" rx="8" fill="#2563eb"/>
+    <rect x="196" y="274" width="153" height="40" rx="8" fill="#60a5fa"/>
+    <rect x="192" y="274" width="16" height="40" fill="#60a5fa"/>
+    <rect x="353" y="274" width="175" height="40" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="44" y="300" font-size="16" font-weight="700" fill="#ffffff">퇴직연금</text>
+    <text x="208" y="300" font-size="16" font-weight="700" fill="#ffffff">연금저축·IRP</text>
+    <text x="440" y="300" font-size="16" font-weight="800" fill="#dc2626" text-anchor="middle">모자람</text>
+
+    <text x="32" y="362" font-size="17" fill="#1e3a8a"><tspan font-weight="800">퇴직연금</tspan> 7,000만 + 15년 적립 → 1억 4,500만 원</text>
+    <text x="32" y="396" font-size="17" fill="#1e3a8a"><tspan font-weight="800">연금저축·IRP</tspan> 월 75만 원 × 15년 → 1억 3,500만 원</text>
+
+    <rect x="32" y="424" width="496" height="104" rx="14" fill="#fef2f2"/>
+    <text x="52" y="462" font-size="18" font-weight="700" fill="#7f1d1d">그래도 남는 구멍</text>
+    <text x="52" y="502" font-size="28" font-weight="800" fill="#dc2626">1억 5,800만 원</text>
+    <text x="300" y="502" font-size="16" fill="#7f1d1d">→ 일 더 하기·연금 늦추기</text>
+  </g>
+</svg>
