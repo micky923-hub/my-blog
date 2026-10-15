@@ -1592,6 +1592,8 @@ function buildRobots() {
   var txt = 'User-agent: *\n'
     + 'Allow: /\n\n'
     + 'Sitemap: ' + siteUrl + '/sitemap.xml\n';
+  // 다음 웹마스터도구 사이트 인증 (site.config.json의 daumWebmasterTool, 다음이 robots.txt 맨 아래에 두라고 안내)
+  if (config.daumWebmasterTool) txt += '\n' + String(config.daumWebmasterTool).trim() + '\n';
   fs.writeFileSync(path.join(DIST, 'robots.txt'), txt);
 }
 
