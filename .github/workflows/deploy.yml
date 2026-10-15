@@ -102,6 +102,12 @@ jobs:
         continue-on-error: true
         timeout-minutes: 3
 
+      # IndexNow 1단계: 지금 사이트의 sitemap.xml(이전 버전)과 이번 빌드를 비교해 새 글·고친 글 주소를 고른다.
+      - name: IndexNow plan
+        run: node tools/indexnow/indexnow.js plan --out indexnow-urls.json
+        continue-on-error: true
+        timeout-minutes: 1
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
@@ -110,3 +116,9 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # IndexNow 2단계: 배포가 끝난 뒤 고른 주소를 빙·네이버 등에 알린다. 실패해도 배포에는 영향 없음.
+      - name: IndexNow submit
+        run: node tools/indexnow/indexnow.js submit --in indexnow-urls.json
+        continue-on-error: true
+        timeout-minutes: 1
