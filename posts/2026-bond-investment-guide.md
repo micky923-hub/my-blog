@@ -5,6 +5,7 @@ updated: 2026-10-10
 tags: [투자, 안전자산, ETF, 채권]
 summary: 채권은 금리가 오르면 값이 내리고, 금리가 내리면 값이 오릅니다. 만기별로 가격이 얼마나 흔들리는지, 신용등급 읽는 법, 직접 매수·채권 ETF·개인투자용 국채 중 무엇을 고를지, 이자에만 세금이 붙는 구조를 활용하는 법과 자주 하는 실수까지 숫자로 정리했습니다.
 image: https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop
+coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -163,3 +164,9 @@ image: https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&
 > 📚 **함께 읽으면 좋은 글**  
 > [ISA 계좌 가입 조건과 활용법](/posts/2026-isa-account-guide.html) · [IRP 세액공제 받는 법](/posts/2026-irp-tax-deduction-guide.html) · [연금저축펀드와 IRP 비교](/posts/2026-pension-savings-fund-guide.html) · [파킹통장 고르는 법](/posts/2026-parking-savings-guide.html)  
 > 채권 수익률을 예금과 비교하려면 [적금·예금 이자 계산기](/apps/savings-calculator/)로 같은 금리의 세후 이자를 먼저 계산해 보세요.
+
+<!-- coupang:start -->
+- [채권 투자 무작정 따라하기](https://link.coupang.com/a/hRIVDKN6Tk)
+  - 고른 이유: 금리가 오르면 채권 가격이 내려가는 원리부터 채권 ETF, 개인투자용 국채까지 이 글에서 다룬 내용을 처음부터 차근차근 따라가 보고 싶을 때 볼 만한 입문서입니다. 세금·상품 조건은 이 글과 금융회사 안내로 최신 기준을 확인하세요.
+  - 무료로 하려면: 금융투자협회 채권정보센터와 증권사 앱의 채권 안내 화면으로 금리와 만기를 직접 비교해 볼 수 있습니다.
+<!-- coupang:end -->
