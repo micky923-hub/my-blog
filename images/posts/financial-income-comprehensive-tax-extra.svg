@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
-  <title id="t">금융소득 1,000만 원 초과 시 소득 구간별 추가 세금</title>
+  <title id="t">금융소득이 2,000만 원 선을 1,000만 원 넘을 때 소득 구간별 추가 세금</title>
   <desc id="d">이자 3,000만 원을 받아 2,000만 원 선을 1,000만 원 넘었을 때, 넘는 금액이 다른 소득과 합쳐지며 더 내는 세금(지방소득세 포함)입니다. 다른 소득 세율이 15% 구간이면 약 11만 원, 24% 구간이면 약 110만 원, 35% 구간이면 약 231만 원, 38% 구간이면 약 264만 원입니다.</desc>
   <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
   <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
-    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1,000만 원 넘으면 얼마 더 낼까</text>
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">2,000만 원 넘으면 얼마 더 낼까</text>
     <text x="32" y="88" font-size="17" fill="#475569">이자 3,000만 원 · 넘는 1,000만 원에 붙는 추가 세금</text>
     <text x="32" y="112" font-size="17" fill="#475569">다른 소득의 세율 구간별, 지방소득세 포함</text>
 
