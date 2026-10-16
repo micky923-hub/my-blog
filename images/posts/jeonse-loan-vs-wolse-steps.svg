@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">전세와 월세 고르는 4단계</title>
+  <desc id="d">첫째, 월세를 보증금 차액으로 나눠 전환율을 구합니다. 둘째, 전세대출 금리와 세금 혜택을 넣은 손익분기 금리를 비교합니다. 셋째, 집주인 빚과 보증금을 더한 금액이 집값의 70~80%를 넘는지 확인합니다. 넷째, 2년 안에 목돈을 쓸 계획이 있는지 확인합니다. 숫자가 비슷하면 보증금이 작은 쪽을 고릅니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">전세냐 월세냐, 4단계로 고르기</text>
+
+    <rect x="32" y="84" width="496" height="86" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="127" r="18" fill="#3b82f6"/>
+    <text x="66" y="134" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">1</text>
+    <text x="98" y="120" font-size="19" font-weight="800" fill="#0f172a">전환율 계산</text>
+    <text x="98" y="150" font-size="16" fill="#475569">월세 × 12 ÷ 보증금 차액 (예: 4.8%)</text>
+    <path d="M280 172 L280 194" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 188 L280 198 L288 188" fill="none" stroke="#94a3b8" stroke-width="3"/>
+
+    <rect x="32" y="200" width="496" height="86" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="243" r="18" fill="#3b82f6"/>
+    <text x="66" y="250" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">2</text>
+    <text x="98" y="236" font-size="19" font-weight="800" fill="#0f172a">대출 금리와 비교</text>
+    <text x="98" y="266" font-size="16" fill="#475569">세금 혜택을 넣은 손익분기 금리보다 낮은가</text>
+    <path d="M280 288 L280 310" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 304 L280 314 L288 304" fill="none" stroke="#94a3b8" stroke-width="3"/>
+
+    <rect x="32" y="316" width="496" height="86" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="359" r="18" fill="#f59e0b"/>
+    <text x="66" y="366" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">3</text>
+    <text x="98" y="352" font-size="19" font-weight="800" fill="#0f172a">보증금 위험 확인</text>
+    <text x="98" y="382" font-size="16" fill="#475569">집주인 빚 + 보증금이 집값의 70~80% 이하인가</text>
+    <path d="M280 404 L280 426" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 420 L280 430 L288 420" fill="none" stroke="#94a3b8" stroke-width="3"/>
+
+    <rect x="32" y="432" width="496" height="86" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="475" r="18" fill="#f59e0b"/>
+    <text x="66" y="482" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">4</text>
+    <text x="98" y="468" font-size="19" font-weight="800" fill="#0f172a">목돈 계획 확인</text>
+    <text x="98" y="498" font-size="16" fill="#475569">2년 안에 쓸 큰돈이 있으면 보증금을 줄이기</text>
+
+    <rect x="32" y="536" width="496" height="46" rx="12" fill="#dcfce7"/>
+    <text x="280" y="566" text-anchor="middle" font-size="17" font-weight="800" fill="#14532d">숫자가 비슷하면 보증금이 작은 쪽을 고르세요</text>
+  </g>
+</svg>
