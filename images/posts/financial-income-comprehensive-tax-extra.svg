@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">금융소득 1,000만 원 초과 시 소득 구간별 추가 세금</title>
+  <desc id="d">이자 3,000만 원을 받아 2,000만 원 선을 1,000만 원 넘었을 때, 넘는 금액이 다른 소득과 합쳐지며 더 내는 세금(지방소득세 포함)입니다. 다른 소득 세율이 15% 구간이면 약 11만 원, 24% 구간이면 약 110만 원, 35% 구간이면 약 231만 원, 38% 구간이면 약 264만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1,000만 원 넘으면 얼마 더 낼까</text>
+    <text x="32" y="88" font-size="17" fill="#475569">이자 3,000만 원 · 넘는 1,000만 원에 붙는 추가 세금</text>
+    <text x="32" y="112" font-size="17" fill="#475569">다른 소득의 세율 구간별, 지방소득세 포함</text>
+
+    <text x="32" y="162" font-size="19" font-weight="700" fill="#0f172a">세율 15% 구간 (+1%p)</text>
+    <rect x="32" y="172" width="18" height="40" rx="6" fill="#22c55e"/>
+    <text x="62" y="199" font-size="19" font-weight="800" fill="#166534">약 11만 원</text>
+
+    <text x="32" y="254" font-size="19" font-weight="700" fill="#0f172a">세율 24% 구간 (+10%p)</text>
+    <rect x="32" y="264" width="160" height="40" rx="8" fill="#3b82f6"/>
+    <text x="204" y="291" font-size="19" font-weight="800" fill="#1e3a8a">약 110만 원</text>
+
+    <text x="32" y="346" font-size="19" font-weight="700" fill="#0f172a">세율 35% 구간 (+21%p)</text>
+    <rect x="32" y="356" width="336" height="40" rx="8" fill="#f59e0b"/>
+    <text x="380" y="383" font-size="19" font-weight="800" fill="#92400e">약 231만 원</text>
+
+    <text x="32" y="438" font-size="19" font-weight="700" fill="#0f172a">세율 38% 구간 (+24%p)</text>
+    <rect x="32" y="448" width="384" height="40" rx="8" fill="#ef4444"/>
+    <text x="428" y="475" font-size="19" font-weight="800" fill="#991b1b">약 264만 원</text>
+
+    <rect x="32" y="506" width="496" height="36" rx="10" fill="#dbeafe"/>
+    <text x="280" y="530" text-anchor="middle" font-size="16" font-weight="800" fill="#1e3a8a">다른 소득이 많을수록 같은 이자에 세금이 커집니다</text>
+  </g>
+</svg>

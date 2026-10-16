@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">예금 만기를 나누면 이자가 2,000만 원 선 아래에 머문다</title>
+  <desc id="d">원금 5억 원을 연 3% 정기예금에 넣을 때, 2년 만기 일시지급이면 1년째 이자 0원, 2년째 3,000만 원을 한 번에 받아 2,000만 원 선을 넘습니다. 1년 만기로 두 번 넣으면 해마다 1,500만 원씩 받아 선 아래에 머뭅니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">같은 이자, 받는 해만 바꾸세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">원금 5억 원 · 연 3% 정기예금 · 해마다 받는 이자</text>
+
+    <text x="32" y="134" font-size="19" font-weight="800" fill="#b91c1c">2년 만기 일시지급</text>
+    <text x="32" y="174" font-size="18" font-weight="700" fill="#0f172a">1년째</text>
+    <text x="110" y="174" font-size="18" font-weight="800" fill="#64748b">0원</text>
+    <text x="32" y="218" font-size="18" font-weight="700" fill="#0f172a">2년째</text>
+    <rect x="100" y="194" width="390" height="38" rx="8" fill="#ef4444"/>
+    <text x="478" y="220" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">3,000만 원</text>
+
+    <text x="32" y="290" font-size="19" font-weight="800" fill="#15803d">1년 만기로 두 번</text>
+    <text x="32" y="334" font-size="18" font-weight="700" fill="#0f172a">1년째</text>
+    <rect x="100" y="310" width="195" height="38" rx="8" fill="#22c55e"/>
+    <text x="283" y="336" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">1,500만 원</text>
+    <text x="32" y="390" font-size="18" font-weight="700" fill="#0f172a">2년째</text>
+    <rect x="100" y="366" width="195" height="38" rx="8" fill="#22c55e"/>
+    <text x="283" y="392" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">1,500만 원</text>
+
+    <line x1="360" y1="150" x2="360" y2="420" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6 6"/>
+    <text x="368" y="442" font-size="16" font-weight="800" fill="#b45309">2,000만 원 선</text>
+
+    <rect x="32" y="470" width="496" height="66" rx="10" fill="#dcfce7"/>
+    <text x="280" y="497" text-anchor="middle" font-size="16" font-weight="800" fill="#14532d">2년 이자 합계는 똑같이 3,000만 원</text>
+    <text x="280" y="522" text-anchor="middle" font-size="16" font-weight="800" fill="#14532d">나눠 받으면 종합과세를 피할 수 있습니다</text>
+  </g>
+</svg>
