@@ -428,7 +428,7 @@ function htmlTemplate(opts) {
     + '  <meta property="og:type" content="' + ogType + '">\n'
     + '  <meta property="og:url" content="' + canonical + '">\n'
     + '  <meta property="og:locale" content="ko_KR">\n'
-    + '  <meta property="og:site_name" content="' + escapeHtml(config.title) + '">\n'
+    + '  <meta property="og:site_name" content="' + escapeHtml(config.titleKo || config.title) + '">\n'
     + '  <meta property="og:image" content="' + escapeHtml(ogImage || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=630&fit=crop') + '">\n'
     + '  <meta name="naver-site-verification" content="66829663743427604f00b45e49e0e4dba24a0b39">\n'
     + '  <meta name="robots" content="' + robots + '">\n'
@@ -1421,14 +1421,15 @@ function buildIndex(posts) {
       {
         "@type": "WebSite",
         "@id": siteUrl + '/#website',
-        "name": config.title,
+        "name": config.titleKo || config.title,
+        "alternateName": config.alternateNames || [],
         "url": siteUrl + '/',
         "inLanguage": "ko-KR",
         "description": config.description
       },
       {
         "@type": "Blog",
-        "name": config.title,
+        "name": config.titleKo || config.title,
         "description": config.description,
         "url": siteUrl + '/',
         "inLanguage": "ko-KR",
@@ -1441,7 +1442,7 @@ function buildIndex(posts) {
   });
 
   var fullHtml = htmlTemplate({
-    title: config.title,
+    title: config.titleKo ? config.titleKo + ' | ' + config.title : config.title,
     description: config.description,
     canonical: siteUrl + '/',
     content: pageContent,
