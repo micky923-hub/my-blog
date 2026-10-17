@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">단독 가구 근로장려금, 연 소득별 받는 금액</title>
+  <desc id="d">단독 가구는 연 소득 400만~900만 원 구간에서 최대 165만 원을 받고, 소득이 늘수록 줄어 1,500만 원이면 약 89만 원, 2,000만 원이면 약 25만 원, 2,200만 원 이상이면 받지 못합니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">단독 가구, 소득별 받는 돈</text>
+    <text x="32" y="90" font-size="17" fill="#475569">정기신청 기준 · 재산 1억 7천만 원 미만</text>
+
+    <text x="32" y="146" font-size="19" font-weight="700" fill="#0f172a">연 소득 800만 원</text>
+    <rect x="32" y="158" width="400" height="40" rx="6" fill="#10b981"/>
+    <text x="444" y="185" font-size="19" font-weight="800" fill="#047857">165만 원</text>
+
+    <text x="32" y="240" font-size="19" font-weight="700" fill="#0f172a">연 소득 1,500만 원</text>
+    <rect x="32" y="252" width="216" height="40" rx="6" fill="#34d399"/>
+    <text x="260" y="279" font-size="19" font-weight="800" fill="#047857">약 89만 원</text>
+
+    <text x="32" y="334" font-size="19" font-weight="700" fill="#0f172a">연 소득 2,000만 원</text>
+    <rect x="32" y="346" width="62" height="40" rx="6" fill="#6ee7b7"/>
+    <text x="106" y="373" font-size="19" font-weight="800" fill="#047857">약 25만 원</text>
+
+    <rect x="32" y="414" width="496" height="58" rx="12" fill="#fef3c7"/>
+    <text x="52" y="440" font-size="16" font-weight="700" fill="#92400e">2,200만 원 이상이면 받지 못해요</text>
+    <text x="52" y="462" font-size="15" fill="#92400e">기한후신청이면 이 금액의 95%만 나옵니다</text>
+  </g>
+</svg>

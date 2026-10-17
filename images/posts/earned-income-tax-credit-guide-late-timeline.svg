@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">2025년 소득분 근로장려금 신청 시기별 지급 비율</title>
+  <desc id="d">5월 정기신청은 100%를 받고, 6월 2일부터 11월 30일까지 기한후신청은 근로장려금의 95%를 받으며, 12월부터는 2025년 소득분을 신청할 수 없습니다. 맞벌이 합산 소득 3,000만 원이면 정기신청 약 171만 원, 기한후신청 약 163만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">언제 신청하면 얼마 받나</text>
+    <text x="32" y="90" font-size="17" fill="#475569">2025년 소득분 · 맞벌이 합산 3,000만 원 예시</text>
+
+    <rect x="32" y="118" width="496" height="96" rx="14" fill="#dcfce7"/>
+    <text x="52" y="152" font-size="19" font-weight="800" fill="#166534">5월 정기신청 · 100%</text>
+    <text x="52" y="188" font-size="18" fill="#166534">약 171만 원 · 8월 말 지급</text>
+
+    <text x="268" y="244" font-size="22" fill="#94a3b8">▼</text>
+
+    <rect x="32" y="258" width="496" height="96" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+    <text x="52" y="292" font-size="19" font-weight="800" fill="#92400e">6월 2일~11월 30일 · 95%</text>
+    <text x="52" y="328" font-size="18" fill="#92400e">기한후신청 약 163만 원 ← 지금</text>
+
+    <text x="268" y="384" font-size="22" fill="#94a3b8">▼</text>
+
+    <rect x="32" y="398" width="496" height="96" rx="14" fill="#fee2e2"/>
+    <text x="52" y="432" font-size="19" font-weight="800" fill="#991b1b">12월부터 · 신청 불가</text>
+    <text x="52" y="468" font-size="18" fill="#991b1b">2025년 소득분은 0원</text>
+  </g>
+</svg>
