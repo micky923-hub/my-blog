@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">한 해 사적연금 수령액별 세금</title>
+  <desc id="d">사적연금을 한 해 1,500만 원 받으면 연금소득세 5.5%로 82만 5천 원을 내지만, 1,600만 원을 받고 16.5% 분리과세를 고르면 264만 원, 2,400만 원을 받으면 396만 원을 낸다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">1,500만 원을 넘으면</text>
+    <text x="32" y="90" font-size="18" fill="#475569">55~69세 · 16.5% 분리과세를 고른 경우</text>
+
+    <text x="32" y="148" font-size="20" font-weight="700" fill="#0f172a">한 해 1,500만 원</text>
+    <text x="32" y="174" font-size="16" fill="#475569">1,500만 원 × 5.5%</text>
+    <rect x="32" y="186" width="102" height="48" rx="8" fill="#16a34a"/>
+    <text x="146" y="218" font-size="20" font-weight="800" fill="#166534">82만 5천 원</text>
+
+    <text x="32" y="284" font-size="20" font-weight="700" fill="#0f172a">한 해 1,600만 원</text>
+    <text x="32" y="310" font-size="16" fill="#475569">1,600만 원 전체 × 16.5%</text>
+    <rect x="32" y="322" width="327" height="48" rx="8" fill="#f59e0b"/>
+    <text x="195" y="354" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">264만 원</text>
+
+    <text x="32" y="420" font-size="20" font-weight="700" fill="#0f172a">한 해 2,400만 원</text>
+    <text x="32" y="446" font-size="16" fill="#475569">2,400만 원 전체 × 16.5%</text>
+    <rect x="32" y="458" width="490" height="48" rx="8" fill="#ef4444"/>
+    <text x="277" y="490" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">396만 원</text>
+  </g>
+</svg>

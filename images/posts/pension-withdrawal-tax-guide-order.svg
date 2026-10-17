@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">연금계좌에서 돈이 빠져나오는 순서</title>
+  <desc id="d">연금계좌에서는 첫째로 세액공제 받지 않은 납입금이 세금 없이 나오고, 둘째로 옮겨 둔 퇴직금이 퇴직소득세의 50~70%로 나오며, 마지막으로 세액공제 받은 납입금과 운용수익이 연금소득세 3.3~5.5%로 나온다. 연 1,500만 원 선은 셋째 덩어리에만 적용된다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">돈이 나오는 순서</text>
+    <text x="32" y="90" font-size="18" fill="#475569">내가 고를 수 없고, 위에서부터 빠져나옵니다</text>
+
+    <rect x="32" y="116" width="496" height="104" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <circle cx="74" cy="168" r="22" fill="#16a34a"/>
+    <text x="74" y="175" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">1</text>
+    <text x="112" y="158" font-size="20" font-weight="700" fill="#0f172a">세액공제 받지 않은 납입금</text>
+    <text x="112" y="192" font-size="18" font-weight="800" fill="#166534">세금 없음</text>
+
+    <path d="M280 226 l0 18 m-10 -10 l10 12 l10 -12" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+    <rect x="32" y="252" width="496" height="104" rx="16" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="74" cy="304" r="22" fill="#f59e0b"/>
+    <text x="74" y="311" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">2</text>
+    <text x="112" y="294" font-size="20" font-weight="700" fill="#0f172a">IRP로 옮겨 둔 퇴직금</text>
+    <text x="112" y="328" font-size="18" font-weight="800" fill="#92400e">퇴직소득세의 50~70%</text>
+
+    <path d="M280 362 l0 18 m-10 -10 l10 12 l10 -12" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+    <rect x="32" y="388" width="496" height="140" rx="16" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+    <circle cx="74" cy="440" r="22" fill="#3b82f6"/>
+    <text x="74" y="447" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">3</text>
+    <text x="112" y="430" font-size="20" font-weight="700" fill="#0f172a">세액공제 받은 납입금 + 수익</text>
+    <text x="112" y="464" font-size="18" font-weight="800" fill="#1e40af">연금소득세 3.3~5.5%</text>
+    <text x="112" y="500" font-size="16" fill="#475569">연 1,500만 원 선은 여기에만 적용</text>
+  </g>
+</svg>
