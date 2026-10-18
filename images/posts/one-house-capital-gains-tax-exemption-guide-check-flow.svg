@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
+  <title id="t">1세대 1주택 양도세 비과세 판단 순서</title>
+  <desc id="d">1세대 1주택인지, 잔금일 기준 2년 보유했는지, 취득 당시 조정대상지역이었다면 2년 거주했는지, 양도가액이 12억 원 이하인지를 차례로 확인합니다. 모두 맞으면 전액 비과세이고, 12억 원을 넘으면 넘는 부분의 차익만 과세합니다. 2년 보유 전에 팔면 60% 세율이 붙습니다.</desc>
+  <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">비과세, 네 칸만 통과하세요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">위에서부터 차례로 확인 · 2026년 10월 기준</text>
+
+    <rect x="32" y="116" width="330" height="72" rx="12" fill="#e0e7ff"/>
+    <text x="52" y="146" font-size="20" font-weight="800" fill="#1e3a8a">① 세대 전체가 집 한 채</text>
+    <text x="52" y="172" font-size="16" fill="#334155">배우자·같이 사는 가족 포함</text>
+    <text x="382" y="160" font-size="16" fill="#b91c1c">아니면 특례 확인</text>
+
+    <rect x="32" y="212" width="330" height="72" rx="12" fill="#e0e7ff"/>
+    <text x="52" y="242" font-size="20" font-weight="800" fill="#1e3a8a">② 잔금일부터 2년 보유</text>
+    <text x="52" y="268" font-size="16" fill="#334155">계약일이 아닌 잔금일 기준</text>
+    <text x="382" y="256" font-size="16" fill="#b91c1c">모자라면 60% 세율</text>
+
+    <rect x="32" y="308" width="330" height="72" rx="12" fill="#e0e7ff"/>
+    <text x="52" y="338" font-size="20" font-weight="800" fill="#1e3a8a">③ 2년 거주</text>
+    <text x="52" y="364" font-size="16" fill="#334155">산 날 조정대상지역일 때만</text>
+    <text x="382" y="352" font-size="16" fill="#b91c1c">모자라면 과세</text>
+
+    <rect x="32" y="404" width="330" height="72" rx="12" fill="#e0e7ff"/>
+    <text x="52" y="434" font-size="20" font-weight="800" fill="#1e3a8a">④ 파는 값 12억 원 이하</text>
+    <text x="52" y="460" font-size="16" fill="#334155">양도가액 기준</text>
+
+    <g fill="#64748b">
+      <path d="M190 190 l-8 0 l8 18 l8 -18 z"/>
+      <path d="M190 286 l-8 0 l8 18 l8 -18 z"/>
+      <path d="M190 382 l-8 0 l8 18 l8 -18 z"/>
+    </g>
+
+    <rect x="32" y="504" width="236" height="104" rx="12" fill="#dcfce7"/>
+    <text x="52" y="540" font-size="18" font-weight="800" fill="#166534">12억 원 이하</text>
+    <text x="52" y="572" font-size="22" font-weight="800" fill="#166534">전액 비과세</text>
+    <text x="52" y="596" font-size="15" fill="#166534">신고하지 않아도 돼요</text>
+
+    <rect x="292" y="504" width="236" height="104" rx="12" fill="#fef3c7"/>
+    <text x="312" y="540" font-size="18" font-weight="800" fill="#92400e">12억 원 초과</text>
+    <text x="312" y="572" font-size="20" font-weight="800" fill="#92400e">초과분만 과세</text>
+    <text x="312" y="596" font-size="15" fill="#92400e">2개월 안에 신고해요</text>
+  </g>
+</svg>

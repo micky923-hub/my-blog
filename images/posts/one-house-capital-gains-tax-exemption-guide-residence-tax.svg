@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">같은 15억 원 집, 거주기간에 따른 양도세 차이</title>
+  <desc id="d">6억 원에 사서 10년 보유한 1주택을 15억 원에 팔 때, 12억 원 초과분에 해당하는 과세 차익은 1억 8,000만 원입니다. 10년 거주하면 장기보유특별공제 80%로 세금이 약 414만 원, 2년 거주하면 48%로 약 1,809만 원, 거주하지 않으면 20%로 약 3,749만 원입니다. 지방소득세 포함 단순 계산입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">살아 본 만큼 세금이 줄어요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">6억 원에 사서 10년 보유 · 15억 원에 매도</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">10년 거주 · 공제 80%</text>
+    <rect x="32" y="158" width="40" height="44" rx="8" fill="#16a34a"/>
+    <text x="86" y="188" font-size="20" font-weight="800" fill="#166534">약 414만 원</text>
+
+    <text x="32" y="248" font-size="20" font-weight="700" fill="#0f172a">2년 거주 · 공제 48%</text>
+    <rect x="32" y="262" width="176" height="44" rx="8" fill="#f59e0b"/>
+    <text x="222" y="292" font-size="20" font-weight="800" fill="#92400e">약 1,809만 원</text>
+
+    <text x="32" y="352" font-size="20" font-weight="700" fill="#0f172a">거주 안 함 · 공제 20%</text>
+    <rect x="32" y="366" width="364" height="44" rx="8" fill="#94a3b8"/>
+    <text x="214" y="396" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">약 3,749만 원</text>
+
+    <rect x="32" y="432" width="496" height="64" rx="12" fill="#e0e7ff"/>
+    <text x="52" y="460" font-size="16" fill="#1e3a8a">과세 차익 1억 8,000만 원 기준</text>
+    <text x="52" y="484" font-size="16" fill="#1e3a8a">지방소득세 포함 · 필요경비 제외 단순 계산</text>
+  </g>
+</svg>
