@@ -1072,6 +1072,29 @@ function audioPlayerHtml(a, slug, title) {
   return html;
 }
 
+// "## 자주 묻는 질문" 섹션의 **Q. 질문** + 답변 문단을 FAQPage 구조화 데이터로 바꾼다 (AI 검색·검색엔진이 질문과 답을 바로 읽게)
+function parseFaq(md, filename) {
+  var m = md.match(/^##\s*자주 묻는 질문\s*$/m);
+  if (!m) return [];
+  var rest = md.slice(m.index + m[0].length);
+  var end = rest.search(/^##\s|^---\s*$|<!--\s*coupang:start/m);
+  if (end !== -1) rest = rest.slice(0, end);
+  var items = [];
+  var re = /^\*\*Q\.\s*(.+?)\*\*\s*$([\s\S]*?)(?=^\*\*Q\.|(?![\s\S]))/gm;
+  var q;
+  while ((q = re.exec(rest)) !== null) {
+    var answer = q[2].trim()
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/\*\*/g, '')
+      .replace(/\s*\n\s*/g, ' ')
+      .trim();
+    if (q[1].trim() && answer) items.push({ q: q[1].trim(), a: answer });
+  }
+  if (items.length === 0) console.warn('  [경고] ' + filename + ': "자주 묻는 질문" 섹션에 **Q. 질문** 형식이 없어 FAQ 구조화 데이터를 만들지 않았습니다.');
+  return items;
+}
+
 function buildPosts() {
   var postsDir = 'posts';
   if (!fs.existsSync(postsDir)) return [];
@@ -1096,6 +1119,8 @@ function buildPosts() {
     var rendered = coupang
       ? applyCoupangBox(marked.parse(coupang.content), coupang.boxHtml, filename)
       : marked.parse(parsed.content);
+    // 자주 묻는 질문: **Q. 질문** 다음 줄의 답변을 휴대폰에서 줄을 바꿔 보이게 한다
+    rendered = rendered.replace(/(<p><strong>Q\.[^<]*<\/strong>)\n/g, '$1<br>\n');
     var withIds = addHeadingIds(rendered);
     var videoId = 'video' in meta ? parseVideoId(meta.video) : null;
     var timing = postTiming(meta, postTimes[filename]);
@@ -1108,6 +1133,7 @@ function buildPosts() {
       slug: slug,
       htmlContent: withIds.html,
       toc: withIds.toc,
+      faq: parseFaq(parsed.content, filename),
       info: {
         title: meta.title || slug,
         date: meta.date || '',
@@ -1169,18 +1195,28 @@ function buildPosts() {
     };
     if (meta.image) article.image = [meta.image];
     if (meta.tags && meta.tags.length) article.keywords = meta.tags.join(', ');
+    var graph = [
+      article,
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "홈", "item": siteUrl + '/' },
+          { "@type": "ListItem", "position": 2, "name": meta.title || slug, "item": postUrl }
+        ]
+      }
+    ];
+    if (entry.faq.length) {
+      graph.push({
+        "@type": "FAQPage",
+        "@id": postUrl + '#faq',
+        "mainEntity": entry.faq.map(function(f) {
+          return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+        })
+      });
+    }
     var jsonLd = JSON.stringify({
       "@context": "https://schema.org",
-      "@graph": [
-        article,
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "홈", "item": siteUrl + '/' },
-            { "@type": "ListItem", "position": 2, "name": meta.title || slug, "item": postUrl }
-          ]
-        }
-      ]
+      "@graph": graph
     });
 
     var pageContent =
@@ -1588,6 +1624,29 @@ function buildRss(posts) {
   fs.writeFileSync(path.join(DIST, 'rss.xml'), rss);
 }
 
+// llms.txt 생성: AI 검색·챗봇이 사이트 구성을 한눈에 읽도록 글·계산기 목록을 마크다운으로 정리한다 (https://llmstxt.org)
+function buildLlmsTxt(posts) {
+  var name = config.titleKo ? config.titleKo + ' (' + config.title + ')' : config.title;
+  var lines = ['# ' + name, '', '> ' + config.description, ''];
+  lines.push('한국 독자를 위한 절세·연금·보험·대출·투자 실전 가이드와 무료 금융 계산기입니다. 운영: 블루엠파트너스. 세법·금리 수치는 각 글에 적힌 기준 시점을 따릅니다.', '');
+  lines.push('- [소개](' + siteUrl + '/about.html): 운영자와 편집 원칙');
+  lines.push('');
+  if (fs.existsSync('apps.json')) {
+    var apps = JSON.parse(fs.readFileSync('apps.json', 'utf8'));
+    lines.push('## 무료 계산기', '');
+    apps.forEach(function(a) {
+      lines.push('- [' + a.title + '](' + siteUrl + '/' + a.path + '): ' + String(a.description || '').replace(/\s+/g, ' '));
+    });
+    lines.push('');
+  }
+  lines.push('## 글', '');
+  posts.forEach(function(p) {
+    var when = p.updated ? p.updated + ' 업데이트' : p.date;
+    lines.push('- [' + p.title + '](' + siteUrl + '/posts/' + p.slug + '.html): ' + String(p.summary || '').replace(/\s+/g, ' ') + ' (' + when + ')');
+  });
+  fs.writeFileSync(path.join(DIST, 'llms.txt'), lines.join('\n') + '\n');
+}
+
 // robots.txt 생성
 function buildRobots() {
   var txt = 'User-agent: *\n'
@@ -1671,6 +1730,7 @@ buildSitemap(posts);
 buildNotFound(posts);
 buildRss(posts);
 buildRobots();
+buildLlmsTxt(posts);
 if (fs.existsSync('favicon.svg')) {
   fs.copyFileSync('favicon.svg', path.join(DIST, 'favicon.svg'));
 }
@@ -1680,7 +1740,7 @@ if (fs.existsSync('CNAME')) {
 if (fs.existsSync('ads.txt')) {
   fs.copyFileSync('ads.txt', path.join(DIST, 'ads.txt'));
 }
-console.log('  sitemap.xml, rss.xml, robots.txt 생성 완료');
+console.log('  sitemap.xml, rss.xml, robots.txt, llms.txt 생성 완료');
 
 console.log('\n빌드 완료! dist/ 폴더를 배포하세요.');
 console.log('로컬 확인: npm run dev');
