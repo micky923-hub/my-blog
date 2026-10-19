@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">간병보험 두 종류 비교</title>
+  <desc id="d">간병인 사용일당은 내가 간병인을 쓰고 하루 정해진 금액을 현금으로 받으며, 간병비가 오르면 차액을 내가 냅니다. 간병인 지원일당은 보험사가 보통 48시간 안에 간병인을 보내 주지만, 대부분 갱신형이라 보험료가 오를 수 있습니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">간병보험, 두 종류를 구분하세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">이름은 비슷해도 받는 방식이 달라요</text>
+
+    <rect x="24" y="110" width="512" height="180" rx="16" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
+    <text x="44" y="148" font-size="22" font-weight="800" fill="#9a3412">간병인 사용일당 · 현금</text>
+    <text x="44" y="184" font-size="17" fill="#0f172a">내가 간병인을 쓰고 영수증을 내요</text>
+    <text x="44" y="214" font-size="17" fill="#0f172a">하루 정한 금액(예: 10만 원)을 받아요</text>
+    <text x="44" y="244" font-size="17" fill="#0f172a">간병인은 내가 골라요</text>
+    <text x="44" y="274" font-size="17" font-weight="700" fill="#c2410c">간병비가 오르면 차액은 내가 내요</text>
+
+    <rect x="24" y="310" width="512" height="180" rx="16" fill="#f0fdfa" stroke="#5eead4" stroke-width="2"/>
+    <text x="44" y="348" font-size="22" font-weight="800" fill="#115e59">간병인 지원일당 · 파견</text>
+    <text x="44" y="384" font-size="17" fill="#0f172a">보험사가 간병인을 보내 줘요</text>
+    <text x="44" y="414" font-size="17" fill="#0f172a">신청하고 보통 48시간 안에 와요</text>
+    <text x="44" y="444" font-size="17" fill="#0f172a">간병비가 올라도 물가 걱정이 적어요</text>
+    <text x="44" y="474" font-size="17" font-weight="700" fill="#0f766e">대부분 갱신형이라 보험료가 오를 수 있어요</text>
+  </g>
+</svg>
