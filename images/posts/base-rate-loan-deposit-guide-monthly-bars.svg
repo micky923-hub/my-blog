@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-labelledby="t d">
+  <title id="t">금리가 오르면 한 달 이자가 얼마나 늘까</title>
+  <desc id="d">변동금리 대출 잔액 3억 원 기준으로 금리가 0.25%p 오르면 한 달 이자가 6만 2,500원, 0.5%p 오르면 12만 5,000원, 1%p 오르면 25만 원 늘어납니다. 잔액 곱하기 오른 금리로 어림한 값입니다.</desc>
+  <rect x="0" y="0" width="560" height="440" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">한 달에 더 내는 이자</text>
+    <text x="32" y="88" font-size="17" fill="#475569">변동금리 대출 3억 원 · 잔액 × 오른 금리</text>
+
+    <text x="32" y="140" font-size="18" font-weight="700" fill="#0f172a">0.25%p 오르면 (1년 75만 원)</text>
+    <rect x="32" y="152" width="124" height="44" rx="8" fill="#fdba74"/>
+    <text x="168" y="181" font-size="20" font-weight="800" fill="#9a3412">6만 2,500원</text>
+
+    <text x="32" y="240" font-size="18" font-weight="700" fill="#0f172a">0.5%p 오르면 (1년 150만 원)</text>
+    <rect x="32" y="252" width="248" height="44" rx="8" fill="#fb923c"/>
+    <text x="292" y="281" font-size="20" font-weight="800" fill="#9a3412">12만 5,000원</text>
+
+    <text x="32" y="340" font-size="18" font-weight="700" fill="#0f172a">1%p 오르면 (1년 300만 원)</text>
+    <rect x="32" y="352" width="496" height="44" rx="8" fill="#ea580c"/>
+    <text x="514" y="381" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">25만 원</text>
+
+    <text x="32" y="424" font-size="15" fill="#475569">원금을 함께 갚으면 실제 증가액은 조금 작아요</text>
+  </g>
+</svg>

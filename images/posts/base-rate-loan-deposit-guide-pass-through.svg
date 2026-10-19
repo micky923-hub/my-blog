@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">기준금리가 내 대출 이자에 닿는 순서</title>
+  <desc id="d">한국은행이 기준금리를 올리면 은행 예금금리와 조달비용이 오르고, 은행연합회가 매달 15일 무렵 코픽스를 발표합니다. 9월 신규취급액 기준 코픽스는 연 3.43%로 8월 3.18%보다 0.25%p 올랐습니다. 내 변동금리 대출은 6개월이나 12개월마다 오는 금리 변경일에 비로소 이자가 오릅니다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+  </defs>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">내 이자에 닿기까지 몇 달 걸려요</text>
+
+    <rect x="32" y="84" width="496" height="66" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="114" font-size="18" font-weight="800" fill="#075985">① 기준금리 인상</text>
+    <text x="52" y="138" font-size="16" fill="#0c4a6e">지금 연 3.00% · 다음 결정 10월 22일</text>
+    <line x1="280" y1="152" x2="280" y2="170" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="176" width="496" height="66" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="206" font-size="18" font-weight="800" fill="#075985">② 은행 예금금리·조달비용 상승</text>
+    <text x="52" y="230" font-size="16" fill="#0c4a6e">예금 금리는 이때 먼저 올라요</text>
+    <line x1="280" y1="244" x2="280" y2="262" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="268" width="496" height="66" rx="12" fill="#fef3c7"/>
+    <text x="52" y="298" font-size="18" font-weight="800" fill="#92400e">③ 매달 15일 무렵 코픽스 발표</text>
+    <text x="52" y="322" font-size="16" fill="#78350f">9월 신규취급액 3.43% (8월 3.18%)</text>
+    <line x1="280" y1="336" x2="280" y2="354" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="32" y="360" width="496" height="66" rx="12" fill="#fee2e2"/>
+    <text x="52" y="390" font-size="18" font-weight="800" fill="#991b1b">④ 내 금리 변경일에 이자 상승</text>
+    <text x="52" y="414" font-size="16" fill="#7f1d1d">변동금리는 6개월·12개월마다 반영</text>
+
+    <text x="32" y="466" font-size="16" fill="#475569">고정금리는 만기까지, 혼합형은 고정 기간 동안</text>
+    <text x="32" y="492" font-size="16" fill="#475569">기준금리가 올라도 이자가 그대로예요</text>
+  </g>
+</svg>
