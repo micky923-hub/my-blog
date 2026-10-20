@@ -147,17 +147,24 @@ function formatDate(dateStr) {
   return parts[0] + '년 ' + parseInt(parts[1]) + '월 ' + parseInt(parts[2]) + '일';
 }
 
-function copyDir(src, dest) {
+function copyDir(src, dest, skip) {
   ensureDir(dest);
   fs.readdirSync(src).forEach(function(item) {
     var s = path.join(src, item);
     var d = path.join(dest, item);
-    if (fs.statSync(s).isDirectory()) {
-      copyDir(s, d);
+    var isDir = fs.statSync(s).isDirectory();
+    if (skip && skip(item, isDir)) return;
+    if (isDir) {
+      copyDir(s, d, skip);
     } else {
       fs.copyFileSync(s, d);
     }
   });
+}
+
+// 앱 폴더의 작업 문서(spec·review·지침 .md)와 빌드·수집용 tools/는 사이트에 올리지 않는다
+function skipAppWorkFiles(item, isDir) {
+  return isDir ? item === 'tools' : /\.md$/i.test(item);
 }
 
 // ===== 메인 "오늘의 글" 히어로 =====
@@ -1712,7 +1719,7 @@ if (fs.existsSync('apps/daily-econ/tools/check-terms.js')) {
   }
 }
 if (fs.existsSync('apps')) {
-  copyDir('apps', path.join(DIST, 'apps'));
+  copyDir('apps', path.join(DIST, 'apps'), skipAppWorkFiles);
   console.log('  apps/ 폴더 복사 완료');
 }
 
