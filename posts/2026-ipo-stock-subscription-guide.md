@@ -5,7 +5,6 @@ updated: 2026-10-10
 tags: [투자, 주식, 공모주]
 summary: 공모주 청약은 최소 단위만 넣어도 균등배정으로 1주를 받을 수 있는 투자 방법입니다. 청약 일정과 증거금 계산, 균등·비례배정 예시, 수요예측·의무보유확약·유통가능물량 확인법, 상장 첫날 60~400% 가격 범위와 매도 기준, 세금과 자주 하는 실수까지 정리했습니다.
 image: https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=800&h=400&fit=crop
-coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -156,9 +155,3 @@ coupang: true
 
 > 📚 **함께 읽으면 좋은 글**  
 > [ETF 투자 시작하는 법](/posts/2026-etf-beginner-guide.html) · [배당주 고르는 법](/posts/2026-dividend-stock-guide.html) · [파킹통장 vs CMA vs 정기예금](/posts/2026-parking-savings-guide.html)
-
-<!-- coupang:start -->
-- [반드시 돈이 되는 공모주 투자의 법칙](https://link.coupang.com/a/hRIG9iF3Mi)
-  - 고른 이유: 균등배정 청약 다음 단계로 수요예측 경쟁률, 의무보유 확약 같은 숫자를 읽는 법을 더 자세히 보고 싶을 때 볼 만합니다. 공모주도 상장일에 공모가 아래로 떨어질 수 있으니, 파는 기준은 이 글의 체크리스트대로 미리 정하세요.
-  - 무료로 하려면: 금융감독원 전자공시(DART)의 증권신고서와 증권사 앱의 청약 일정·경쟁률 화면으로 같은 정보를 볼 수 있습니다.
-<!-- coupang:end -->
