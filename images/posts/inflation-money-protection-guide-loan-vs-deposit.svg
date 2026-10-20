@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-labelledby="t d">
+  <title id="t">여윳돈 1,000만 원, 대출 갚기 vs 예금</title>
+  <desc id="d">여윳돈 1,000만 원으로 연 4.4% 대출을 갚으면 1년 이자 44만 원을 아끼고, 연 3.0% 예금에 넣으면 세후 이자 25만 3,800원을 받습니다. 차이는 1년 18만 6,200원입니다.</desc>
+  <rect x="0" y="0" width="560" height="380" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1년에 내 손에 남는 돈</text>
+    <text x="32" y="88" font-size="17" fill="#475569">여윳돈 1,000만 원을 어디에 쓸까</text>
+
+    <text x="32" y="140" font-size="18" font-weight="700" fill="#0f172a">연 4.4% 대출 갚기 (아끼는 이자)</text>
+    <rect x="32" y="152" width="496" height="44" rx="8" fill="#10b981"/>
+    <text x="514" y="181" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">44만 원</text>
+
+    <text x="32" y="240" font-size="18" font-weight="700" fill="#0f172a">연 3.0% 예금 (세후 이자)</text>
+    <rect x="32" y="252" width="286" height="44" rx="8" fill="#93c5fd"/>
+    <text x="330" y="281" font-size="20" font-weight="800" fill="#1e3a8a">25만 3,800원</text>
+
+    <rect x="32" y="314" width="496" height="44" rx="10" fill="#ecfdf5"/>
+    <text x="280" y="343" text-anchor="middle" font-size="18" font-weight="800" fill="#047857">차이: 1년 18만 6,200원</text>
+  </g>
+</svg>
