@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">숨은 돈, 어디서 무엇을 찾나</title>
+  <desc id="d">파인은 어느 기관에 돈이 있는지 보여 주는 전체 지도입니다. 어카운트인포는 1년 넘게 안 쓴 계좌와 카드포인트, 휴면예금 찾아줌은 5년 넘은 예금과 휴면보험금, 내보험찾아줌은 중도·만기·휴면보험금, 예탁결제원 주식찾기는 미수령 주식과 배당금을 맡습니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">어디서 무엇을 찾나</text>
+    <text x="32" y="88" font-size="17" fill="#475569">모두 무료 · 본인 인증만 하면 돼요</text>
+
+    <rect x="32" y="112" width="496" height="64" rx="12" fill="#1e40af"/>
+    <text x="52" y="141" font-size="19" font-weight="800" fill="#ffffff">파인 · 잠자는 내 돈 찾기</text>
+    <text x="52" y="164" font-size="16" fill="#dbeafe">먼저 열기: 어느 기관에 돈이 있는지 전체 지도</text>
+
+    <rect x="32" y="192" width="496" height="64" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="221" font-size="19" font-weight="800" fill="#075985">어카운트인포</text>
+    <text x="52" y="244" font-size="16" fill="#0c4a6e">1년 넘게 안 쓴 소액 계좌 · 카드포인트</text>
+
+    <rect x="32" y="272" width="496" height="64" rx="12" fill="#dcfce7"/>
+    <text x="52" y="301" font-size="19" font-weight="800" fill="#166534">휴면예금 찾아줌</text>
+    <text x="52" y="324" font-size="16" fill="#14532d">5년 넘은 예금 · 휴면보험금 · 자기앞수표</text>
+
+    <rect x="32" y="352" width="496" height="64" rx="12" fill="#fef3c7"/>
+    <text x="52" y="381" font-size="19" font-weight="800" fill="#92400e">내보험찾아줌</text>
+    <text x="52" y="404" font-size="16" fill="#78350f">중도·만기·휴면보험금 (청구 기한 3년)</text>
+
+    <rect x="32" y="432" width="496" height="64" rx="12" fill="#fce7f3"/>
+    <text x="52" y="461" font-size="19" font-weight="800" fill="#9d174d">예탁결제원 주식찾기</text>
+    <text x="52" y="484" font-size="16" fill="#831843">잊고 있던 우리사주 · 받지 않은 배당금</text>
+  </g>
+</svg>

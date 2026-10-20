@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">숨은 돈 찾기 30분 순서</title>
+  <desc id="d">1단계 파인으로 전체 위치 확인 5분, 2단계 어카운트인포에서 계좌와 카드포인트 정리 10분, 3단계 휴면예금 찾아줌과 내보험찾아줌에서 예금과 보험금 청구 10분, 4단계 주식찾기·홈택스·스마트초이스 조회 5분.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">숨은 돈 찾기 30분 순서</text>
+    <text x="32" y="88" font-size="17" fill="#475569">출퇴근 지하철 한 번이면 끝나요</text>
+
+    <line x1="62" y1="140" x2="62" y2="460" stroke="#cbd5e1" stroke-width="4"/>
+
+    <circle cx="62" cy="140" r="22" fill="#1e40af"/>
+    <text x="62" y="147" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">1</text>
+    <text x="100" y="134" font-size="19" font-weight="800" fill="#0f172a">위치 확인 · 5분</text>
+    <text x="100" y="159" font-size="16" fill="#475569">파인 잠자는 내 돈 찾기</text>
+
+    <circle cx="62" cy="246" r="22" fill="#0369a1"/>
+    <text x="62" y="253" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">2</text>
+    <text x="100" y="240" font-size="19" font-weight="800" fill="#0f172a">계좌·포인트 정리 · 10분</text>
+    <text x="100" y="265" font-size="16" fill="#475569">어카운트인포에서 잔액 이전·해지</text>
+
+    <circle cx="62" cy="352" r="22" fill="#15803d"/>
+    <text x="62" y="359" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">3</text>
+    <text x="100" y="346" font-size="19" font-weight="800" fill="#0f172a">예금·보험금 청구 · 10분</text>
+    <text x="100" y="371" font-size="16" fill="#475569">휴면예금 찾아줌 · 내보험찾아줌</text>
+
+    <circle cx="62" cy="458" r="22" fill="#b45309"/>
+    <text x="62" y="465" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">4</text>
+    <text x="100" y="452" font-size="19" font-weight="800" fill="#0f172a">나머지 조회 · 5분</text>
+    <text x="100" y="477" font-size="16" fill="#475569">주식찾기 · 홈택스 · 스마트초이스</text>
+
+    <text x="32" y="518" font-size="15" fill="#b91c1c">문자 속 링크는 누르지 말고, 앱을 직접 검색해 여세요</text>
+  </g>
+</svg>
