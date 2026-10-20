@@ -1605,9 +1605,9 @@ function buildTopics(posts) {
     var postLink = function(p) { return base + 'posts/' + p.slug + '.html'; };
     var html = '    <h1>' + escapeHtml(t.title) + '</h1>\n'
       + t.intro.map(function(para) { return '    <p>' + escapeHtml(para) + '</p>\n'; }).join('')
-      + '    <h2>처음이라면 이 순서로 읽으세요</h2>\n    <ol>\n'
-      + start.map(function(p) { return '      <li><a href="' + postLink(p) + '"><strong>' + escapeHtml(p.title) + '</strong></a><br>' + escapeHtml(p.summary) + '</li>\n'; }).join('')
-      + '    </ol>\n'
+      + (start.length ? '    <h2>처음이라면 이 순서로 읽으세요</h2>\n    <ol>\n'
+        + start.map(function(p) { return '      <li><a href="' + postLink(p) + '"><strong>' + escapeHtml(p.title) + '</strong></a><br>' + escapeHtml(p.summary) + '</li>\n'; }).join('')
+        + '    </ol>\n' : '')
       + (topicApps.length ? '    <h2>직접 계산해 보세요</h2>\n    <ul>\n'
         + topicApps.map(function(a) { return '      <li><a href="' + base + a.path + '"><strong>' + escapeHtml(a.title) + '</strong></a><br>' + escapeHtml(a.description) + '</li>\n'; }).join('')
         + '    </ul>\n' : '')
