@@ -548,6 +548,17 @@ function relatedPosts(post, all, tagCount, limit) {
   return scored.slice(0, limit).map(function(s) { return s.post; });
 }
 
+// 글 아래 편집 책임자 표시 (site.config.json의 editor). 누가 글을 책임지는지와 이해관계를 밝힌다.
+function editorBoxHtml() {
+  var ed = config.editor;
+  if (!ed || !ed.name) return '';
+  return '      <aside class="post-editor" aria-label="편집 책임자">\n'
+    + '        <p class="post-editor-name"><span class="post-editor-role">' + escapeHtml(ed.role || '편집 책임') + '</span> ' + escapeHtml(ed.name) + '</p>\n'
+    + (ed.credentials ? '        <p class="post-editor-cred">' + escapeHtml(ed.credentials) + '</p>\n' : '')
+    + (ed.note ? '        <p class="post-editor-note">' + escapeHtml(ed.note) + ' <a href="' + base + 'about.html#editor">편집 원칙 보기</a></p>\n' : '')
+    + '      </aside>\n';
+}
+
 function relatedHtml(list) {
   if (list.length === 0) return '';
   var html = '      <section class="related-posts" aria-labelledby="related-title">\n'
@@ -1198,6 +1209,7 @@ function buildPosts() {
       "dateModified": meta.updated || meta.date || "",
       "inLanguage": "ko-KR",
       "author": { "@type": "Person", "name": config.author, "url": siteUrl + '/about.html' },
+      "editor": config.editor && config.editor.name ? { "@type": "Person", "name": config.editor.name, "description": config.editor.credentials || '', "url": siteUrl + '/about.html#editor' } : undefined,
       "publisher": { "@type": "Organization", "name": config.title, "url": siteUrl + '/' },
       "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
       "url": postUrl,
@@ -1248,6 +1260,7 @@ function buildPosts() {
       + '      <div class="post-content">\n'
       + htmlContent + '\n'
       + '      </div>\n'
+      + editorBoxHtml()
       + '      <section class="share-section" aria-labelledby="share-title" data-url="' + siteUrl + '/posts/' + slug + '.html" data-title="' + escapeHtml(meta.title || slug) + '" data-desc="' + escapeHtml(meta.summary || '') + '" data-image="' + escapeHtml(meta.image || '') + '">\n'
       + '        <div class="share-text">\n'
       + '          <h2 id="share-title" class="share-heading">이 글이 도움이 됐다면</h2>\n'
