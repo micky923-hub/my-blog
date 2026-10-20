@@ -98,15 +98,15 @@ description: 파이낸셜 다이어리의 개인정보처리방침입니다.
 
 개인정보 관련 문의사항은 아래로 연락해 주세요.
 
-- 이메일: contact@financialdiary.co.kr
+- 이메일: contact@bluem-partners.com
 
 시행일: 2026년 9월 15일
 
 <!-- newsletter:else:start -->
 변경일: 2026년 10월 13일 (쿠팡 파트너스 링크 안내 추가)
-변경일: 2026년 10월 20일 (쿠팡 파트너스 링크 운영 중단에 따라 관련 안내 삭제)
+변경일: 2026년 10월 20일 (쿠팡 파트너스 링크 운영 중단에 따라 관련 안내 삭제, 문의 이메일을 contact@bluem-partners.com으로 변경)
 <!-- newsletter:else:end -->
 <!-- newsletter:start -->
 변경일: 2026년 10월 13일 (뉴스레터 수집 항목·처리 위탁 추가, 쿠팡 파트너스 링크 안내 추가)
-변경일: 2026년 10월 20일 (쿠팡 파트너스 링크 운영 중단에 따라 관련 안내 삭제)
+변경일: 2026년 10월 20일 (쿠팡 파트너스 링크 운영 중단에 따라 관련 안내 삭제, 문의 이메일을 contact@bluem-partners.com으로 변경)
 <!-- newsletter:end -->

@@ -71,4 +71,4 @@ Financial Diary는 **블루엠파트너스가** 운영합니다. 블로그의 �
 
 광고·제휴 문의도 아래 이메일로 받습니다.
 
-- 이메일: contact@financialdiary.co.kr
+- 이메일: contact@bluem-partners.com
