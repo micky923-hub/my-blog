@@ -33,7 +33,7 @@ requires: newsletter
 
 모든 메일 맨 아래에 있는 "수신거부" 링크를 누르면 바로 해지돼요. 로그인은 필요 없어요.
 
-링크를 찾기 어려우면 contact@financialdiary.co.kr 으로 "구독 해지"라고 보내 주세요. 확인하는 대로 처리해 드려요.
+링크를 찾기 어려우면 contact@bluem-partners.com 으로 "구독 해지"라고 보내 주세요. 확인하는 대로 처리해 드려요.
 
 ## 개인정보는 이렇게 다뤄요
 
