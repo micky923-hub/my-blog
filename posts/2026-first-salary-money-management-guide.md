@@ -4,7 +4,6 @@ date: 2026-10-14
 tags: [저축, 생활금융, 목돈마련, 사회초년생]
 summary: 첫 월급은 쓰는 습관보다 나누는 구조를 먼저 만들어야 오래 모입니다. 실수령액 확인, 통장 4개로 나누는 법, 비상금 3개월치, 실수령액별 저축 금액, 연금저축 세액공제와 체크카드 사용법까지 첫 3개월에 할 일을 순서대로 정리했습니다.
 image: https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=400&fit=crop
-coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -189,9 +188,3 @@ coupang: true
 
 > 💰 **함께 쓰면 좋은 도구: [적금·예금 이자 계산기](/apps/savings-calculator/)**  
 > 월 저축액과 기간을 넣으면 만기에 받을 돈을 바로 계산해 볼 수 있어요. 비상금 통장을 고른다면 [파킹통장 vs CMA vs 정기예금](/posts/2026-parking-savings-guide.html), 세액공제를 더 챙기고 싶다면 [연금저축펀드 활용법](/posts/2026-pension-savings-fund-guide.html)도 함께 읽어 보세요.
-
-<!-- coupang:start -->
-- [나의 첫 번째 재테크 교과서](https://link.coupang.com/a/hP4jp6clyu)
-  - 고른 이유: 이 글의 통장 나누기와 자동이체 다음 단계로, 비상금·적금·연금·투자를 어떤 순서로 넓혀 갈지 한 권으로 정리해 보고 싶을 때 볼 만합니다.
-  - 무료로 하려면: 금융감독원 파인(fine.fss.or.kr)의 금융교육 자료와 이 블로그의 [연금저축펀드 활용법](/posts/2026-pension-savings-fund-guide.html)부터 읽어 보세요.
-<!-- coupang:end -->

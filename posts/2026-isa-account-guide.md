@@ -5,7 +5,6 @@ updated: 2026-10-10
 tags: [절세, 투자, 비과세, ISA]
 summary: ISA(개인종합자산관리계좌)는 ETF·펀드·예금을 한 계좌에 담아 손익을 합친 뒤, 순이익 200만~400만 원까지 비과세하고 나머지는 9.9%만 떼는 절세 계좌입니다. 유형 고르는 법, 수익별 세금 비교, 넣고 빼는 규칙, 자주 하는 실수, 3년 뒤 만기 자금 활용법까지 정리했습니다.
 image: https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=400&fit=crop
-coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -165,9 +164,3 @@ ISA는 만들어 두고 비워 두면 효과가 없습니다. 오늘 계좌를 �
 > 📚 **함께 읽으면 좋은 글**  
 > [ETF 실전 투자 시작 가이드](/posts/2026-etf-beginner-guide.html) · [ISA 만기 자금 연금계좌 이전](/posts/2026-isa-maturity-pension-transfer-guide.html) · [연금저축펀드와 IRP 비교](/posts/2026-pension-savings-fund-guide.html)  
 > 만기 자금을 옮긴 뒤 연금 세액공제가 얼마인지는 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 확인해 보세요.
-
-<!-- coupang:start -->
-- [굴릴수록 눈덩이처럼 불어나는 마법의 연금 굴리기](https://link.coupang.com/a/hP4yt9NKvI)
-  - 고른 이유: ISA·연금저축·IRP 세 계좌를 함께 쓰는 법을 다룬 책이라, 이 글 끝에서 정리한 "ISA 만기 자금을 연금으로 옮기는 흐름"까지 한 번에 이어서 볼 수 있습니다. 세법 수치는 이 글과 금융회사 안내로 최신 기준을 확인하세요.
-  - 무료로 하려면: 증권사 앱의 ISA 안내 페이지와 금융감독원 파인(fine.fss.or.kr)의 절세계좌 설명으로도 기본은 충분합니다.
-<!-- coupang:end -->

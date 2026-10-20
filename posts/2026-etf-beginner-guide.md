@@ -5,7 +5,6 @@ updated: 2026-10-10
 tags: [투자, ETF, 주식]
 summary: 개별 종목 분석이 부담스러운 초보 투자자에게 ETF는 가장 현실적인 시작점입니다. 첫 ETF 고르는 순서, 총보수가 20년 뒤 만드는 차이, 국내 주식형·국내 상장 해외·해외 상장 ETF의 세금 비교, 계좌 고르는 법과 자주 하는 실수까지 정리했습니다.
 image: https://images.unsplash.com/photo-1604594849809-dfedbc827105?w=800&h=400&fit=crop
-coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -160,9 +159,3 @@ ETF는 시장 평균을 싸게 따라가는 도구입니다. 오늘은 대표 �
 > 📚 **함께 읽으면 좋은 글**  
 > [ISA 계좌 가이드](/posts/2026-isa-account-guide.html) · [배당주 고르는 법](/posts/2026-dividend-stock-guide.html) · [채권투자 기초](/posts/2026-bond-investment-guide.html) · [AI·반도체 ETF 가이드](/posts/2026-ai-semiconductor-etf-guide.html)  
 > 연금계좌에서 ETF를 굴릴 때 돌려받는 세금은 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 확인해 보세요.
-
-<!-- coupang:start -->
-- [연금 ETF 공격과 수비 (feat. 절세의 기술)](https://link.coupang.com/a/hP4a1RbayO)
-  - 고른 이유: 이 글에서 첫 ETF를 골랐다면, 다음은 연금계좌에서 ETF를 섞어 세금까지 아끼는 단계입니다. 특정 종목을 따라 사기보다 자산 비율을 정하는 원리를 보는 용도로 읽으세요.
-  - 무료로 하려면: 각 운용사 홈페이지와 금융투자협회 전자공시에서 ETF 보수·구성 종목을 직접 비교해 볼 수 있습니다.
-<!-- coupang:end -->

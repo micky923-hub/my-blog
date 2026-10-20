@@ -5,7 +5,6 @@ updated: 2026-10-10
 tags: [투자, 안전자산, ETF, 금투자]
 summary: 같은 1,000만 원으로 금을 사도 금통장·KRX 금시장·금ETF·골드바 중 어디서 사느냐에 따라 남는 돈이 네 배 넘게 차이 납니다. 방법별 수수료와 세금을 실제 숫자로 비교하고, 연금계좌 활용법, 분할 매수와 비중 맞추기, 자주 하는 실수까지 정리했습니다.
 image: https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&h=400&fit=crop
-coupang: true
 ---
 
 > **바쁜 분을 위한 3줄 요약**
@@ -169,9 +168,3 @@ KRX 금시장은 한국거래소가 운영하는 금 현물 시장입니다. 증
 > 📚 **함께 읽으면 좋은 글**  
 > [달러 투자 방법 비교](/posts/2026-dollar-investment-guide.html) · [ETF 실전 투자 시작 가이드](/posts/2026-etf-beginner-guide.html) · [연금저축펀드와 IRP 비교](/posts/2026-pension-savings-fund-guide.html) · [채권 투자 방법 기초](/posts/2026-bond-investment-guide.html)  
 > 연금계좌로 금ETF를 담을 계획이라면 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 올해 환급액부터 확인해 보세요.
-
-<!-- coupang:start -->
-- [절대 실패 없는 금 투자](https://link.coupang.com/a/hRIxvIcCbI)
-  - 고른 이유: 금통장·KRX 금시장·금ETF처럼 이 글에서 비교한 방법을 넘어, 금값이 왜 오르내리는지 흐름부터 알고 싶을 때 볼 만한 입문서입니다. 금값은 오를 때도 떨어질 때도 있으니, 제목과 달리 나눠 사는 원칙은 이 글대로 지키세요.
-  - 무료로 하려면: 한국거래소 KRX 금시장 홈페이지의 투자 안내와 금ETF 운용사 설명 자료로도 기본은 충분합니다.
-<!-- coupang:end -->
