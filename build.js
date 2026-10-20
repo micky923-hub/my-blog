@@ -39,6 +39,8 @@ var siteUrl = config.url.replace(/\/$/, '');
 var basePath = (config.basePath || '/').replace(/\/$/, '');
 var base = basePath + '/';
 var allTopTags = [];
+// 주제별 모음 페이지 (topics.json): /topics/{slug}.html
+var TOPICS = fs.existsSync('topics.json') ? JSON.parse(fs.readFileSync('topics.json', 'utf-8')) : [];
 
 // 뉴스레터 구독 주소 (site.config.json의 newsletterUrl)
 // 비어 있으면 구독 상자·띠·바로가기 링크·newsletter.html·sitemap 항목이 모두 빠진다.
@@ -394,6 +396,7 @@ function htmlTemplate(opts) {
     + '        <h3 class="pre-footer-heading">바로가기</h3>\n'
     + '        <a href="' + base + '">홈</a>\n'
     + '        <a href="' + base + 'about.html">소개</a>\n'
+    + TOPICS.map(function(t) { return '        <a href="' + base + 'topics/' + t.slug + '.html">' + escapeHtml(t.title) + '</a>\n'; }).join('')
     + (NEWSLETTER_URL ? '        <a href="' + base + 'newsletter.html">뉴스레터</a>\n' : '')
     + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
     + '      </div>\n'
@@ -1566,6 +1569,69 @@ function buildNotFound(posts) {
 }
 
 // sitemap.xml 생성
+// 주제별 모음 페이지: 소개 문단 + 처음 읽을 글 + 관련 계산기 + 주제 글 전체 목록
+function buildTopics(posts) {
+  if (!TOPICS.length) return;
+  var apps = fs.existsSync('apps.json') ? JSON.parse(fs.readFileSync('apps.json', 'utf-8')) : [];
+  var bySlug = {};
+  posts.forEach(function(p) { bySlug[p.slug] = p; });
+  ensureDir(path.join(DIST, 'topics'));
+  TOPICS.forEach(function(t) {
+    var list = posts.filter(function(p) {
+      return p.tags.some(function(tag) { return t.tags.indexOf(tag) !== -1; });
+    });
+    var start = (t.start || []).map(function(slug) {
+      if (!bySlug[slug]) { console.error('\n[빌드 중단] topics.json "' + t.slug + '"의 start 글을 찾을 수 없습니다: ' + slug); process.exit(1); }
+      return bySlug[slug];
+    });
+    var topicApps = (t.apps || []).map(function(ap) {
+      var a = apps.filter(function(x) { return x.path === ap; })[0];
+      if (!a) { console.error('\n[빌드 중단] topics.json "' + t.slug + '"의 계산기를 apps.json에서 찾을 수 없습니다: ' + ap); process.exit(1); }
+      return a;
+    });
+    var postLink = function(p) { return base + 'posts/' + p.slug + '.html'; };
+    var html = '    <h1>' + escapeHtml(t.title) + '</h1>\n'
+      + t.intro.map(function(para) { return '    <p>' + escapeHtml(para) + '</p>\n'; }).join('')
+      + '    <h2>처음이라면 이 순서로 읽으세요</h2>\n    <ol>\n'
+      + start.map(function(p) { return '      <li><a href="' + postLink(p) + '"><strong>' + escapeHtml(p.title) + '</strong></a><br>' + escapeHtml(p.summary) + '</li>\n'; }).join('')
+      + '    </ol>\n'
+      + (topicApps.length ? '    <h2>직접 계산해 보세요</h2>\n    <ul>\n'
+        + topicApps.map(function(a) { return '      <li><a href="' + base + a.path + '"><strong>' + escapeHtml(a.title) + '</strong></a><br>' + escapeHtml(a.description) + '</li>\n'; }).join('')
+        + '    </ul>\n' : '')
+      + '    <h2>이 주제의 글 ' + list.length + '개</h2>\n    <ul>\n'
+      + list.map(function(p) {
+          var when = p.updated ? formatDate(p.updated) + ' 업데이트' : formatDate(p.date);
+          return '      <li><a href="' + postLink(p) + '">' + escapeHtml(p.title) + '</a> <small>(' + when + ')</small></li>\n';
+        }).join('')
+      + '    </ul>\n'
+      + '    <p>다른 주제: ' + TOPICS.filter(function(o) { return o.slug !== t.slug; }).map(function(o) { return '<a href="' + base + 'topics/' + o.slug + '.html">' + escapeHtml(o.title) + '</a>'; }).join(' · ') + '</p>\n';
+    var url = siteUrl + '/topics/' + t.slug + '.html';
+    var jsonLd = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": url,
+      "name": t.title,
+      "description": t.description,
+      "url": url,
+      "inLanguage": "ko-KR",
+      "isPartOf": { "@id": siteUrl + '/#website' },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": list.length,
+        "itemListElement": list.map(function(p, i) { return { "@type": "ListItem", "position": i + 1, "url": siteUrl + '/posts/' + p.slug + '.html', "name": p.title }; })
+      }
+    });
+    var fullHtml = htmlTemplate({
+      title: t.title + ' — ' + config.title,
+      description: t.description,
+      canonical: url,
+      jsonLd: jsonLd,
+      content: '  <main id="main-content" class="container">\n    <article class="post-content static-page topic-page">\n' + html + '    </article>\n  </main>'
+    });
+    fs.writeFileSync(path.join(DIST, 'topics', t.slug + '.html'), fullHtml);
+  });
+}
+
 function buildSitemap(posts) {
   var urls = [
     { loc: siteUrl + '/', priority: '1.0', changefreq: 'daily' },
@@ -1580,6 +1646,9 @@ function buildSitemap(posts) {
       urls.push({ loc: siteUrl + '/' + app.path, priority: '0.7', changefreq: 'monthly' });
     });
   }
+  TOPICS.forEach(function(t) {
+    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html', priority: '0.7', changefreq: 'weekly' });
+  });
   posts.forEach(function(post) {
     urls.push({
       loc: siteUrl + '/posts/' + post.slug + '.html',
@@ -1644,6 +1713,11 @@ function buildLlmsTxt(posts) {
     apps.forEach(function(a) {
       lines.push('- [' + a.title + '](' + siteUrl + '/' + a.path + '): ' + String(a.description || '').replace(/\s+/g, ' '));
     });
+    lines.push('');
+  }
+  if (TOPICS.length) {
+    lines.push('## 주제별 모음', '');
+    TOPICS.forEach(function(t) { lines.push('- [' + t.title + '](' + siteUrl + '/topics/' + t.slug + '.html): ' + t.description); });
     lines.push('');
   }
   lines.push('## 글', '');
@@ -1731,6 +1805,7 @@ buildIndex(posts);
 console.log('  인덱스 페이지 빌드 완료');
 
 buildStaticPages();
+buildTopics(posts);
 console.log('  정적 페이지 빌드 완료');
 
 buildSitemap(posts);
