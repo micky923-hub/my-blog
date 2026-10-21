@@ -627,6 +627,7 @@ function ratios(input) {
       out.textContent = res.field === 'raise' ? res.message : '';
       if (custom && res.field === 'raise') inputs.raise.setAttribute('aria-invalid', 'true');
       noteEl.hidden = true;
+      $('sn-raise-dip').hidden = true;
       return;
     }
     noteEl.hidden = false;
@@ -638,10 +639,15 @@ function ratios(input) {
     big.className = 'sn-raise-value';
     big.textContent = '월 실수령 ' + signedWon(res.monthlyDelta);
     out.appendChild(big);
+    var dip = res.monthlyDelta < 0 || res.annualDelta < 0;
     var sub = document.createElement('span');
     sub.className = 'sn-raise-sub';
-    sub.textContent = '연 ' + signedWon(res.annualDelta) + ' · 인상분의 ' + res.keepPct.toFixed(1) + '%가 손에 남아요';
+    sub.textContent = '연 ' + signedWon(res.annualDelta) + ' · ' + (dip
+      ? '매달 떼는 소득세가 인상분보다 더 늘어나요'
+      : '인상분의 ' + res.keepPct.toFixed(1) + '%가 손에 남아요');
     out.appendChild(sub);
+    // 간이세액표 구간 경계에서 실수령액이 줄어 보일 때 안내
+    $('sn-raise-dip').hidden = !dip;
   }
 
   function renderRatios(p, r) {
