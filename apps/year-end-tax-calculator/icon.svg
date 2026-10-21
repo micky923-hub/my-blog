@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="연말정산 환급 계산기 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#f0abfc"/>
+      <stop offset="0.55" stop-color="#d946ef"/>
+      <stop offset="1" stop-color="#86198f"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fae8ff"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 그림자 -->
+  <ellipse cx="236" cy="440" rx="180" ry="24" fill="#4a044e" opacity="0.35"/>
+
+  <!-- 달력 -->
+  <rect x="80" y="108" width="296" height="316" rx="30" fill="url(#paper)"/>
+  <path d="M110 108h236a30 30 0 0 1 30 30v54H80v-54a30 30 0 0 1 30-30z" fill="#a21caf"/>
+  <rect x="146" y="80" width="26" height="62" rx="13" fill="#701a75"/>
+  <rect x="284" y="80" width="26" height="62" rx="13" fill="#701a75"/>
+  <text x="228" y="368" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="170" font-weight="900" fill="#701a75">13</text>
+
+  <!-- 동전 2개 -->
+  <circle cx="402" cy="304" r="58" fill="url(#gold)"/>
+  <circle cx="402" cy="304" r="44" fill="none" stroke="#fef3c7" stroke-width="6" opacity="0.8"/>
+  <circle cx="380" cy="384" r="70" fill="url(#gold)"/>
+  <circle cx="380" cy="384" r="54" fill="none" stroke="#fef3c7" stroke-width="6" opacity="0.8"/>
+  <text x="380" y="412" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="900" fill="#78350f">₩</text>
+</svg>

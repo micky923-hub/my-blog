@@ -1,0 +1,969 @@
+/* ==============================
+   연말정산 환급 계산기 (ye-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다.
+   예외: 오류 표시용 빨간색 1개 (--ye-color-error)
+   ============================== */
+
+:root {
+  --ye-color-error: #dc2626;
+  --ye-radius: 10px;
+  --ye-touch: 44px;
+}
+
+/* ---------- Header ---------- */
+
+.ye-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.ye-header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ye-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ye-touch);
+  font-weight: 600;
+}
+
+.ye-theme-toggle {
+  min-width: var(--ye-touch);
+  min-height: var(--ye-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.ye-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.ye-intro {
+  margin-bottom: 1.25rem;
+}
+
+.ye-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ye-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.ye-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.ye-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--ye-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.ye-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.ye-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ye-guide-steps,
+.ye-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.ye-guide-steps li,
+.ye-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.ye-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- Form ---------- */
+
+.ye-form {
+  margin-bottom: 1.5rem;
+}
+
+.ye-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ye-field {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.ye-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.ye-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ye-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5rem 3.5rem 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.125rem; /* 16px 이상: iOS 자동 확대 방지 */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ye-input:focus {
+  border-color: var(--color-accent);
+}
+
+.ye-input[aria-invalid="true"] {
+  border-color: var(--ye-color-error);
+}
+
+.ye-unit {
+  position: absolute;
+  right: 0.9rem;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.ye-hint {
+  margin: 0.3rem 0 0;
+  min-height: 1.5em;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Segmented radios ---------- */
+
+.ye-segment-options {
+  display: flex;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.ye-segment-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.ye-segment-options label {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--ye-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.35rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.ye-segment-options input:checked + label {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.ye-segment-options input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Result ---------- */
+
+.ye-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.ye-result-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.ye-rows {
+  margin: 0;
+}
+
+.ye-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.ye-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.ye-row dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.ye-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 4px solid var(--ye-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.ye-error::before {
+  content: "⚠ ";
+  color: var(--ye-color-error);
+}
+
+.ye-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ye-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+@media (min-width: 600px) {
+  .ye-title {
+    font-size: 1.75rem;
+  }
+  .ye-headline-value {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- 이렇게 계산해요 / 자주 묻는 질문 / 관련 글 ---------- */
+
+.ye-explain,
+.ye-faq {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  color: var(--color-text);
+}
+
+.ye-explain-title,
+.ye-faq-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.ye-explain-lead {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.ye-explain-steps,
+.ye-explain-notes {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.ye-explain-steps li,
+.ye-explain-notes li {
+  margin-bottom: 0.4rem;
+}
+
+.ye-formula {
+  display: block;
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ye-example {
+  background: var(--color-tag-bg);
+  border-radius: var(--ye-radius);
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.ye-example-title {
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.ye-example-title strong {
+  color: var(--color-tag-text);
+}
+
+.ye-example-rows {
+  margin: 0;
+}
+
+.ye-example-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.ye-example-row:first-child {
+  border-top: 0;
+}
+
+.ye-example-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.ye-example-row dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ye-explain-sub {
+  margin: 0.75rem 0 0;
+}
+
+.ye-explain-notes {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.ye-faq {
+  padding-bottom: 0.25rem;
+}
+
+.ye-faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.ye-faq-q {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--ye-touch);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  list-style-position: inside;
+}
+
+.ye-faq-q::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.ye-faq-q:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ye-faq-item[open] .ye-faq-q {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ye-faq-a {
+  margin: 0.5rem 0 1rem;
+  color: var(--color-text);
+}
+
+.ye-related {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ye-related a {
+  color: var(--color-accent);
+}
+
+/* FAQ 질문 앞 펼침 표시: summary가 flex라 기본 삼각형(::marker)이 보이지 않아 직접 그린다 */
+.ye-faq-q {
+  list-style: none;
+}
+
+.ye-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.ye-faq-q::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+  color: var(--color-accent);
+}
+
+.ye-faq-item[open] .ye-faq-q::before {
+  content: "▾";
+}
+
+
+/* ---------- 연말정산 계산기 전용 ---------- */
+
+/* 입력 카드 (단계) */
+.ye-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  padding: 0.9rem 1rem 0.25rem;
+  margin: 0 0 1rem;
+}
+
+.ye-card-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ye-num {
+  color: var(--color-accent);
+}
+
+.ye-card-lead {
+  margin: -0.4rem 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ye-card .ye-input {
+  background: var(--color-bg);
+}
+
+.ye-card .ye-segment-options {
+  background: var(--color-bg);
+}
+
+.ye-card .ye-segment-options input:checked + label {
+  background: var(--color-surface);
+}
+
+.ye-label-sub {
+  font-weight: 600;
+}
+
+.ye-optional {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.ye-help {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ye-card > .ye-help {
+  margin: -0.75rem 0 1rem;
+}
+
+.ye-panel .ye-field {
+  margin-bottom: 1rem;
+}
+
+.ye-short-wrap {
+  max-width: 9rem;
+}
+
+.ye-short-wrap .ye-input {
+  padding-right: 3.25rem;
+}
+
+.ye-segment-4 label {
+  padding: 0.25rem 0.15rem;
+  font-size: 0.9rem;
+}
+
+/* 스테퍼 */
+.ye-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.9rem;
+}
+
+.ye-stepper-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 700;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ye-stepper-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.ye-stepper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ye-step-btn {
+  width: var(--ye-touch);
+  height: var(--ye-touch);
+  padding: 0;
+  font: inherit;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  cursor: pointer;
+}
+
+.ye-step-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.ye-step-btn:focus-visible,
+.ye-count:focus-visible,
+.ye-checkbox:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ye-count {
+  width: 3rem;
+  min-height: var(--ye-touch);
+  padding: 0.25rem;
+  font: inherit;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ye-count[aria-invalid="true"] {
+  border-color: var(--ye-color-error);
+}
+
+/* 체크박스 줄 */
+.ye-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--ye-touch);
+  margin: 0 0 0.9rem;
+}
+
+.ye-checkbox {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.ye-check-row label {
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.ye-sub-field {
+  margin-top: -0.4rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-border);
+}
+
+/* 결과 미리 보기 줄 */
+.ye-peek {
+  margin: 0 0 1rem;
+  text-align: right;
+}
+
+.ye-peek-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: var(--ye-touch);
+  font-weight: 600;
+  color: var(--color-accent);
+  word-break: keep-all;
+}
+
+/* 더 자세히 */
+.ye-more {
+  border: 1px dashed var(--color-border);
+  border-radius: var(--ye-radius);
+  padding: 0 1rem;
+}
+
+.ye-more summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--ye-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+  word-break: keep-all;
+}
+
+.ye-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.ye-more summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.ye-more[open] summary::before {
+  content: "▾";
+}
+
+.ye-more summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ye-more-body {
+  margin: 0.5rem 0 0.5rem;
+}
+
+/* 결과: 가장 큰 숫자 */
+.ye-headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+}
+
+.ye-headline-label {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.ye-headline-value {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.ye-is-refund .ye-headline-value {
+  color: var(--color-accent);
+}
+
+.ye-is-owe {
+  border-color: var(--ye-color-error);
+  border-left-width: 4px;
+}
+
+.ye-is-owe .ye-headline-label::before {
+  content: "⚠ ";
+  color: var(--ye-color-error);
+}
+
+.ye-headline-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 계산 과정 */
+.ye-steps-wrap {
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ye-steps-wrap summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--ye-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+}
+
+.ye-steps-wrap summary::-webkit-details-marker {
+  display: none;
+}
+
+.ye-steps-wrap summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.ye-steps-wrap[open] summary::before {
+  content: "▾";
+}
+
+.ye-steps-wrap summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ye-steps-wrap .ye-rows {
+  padding-bottom: 0.5rem;
+}
+
+.ye-row dt {
+  flex-shrink: 1;
+  min-width: 0;
+  word-break: keep-all;
+}
+
+.ye-row dd {
+  flex-shrink: 0;
+  max-width: 55%;
+}
+
+.ye-row-sum {
+  border-top: 1px dashed var(--color-border);
+}
+
+.ye-row-sum dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.ye-sub-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.ye-effects-wrap {
+  margin-bottom: 1rem;
+}
+
+.ye-small {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ye-small a,
+.ye-note a,
+.ye-guide a {
+  color: var(--color-accent);
+}
+
+/* 12월 31일 전에 하면 */
+.ye-actions {
+  padding: 0.85rem 1rem;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ye-radius);
+  color: var(--color-text);
+}
+
+.ye-actions-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-tag-text);
+}
+
+.ye-actions-list,
+.ye-actions-docs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ye-actions-docs {
+  padding-left: 1.1rem;
+  list-style: disc;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.ye-actions-docs li {
+  margin-bottom: 0.35rem;
+}
+
+.ye-action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.15rem 0.75rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.ye-action:first-child {
+  border-top: 0;
+}
+
+.ye-action-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+  word-break: keep-all;
+}
+
+.ye-action-value {
+  flex: 0 1 auto;
+  margin-left: auto;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ye-actions-all {
+  margin: 0.4rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 2px solid var(--color-accent);
+  text-align: right;
+  font-weight: 700;
+  word-break: keep-all;
+}
+
+.ye-actions-all strong {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.ye-actions-zero {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* 안내 */
+.ye-notes {
+  margin-top: 0.9rem;
+}
+
+.ye-notes .ye-note {
+  margin: 0 0 0.35rem;
+}
+
+.ye-note:empty {
+  display: none;
+}
+
+.ye-note-warn {
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--ye-color-error);
+  color: var(--color-text);
+}
