@@ -186,5 +186,8 @@ image: https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=400&
 
 ---
 
+> 💵 **내 월급의 실수령액부터 계산해 보세요: [연봉 실수령액 계산기 →](/apps/salary-net-calculator/)**  
+> 4대보험과 소득세를 뺀 금액과 원천징수 80·100·120%별 차이를 보여 드려요.
+
 > 💰 **함께 쓰면 좋은 도구: [적금·예금 이자 계산기](/apps/savings-calculator/)**  
 > 월 저축액과 기간을 넣으면 만기에 받을 돈을 바로 계산해 볼 수 있어요. 비상금 통장을 고른다면 [파킹통장 vs CMA vs 정기예금](/posts/2026-parking-savings-guide.html), 세액공제를 더 챙기고 싶다면 [연금저축펀드 활용법](/posts/2026-pension-savings-fund-guide.html)도 함께 읽어 보세요.

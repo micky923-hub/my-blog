@@ -165,3 +165,5 @@ image: https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=400&
 > 퇴직금을 IRP로 받아 연금으로 꺼내면 퇴직소득세를 최대 절반 덜 냅니다. 퇴직 직후 건강보험료와 함께 챙겨 보세요.
 >
 > 👵 **[국민연금 조기수령 vs 연기수령](/posts/2026-national-pension-claim-strategy.html)** · **[ISA 계좌 하나로 절세 끝내기](/posts/2026-isa-account-guide.html)** · **[프리랜서·부업 종합소득세 신고 가이드](/posts/2026-freelancer-side-income-tax-guide.html)**
+>
+> 💵 월급에서 건강보험료가 얼마 빠지는지는 **[연봉 실수령액 계산기 →](/apps/salary-net-calculator/)로 확인하세요.**

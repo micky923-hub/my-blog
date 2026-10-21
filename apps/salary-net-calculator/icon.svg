@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="연봉 실수령액 계산기 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#fdba74"/>
+      <stop offset="0.55" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#9a3412"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ffedd5"/>
+    </linearGradient>
+    <linearGradient id="bill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#86efac"/>
+      <stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 그림자 -->
+  <ellipse cx="256" cy="430" rx="190" ry="24" fill="#7c2d12" opacity="0.35"/>
+
+  <!-- 지폐 2장 (봉투 위로 살짝) -->
+  <g transform="rotate(-8 230 170)">
+    <rect x="120" y="110" width="230" height="130" rx="16" fill="url(#bill)"/>
+    <circle cx="235" cy="160" r="30" fill="#bbf7d0" opacity="0.85"/>
+  </g>
+  <g transform="rotate(6 290 160)">
+    <rect x="170" y="98" width="230" height="130" rx="16" fill="url(#bill)"/>
+    <circle cx="285" cy="150" r="30" fill="#bbf7d0" opacity="0.85"/>
+    <rect x="190" y="116" width="34" height="10" rx="5" fill="#dcfce7" opacity="0.9"/>
+    <rect x="346" y="196" width="34" height="10" rx="5" fill="#dcfce7" opacity="0.9"/>
+  </g>
+
+  <!-- 월급봉투 -->
+  <rect x="76" y="188" width="360" height="228" rx="28" fill="url(#paper)"/>
+  <!-- 접힌 덮개 선 -->
+  <path d="M92 206L256 300L420 206" fill="none" stroke="#fdba74" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- ₩ -->
+  <text x="256" y="400" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="900" fill="#c2410c">₩</text>
+</svg>

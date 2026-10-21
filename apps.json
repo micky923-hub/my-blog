@@ -8,6 +8,14 @@
     "shortTitle": "연말정산"
   },
   {
+    "path": "apps/salary-net-calculator/",
+    "emoji": "💵",
+    "title": "연봉 실수령액 계산기",
+    "description": "연봉이나 월급을 넣으면 4대보험·소득세를 뺀 월 실수령액을 바로 계산하고, 연봉이 오르면 실제로 얼마 더 들어오는지까지 알려줘요.",
+    "icon": "apps/salary-net-calculator/icon.svg",
+    "shortTitle": "실수령액"
+  },
+  {
     "path": "apps/economy-dashboard/",
     "emoji": "📊",
     "title": "오늘의 생활경제 대시보드",

@@ -1,0 +1,1073 @@
+/* ==============================
+   연봉 실수령액 계산기 (sn-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다.
+   예외: 오류 표시용 빨간색 1개 (--sn-color-error)
+   ============================== */
+
+:root {
+  --sn-color-error: #dc2626;
+  --sn-radius: 10px;
+  --sn-touch: 44px;
+}
+
+/* ---------- Header ---------- */
+
+.sn-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.sn-header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.sn-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--sn-touch);
+  font-weight: 600;
+}
+
+.sn-theme-toggle {
+  min-width: var(--sn-touch);
+  min-height: var(--sn-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.sn-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.sn-intro {
+  margin-bottom: 1.25rem;
+}
+
+.sn-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.sn-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.sn-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.sn-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--sn-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.sn-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.sn-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sn-guide-steps,
+.sn-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.sn-guide-steps li,
+.sn-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.sn-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- Form ---------- */
+
+.sn-form {
+  margin-bottom: 1.5rem;
+}
+
+.sn-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sn-field {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.sn-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.sn-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sn-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5rem 3.5rem 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.125rem; /* 16px 이상: iOS 자동 확대 방지 */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sn-input:focus {
+  border-color: var(--color-accent);
+}
+
+.sn-input[aria-invalid="true"] {
+  border-color: var(--sn-color-error);
+}
+
+.sn-unit {
+  position: absolute;
+  right: 0.9rem;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.sn-hint {
+  margin: 0.3rem 0 0;
+  min-height: 1.5em;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Segmented radios ---------- */
+
+.sn-segment-options {
+  display: flex;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.sn-segment-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.sn-segment-options label {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--sn-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.35rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.sn-segment-options input:checked + label {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.sn-segment-options input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Result ---------- */
+
+.sn-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.sn-result-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.sn-rows {
+  margin: 0;
+}
+
+.sn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.sn-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.sn-row dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.sn-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 4px solid var(--sn-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.sn-error::before {
+  content: "⚠ ";
+  color: var(--sn-color-error);
+}
+
+.sn-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.sn-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+@media (min-width: 600px) {
+  .sn-title {
+    font-size: 1.75rem;
+  }
+  .sn-headline-value {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- 이렇게 계산해요 / 자주 묻는 질문 / 관련 글 ---------- */
+
+.sn-explain,
+.sn-faq {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  color: var(--color-text);
+}
+
+.sn-explain-title,
+.sn-faq-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.sn-explain-lead {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.sn-explain-steps,
+.sn-explain-notes {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.sn-explain-steps li,
+.sn-explain-notes li {
+  margin-bottom: 0.4rem;
+}
+
+.sn-formula {
+  display: block;
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.sn-example {
+  background: var(--color-tag-bg);
+  border-radius: var(--sn-radius);
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.sn-example-title {
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.sn-example-title strong {
+  color: var(--color-tag-text);
+}
+
+.sn-example-rows {
+  margin: 0;
+}
+
+.sn-example-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.sn-example-row:first-child {
+  border-top: 0;
+}
+
+.sn-example-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.sn-example-row dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.sn-explain-sub {
+  margin: 0.75rem 0 0;
+}
+
+.sn-explain-notes {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.sn-faq {
+  padding-bottom: 0.25rem;
+}
+
+.sn-faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.sn-faq-q {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--sn-touch);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  list-style-position: inside;
+}
+
+.sn-faq-q::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.sn-faq-q:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sn-faq-item[open] .sn-faq-q {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sn-faq-a {
+  margin: 0.5rem 0 1rem;
+  color: var(--color-text);
+}
+
+.sn-related {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.sn-related a {
+  color: var(--color-accent);
+}
+
+/* FAQ 질문 앞 펼침 표시: summary가 flex라 기본 삼각형(::marker)이 보이지 않아 직접 그린다 */
+.sn-faq-q {
+  list-style: none;
+}
+
+.sn-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.sn-faq-q::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+  color: var(--color-accent);
+}
+
+.sn-faq-item[open] .sn-faq-q::before {
+  content: "▾";
+}
+
+
+
+.sn-label-sub {
+  font-weight: 600;
+}
+
+.sn-optional {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.sn-help {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+/* 스테퍼 */
+.sn-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.9rem;
+}
+
+.sn-stepper-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 700;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.sn-stepper-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.sn-stepper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sn-step-btn {
+  width: var(--sn-touch);
+  height: var(--sn-touch);
+  padding: 0;
+  font: inherit;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  cursor: pointer;
+}
+
+.sn-step-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.sn-step-btn:focus-visible,
+.sn-count:focus-visible,
+.sn-checkbox:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sn-count {
+  width: 3rem;
+  min-height: var(--sn-touch);
+  padding: 0.25rem;
+  font: inherit;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sn-count[aria-invalid="true"] {
+  border-color: var(--sn-color-error);
+}
+
+/* 체크박스 줄 */
+.sn-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--sn-touch);
+  margin: 0 0 0.9rem;
+}
+
+.sn-checkbox {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.sn-check-row label {
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.sn-sub-field {
+  margin-top: -0.4rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-border);
+}
+/* 더 자세히 */
+.sn-more {
+  border: 1px dashed var(--color-border);
+  border-radius: var(--sn-radius);
+  padding: 0 1rem;
+}
+
+.sn-more summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--sn-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+  word-break: keep-all;
+}
+
+.sn-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.sn-more summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.sn-more[open] summary::before {
+  content: "▾";
+}
+
+.sn-more summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sn-more-body {
+  margin: 0.5rem 0 0.5rem;
+}
+
+/* 결과: 가장 큰 숫자 */
+.sn-headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+}
+
+.sn-headline-label {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.sn-headline-value {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.sn-is-refund .sn-headline-value {
+  color: var(--color-accent);
+}
+
+.sn-is-owe {
+  border-color: var(--sn-color-error);
+  border-left-width: 4px;
+}
+
+.sn-is-owe .sn-headline-label::before {
+  content: "⚠ ";
+  color: var(--sn-color-error);
+}
+
+.sn-headline-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 계산 과정 */
+.sn-steps-wrap {
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sn-steps-wrap summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--sn-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+}
+
+.sn-steps-wrap summary::-webkit-details-marker {
+  display: none;
+}
+
+.sn-steps-wrap summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.sn-steps-wrap[open] summary::before {
+  content: "▾";
+}
+
+.sn-steps-wrap summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sn-steps-wrap .sn-rows {
+  padding-bottom: 0.5rem;
+}
+
+.sn-row dt {
+  flex-shrink: 1;
+  min-width: 0;
+  word-break: keep-all;
+}
+
+.sn-row dd {
+  flex-shrink: 0;
+  max-width: 55%;
+}
+
+.sn-row-sum {
+  border-top: 1px dashed var(--color-border);
+}
+
+.sn-row-sum dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.sn-sub-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.sn-effects-wrap {
+  margin-bottom: 1rem;
+}
+
+.sn-small {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.sn-small a,
+.sn-note a,
+.sn-guide a {
+  color: var(--color-accent);
+}
+
+/* ---------- 연봉 실수령액 계산기 전용 ---------- */
+
+.sn-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sn-guide-out {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* 입력 카드 */
+.sn-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  padding: 0.9rem 1rem 1rem;
+  margin: 0;
+}
+
+.sn-card-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-text);
+}
+
+.sn-card .sn-input,
+.sn-card .sn-segment-options {
+  background: var(--color-bg);
+}
+
+.sn-card .sn-segment-options input:checked + label {
+  background: var(--color-surface);
+}
+
+.sn-segment-options input:disabled + label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sn-help-warn {
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--sn-color-error);
+  color: var(--color-text);
+}
+
+.sn-kids-help {
+  margin: -0.5rem 0 1rem;
+}
+
+.sn-check-row {
+  margin-bottom: 0;
+}
+
+.sn-check-help {
+  margin: 0 0 0.75rem;
+}
+
+.sn-step-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sn-step-btn:disabled:hover {
+  border-color: var(--color-border);
+}
+
+.sn-more {
+  margin-top: 0.25rem;
+}
+
+/* 결과 */
+.sn-rows .sn-row {
+  border-top: 1px solid var(--color-border);
+}
+
+.sn-rows .sn-row:first-child {
+  border-top: 0;
+}
+
+.sn-rows .sn-row-sum {
+  border-top: 1px dashed var(--color-text-secondary);
+}
+
+.sn-row-sum dd {
+  font-weight: 800;
+}
+
+.sn-note-warn {
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--sn-color-error);
+  color: var(--color-text);
+}
+
+.sn-annual-box {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+}
+
+.sn-annual-line {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.sn-annual-line strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.sn-annual-box .sn-small {
+  margin-top: 0.25rem;
+}
+
+.sn-box-title {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-tag-text);
+}
+
+/* 차별점 ① 연봉이 오르면 */
+.sn-raise {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+  color: var(--color-text);
+}
+
+.sn-raise .sn-segment-options {
+  background: var(--color-bg);
+}
+
+.sn-raise .sn-segment-options input:checked + label {
+  background: var(--color-surface);
+}
+
+.sn-raise-field {
+  margin-bottom: 0.75rem;
+}
+
+.sn-segment-4 label {
+  padding: 0.25rem 0.15rem;
+  font-size: 0.9rem;
+}
+
+.sn-raise-custom {
+  margin-bottom: 0.5rem;
+}
+
+.sn-raise-custom .sn-hint {
+  min-height: 0;
+}
+
+.sn-raise-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0;
+  min-height: 1.5em;
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.sn-raise-lead {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.sn-raise-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.sn-raise-sub {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* 차별점 ② 원천징수 비율 */
+.sn-ratio-box {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--sn-radius);
+}
+
+.sn-ratio-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  table-layout: fixed;
+}
+
+.sn-ratio-table th,
+.sn-ratio-table td {
+  padding: 0.45rem 0.25rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: right;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.sn-ratio-table th:first-child {
+  text-align: left;
+  width: 24%;
+}
+
+.sn-ratio-table td {
+  white-space: nowrap;
+}
+
+.sn-ratio-box {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.sn-ratio-table thead th {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  vertical-align: bottom;
+}
+
+.sn-ratio-table tbody th {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.sn-ratio-current th,
+.sn-ratio-current td {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+.sn-ye-link {
+  display: block;
+  line-height: 1.55;
+  min-height: var(--sn-touch);
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--sn-radius);
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-weight: 700;
+  text-decoration: none;
+  word-break: keep-all;
+}
+
+.sn-ye-link:hover {
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
+}
+
+.sn-ye-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sn-ye-link strong {
+  font-variant-numeric: tabular-nums;
+}
