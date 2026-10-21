@@ -44,7 +44,8 @@
     "apps": [
       "apps/year-end-tax-calculator/",
       "apps/pension-tax-calculator/",
-      "apps/rent-tax-credit-calculator/"
+      "apps/rent-tax-credit-calculator/",
+      "apps/salary-net-calculator/"
     ]
   },
   {
@@ -118,7 +119,8 @@
     "apps": [
       "apps/savings-calculator/",
       "apps/economy-dashboard/",
-      "apps/daily-econ/"
+      "apps/daily-econ/",
+      "apps/salary-net-calculator/"
     ]
   },
   {

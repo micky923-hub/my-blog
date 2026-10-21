@@ -184,3 +184,6 @@ image: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&
 
 > 🐷 **직접 계산해 보세요: [연금저축·IRP 세액공제 계산기 →](/apps/pension-tax-calculator/)**  
 > 연금저축·IRP로 연말정산에서 얼마를 돌려받을 수 있는지 미리 계산해 보세요.
+
+> 💵 **매달 떼는 소득세부터 보세요: [연봉 실수령액 계산기 →](/apps/salary-net-calculator/)**  
+> 월급에서 빠지는 소득세를 먼저 어림해 보고, 정확한 값은 급여명세서로 확인하세요.
