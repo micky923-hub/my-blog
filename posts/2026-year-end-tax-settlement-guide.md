@@ -179,5 +179,8 @@ image: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&
 
 ---
 
+> 🧾 **직접 계산해 보세요: [연말정산 환급 계산기 →](/apps/year-end-tax-calculator/)**  
+> 총급여·가족·카드·연금·월세를 넣으면 돌려받을 돈과 12월에 더 받는 방법을 알려 드려요.
+
 > 🐷 **직접 계산해 보세요: [연금저축·IRP 세액공제 계산기 →](/apps/pension-tax-calculator/)**  
 > 연금저축·IRP로 연말정산에서 얼마를 돌려받을 수 있는지 미리 계산해 보세요.

@@ -175,7 +175,7 @@ function yeCardDeduction(v, kids) {
  * 연말정산 계산
  * @param {Object} p  입력 (금액은 정수 원, 빈칸 '' 허용)
  *   salary 총급여(필수), paidMode 'annual'|'monthly', paid 1년 합계, monthlyTax 월 소득세, months 개월 수,
- *   spouse(bool), kids8 만 8~20세 자녀, kids7 만 7세 이하 자녀, parents 부모님 등, elders 그중 70세 이상, disabled 장애인 수,
+ *   spouse(bool), kids8 만 9~20세 자녀, kids7 만 8세 이하 자녀, parents 부모님 등, elders 그중 70세 이상, disabled 장애인 수,
  *   credit, debit, market, culture 카드 사용액, pension 연금저축, irp, rent 월세 1년 합계,
  *   insurance, medicalSelf(본인·6세 이하·65세 이상·장애인), medicalOther, education, donation, gohyang,
  *   birth 0~3(없음·첫째·둘째·셋째 이상), marriagePlan(bool), marriage(bool 2026년 혼인신고), social(4대보험 합계, 빈칸 = 자동)
@@ -670,6 +670,10 @@ function effects(p) {
       } else if (it.key === 'card' && it.belowThreshold) {
         text.textContent = '연말 지출을 체크카드로 쓰기';
         val.textContent = '카드 문턱(총급여 25%) 전이라 차이 없어요. 혜택 좋은 카드를 쓰세요';
+      } else if (it.key === 'card' && it.delta === 0) {
+        // 문턱 위 지출이 이미 체크카드이거나 카드 공제 한도를 채운 경우
+        text.textContent = '연말 지출을 체크카드로 쓰기';
+        val.textContent = '바꿔도 카드 공제가 늘지 않아요(한도를 채웠거나 문턱 위 지출이 이미 체크카드예요)';
       } else if (it.key === 'gohyang' && it.amount === 0) {
         text.textContent = '고향사랑기부 10만 원';
         val.textContent = '이미 채웠어요';

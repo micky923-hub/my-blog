@@ -8,9 +8,18 @@
       "연금계좌는 넣을 때 세액공제를 받고, 꺼낼 때 세금을 덜 내는 구조라 넣는 법과 꺼내는 법을 함께 알아야 손해가 없습니다. 아래 글은 넣는 단계에서 받는 단계 순으로 정리했습니다.",
       "집이 있지만 현금이 부족하다면 주택연금도 선택지입니다. 글마다 기준 시점을 적어 두었으니, 제도가 바뀌면 업데이트 날짜를 확인하세요."
     ],
-    "start": ["2026-forties-retirement-planning-guide", "2026-pension-savings-fund-guide", "2026-pension-withdrawal-tax-guide"],
-    "tags": ["연금", "노후준비"],
-    "apps": ["apps/pension-tax-calculator/"]
+    "start": [
+      "2026-forties-retirement-planning-guide",
+      "2026-pension-savings-fund-guide",
+      "2026-pension-withdrawal-tax-guide"
+    ],
+    "tags": [
+      "연금",
+      "노후준비"
+    ],
+    "apps": [
+      "apps/pension-tax-calculator/"
+    ]
   },
   {
     "slug": "tax",
@@ -21,9 +30,22 @@
       "집을 팔거나 가족에게 돈을 줄 계획이 있다면 양도소득세와 증여세 글을 먼저 읽으세요. 날짜와 한도 하나로 세금이 크게 갈리는 주제입니다.",
       "세법 수치는 해마다 바뀔 수 있어 글마다 기준 시점을 적었습니다. 신고 전에는 국세청 홈택스 안내로 최신 기준을 다시 확인하세요."
     ],
-    "start": ["2026-year-end-tax-settlement-guide", "2026-year-end-tax-saving-checklist", "2026-freelancer-side-income-tax-guide"],
-    "tags": ["절세", "세금", "세액공제", "연말정산"],
-    "apps": ["apps/pension-tax-calculator/", "apps/rent-tax-credit-calculator/"]
+    "start": [
+      "2026-year-end-tax-settlement-guide",
+      "2026-year-end-tax-saving-checklist",
+      "2026-freelancer-side-income-tax-guide"
+    ],
+    "tags": [
+      "절세",
+      "세금",
+      "세액공제",
+      "연말정산"
+    ],
+    "apps": [
+      "apps/year-end-tax-calculator/",
+      "apps/pension-tax-calculator/",
+      "apps/rent-tax-credit-calculator/"
+    ]
   },
   {
     "slug": "loan-housing",
@@ -34,9 +56,19 @@
       "전세나 월세 계약을 앞두고 있다면 전세사기 예방 체크리스트를 가장 먼저 읽으세요. 계약 전 확인할 서류와 날짜를 순서대로 정리했습니다.",
       "집을 사고팔 계획이라면 대출 방식 비교와 1주택 양도세 글을 함께 보세요. 계산기에 내 숫자를 넣어 보면 판단이 쉬워집니다."
     ],
-    "start": ["2026-jeonse-fraud-prevention-checklist", "2026-loan-refinancing-guide", "2026-mortgage-fixed-vs-variable-rate-guide"],
-    "tags": ["대출", "부동산"],
-    "apps": ["apps/loan-refinance-calculator/", "apps/rent-tax-credit-calculator/"]
+    "start": [
+      "2026-jeonse-fraud-prevention-checklist",
+      "2026-loan-refinancing-guide",
+      "2026-mortgage-fixed-vs-variable-rate-guide"
+    ],
+    "tags": [
+      "대출",
+      "부동산"
+    ],
+    "apps": [
+      "apps/loan-refinance-calculator/",
+      "apps/rent-tax-credit-calculator/"
+    ]
   },
   {
     "slug": "invest",
@@ -47,9 +79,20 @@
       "이 모음의 글은 특정 종목이나 상품을 추천하지 않습니다. 상품을 고르는 기준과 세금, 수수료를 비교하는 방법을 정리했습니다.",
       "금리, 환율처럼 시장 숫자는 매일 바뀝니다. 글에 적힌 수치는 기준 시점의 값이니, 투자 전에는 최신 값을 다시 확인하세요."
     ],
-    "start": ["2026-etf-beginner-guide", "2026-isa-account-guide", "2026-bond-investment-guide"],
-    "tags": ["투자", "ETF", "주식"],
-    "apps": ["apps/exchange-fee-calculator/", "apps/economy-dashboard/"]
+    "start": [
+      "2026-etf-beginner-guide",
+      "2026-isa-account-guide",
+      "2026-bond-investment-guide"
+    ],
+    "tags": [
+      "투자",
+      "ETF",
+      "주식"
+    ],
+    "apps": [
+      "apps/exchange-fee-calculator/",
+      "apps/economy-dashboard/"
+    ]
   },
   {
     "slug": "saving",
@@ -60,9 +103,23 @@
       "신용점수, 카드 혜택, 보험료처럼 매달 조금씩 새는 돈을 막는 글도 함께 모았습니다. 한 번 정리해 두면 해마다 돈이 덜 나갑니다.",
       "잊고 있던 예금과 보험금, 받을 수 있는 장려금도 직접 신청해야 돌아옵니다. 1년에 한 번 같은 날 다시 조회해 보세요."
     ],
-    "start": ["2026-first-salary-money-management-guide", "2026-parking-savings-guide", "2026-hidden-money-finder-guide"],
-    "tags": ["저축", "목돈마련", "생활금융", "절약", "예금"],
-    "apps": ["apps/savings-calculator/", "apps/economy-dashboard/", "apps/daily-econ/"]
+    "start": [
+      "2026-first-salary-money-management-guide",
+      "2026-parking-savings-guide",
+      "2026-hidden-money-finder-guide"
+    ],
+    "tags": [
+      "저축",
+      "목돈마련",
+      "생활금융",
+      "절약",
+      "예금"
+    ],
+    "apps": [
+      "apps/savings-calculator/",
+      "apps/economy-dashboard/",
+      "apps/daily-econ/"
+    ]
   },
   {
     "slug": "insurance",
@@ -73,8 +130,15 @@
       "보험금은 청구해야 받을 수 있고, 청구 기한도 있습니다. 실손보험 청구 글을 보고 지난 진료 내역부터 확인해 보세요.",
       "이 모음의 글은 특정 보험사나 상품을 추천하지 않습니다. 약관에서 확인할 조건과 보험료를 비교하는 기준을 정리했습니다."
     ],
-    "start": ["2026-health-insurance-generation-guide", "2026-medical-insurance-claim-guide", "2026-term-life-insurance-guide"],
-    "tags": ["보험", "보장성보험"],
+    "start": [
+      "2026-health-insurance-generation-guide",
+      "2026-medical-insurance-claim-guide",
+      "2026-term-life-insurance-guide"
+    ],
+    "tags": [
+      "보험",
+      "보장성보험"
+    ],
     "apps": []
   }
 ]
