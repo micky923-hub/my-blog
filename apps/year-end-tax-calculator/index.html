@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연말정산 환급 계산기 (13월의 월급 미리 계산) — Financial Diary</title>
+  <meta name="description" content="연말정산 환급액을 미리 계산해요. 총급여·가족·카드·연금저축·IRP·월세를 넣으면 돌려받을 돈 또는 더 낼 돈과, 12월 31일 전에 하면 더 받는 금액까지 알려 줘요. 2026년 귀속 세법 기준.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/year-end-tax-calculator/">
+  <meta property="og:title" content="연말정산 환급 계산기 (13월의 월급 미리 계산) — Financial Diary">
+  <meta property="og:description" content="연말정산 환급액을 미리 계산해요. 총급여·가족·카드·연금저축·IRP·월세를 넣으면 돌려받을 돈 또는 더 낼 돈과, 12월 31일 전에 하면 더 받는 금액까지 알려 줘요. 2026년 귀속 세법 기준.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/year-end-tax-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/year-end-tax-calculator/#app",
+        "name": "연말정산 환급 계산기",
+        "url": "https://financialdiary.co.kr/apps/year-end-tax-calculator/",
+        "description": "연말정산 환급액을 미리 계산해요. 총급여·가족·카드·연금저축·IRP·월세를 넣으면 돌려받을 돈 또는 더 낼 돈과, 12월 31일 전에 하면 더 받는 금액까지 알려 줘요. 2026년 귀속 세법 기준.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/year-end-tax-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "연말정산 환급액은 어떻게 계산하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1년 동안 월급에서 미리 낸 소득세와 연말정산으로 확정된 세금(결정세액)의 차이예요. 미리 낸 세금이 더 많으면 돌려받고 적으면 더 내요. 지방소득세 10%도 같은 방식으로 함께 정산돼요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "이미 낸 세금은 어디서 확인하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "매달 급여명세서의 소득세 칸을 더하면 돼요. 계산기에서 월 소득세와 개월 수를 넣으면 자동으로 1년 치를 계산해요. 연말정산이 끝난 뒤에는 근로소득 원천징수영수증의 기납부세액 칸에서 볼 수 있어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "12월 31일 전에 무엇을 하면 환급이 늘어나나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "연금저축과 IRP의 남은 한도 채우기, 카드 문턱(총급여의 25%)을 넘었다면 남은 지출을 체크카드로 쓰기, 고향사랑기부 10만 원이 대표적이에요. 계산기 아래 12월 31일 전에 하면 상자에서 내 상황의 금액을 확인할 수 있어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "공제를 더 챙겨도 환급이 늘지 않는 이유는 뭔가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "세액공제는 내야 할 세금(결정세액)보다 많이 돌려받을 수 없어요. 결정세액이 이미 0원이면 연금계좌나 기부금을 더 넣어도 환급이 늘지 않으니 내년 계획으로 돌리는 편이 나아요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "맞벌이 부부는 어떻게 계산하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "두 사람이 각자 따로 계산해요. 자녀와 부모님 기본공제는 한 사람만 받을 수 있으니 공제받을 사람 쪽에만 넣으세요. 보통 세율이 높은 쪽이 받으면 줄어드는 세금이 커요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "추가 납부가 나오면 한 번에 내야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "회사 연말정산에서 추가로 낼 세금은 보통 2월 급여에서 빠져요. 금액이 커서 한 번에 내기 어렵다면 여러 달에 나눠 낼 수 있는지 회사에 물어보세요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "연말정산 환급 계산기",
+            "item": "https://financialdiary.co.kr/apps/year-end-tax-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="ye-header">
+    <div class="ye-header-inner">
+      <a href="../../" class="ye-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle ye-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="ye-main" id="main-content">
+    <div class="ye-intro">
+      <h1 class="ye-title">🧾 연말정산 환급 계산기</h1>
+      <p class="ye-subtitle">13월의 월급, 얼마 받을지와 12월에 더 받는 방법까지 알려 드려요</p>
+    </div>
+
+    <details class="ye-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="ye-guide-steps">
+        <li><strong>총급여</strong>를 넣으세요. 급여명세서나 작년 원천징수영수증의 비과세를 뺀 연봉이에요.</li>
+        <li>급여명세서의 <strong>소득세</strong> 칸 금액을 넣으면 돌려받을 돈(또는 더 낼 돈)이 나와요. 모르면 비워 두세요.</li>
+        <li>내가 공제받는 <strong>가족 수</strong>, 올해 <strong>카드 사용액</strong>(12월까지 쓸 금액 포함), <strong>연금저축·IRP·월세</strong>를 넣으세요. 없는 칸은 비워 두면 돼요.</li>
+        <li>맨 아래 <strong>12월 31일 전에 하면</strong>에서 올해가 가기 전에 할 수 있는 일과 더 돌려받는 금액을 확인하세요.</li>
+      </ol>
+      <p class="ye-guide-heading"><strong>알아두면 좋아요</strong></p>
+      <ul class="ye-guide-terms">
+        <li>홈택스·손택스 <strong>연말정산 미리보기</strong>에서 1~9월 카드 사용액을 확인할 수 있어요.</li>
+        <li>맞벌이라면 가족 공제는 한 사람만 받을 수 있어요. 각자 따로 계산해 보세요.</li>
+        <li>근로소득만 있는 직장인용이에요. 사업·프리랜서·금융소득이 따로 있거나, 올해 중간에 입사·퇴사했거나, 두 회사 이상에서 일했다면 결과가 달라요. (<a href="../../posts/2026-freelancer-side-income-tax-guide.html">종합소득세 신고 가이드</a>)</li>
+      </ul>
+    </details>
+
+    <form class="ye-form" id="ye-form" novalidate onsubmit="return false;">
+
+      <!-- ① 소득·낸 세금 -->
+      <section class="ye-card" aria-labelledby="ye-step1">
+        <h2 class="ye-card-title" id="ye-step1"><span class="ye-num" aria-hidden="true">①</span> 소득·낸 세금</h2>
+
+        <div class="ye-field">
+          <label for="ye-salary" class="ye-label">총급여 (비과세 뺀 연봉)</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-salary" class="ye-input" inputmode="numeric" autocomplete="off" value="50,000,000" aria-describedby="ye-salary-hint">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-salary-hint">5,000만 원</p>
+        </div>
+
+        <fieldset class="ye-field">
+          <legend class="ye-label">이미 낸 소득세 <span class="ye-optional">(선택)</span></legend>
+          <div class="ye-segment-options">
+            <input type="radio" name="ye-paid-mode" id="ye-paid-mode-annual" value="annual" checked>
+            <label for="ye-paid-mode-annual">1년 합계</label>
+            <input type="radio" name="ye-paid-mode" id="ye-paid-mode-monthly" value="monthly">
+            <label for="ye-paid-mode-monthly">월 소득세 × 개월</label>
+          </div>
+        </fieldset>
+
+        <div class="ye-panel" id="ye-panel-annual">
+          <div class="ye-field">
+            <label for="ye-paid" class="ye-label ye-label-sub">1년 동안 낸 소득세 합계</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-paid" class="ye-input" inputmode="numeric" autocomplete="off" value="2,500,000" placeholder="모르면 비워 두세요" aria-describedby="ye-paid-hint ye-paid-help">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-paid-hint">250만 원</p>
+          </div>
+        </div>
+
+        <div class="ye-panel" id="ye-panel-monthly" hidden>
+          <div class="ye-field">
+            <label for="ye-monthlyTax" class="ye-label ye-label-sub">급여명세서의 월 소득세</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-monthlyTax" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="모르면 비워 두세요" aria-describedby="ye-monthlyTax-hint ye-paid-help">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-monthlyTax-hint"></p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-months" class="ye-label ye-label-sub">올해 소득세를 낸 개월 수</label>
+            <div class="ye-input-wrap ye-short-wrap">
+              <input type="text" id="ye-months" class="ye-input" inputmode="numeric" autocomplete="off" maxlength="2" value="12">
+              <span class="ye-unit" aria-hidden="true">개월</span>
+            </div>
+          </div>
+        </div>
+        <p class="ye-help" id="ye-paid-help">지방소득세(소득세의 10%)는 빼고 소득세만 넣으세요. 자동으로 함께 계산해요.</p>
+      </section>
+
+      <!-- ② 가족 -->
+      <section class="ye-card" aria-labelledby="ye-step2">
+        <h2 class="ye-card-title" id="ye-step2"><span class="ye-num" aria-hidden="true">②</span> 가족 (내가 공제받는 사람만)</h2>
+
+        <fieldset class="ye-field">
+          <legend class="ye-label">배우자 공제</legend>
+          <div class="ye-segment-options">
+            <input type="radio" name="ye-spouse" id="ye-spouse-yes" value="yes">
+            <label for="ye-spouse-yes">예</label>
+            <input type="radio" name="ye-spouse" id="ye-spouse-no" value="no" checked>
+            <label for="ye-spouse-no">아니오</label>
+          </div>
+          <p class="ye-help">소득이 없는(총급여 500만 원 이하) 배우자만 "예". 맞벌이는 "아니오"예요.</p>
+        </fieldset>
+
+        <div class="ye-stepper-row">
+          <label for="ye-kids8" class="ye-stepper-label">만 8~20세 자녀</label>
+          <div class="ye-stepper">
+            <button type="button" class="ye-step-btn" data-step="-1" aria-controls="ye-kids8" aria-label="만 8~20세 자녀 한 명 빼기">−</button>
+            <input type="text" id="ye-kids8" class="ye-count" inputmode="numeric" autocomplete="off" maxlength="2" value="0">
+            <button type="button" class="ye-step-btn" data-step="1" aria-controls="ye-kids8" aria-label="만 8~20세 자녀 한 명 더하기">+</button>
+          </div>
+        </div>
+        <div class="ye-stepper-row">
+          <label for="ye-kids7" class="ye-stepper-label">만 7세 이하 자녀</label>
+          <div class="ye-stepper">
+            <button type="button" class="ye-step-btn" data-step="-1" aria-controls="ye-kids7" aria-label="만 7세 이하 자녀 한 명 빼기">−</button>
+            <input type="text" id="ye-kids7" class="ye-count" inputmode="numeric" autocomplete="off" maxlength="2" value="0">
+            <button type="button" class="ye-step-btn" data-step="1" aria-controls="ye-kids7" aria-label="만 7세 이하 자녀 한 명 더하기">+</button>
+          </div>
+        </div>
+        <div class="ye-stepper-row">
+          <label for="ye-parents" class="ye-stepper-label">부모님 등 부양가족 <span class="ye-stepper-sub">만 60세 이상</span></label>
+          <div class="ye-stepper">
+            <button type="button" class="ye-step-btn" data-step="-1" aria-controls="ye-parents" aria-label="부양가족 한 명 빼기">−</button>
+            <input type="text" id="ye-parents" class="ye-count" inputmode="numeric" autocomplete="off" maxlength="2" value="0">
+            <button type="button" class="ye-step-btn" data-step="1" aria-controls="ye-parents" aria-label="부양가족 한 명 더하기">+</button>
+          </div>
+        </div>
+        <div class="ye-stepper-row">
+          <label for="ye-elders" class="ye-stepper-label">그중 만 70세 이상 <span class="ye-stepper-sub">본인·배우자 포함</span></label>
+          <div class="ye-stepper">
+            <button type="button" class="ye-step-btn" data-step="-1" aria-controls="ye-elders" aria-label="만 70세 이상 한 명 빼기">−</button>
+            <input type="text" id="ye-elders" class="ye-count" inputmode="numeric" autocomplete="off" maxlength="2" value="0">
+            <button type="button" class="ye-step-btn" data-step="1" aria-controls="ye-elders" aria-label="만 70세 이상 한 명 더하기">+</button>
+          </div>
+        </div>
+
+        <div class="ye-check-row">
+          <input type="checkbox" id="ye-marriage-plan" class="ye-checkbox">
+          <label for="ye-marriage-plan">올해 결혼했거나 결혼 예정이에요</label>
+        </div>
+        <fieldset class="ye-field ye-sub-field" id="ye-marriage-wrap" hidden>
+          <legend class="ye-label ye-label-sub">2026년 안에 혼인신고를 했나요?</legend>
+          <div class="ye-segment-options">
+            <input type="radio" name="ye-marriage" id="ye-marriage-yes" value="yes">
+            <label for="ye-marriage-yes">했어요</label>
+            <input type="radio" name="ye-marriage" id="ye-marriage-no" value="no" checked>
+            <label for="ye-marriage-no">아직이에요</label>
+          </div>
+          <p class="ye-help">결혼세액공제는 2024~2026년 혼인신고, 1인당 생애 한 번 50만 원이에요. 부부가 각자 받을 수 있어요.</p>
+        </fieldset>
+      </section>
+
+      <!-- ③ 카드 -->
+      <section class="ye-card" aria-labelledby="ye-step3">
+        <h2 class="ye-card-title" id="ye-step3"><span class="ye-num" aria-hidden="true">③</span> 카드 (1년 예상 합계)</h2>
+        <p class="ye-card-lead">지금까지 쓴 금액에 12월까지 쓸 금액을 더해 넣으세요.</p>
+
+        <div class="ye-field">
+          <label for="ye-credit" class="ye-label">신용카드</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-credit" class="ye-input" inputmode="numeric" autocomplete="off" value="15,000,000" aria-describedby="ye-credit-hint">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-credit-hint">1,500만 원</p>
+        </div>
+        <div class="ye-field">
+          <label for="ye-debit" class="ye-label">체크카드·현금영수증</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-debit" class="ye-input" inputmode="numeric" autocomplete="off" value="3,000,000" aria-describedby="ye-debit-hint">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-debit-hint">300만 원</p>
+        </div>
+        <div class="ye-field">
+          <label for="ye-market" class="ye-label">전통시장·대중교통</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-market" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-market-hint">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-market-hint"></p>
+        </div>
+        <div class="ye-field">
+          <label for="ye-extraSpend" class="ye-label">그중 연말까지 더 쓸 예상 금액</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-extraSpend" class="ye-input" inputmode="numeric" autocomplete="off" value="1,000,000" aria-describedby="ye-extraSpend-hint ye-extraSpend-help">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-extraSpend-hint">100만 원</p>
+          <p class="ye-help" id="ye-extraSpend-help">위 칸에 이미 포함된 금액이에요. 체크카드로 바꾸면 얼마 더 받는지 계산할 때만 써요.</p>
+        </div>
+      </section>
+
+      <!-- ④ 연금·월세 -->
+      <section class="ye-card" aria-labelledby="ye-step4">
+        <h2 class="ye-card-title" id="ye-step4"><span class="ye-num" aria-hidden="true">④</span> 연금·월세</h2>
+
+        <div class="ye-field">
+          <label for="ye-pension" class="ye-label">연금저축 (올해 넣은 돈)</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-pension" class="ye-input" inputmode="numeric" autocomplete="off" value="3,000,000" aria-describedby="ye-pension-hint">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-pension-hint">300만 원</p>
+        </div>
+        <div class="ye-field">
+          <label for="ye-irp" class="ye-label">IRP (올해 넣은 돈)</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-irp" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-irp-hint">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-irp-hint"></p>
+        </div>
+        <div class="ye-field">
+          <label for="ye-rent" class="ye-label">월세 1년 합계</label>
+          <div class="ye-input-wrap">
+            <input type="text" id="ye-rent" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-rent-hint ye-rent-help">
+            <span class="ye-unit" aria-hidden="true">원</span>
+          </div>
+          <p class="ye-hint" id="ye-rent-hint"></p>
+          <p class="ye-help" id="ye-rent-help">무주택 세대주, 전용 85㎡ 이하 또는 기준시가 4억 원 이하 집, 전입신고까지 했을 때만 넣으세요.</p>
+        </div>
+      </section>
+
+      <p class="ye-peek"><a href="#ye-result" class="ye-peek-link"><span id="ye-peek-text">지금 예상</span> <span aria-hidden="true">↓</span> 결과 보기</a></p>
+
+      <!-- 더 자세히 -->
+      <details class="ye-more">
+        <summary>더 자세히 (보험·의료비·교육비·기부금·출산 등)</summary>
+        <div class="ye-more-body">
+          <div class="ye-field">
+            <label for="ye-insurance" class="ye-label">보장성보험료 (1년)</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-insurance" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-insurance-hint">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-insurance-hint"></p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-medicalSelf" class="ye-label">의료비 (본인·6세 이하·65세 이상·장애인)</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-medicalSelf" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-medicalSelf-hint">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-medicalSelf-hint"></p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-medicalOther" class="ye-label">의료비 (그 밖의 가족)</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-medicalOther" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-medicalOther-hint">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-medicalOther-hint"></p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-education" class="ye-label">교육비 합계</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-education" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-education-hint ye-education-help">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-education-hint"></p>
+            <p class="ye-help" id="ye-education-help">사람별 한도(취학 전·초중고 300만 원, 대학생 900만 원, 본인은 한도 없음) 안의 금액만 넣으세요.</p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-donation" class="ye-label">일반 기부금</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-donation" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-donation-hint">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-donation-hint"></p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-gohyang" class="ye-label">고향사랑기부금</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-gohyang" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-gohyang-hint">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-gohyang-hint"></p>
+          </div>
+          <div class="ye-field">
+            <label for="ye-culture" class="ye-label">도서·공연·박물관·영화·수영장·헬스장</label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-culture" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="0" aria-describedby="ye-culture-hint ye-culture-help">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-culture-hint"></p>
+            <p class="ye-help" id="ye-culture-help">③ 카드 칸에 넣지 않은 금액만 넣으세요. 총급여 7,000만 원 이하면 30%, 넘으면 신용카드와 같게 계산해요.</p>
+          </div>
+
+          <div class="ye-stepper-row">
+            <label for="ye-disabled" class="ye-stepper-label">장애인 (본인·가족)</label>
+            <div class="ye-stepper">
+              <button type="button" class="ye-step-btn" data-step="-1" aria-controls="ye-disabled" aria-label="장애인 한 명 빼기">−</button>
+              <input type="text" id="ye-disabled" class="ye-count" inputmode="numeric" autocomplete="off" maxlength="2" value="0">
+              <button type="button" class="ye-step-btn" data-step="1" aria-controls="ye-disabled" aria-label="장애인 한 명 더하기">+</button>
+            </div>
+          </div>
+
+          <fieldset class="ye-field">
+            <legend class="ye-label">올해 출산·입양</legend>
+            <div class="ye-segment-options ye-segment-4">
+              <input type="radio" name="ye-birth" id="ye-birth-0" value="0" checked>
+              <label for="ye-birth-0">없음</label>
+              <input type="radio" name="ye-birth" id="ye-birth-1" value="1">
+              <label for="ye-birth-1">첫째</label>
+              <input type="radio" name="ye-birth" id="ye-birth-2" value="2">
+              <label for="ye-birth-2">둘째</label>
+              <input type="radio" name="ye-birth" id="ye-birth-3" value="3">
+              <label for="ye-birth-3">셋째 이상</label>
+            </div>
+          </fieldset>
+
+          <div class="ye-field">
+            <label for="ye-social" class="ye-label">4대보험 본인 부담 1년 합계 <span class="ye-optional">(국민연금·건강·장기요양·고용)</span></label>
+            <div class="ye-input-wrap">
+              <input type="text" id="ye-social" class="ye-input" inputmode="numeric" autocomplete="off" value="" placeholder="비우면 자동 추정" aria-describedby="ye-social-hint ye-social-help">
+              <span class="ye-unit" aria-hidden="true">원</span>
+            </div>
+            <p class="ye-hint" id="ye-social-hint"></p>
+            <p class="ye-help" id="ye-social-help">비워 두면 총급여로 추정해요. 급여명세서의 네 보험료를 1년 치로 더해 넣으면 더 정확해요.</p>
+          </div>
+        </div>
+      </details>
+    </form>
+
+    <section class="ye-result" id="ye-result" aria-live="polite" aria-labelledby="ye-result-title">
+      <h2 class="ye-result-title" id="ye-result-title">결과</h2>
+      <p class="ye-error" id="ye-error" hidden></p>
+
+      <div id="ye-result-body">
+        <div class="ye-headline" id="ye-headline">
+          <span class="ye-headline-label" id="ye-headline-label">예상 환급액</span>
+          <strong class="ye-headline-value" id="ye-headline-value">-</strong>
+          <p class="ye-headline-sub" id="ye-headline-sub"></p>
+        </div>
+
+        <details class="ye-steps-wrap">
+          <summary>계산 과정 보기</summary>
+          <dl class="ye-rows" id="ye-steps"></dl>
+        </details>
+
+        <div class="ye-effects-wrap" id="ye-effects-wrap">
+          <h3 class="ye-sub-title">항목별 줄인 세금 <span class="ye-optional">(지방소득세 포함)</span></h3>
+          <dl class="ye-rows" id="ye-effects"></dl>
+          <p class="ye-small">항목별 금액을 더하면 합계와 조금 다를 수 있어요(세율 구간·한도 때문).</p>
+        </div>
+
+        <div class="ye-actions" id="ye-actions">
+          <h3 class="ye-actions-title" id="ye-actions-title">12월 31일 전에 하면</h3>
+          <ul class="ye-actions-list" id="ye-actions-list"></ul>
+          <p class="ye-actions-all" id="ye-actions-all"></p>
+          <p class="ye-small" id="ye-actions-note" hidden>낼 세금이 적어 일부만 돌려받아요.</p>
+          <p class="ye-actions-zero" id="ye-actions-zero" hidden>올해 낼 세금이 이미 0원이라 더 챙겨도 환급이 늘지 않아요. 무리한 납입보다 내년 계획으로 돌리세요.</p>
+          <ul class="ye-actions-docs" id="ye-actions-docs" hidden>
+            <li>간소화 자료에 안 뜨는 <strong>월세</strong>(임대차계약서·이체 내역), <strong>안경·콘택트렌즈</strong> 영수증, <strong>기부금 영수증</strong>을 챙겨 회사에 내세요.</li>
+            <li>부모님 등 부양가족의 간소화 자료는 홈택스에서 <strong>자료 제공 동의</strong>를 받아야 보여요.</li>
+            <li>빠뜨렸다면 <strong>5월 종합소득세 신고</strong>나 <strong>5년 안 경정청구</strong>로 돌려받을 수 있어요.</li>
+          </ul>
+          <p class="ye-small" id="ye-actions-link">연금계좌는 <a href="../pension-tax-calculator/">연금저축·IRP 세액공제 계산기</a>에서 더 자세히 볼 수 있어요.</p>
+        </div>
+
+        <div class="ye-notes">
+          <p class="ye-note">ⓘ 세액공제는 낼 세금(결정세액)을 넘어 돌려받을 수 없어요.</p>
+          <p class="ye-note" id="ye-lost-note" hidden>ⓘ 낼 세금이 적어 못 받는 공제가 <strong id="ye-lost-amount">0원</strong> 있어요(소득세 기준).</p>
+          <p class="ye-note" id="ye-rent-note" hidden>ⓘ 월세 공제를 받으면 표준세액공제 13만 원이 빠져서, <a href="../rent-tax-credit-calculator/">월세 계산기</a> 결과보다 줄어든 세금이 작게 보일 수 있어요.</p>
+          <p class="ye-note ye-note-warn" id="ye-rent-income-note" hidden>총급여 8,000만 원을 넘으면 월세 세액공제를 받을 수 없어요. 현금영수증 소득공제로 받을 수 있어요(<a href="../rent-tax-credit-calculator/">월세 계산기</a>).</p>
+          <p class="ye-note" id="ye-social-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <p class="ye-disclaimer">
+      ※ 이 계산기는 <strong>2026년 귀속 확정 세법 기준</strong>으로 만든 <strong>참고용</strong>입니다. 4대보험료는 총급여로 추정하고, 주택자금 공제·감면·중도 입퇴사 등은 반영하지 않으며, 원 단위 절사·세법 개정에 따라 실제 연말정산 결과와 다를 수 있습니다. 정확한 금액은 국세청 홈택스 연말정산 미리보기나 세무 전문가를 통해 확인하세요.
+    </p>
+
+    <section class="ye-explain" aria-labelledby="ye-explain-title">
+      <h2 class="ye-explain-title" id="ye-explain-title">이렇게 계산해요</h2>
+      <p class="ye-explain-lead">2026년 귀속 세법으로 아래 순서대로 계산해요.</p>
+      <ol class="ye-explain-steps">
+        <li><strong>근로소득금액</strong> 총급여에서 근로소득공제(총급여 구간별 70%~2%, 최대 2,000만 원)를 빼요.</li>
+        <li><strong>과세표준</strong> 인적공제(1명 150만 원), 국민연금·건강·고용보험료, 카드 소득공제를 더 빼요.</li>
+        <li><strong>산출세액</strong> 과세표준에 세율(6%~45%)을 곱하고 누진공제를 빼요.</li>
+        <li><strong>결정세액</strong> 근로소득세액공제, 자녀·연금계좌·월세·보험·의료비·교육비·기부금 세액공제를 빼요. 0원보다 작아지지 않아요.</li>
+        <li><strong>환급액</strong> 이미 낸 세금에서 결정세액을 빼요. 지방소득세(10%)까지 함께 계산해요.<span class="ye-formula">환급액 = 이미 낸 세금 × 1.1 − 결정세액 × 1.1</span></li>
+      </ol>
+      <div class="ye-example">
+        <p class="ye-example-title"><strong>예시</strong> 총급여 5,000만 원, 1인 가구, 신용카드 1,500만·체크카드 300만 원, 연금저축 300만 원, 이미 낸 소득세 250만 원</p>
+        <dl class="ye-example-rows">
+          <div class="ye-example-row"><dt>근로소득금액</dt><dd>5,000만 − 1,225만 = <strong>37,750,000원</strong></dd></div>
+          <div class="ye-example-row"><dt>과세표준</dt><dd>37,750,000 − 인적 1,500,000 − 4대보험 4,858,668 − 카드 1,275,000 = <strong>30,116,332원</strong></dd></div>
+          <div class="ye-example-row"><dt>산출세액</dt><dd>30,116,332 × 15% − 1,260,000 = <strong>3,257,449원</strong></dd></div>
+          <div class="ye-example-row"><dt>결정세액</dt><dd>3,257,449 − 근로 660,000 − 연금 450,000 − 표준 130,000 → 10원 미만 버려 <strong>2,017,440원</strong>(지방소득세 201,740원)</dd></div>
+          <div class="ye-example-row"><dt>환급액</dt><dd>2,750,000 − 2,219,180 = <strong>530,820원</strong></dd></div>
+        </dl>
+      </div>
+      <p class="ye-explain-sub"><strong>실제 연말정산과 다를 수 있어요</strong></p>
+      <ul class="ye-explain-notes">
+        <li>4대보험료는 총급여로 추정해요. 실제 금액은 더 자세히 칸에 넣을 수 있어요.</li>
+        <li>원 단위 끝수 처리로 수십 원 차이가 날 수 있어요.</li>
+        <li>주택자금 공제·감면은 넣지 않았어요. 2026년 8월 발표된 세법개정안은 확정되면 반영해요.</li>
+      </ul>
+    </section>
+
+    <section class="ye-faq" aria-labelledby="ye-faq-title">
+      <h2 class="ye-faq-title" id="ye-faq-title">자주 묻는 질문</h2>
+      <details class="ye-faq-item">
+        <summary class="ye-faq-q">연말정산 환급액은 어떻게 계산하나요?</summary>
+        <p class="ye-faq-a">1년 동안 월급에서 미리 낸 소득세와 연말정산으로 확정된 세금(결정세액)의 차이예요. 미리 낸 세금이 더 많으면 돌려받고 적으면 더 내요. 지방소득세 10%도 같은 방식으로 함께 정산돼요.</p>
+      </details>
+      <details class="ye-faq-item">
+        <summary class="ye-faq-q">이미 낸 세금은 어디서 확인하나요?</summary>
+        <p class="ye-faq-a">매달 급여명세서의 소득세 칸을 더하면 돼요. 계산기에서 월 소득세와 개월 수를 넣으면 자동으로 1년 치를 계산해요. 연말정산이 끝난 뒤에는 근로소득 원천징수영수증의 기납부세액 칸에서 볼 수 있어요.</p>
+      </details>
+      <details class="ye-faq-item">
+        <summary class="ye-faq-q">12월 31일 전에 무엇을 하면 환급이 늘어나나요?</summary>
+        <p class="ye-faq-a">연금저축과 IRP의 남은 한도 채우기, 카드 문턱(총급여의 25%)을 넘었다면 남은 지출을 체크카드로 쓰기, 고향사랑기부 10만 원이 대표적이에요. 계산기 아래 12월 31일 전에 하면 상자에서 내 상황의 금액을 확인할 수 있어요.</p>
+      </details>
+      <details class="ye-faq-item">
+        <summary class="ye-faq-q">공제를 더 챙겨도 환급이 늘지 않는 이유는 뭔가요?</summary>
+        <p class="ye-faq-a">세액공제는 내야 할 세금(결정세액)보다 많이 돌려받을 수 없어요. 결정세액이 이미 0원이면 연금계좌나 기부금을 더 넣어도 환급이 늘지 않으니 내년 계획으로 돌리는 편이 나아요.</p>
+      </details>
+      <details class="ye-faq-item">
+        <summary class="ye-faq-q">맞벌이 부부는 어떻게 계산하나요?</summary>
+        <p class="ye-faq-a">두 사람이 각자 따로 계산해요. 자녀와 부모님 기본공제는 한 사람만 받을 수 있으니 공제받을 사람 쪽에만 넣으세요. 보통 세율이 높은 쪽이 받으면 줄어드는 세금이 커요.</p>
+      </details>
+      <details class="ye-faq-item">
+        <summary class="ye-faq-q">추가 납부가 나오면 한 번에 내야 하나요?</summary>
+        <p class="ye-faq-a">회사 연말정산에서 추가로 낼 세금은 보통 2월 급여에서 빠져요. 금액이 커서 한 번에 내기 어렵다면 여러 달에 나눠 낼 수 있는지 회사에 물어보세요.</p>
+      </details>
+    </section>
+
+    <p class="ye-related">관련 글: <a href="../../posts/2026-year-end-tax-settlement-guide.html">연말정산 소득공제 놓치기 쉬운 항목 총정리, 10월부터 준비하세요</a> · <a href="../../posts/2026-year-end-tax-saving-checklist.html">연말 절세 막판 체크리스트, 12월 31일 전에 꼭 해야 할 7가지</a><br>다른 계산기: <a href="../pension-tax-calculator/">연금저축·IRP 세액공제</a> · <a href="../rent-tax-credit-calculator/">월세 세액공제</a></p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
