@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">연말정산 경정청구 마감 시간표</title>
+  <desc id="d">경정청구는 법정신고기한(다음 해 5월 31일)부터 5년 안에 합니다. 2026년 10월 기준으로 2020년 귀속분은 기한이 지났고, 2021년 귀속분은 2027년 5월 31일, 2022년 귀속분은 2028년 5월 31일, 2023년 귀속분은 2029년 5월 31일, 2024년 귀속분은 2030년 5월 31일, 2025년 귀속분은 2031년 5월 31일까지 청구할 수 있습니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">경정청구 마감 시간표</text>
+    <text x="32" y="90" font-size="18" fill="#475569">2026년 10월 기준 · 다음 해 5월 31일부터 5년</text>
+
+    <rect x="32" y="120" width="496" height="56" rx="10" fill="#e2e8f0"/>
+    <text x="52" y="156" font-size="20" font-weight="700" fill="#64748b">2020년 귀속</text>
+    <text x="508" y="156" text-anchor="end" font-size="18" fill="#64748b">기한 지남</text>
+
+    <rect x="32" y="188" width="496" height="72" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+    <text x="52" y="220" font-size="20" font-weight="800" fill="#991b1b">2021년 귀속</text>
+    <text x="52" y="246" font-size="16" fill="#991b1b">가장 먼저 챙기세요</text>
+    <text x="508" y="232" text-anchor="end" font-size="20" font-weight="800" fill="#991b1b">2027. 5. 31.</text>
+
+    <rect x="32" y="272" width="496" height="56" rx="10" fill="#dbeafe"/>
+    <text x="52" y="308" font-size="20" font-weight="700" fill="#1e3a8a">2022년 귀속</text>
+    <text x="508" y="308" text-anchor="end" font-size="20" font-weight="700" fill="#1e3a8a">2028. 5. 31.</text>
+
+    <rect x="32" y="340" width="496" height="56" rx="10" fill="#dbeafe"/>
+    <text x="52" y="376" font-size="20" font-weight="700" fill="#1e3a8a">2023년 귀속</text>
+    <text x="508" y="376" text-anchor="end" font-size="20" font-weight="700" fill="#1e3a8a">2029. 5. 31.</text>
+
+    <rect x="32" y="408" width="496" height="56" rx="10" fill="#dbeafe"/>
+    <text x="52" y="444" font-size="20" font-weight="700" fill="#1e3a8a">2024년 귀속</text>
+    <text x="508" y="444" text-anchor="end" font-size="20" font-weight="700" fill="#1e3a8a">2030. 5. 31.</text>
+
+    <rect x="32" y="476" width="496" height="56" rx="10" fill="#dbeafe"/>
+    <text x="52" y="512" font-size="20" font-weight="700" fill="#1e3a8a">2025년 귀속</text>
+    <text x="508" y="512" text-anchor="end" font-size="20" font-weight="700" fill="#1e3a8a">2031. 5. 31.</text>
+  </g>
+</svg>
