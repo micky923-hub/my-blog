@@ -1,5 +1,21 @@
 [
   {
+    "path": "apps/year-end-tax-calculator/",
+    "emoji": "🧾",
+    "title": "연말정산 환급 계산기",
+    "description": "총급여·가족·카드·연금저축·IRP·월세만 넣으면 돌려받을 돈(또는 더 낼 돈)과, 12월 31일 전에 무엇을 하면 얼마 더 받는지 바로 알려줘요.",
+    "icon": "apps/year-end-tax-calculator/icon.svg",
+    "shortTitle": "연말정산"
+  },
+  {
+    "path": "apps/salary-net-calculator/",
+    "emoji": "💵",
+    "title": "연봉 실수령액 계산기",
+    "description": "연봉이나 월급을 넣으면 4대보험·소득세를 뺀 월 실수령액을 바로 계산하고, 연봉이 오르면 실제로 얼마 더 들어오는지까지 알려줘요.",
+    "icon": "apps/salary-net-calculator/icon.svg",
+    "shortTitle": "실수령액"
+  },
+  {
     "path": "apps/economy-dashboard/",
     "emoji": "📊",
     "title": "오늘의 생활경제 대시보드",

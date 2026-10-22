@@ -168,4 +168,4 @@ image: https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit
 ---
 
 > 💳 **함께 읽으면 좋은 글: [연말정산 소득공제 총정리](/posts/2026-year-end-tax-settlement-guide.html)**  
-> 카드 사용액 25% 문턱과 결제 수단별 공제율을 연봉별 예시로 정리했어요. 연금저축·IRP까지 챙긴다면 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 환급액도 계산해 보세요.
+> 카드 사용액 25% 문턱과 결제 수단별 공제율을 연봉별 예시로 정리했어요. 연금저축·IRP까지 챙긴다면 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 환급액도 계산해 보세요. 체크카드로 바꾸면 내 연봉에서 얼마 더 돌려받는지는 [연말정산 환급 계산기](/apps/year-end-tax-calculator/)로 확인할 수 있어요.
