@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
+  <title id="t">놓친 공제별로 덜 내는 세금 예시</title>
+  <desc id="d">연말정산 계산기(2026년 귀속 기준, 지방소득세 포함)로 계산한 예시입니다. 총급여 5,000만 원에 월세 60만 원을 놓쳤다면 120만 3,400원, 70세 부모님 부양가족을 놓쳤다면 41만 2,500원, 총급여 3,000만 원에 월세 40만 원은 낼 세금이 그만큼뿐이라 40만 9,020원, 총급여 6,000만 원에 부모님 의료비 300만 원은 5만 5,000원, 총급여 5,000만 원에 기부금 100만 원은 2만 2,000원을 덜 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="28" font-weight="800" fill="#0f172a">놓친 공제, 얼마 돌아올까</text>
+    <text x="32" y="90" font-size="18" fill="#475569">계산기 예시 · 지방소득세 포함</text>
+
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">월세 60만 원 · 총급여 5,000만</text>
+    <rect x="32" y="152" width="300" height="40" rx="8" fill="#1d4ed8"/>
+    <text x="346" y="180" font-size="19" font-weight="800" fill="#1e3a8a">120만 3,400원</text>
+
+    <text x="32" y="236" font-size="19" font-weight="700" fill="#0f172a">70세 부모님 · 총급여 5,000만</text>
+    <rect x="32" y="248" width="103" height="40" rx="8" fill="#3b82f6"/>
+    <text x="149" y="276" font-size="19" font-weight="800" fill="#1e3a8a">41만 2,500원</text>
+
+    <text x="32" y="332" font-size="19" font-weight="700" fill="#0f172a">월세 40만 원 · 총급여 3,000만</text>
+    <rect x="32" y="344" width="102" height="40" rx="8" fill="#3b82f6"/>
+    <text x="148" y="372" font-size="19" font-weight="800" fill="#1e3a8a">40만 9,020원</text>
+
+    <text x="32" y="428" font-size="19" font-weight="700" fill="#0f172a">부모님 의료비 300만 · 총급여 6,000만</text>
+    <rect x="32" y="440" width="14" height="40" rx="4" fill="#93c5fd"/>
+    <text x="60" y="468" font-size="19" font-weight="800" fill="#1e3a8a">5만 5,000원</text>
+
+    <text x="32" y="524" font-size="19" font-weight="700" fill="#0f172a">기부금 100만 · 총급여 5,000만</text>
+    <rect x="32" y="536" width="8" height="40" rx="3" fill="#93c5fd"/>
+    <text x="54" y="564" font-size="19" font-weight="800" fill="#1e3a8a">2만 2,000원</text>
+
+    <text x="32" y="616" font-size="16" fill="#475569">작은 공제는 표준세액공제 13만 원과 바뀌어요</text>
+  </g>
+</svg>
