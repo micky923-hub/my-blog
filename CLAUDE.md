@@ -1,6 +1,17 @@
 ## 프로젝트 개요
 마크다운 기반 블로그 + 미니 웹앱 포트폴리오.  HTML, CSS, JavaScript 만 사용.
 
+## 반복 작업 절차서
+
+자주 하는 일의 자세한 순서는 `.claude/skills/`에 있다. 해당 요청을 받으면 먼저 그 파일을 읽는다.
+
+* `post-check`: "오늘 글 확인해줘" (루틴 글 PR 점검, 도구 `tools/check/post-stats.js`, `tools/check/render-svg.js`)
+* `merge`: "머지해줘"
+* `naver-summary`: "요약판 만들어줘" (네이버 블로그, 도구 `tools/naver/make-cards.js`)
+* `webapp-cycle`: 새 웹앱 Plan → Build → Review → Embed
+
+이 저장소는 공개다. 절차서에도 회사 내부 정보(계약·정산·내부 문서 주소)는 쓰지 않는다. 할 일·일정은 노션 "Financial Diary 할 일 목록"에 있다.
+
 ## 작업 사이클
 사용자가 웹앱 주제를 요청하면 다음 순서로 진행한다.
 

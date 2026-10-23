@@ -1,6 +1,8 @@
 node_modules/
 dist/
-.claude/
+# Claude 작업 파일은 올리지 않고, 절차서(스킬)만 올린다
+.claude/*
+!.claude/skills/
 
 # 쇼츠 영상 생성물(스크립트로 다시 만듦)
 videos/**/scenes/
