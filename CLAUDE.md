@@ -9,6 +9,7 @@
 * `merge`: "머지해줘"
 * `naver-summary`: "요약판 만들어줘" (네이버 블로그, 도구 `tools/naver/make-cards.js`)
 * `webapp-cycle`: 새 웹앱 Plan → Build → Review → Embed
+* `routines`: claude.ai 루틴(오전 글 작성·검색엔진 알림) 지침 사본과 고치는 방법
 
 이 저장소는 공개다. 절차서에도 회사 내부 정보(계약·정산·내부 문서 주소)는 쓰지 않는다. 할 일·일정은 노션 "Financial Diary 할 일 목록"에 있다.
 
