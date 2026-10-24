@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" role="img" aria-labelledby="t d">
+  <title id="t">연말까지 달력에 넣을 날짜</title>
+  <desc id="d">10월 28일 미국 금리 결정(한국 시간 29일 새벽), 11월 26일 한국은행 기준금리 결정, 11월 30일 문화누리카드 신청 마감과 유류세 인하 종료 예정, 12월 31일 문화누리카드 지원금 사용 기한.</desc>
+  <rect x="0" y="0" width="560" height="460" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">연말까지 이 날짜만 기억하세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">2026년 10월 25일 기준 일정</text>
+
+    <line x1="60" y1="130" x2="60" y2="420" stroke="#cbd5e1" stroke-width="4"/>
+
+    <circle cx="60" cy="136" r="12" fill="#3b82f6"/>
+    <text x="88" y="132" font-size="20" font-weight="800" fill="#1e3a8a">10월 28일 (미국 시간)</text>
+    <text x="88" y="158" font-size="17" fill="#334155">미국 금리 결정 · 한국 29일 새벽</text>
+
+    <circle cx="60" cy="210" r="12" fill="#3b82f6"/>
+    <text x="88" y="206" font-size="20" font-weight="800" fill="#1e3a8a">11월 26일 (목)</text>
+    <text x="88" y="232" font-size="17" fill="#334155">한국은행 기준금리 결정 · 올해 마지막</text>
+
+    <circle cx="60" cy="290" r="12" fill="#ea580c"/>
+    <text x="88" y="286" font-size="20" font-weight="800" fill="#9a3412">11월 30일 (월)</text>
+    <text x="88" y="312" font-size="17" fill="#334155">문화누리카드 신청 마감</text>
+    <text x="88" y="336" font-size="17" fill="#334155">유류세 인하 종료 예정</text>
+
+    <circle cx="60" cy="392" r="12" fill="#ea580c"/>
+    <text x="88" y="388" font-size="20" font-weight="800" fill="#9a3412">12월 31일 (목)</text>
+    <text x="88" y="414" font-size="17" fill="#334155">문화누리카드 남은 잔액 소멸</text>
+
+    <text x="32" y="446" font-size="15" fill="#475569">예산이 먼저 떨어지면 신청이 일찍 끝날 수 있어요</text>
+  </g>
+</svg>
