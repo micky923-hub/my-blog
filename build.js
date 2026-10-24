@@ -429,6 +429,7 @@ function htmlTemplate(opts) {
     + '  <meta charset="UTF-8">\n'
     + '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
     + '  <title>' + escapeHtml(title) + '</title>\n'
+    + '  <link rel="icon" href="' + pathPrefix + 'favicon.ico" sizes="48x48">\n'
     + '  <link rel="icon" type="image/svg+xml" href="' + pathPrefix + 'favicon.svg">\n'
     + '  <link rel="alternate" type="application/rss+xml" title="' + escapeHtml(config.title) + '" href="' + siteUrl + '/rss.xml">\n'
     + '  <meta name="description" content="' + escapeHtml(description) + '">\n'
@@ -1828,6 +1829,9 @@ buildRobots();
 buildLlmsTxt(posts);
 if (fs.existsSync('favicon.svg')) {
   fs.copyFileSync('favicon.svg', path.join(DIST, 'favicon.svg'));
+}
+if (fs.existsSync('favicon.ico')) {
+  fs.copyFileSync('favicon.ico', path.join(DIST, 'favicon.ico'));
 }
 if (fs.existsSync('CNAME')) {
   fs.copyFileSync('CNAME', path.join(DIST, 'CNAME'));
