@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">2026년 기준금리 흐름</title>
+  <desc id="d">한국은행 기준금리는 상반기 연 2.50%에서 7월 2.75%, 8월 3.00%로 두 번 올랐고, 10월 22일에는 3.00%로 동결됐습니다. 다음 결정일은 11월 26일입니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">기준금리, 두 번 올리고 멈춤</text>
+    <text x="32" y="88" font-size="17" fill="#475569">한국은행 기준금리 · 2026년</text>
+
+    <line x1="32" y1="340" x2="528" y2="340" stroke="#cbd5e1" stroke-width="2"/>
+
+    <rect x="48" y="240" width="96" height="100" rx="8" fill="#93c5fd"/>
+    <text x="96" y="226" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">2.50%</text>
+    <text x="96" y="368" text-anchor="middle" font-size="17" fill="#334155">상반기</text>
+
+    <rect x="168" y="200" width="96" height="140" rx="8" fill="#60a5fa"/>
+    <text x="216" y="186" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">2.75%</text>
+    <text x="216" y="368" text-anchor="middle" font-size="17" fill="#334155">7월 인상</text>
+
+    <rect x="288" y="160" width="96" height="180" rx="8" fill="#3b82f6"/>
+    <text x="336" y="146" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">3.00%</text>
+    <text x="336" y="368" text-anchor="middle" font-size="17" fill="#334155">8월 인상</text>
+
+    <rect x="408" y="160" width="96" height="180" rx="8" fill="#ea580c"/>
+    <text x="456" y="146" text-anchor="middle" font-size="20" font-weight="800" fill="#9a3412">3.00%</text>
+    <text x="456" y="368" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3412">10월 22일 동결</text>
+
+    <text x="32" y="402" font-size="15" fill="#475569">다음 결정일 11월 26일 · 7~8월 인상분 0.5%p</text>
+  </g>
+</svg>
