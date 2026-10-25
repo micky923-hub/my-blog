@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">공시가격 20억 원 집, 명의와 세액공제에 따른 종부세 차이</title>
+  <desc id="d">공시가격 20억 원인 1주택의 종합부동산세를 어림하면 단독명의에 세액공제가 없을 때 약 276만 원, 부부 공동명의일 때 약 60만 원, 단독명의에 고령자·장기보유 세액공제 70%를 받으면 약 83만 원, 한도인 80%를 받으면 약 55만 원입니다. 재산세 중복분 공제와 농어촌특별세는 반영하지 않았습니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">같은 20억 원 집, 명의로 갈려요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1주택 · 공시가격 20억 원 · 어림 계산</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">단독명의 · 세액공제 없음</text>
+    <rect x="32" y="158" width="330" height="44" rx="8" fill="#94a3b8"/>
+    <text x="376" y="188" font-size="20" font-weight="800" fill="#334155">약 276만 원</text>
+
+    <text x="32" y="246" font-size="20" font-weight="700" fill="#0f172a">단독명의 · 66세 12년 보유(70%)</text>
+    <rect x="32" y="260" width="99" height="44" rx="8" fill="#f59e0b"/>
+    <text x="145" y="290" font-size="20" font-weight="800" fill="#92400e">약 83만 원</text>
+
+    <text x="32" y="348" font-size="20" font-weight="700" fill="#0f172a">부부 공동명의 · 각자 9억 원 공제</text>
+    <rect x="32" y="362" width="72" height="44" rx="8" fill="#16a34a"/>
+    <text x="118" y="392" font-size="20" font-weight="800" fill="#166534">약 60만 원</text>
+
+    <text x="32" y="450" font-size="20" font-weight="700" fill="#0f172a">단독명의 · 70세 15년 보유(80%)</text>
+    <rect x="32" y="464" width="66" height="44" rx="8" fill="#0d9488"/>
+    <text x="112" y="494" font-size="20" font-weight="800" fill="#115e59">약 55만 원</text>
+
+    <rect x="32" y="528" width="496" height="48" rx="12" fill="#e0e7ff"/>
+    <text x="52" y="558" font-size="16" fill="#1e3a8a">재산세 중복분 공제 · 농어촌특별세 반영 전</text>
+  </g>
+</svg>
