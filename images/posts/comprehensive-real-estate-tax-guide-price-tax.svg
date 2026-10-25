@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">1세대 1주택 공시가격별 종합부동산세(세액공제 전)</title>
+  <desc id="d">1세대 1주택 단독명의 기준으로 공시가격에서 12억 원을 빼고 공정시장가액비율 60%를 곱해 계산하면, 공시가격 13억 원은 약 30만 원, 15억 원은 약 90만 원, 18억 원은 약 192만 원, 20억 원은 약 276만 원입니다. 재산세 중복분 공제와 농어촌특별세, 세액공제는 반영하지 않은 금액입니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">공시가격이 오르면 이만큼 늘어요</text>
+    <text x="32" y="90" font-size="18" fill="#475569">1세대 1주택 단독명의 · 공제 12억 원 · 60%</text>
+
+    <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">공시가격 13억 원</text>
+    <rect x="32" y="158" width="40" height="44" rx="8" fill="#93c5fd"/>
+    <text x="86" y="188" font-size="20" font-weight="800" fill="#1e40af">약 30만 원</text>
+
+    <text x="32" y="246" font-size="20" font-weight="700" fill="#0f172a">공시가격 15억 원</text>
+    <rect x="32" y="260" width="110" height="44" rx="8" fill="#60a5fa"/>
+    <text x="156" y="290" font-size="20" font-weight="800" fill="#1e40af">약 90만 원</text>
+
+    <text x="32" y="348" font-size="20" font-weight="700" fill="#0f172a">공시가격 18억 원</text>
+    <rect x="32" y="362" width="230" height="44" rx="8" fill="#3b82f6"/>
+    <text x="276" y="392" font-size="20" font-weight="800" fill="#1e40af">약 192만 원</text>
+
+    <text x="32" y="450" font-size="20" font-weight="700" fill="#0f172a">공시가격 20억 원</text>
+    <rect x="32" y="464" width="330" height="44" rx="8" fill="#1d4ed8"/>
+    <text x="376" y="494" font-size="20" font-weight="800" fill="#1e3a8a">약 276만 원</text>
+  </g>
+</svg>
