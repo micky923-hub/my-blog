@@ -39,10 +39,12 @@ function cover(c) {
     + '<div style="position:absolute;left:90px;bottom:80px;font-size:34px;font-weight:700">파이낸셜 다이어리' + (basis ? ' · ' + basis : '') + '</div></body>';
 }
 
-function row(r) {
+function row(r, compact) {
   var hl = r[2];
-  return '<div style="display:flex;justify-content:space-between;align-items:center;padding:26px 34px;margin-bottom:18px;border-radius:24px;'
-    + 'background:' + (hl ? '#1d4ed8' : '#f1f5f9') + ';color:' + (hl ? '#fff' : '#0f172a') + ';font-size:40px"><span>' + r[0] + '</span><b>' + r[1] + '</b></div>';
+  // 줄이 4개 이상이면 아래 안내 문구가 바닥 글씨와 겹치지 않게 줄 높이를 줄인다
+  var pad = compact ? '18px 32px' : '26px 34px', gap = compact ? '12px' : '18px', size = compact ? '36px' : '40px';
+  return '<div style="display:flex;justify-content:space-between;align-items:center;padding:' + pad + ';margin-bottom:' + gap + ';border-radius:24px;'
+    + 'background:' + (hl ? '#1d4ed8' : '#f1f5f9') + ';color:' + (hl ? '#fff' : '#0f172a') + ';font-size:' + size + '"><span>' + r[0] + '</span><b>' + r[1] + '</b></div>';
 }
 
 function list(c, n, total) {
@@ -50,8 +52,8 @@ function list(c, n, total) {
     + '<div style="position:absolute;inset:40px;background:#fff;border-radius:48px;box-shadow:0 10px 40px rgba(29,78,216,.12);padding:70px 76px;box-sizing:border-box">'
     + '<div style="display:flex;justify-content:space-between;align-items:center"><span style="background:#eff6ff;color:#1d4ed8;font-weight:700;font-size:32px;padding:10px 26px;border-radius:999px">' + c.tag + '</span>'
     + '<span style="color:#94a3b8;font-size:30px;font-weight:700">' + n + ' / ' + total + '</span></div>'
-    + '<div style="font-size:66px;font-weight:800;color:#0f172a;line-height:1.25;margin-top:44px">' + br(c.title) + '</div>'
-    + '<div style="margin-top:40px">' + (c.rows || []).map(row).join('')
+    + '<div style="font-size:66px;font-weight:800;color:#0f172a;line-height:1.25;margin-top:' + ((c.rows || []).length >= 4 ? '32px' : '44px') + '">' + br(c.title) + '</div>'
+    + '<div style="margin-top:' + ((c.rows || []).length >= 4 ? '28px' : '40px') + '">' + (c.rows || []).map(function (r) { return row(r, (c.rows || []).length >= 4); }).join('')
     + (c.note ? '<div style="font-size:36px;color:#475569;line-height:1.5;margin-top:26px">' + br(c.note) + '</div>' : '') + '</div>'
     + '<div style="position:absolute;left:76px;right:76px;bottom:56px;display:flex;justify-content:space-between;color:#64748b;font-size:28px"><span>' + basis + '</span><span style="color:#1d4ed8;font-weight:700">파이낸셜 다이어리</span></div>'
     + '</div></body>';
