@@ -2748,3 +2748,6 @@ a:focus-visible {
 .post-editor-role { display: inline-block; margin-right: 0.35rem; padding: 0.05rem 0.5rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: #fff; background: var(--color-accent); vertical-align: 0.1em; }
 .post-editor-cred, .post-editor-note { font-size: 0.92rem; color: var(--color-text-secondary); }
 .post-editor-note a { white-space: nowrap; }
+.post-editor--avatar { display: flex; gap: 0.9rem; align-items: flex-start; }
+.post-editor-avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; }
+.about-editor-avatar { display: block; width: 96px; height: 96px; margin: 0.5rem 0 1rem; border-radius: 50%; }

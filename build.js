@@ -553,10 +553,12 @@ function relatedPosts(post, all, tagCount, limit) {
 function editorBoxHtml() {
   var ed = config.editor;
   if (!ed || !ed.name) return '';
-  return '      <aside class="post-editor" aria-label="편집 책임자">\n'
+  return '      <aside class="post-editor' + (ed.avatar ? ' post-editor--avatar' : '') + '" aria-label="편집 책임자">\n'
+    + (ed.avatar ? '        <img class="post-editor-avatar" src="' + base + escapeHtml(ed.avatar) + '" alt="" width="56" height="56" loading="lazy">\n        <div class="post-editor-body">\n' : '')
     + '        <p class="post-editor-name"><span class="post-editor-role">' + escapeHtml(ed.role || '편집 책임') + '</span> ' + escapeHtml(ed.name) + '</p>\n'
     + (ed.credentials ? '        <p class="post-editor-cred">' + escapeHtml(ed.credentials) + '</p>\n' : '')
     + (ed.note ? '        <p class="post-editor-note">' + escapeHtml(ed.note) + ' <a href="' + base + 'about.html#editor">편집 원칙 보기</a></p>\n' : '')
+    + (ed.avatar ? '        </div>\n' : '')
     + '      </aside>\n';
 }
 

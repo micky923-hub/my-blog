@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<title>편집 책임자 제이슨반 일러스트</title>
+<defs>
+<radialGradient id="bg" cx="0.25" cy="0.15" r="1.1"><stop offset="0" stop-color="#7aa7f5"/><stop offset="0.5" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1d4ed8"/></radialGradient>
+<clipPath id="c"><circle cx="256" cy="256" r="256"/></clipPath>
+</defs>
+<circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+<g clip-path="url(#c)">
+<!-- faint chart -->
+<g fill="#fff" fill-opacity="0.12"><rect x="40" y="300" width="40" height="212" rx="6"/><rect x="96" y="250" width="40" height="262" rx="6"/><rect x="380" y="280" width="40" height="232" rx="6"/><rect x="436" y="220" width="40" height="292" rx="6"/></g>
+<path d="M10 300l70-50 60 40 80-70" fill="none" stroke="#fdba74" stroke-opacity="0.85" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M330 250l60 30 60-80 60 10" fill="none" stroke="#fdba74" stroke-opacity="0.85" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- body: suit -->
+<path d="M70 512c4-92 70-150 186-150s182 58 186 150z" fill="#7a4e33"/>
+<!-- shirt V -->
+<path d="M206 362l50 76 50-76z" fill="#fff"/>
+<!-- collar -->
+<path d="M206 362l26 40 24-28z M306 362l-26 40-24-28z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="3"/>
+<!-- tie -->
+<path d="M246 378h20l6 14-8 9 12 72-20 22-20-22 12-72-8-9z" fill="#a8432a"/>
+<!-- lapels -->
+<path d="M196 366l40 86-30-12 8-14-44-46z" fill="#5f3a25"/>
+<path d="M316 366l-40 86 30-12-8-14 44-46z" fill="#5f3a25"/>
+<!-- buttons -->
+<circle cx="256" cy="486" r="6" fill="#4e2f1c"/>
+<!-- neck -->
+<path d="M222 312h68v60c-10 14-58 14-68 0z" fill="#efbf98"/>
+<!-- ears -->
+<ellipse cx="160" cy="238" rx="18" ry="26" fill="#f3c9a4"/><ellipse cx="352" cy="238" rx="18" ry="26" fill="#f3c9a4"/>
+<!-- face -->
+<path d="M164 210c0-72 40-112 92-112s92 40 92 112c0 66-38 120-92 120s-92-54-92-120z" fill="#f6d3b3"/>
+<!-- hair: swept quiff -->
+<path d="M160 222c-10-46 2-92 34-114 30-22 74-30 112-18 30 10 48 30 54 56 6 26 2 54-8 78-6-30-18-50-38-62-20 10-44 14-70 10-30-4-50-16-60-30-14 22-22 50-24 80z" fill="#7b4a2c"/>
+<path d="M190 112c34-40 112-50 150-10-30-12-66-10-92 4" fill="#8f5a37"/>
+<path d="M214 104c30-22 78-26 112-6" fill="none" stroke="#a87048" stroke-width="7" stroke-linecap="round"/>
+<!-- eyebrows -->
+<path d="M190 188q22-14 46-4" fill="none" stroke="#5b3a24" stroke-width="10" stroke-linecap="round"/>
+<path d="M276 184q24-10 46 4" fill="none" stroke="#5b3a24" stroke-width="10" stroke-linecap="round"/>
+<!-- glasses -->
+<g fill="#fff" fill-opacity="0.35" stroke="#1f2937" stroke-width="9" stroke-linejoin="round">
+<rect x="178" y="198" width="66" height="50" rx="12"/><rect x="268" y="198" width="66" height="50" rx="12"/></g>
+<path d="M244 216h24M178 212l-16-4M334 212l16-4" stroke="#1f2937" stroke-width="8" stroke-linecap="round"/>
+<!-- eyes -->
+<circle cx="211" cy="224" r="10" fill="#6b3a1f"/><circle cx="301" cy="224" r="10" fill="#6b3a1f"/>
+<circle cx="214" cy="221" r="3.5" fill="#fff"/><circle cx="304" cy="221" r="3.5" fill="#fff"/>
+<!-- nose -->
+<path d="M256 236q-10 26 2 32" fill="none" stroke="#d99a72" stroke-width="6" stroke-linecap="round"/>
+<!-- cheeks -->
+<ellipse cx="196" cy="268" rx="16" ry="9" fill="#f4a3a3" fill-opacity="0.5"/><ellipse cx="316" cy="268" rx="16" ry="9" fill="#f4a3a3" fill-opacity="0.5"/>
+<!-- smile -->
+<path d="M214 278q42 42 84 0q-42 14-84 0z" fill="#fff" stroke="#7c2d12" stroke-width="5" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -23,6 +23,8 @@ Financial Diary는 **블루엠파트너스가** 운영합니다. 블로그의 �
 
 <h2 id="editor">편집 책임자</h2>
 
+<img class="about-editor-avatar" src="/images/editor-avatar.svg" alt="편집 책임자 제이슨반 일러스트" width="96" height="96">
+
 **제이슨반** (필명) · 편집 책임
 
 - 2025년 5월부터 생명보험 재무 컨설턴트(설계사)로 일하고 있습니다.
