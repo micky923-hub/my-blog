@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-labelledby="t d">
+  <title id="t">1,000달러를 살 때 우대율별 환전 수수료</title>
+  <desc id="d">매매기준율 1,320원, 달러 스프레드 1.75%로 1,000달러를 살 때 수수료는 우대 없음 2만 3,100원, 우대율 50% 1만 1,550원, 90% 2,310원, 100% 0원입니다. 우대 없음과 90% 우대의 차이는 2만 790원입니다.</desc>
+  <rect x="0" y="0" width="560" height="440" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1,000달러 환전 수수료</text>
+    <text x="32" y="90" font-size="17" fill="#475569">매매기준율 1,320원 · 스프레드 1.75% 가정</text>
+
+    <text x="32" y="138" font-size="18" font-weight="700" fill="#0f172a">우대 없음</text>
+    <rect x="32" y="150" width="440" height="38" rx="8" fill="#ef4444"/>
+    <text x="462" y="176" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">2만 3,100원</text>
+
+    <text x="32" y="222" font-size="18" font-weight="700" fill="#0f172a">우대율 50%</text>
+    <rect x="32" y="234" width="220" height="38" rx="8" fill="#f59e0b"/>
+    <text x="262" y="260" font-size="18" font-weight="800" fill="#b45309">1만 1,550원</text>
+
+    <text x="32" y="306" font-size="18" font-weight="700" fill="#0f172a">우대율 90%</text>
+    <rect x="32" y="318" width="44" height="38" rx="8" fill="#3b82f6"/>
+    <text x="86" y="344" font-size="18" font-weight="800" fill="#1e40af">2,310원</text>
+
+    <text x="300" y="306" font-size="18" font-weight="700" fill="#0f172a">수수료 면제</text>
+    <text x="300" y="344" font-size="18" font-weight="800" fill="#166534">0원</text>
+
+    <text x="32" y="410" font-size="17" font-weight="700" fill="#b45309">우대 없음과 90% 우대의 차이 2만 790원</text>
+  </g>
+</svg>

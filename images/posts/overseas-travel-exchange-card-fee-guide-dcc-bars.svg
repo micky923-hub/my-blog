@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-labelledby="t d">
+  <title id="t">1,000달러 결제 때 현지 통화와 원화결제 비용 비교</title>
+  <desc id="d">1,000달러(132만 원)를 카드로 결제할 때 현지 통화로 결제하면 해외이용수수료 1.2%를 가정해 1만 5,840원이 붙습니다. 원화로 결제하면 이와 별개로 약 3~8%의 추가 수수료가 붙어 3%면 3만 9,600원, 8%면 10만 5,600원을 더 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="440" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">원화로 결제하면 더 내는 돈</text>
+    <text x="32" y="90" font-size="17" fill="#475569">1,000달러(132만 원) 카드 결제 기준</text>
+
+    <text x="32" y="138" font-size="18" font-weight="700" fill="#0f172a">현지 통화 <tspan font-weight="400" font-size="16" fill="#475569">해외이용수수료 1.2% 가정</tspan></text>
+    <rect x="32" y="150" width="67" height="38" rx="8" fill="#22c55e"/>
+    <text x="109" y="176" font-size="18" font-weight="800" fill="#166534">1만 5,840원</text>
+
+    <text x="32" y="222" font-size="18" font-weight="700" fill="#0f172a">원화결제 추가 3%</text>
+    <rect x="32" y="234" width="167" height="38" rx="8" fill="#f59e0b"/>
+    <text x="209" y="260" font-size="18" font-weight="800" fill="#b45309">+3만 9,600원</text>
+
+    <text x="32" y="306" font-size="18" font-weight="700" fill="#0f172a">원화결제 추가 8%</text>
+    <rect x="32" y="318" width="440" height="38" rx="8" fill="#ef4444"/>
+    <text x="462" y="344" text-anchor="end" font-size="18" font-weight="800" fill="#ffffff">+10만 5,600원</text>
+
+    <text x="32" y="400" font-size="17" font-weight="700" fill="#b45309">출국 전 카드사 앱에서 원화결제를 차단하세요</text>
+  </g>
+</svg>
