@@ -1,0 +1,44 @@
+name: Monthly backup
+
+# 매달 1일 사이트 저장소 전체를 GitHub 릴리스로 보관한다.
+# - 릴리스에는 GitHub가 그 시점 소스 ZIP·tar.gz를 자동으로 붙인다.
+# - 전체 기록(모든 커밋·브랜치)을 담은 git bundle 파일도 함께 올린다.
+#   복구: git clone financial-diary-YYYY-MM.bundle my-blog
+# - 같은 GitHub 계정 안의 보관이라 계정 문제까지 막지는 못한다.
+#   그래서 매달 구글 드라이브에 ZIP을 한 번 더 받아 두는 일정(FD업무 캘린더)을 함께 둔다.
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'   # 매달 1일 09:00 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make bundle and release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch --all --tags --quiet
+          STAMP=$(TZ=Asia/Seoul date +%Y-%m)
+          TAG="backup-${STAMP}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "$TAG 은(는) 이미 있습니다. 건너뜁니다."
+            exit 0
+          fi
+          BUNDLE="financial-diary-${STAMP}.bundle"
+          git bundle create "$BUNDLE" --all
+          git bundle verify "$BUNDLE"
+          gh release create "$TAG" "$BUNDLE" \
+            --target "$GITHUB_SHA" \
+            --title "월간 백업 ${STAMP}" \
+            --notes "$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST 기준 main 전체 백업입니다. 소스 ZIP은 아래 Source code, 모든 기록은 ${BUNDLE} 파일입니다."
