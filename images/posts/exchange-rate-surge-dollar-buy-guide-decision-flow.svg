@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">달러를 쓸 날짜로 정하는 환전 순서</title>
+  <desc id="d">달러를 언제 쓸지에 따라 할 일이 갈립니다. 3개월 안에 쓸 돈은 필요한 금액만 우대받아 바꾸고, 6개월에서 1년 뒤에 쓸 돈은 남은 개월 수로 나눠 매달 바꾸고, 정해진 날이 없는 돈은 목표 비중을 정해 조금씩 담습니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">달러, 쓸 날짜로 정하세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">환율 전망 대신 이 질문부터</text>
+
+    <rect x="32" y="110" width="496" height="58" rx="14" fill="#1e3a8a"/>
+    <text x="280" y="146" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">이 달러를 언제 쓰나요?</text>
+    <path d="M280 168 V190" stroke="#94a3b8" stroke-width="3"/>
+
+    <rect x="32" y="196" width="496" height="92" rx="14" fill="#fee2e2"/>
+    <text x="52" y="230" font-size="20" font-weight="800" fill="#b91c1c">3개월 안 (여행·결제)</text>
+    <text x="52" y="266" font-size="18" fill="#0f172a">필요한 금액만 우대받아 지금 환전</text>
+
+    <rect x="32" y="300" width="496" height="92" rx="14" fill="#fef3c7"/>
+    <text x="52" y="334" font-size="20" font-weight="800" fill="#b45309">6개월~1년 뒤 (학비·송금)</text>
+    <text x="52" y="370" font-size="18" fill="#0f172a">남은 개월 수로 나눠 매달 같은 날</text>
+
+    <rect x="32" y="404" width="496" height="92" rx="14" fill="#dbeafe"/>
+    <text x="52" y="438" font-size="20" font-weight="800" fill="#1e40af">정해진 날 없음 (자산)</text>
+    <text x="52" y="474" font-size="18" fill="#0f172a">목표 비중을 정하고 그 안에서 조금씩</text>
+  </g>
+</svg>
