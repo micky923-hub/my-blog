@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">6,000달러를 한 번에 살 때와 6개월에 나눠 살 때</title>
+  <desc id="d">환율이 1,400원에서 1,310원으로 내리는 경우 첫 달에 한 번에 사면 840만 원, 매달 1,000달러씩 나눠 사면 810만 원입니다. 1,300원에서 1,400원으로 오르는 경우 한 번에 사면 780만 원, 나눠 사면 810만 원입니다. 나눠 사면 두 경우 모두 평균 환율 1,350원으로 중간에 섭니다. 수수료는 빼고 계산했습니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">6,000달러, 한 번에 vs 나눠서</text>
+    <text x="32" y="88" font-size="17" fill="#475569">매달 1,000달러씩 6번 · 수수료 제외 · 가정</text>
+
+    <text x="32" y="136" font-size="19" font-weight="800" fill="#0f172a">환율이 내릴 때 (1,400원 → 1,310원)</text>
+    <text x="32" y="172" font-size="17" fill="#475569">한 번에</text>
+    <rect x="110" y="152" width="340" height="32" rx="8" fill="#ef4444"/>
+    <text x="458" y="175" font-size="18" font-weight="800" fill="#b91c1c">840만 원</text>
+    <text x="32" y="216" font-size="17" fill="#475569">나눠서</text>
+    <rect x="110" y="196" width="328" height="32" rx="8" fill="#3b82f6"/>
+    <text x="446" y="219" font-size="18" font-weight="800" fill="#1e40af">810만 원</text>
+
+    <text x="32" y="284" font-size="19" font-weight="800" fill="#0f172a">환율이 오를 때 (1,300원 → 1,400원)</text>
+    <text x="32" y="320" font-size="17" fill="#475569">한 번에</text>
+    <rect x="110" y="300" width="316" height="32" rx="8" fill="#22c55e"/>
+    <text x="434" y="323" font-size="18" font-weight="800" fill="#166534">780만 원</text>
+    <text x="32" y="364" font-size="17" fill="#475569">나눠서</text>
+    <rect x="110" y="344" width="328" height="32" rx="8" fill="#3b82f6"/>
+    <text x="446" y="367" font-size="18" font-weight="800" fill="#1e40af">810만 원</text>
+
+    <rect x="32" y="404" width="496" height="70" rx="14" fill="#dbeafe"/>
+    <text x="52" y="436" font-size="18" font-weight="800" fill="#1e40af">나눠 사면 두 경우 모두 810만 원</text>
+    <text x="52" y="462" font-size="16" fill="#0f172a">평균 1,350원, 가장 비싸게 사는 일을 피합니다</text>
+  </g>
+</svg>
