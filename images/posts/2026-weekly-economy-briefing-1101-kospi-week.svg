@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">이번 주 코스피 종가 흐름</title>
+  <desc id="d">코스피는 지난주 금요일 10월 23일 5,550.30에서 10월 28일 6,012.44까지 올랐다가 29일 5,937.66, 30일 5,730.74로 내렸습니다. 30일 하루 하락률은 3.48%이고, 한 주 전체로는 3.25% 올랐습니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">6,000 찍고 하루 3.48% ↓</text>
+    <text x="32" y="88" font-size="17" fill="#475569">코스피 종가 · 2026년 10월</text>
+
+    <line x1="32" y1="340" x2="528" y2="340" stroke="#cbd5e1" stroke-width="2"/>
+
+    <rect x="48" y="218" width="96" height="122" rx="8" fill="#93c5fd"/>
+    <text x="96" y="204" text-anchor="middle" font-size="18" font-weight="800" fill="#1e3a8a">5,550.30</text>
+    <text x="96" y="368" text-anchor="middle" font-size="17" fill="#334155">23일(지난주)</text>
+
+    <rect x="168" y="140" width="96" height="200" rx="8" fill="#3b82f6"/>
+    <text x="216" y="126" text-anchor="middle" font-size="18" font-weight="800" fill="#1e3a8a">6,012.44</text>
+    <text x="216" y="368" text-anchor="middle" font-size="17" fill="#334155">28일</text>
+
+    <rect x="288" y="153" width="96" height="187" rx="8" fill="#60a5fa"/>
+    <text x="336" y="139" text-anchor="middle" font-size="18" font-weight="800" fill="#1e3a8a">5,937.66</text>
+    <text x="336" y="368" text-anchor="middle" font-size="17" fill="#334155">29일</text>
+
+    <rect x="408" y="188" width="96" height="152" rx="8" fill="#ea580c"/>
+    <text x="456" y="174" text-anchor="middle" font-size="18" font-weight="800" fill="#9a3412">5,730.74</text>
+    <text x="456" y="368" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3412">30일 3.48%↓</text>
+
+    <text x="32" y="402" font-size="15" fill="#475569">한 주 전체로는 지난주보다 180.44포인트(3.25%) 상승</text>
+  </g>
+</svg>
