@@ -55,7 +55,7 @@ image: https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=400&
 
 관련 글: [주택담보대출 고정금리 vs 변동금리](/posts/2026-mortgage-fixed-vs-variable-rate-guide.html), [금리인하요구권 신청법](/posts/2026-interest-rate-cut-request-guide.html)
 
-출처: [은행 주담대 금리 연 4.88%…14년 5개월 만에 최고](https://news.jkn.co.kr/post/1057459), 재경일보 · [대출금리 다시 들썩…주담대 4.66%·신용대출 6.33%](https://news.mtn.co.kr/news-detail/2026093010503213340), 머니투데이방송 · 한국은행 「2026년 9월 중 금융기관 가중평균금리」(10월 29일)
+출처: [9월 은행 주담대 금리 4.88%…14년여 만의 최고 수준](https://www.fnnews.com/news/202610291202476646), 파이낸셜뉴스 · [대출금리 다시 들썩…주담대 4.66%·신용대출 6.33%](https://news.mtn.co.kr/news-detail/2026093010503213340), 머니투데이방송 · 한국은행 「2026년 9월 중 금융기관 가중평균금리」(10월 29일)
 
 ## 미국 금리 동결 뒤에도 달러 결제는 나눠서 하세요
 
@@ -80,7 +80,7 @@ image: https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=400&
 
 관련 글: [환율 급등할 때 달러 살까 말까](/posts/2026-exchange-rate-surge-dollar-buy-guide.html), [환전 수수료 계산기](/apps/exchange-fee-calculator/)
 
-출처: [Fed holds rates steady](https://www.cnbc.com/2026/10/28/fed-interest-rate-decision-october-2026.html), CNBC · 미국 연방준비제도 FOMC 성명(10월 28일) · [코스피 3.48% 급락해 5730선 마감](https://www.etoday.co.kr/news/view/2642400), 이투데이
+출처: 미국 연방준비제도 FOMC 성명(10월 28일) · [원·달러 환율, 1334.3원 마감](https://m.joseilbo.com/news/view.htm?newsid=578575), 조세일보
 
 ## 코스피가 하루 3% 넘게 빠진 날엔 1년 안에 쓸 돈부터 보세요
 
@@ -107,7 +107,7 @@ image: https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=400&
 
 관련 글: [ETF 투자 시작하는 법](/posts/2026-etf-beginner-guide.html), [파킹통장 고르는 법](/posts/2026-parking-savings-guide.html)
 
-출처: [코스피 3.48% 급락해 5730선 마감…외국인 1.6조 매도에 사이드카 발동](https://www.etoday.co.kr/news/view/2642400), 이투데이 · [코스피, 1.24% 내린 5937.66 마감](https://www.fnnews.com/news/202610291531274783), 파이낸셜뉴스
+출처: [코스피 3.48% 급락해 5730선 마감…외국인 1.6조 매도에 사이드카 발동](https://www.etoday.co.kr/news/view/2642400), 이투데이 · [코스피, 6%대 급등 6012.44로 마감](https://www.fnnews.com/news/202610281523015061), 파이낸셜뉴스
 
 ## 청년미래적금 2차는 11월 16~27일에 계좌를 여세요
 
@@ -132,7 +132,7 @@ image: https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=400&
 
 관련 글: [청년도약계좌·청년미래적금 정리](/posts/2026-youth-leap-account-guide.html), [적금·예금 계산기](/apps/savings-calculator/)
 
-출처: [청년미래적금 2차 가입 신청자 68.8만명](https://www.fnnews.com/news/202610191733053818), 파이낸셜뉴스 · [청년미래적금 2차 신청 68만8000명…11월 16일부터 계좌 개설](https://www.gosiweek.com/article/1065579041577464), 피앤피뉴스
+출처: 금융위원회 청년미래적금 2차 신청 결과 발표(10월 19일) · [청년미래적금 2차 68만8000명 가입신청](https://biz.sbs.co.kr/amp/article/20000340843), SBS Biz
 
 ## 다음 주 일정을 달력에 넣으세요
 
