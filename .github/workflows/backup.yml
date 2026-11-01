@@ -9,7 +9,9 @@ name: Monthly backup
 
 on:
   schedule:
-    - cron: '0 0 1 * *'   # 매달 1일 09:00 KST
+    # 정각은 GitHub 예약 실행이 몰려 늦거나 빠지기 쉬워 17분에 돌리고, 2일에 한 번 더 돈다.
+    # 1일에 이미 만들어졌으면 2일 실행은 아래 "이미 있습니다"로 건너뛴다.
+    - cron: '17 0 1,2 * *'   # 매달 1·2일 09:17 KST
   workflow_dispatch:
 
 permissions:

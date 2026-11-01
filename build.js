@@ -41,6 +41,12 @@ var base = basePath + '/';
 var allTopTags = [];
 // 주제별 모음 페이지 (topics.json): /topics/{slug}.html
 var TOPICS = fs.existsSync('topics.json') ? JSON.parse(fs.readFileSync('topics.json', 'utf-8')) : [];
+// 태그 → 주제 모음 페이지. 모음 페이지가 있는 태그는 검색엔진이 읽을 수 있는 /topics/ 주소로 연결한다
+var TOPIC_BY_TAG = {};
+TOPICS.forEach(function(t) { (t.tags || []).forEach(function(tag) { if (!TOPIC_BY_TAG[tag]) TOPIC_BY_TAG[tag] = t.slug; }); });
+function tagHref(base, tag) {
+  return TOPIC_BY_TAG[tag] ? base + 'topics/' + TOPIC_BY_TAG[tag] + '.html' : base + '#tag=' + encodeURIComponent(tag);
+}
 
 // 뉴스레터 구독 주소 (site.config.json의 newsletterUrl)
 // 비어 있으면 구독 상자·띠·바로가기 링크·newsletter.html·sitemap 항목이 모두 빠진다.
@@ -374,7 +380,7 @@ function htmlTemplate(opts) {
 
   var preFooterTagsHtml = '';
   allTopTags.forEach(function(tag) {
-    preFooterTagsHtml += '          <a href="' + base + '#tag=' + encodeURIComponent(tag) + '" class="pre-footer-tag">' + escapeHtml(tag) + '</a>\n';
+    preFooterTagsHtml += '          <a href="' + tagHref(base, tag) + '" class="pre-footer-tag">' + escapeHtml(tag) + '</a>\n';
   });
   var preFooterHtml = allTopTags.length > 0
     ? '  <section class="pre-footer">\n'
@@ -1196,8 +1202,8 @@ function buildPosts() {
     if (linkTags.length > 0) {
       tagsHtml = '      <ul class="post-tags" aria-label="태그">\n';
       linkTags.forEach(function(tag) {
-        // 누르면 메인 글 목록에서 이 키워드가 선택된 상태로 보여 준다 (js/list.js의 #tag= 처리)
-        tagsHtml += '        <li><a class="tag tag-link" href="' + base + '#tag=' + encodeURIComponent(tag) + '" aria-label="' + escapeHtml(tag) + ' 키워드 글 모아 보기">' + escapeHtml(tag) + '</a></li>\n';
+        // 주제 모음 페이지가 있으면 그 페이지로, 없으면 메인 글 목록에서 이 키워드가 선택된 상태로 보여 준다 (js/list.js의 #tag= 처리)
+        tagsHtml += '        <li><a class="tag tag-link" href="' + tagHref(base, tag) + '" aria-label="' + escapeHtml(tag) + ' 키워드 글 모아 보기">' + escapeHtml(tag) + '</a></li>\n';
       });
       tagsHtml += '      </ul>\n';
     }
@@ -1211,7 +1217,7 @@ function buildPosts() {
       "datePublished": meta.date || "",
       "dateModified": meta.updated || meta.date || "",
       "inLanguage": "ko-KR",
-      "author": { "@type": "Person", "name": config.author, "url": siteUrl + '/about.html' },
+      "author": { "@type": "Organization", "name": config.author, "url": siteUrl + '/about.html' },
       "editor": config.editor && config.editor.name ? { "@type": "Person", "name": config.editor.name, "description": config.editor.credentials || '', "url": siteUrl + '/about.html#editor' } : undefined,
       "publisher": { "@type": "Organization", "name": config.title, "url": siteUrl + '/' },
       "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
@@ -1257,7 +1263,7 @@ function buildPosts() {
       + (entry.coupang ? coupangNoticeHtml() : '')
       + '      </header>\n'
       + (entry.audio ? audioPlayerHtml(entry.audio, slug, meta.title || slug) : '')
-      + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" loading="lazy">\n' : '')
+      + (meta.image ? '      <img class="post-thumbnail" src="' + escapeHtml(meta.image) + '" alt="' + escapeHtml(meta.title || slug) + '" width="800" height="400" fetchpriority="high" decoding="async">\n' : '')
       + adSlot()
       + tocHtml(entry.toc)
       + '      <div class="post-content">\n'
@@ -1495,7 +1501,7 @@ function buildIndex(posts) {
         "description": config.description,
         "url": siteUrl + '/',
         "inLanguage": "ko-KR",
-        "author": { "@type": "Person", "name": config.author },
+        "author": { "@type": "Organization", "name": config.author, "url": siteUrl + '/about.html' },
         "blogPost": posts.slice(0, 10).map(function(p) {
           return { "@type": "BlogPosting", "headline": p.title, "url": siteUrl + '/posts/' + p.slug + '.html', "datePublished": p.date };
         })
@@ -1650,27 +1656,25 @@ function buildTopics(posts) {
 
 function buildSitemap(posts) {
   var urls = [
-    { loc: siteUrl + '/', priority: '1.0', changefreq: 'daily' },
-    { loc: siteUrl + '/about.html', priority: '0.3', changefreq: 'monthly' },
-    { loc: siteUrl + '/privacy.html', priority: '0.1', changefreq: 'yearly' }
+    { loc: siteUrl + '/' },
+    { loc: siteUrl + '/about.html' },
+    { loc: siteUrl + '/privacy.html' }
   ];
   if (NEWSLETTER_URL && fs.existsSync('pages/newsletter.md')) {
-    urls.push({ loc: siteUrl + '/newsletter.html', priority: '0.3', changefreq: 'monthly' });
+    urls.push({ loc: siteUrl + '/newsletter.html' });
   }
   if (fs.existsSync('apps.json')) {
     JSON.parse(fs.readFileSync('apps.json', 'utf-8')).forEach(function(app) {
-      urls.push({ loc: siteUrl + '/' + app.path, priority: '0.7', changefreq: 'monthly' });
+      urls.push({ loc: siteUrl + '/' + app.path });
     });
   }
   TOPICS.forEach(function(t) {
-    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html', priority: '0.7', changefreq: 'weekly' });
+    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html' });
   });
   posts.forEach(function(post) {
     urls.push({
       loc: siteUrl + '/posts/' + post.slug + '.html',
-      lastmod: post.updated || post.date,
-      priority: '0.8',
-      changefreq: 'monthly'
+      lastmod: post.updated || post.date
     });
   });
 
@@ -1680,8 +1684,6 @@ function buildSitemap(posts) {
     xml += '  <url>\n';
     xml += '    <loc>' + u.loc + '</loc>\n';
     if (u.lastmod) xml += '    <lastmod>' + u.lastmod + '</lastmod>\n';
-    xml += '    <changefreq>' + u.changefreq + '</changefreq>\n';
-    xml += '    <priority>' + u.priority + '</priority>\n';
     xml += '  </url>\n';
   });
   xml += '</urlset>';
