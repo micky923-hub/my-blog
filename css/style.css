@@ -1157,6 +1157,8 @@ a:focus-visible {
 
 .post-thumbnail {
   width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
   max-height: 400px;
   object-fit: cover;
   border-radius: 12px;
