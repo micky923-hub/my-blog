@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">은행 주택담보대출 신규 금리 (2026년 8월·9월)</title>
+  <desc id="d">은행 주택담보대출 신규 취급 평균 금리는 8월 4.66%에서 9월 4.88%로 0.22%p 올랐습니다. 9월 변동형은 4.76%, 고정형은 5.11%로 처음 5%대에 올라섰습니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">주담대 금리, 한 달 새 0.22%p ↑</text>
+    <text x="32" y="88" font-size="17" fill="#475569">은행 신규 취급 평균 · 한국은행 10월 29일 발표</text>
+
+    <line x1="32" y1="340" x2="528" y2="340" stroke="#cbd5e1" stroke-width="2"/>
+
+    <rect x="48" y="200" width="96" height="140" rx="8" fill="#93c5fd"/>
+    <text x="96" y="186" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">4.66%</text>
+    <text x="96" y="368" text-anchor="middle" font-size="17" fill="#334155">8월 평균</text>
+
+    <rect x="168" y="168" width="96" height="172" rx="8" fill="#3b82f6"/>
+    <text x="216" y="154" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">4.88%</text>
+    <text x="216" y="368" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a8a">9월 평균</text>
+
+    <rect x="288" y="183" width="96" height="157" rx="8" fill="#60a5fa"/>
+    <text x="336" y="169" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">4.76%</text>
+    <text x="336" y="368" text-anchor="middle" font-size="17" fill="#334155">9월 변동형</text>
+
+    <rect x="408" y="135" width="96" height="205" rx="8" fill="#ea580c"/>
+    <text x="456" y="121" text-anchor="middle" font-size="20" font-weight="800" fill="#9a3412">5.11%</text>
+    <text x="456" y="368" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3412">9월 고정형</text>
+
+    <text x="32" y="402" font-size="15" fill="#475569">9월 평균 4.88%는 2012년 4월 이후 가장 높은 수준</text>
+  </g>
+</svg>
