@@ -468,7 +468,8 @@ function htmlTemplate(opts) {
     + '    <div class="header-inner">\n'
     + '      <a href="' + base + '" class="site-brand">\n'
     + '        <svg class="site-logo" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="var(--color-accent)"/><path d="M8 22L13 15L17 18L24 10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="24" cy="10" r="2" fill="#fff"/></svg>\n'
-    + '        <h1 class="site-title">' + escapeHtml(config.title) + '</h1>\n'
+    // 사이트 이름은 모든 페이지 머리에 나오므로 h1이 아니다. 페이지마다 자기 주제를 h1 하나로 둔다
+    + '        <span class="site-title">' + escapeHtml(config.title) + '</span>\n'
     + '      </a>\n'
     + '      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
     + '    </div>\n'
@@ -1460,6 +1461,7 @@ function buildIndex(posts) {
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
+    + '    <h1 class="visually-hidden">' + escapeHtml(config.homeHeading || config.title) + '</h1>\n'
     + (appsHtml ? appsHtml + '\n' : '')
     + (NEWSLETTER_URL ? newsletterStripHtml() + '\n' : '')
     + '    <div class="list-header">\n'
@@ -1655,8 +1657,11 @@ function buildTopics(posts) {
 }
 
 function buildSitemap(posts) {
+  function latest(list) {
+    return list.reduce(function(m, p) { var d = p.updated || p.date || ''; return d > m ? d : m; }, '') || undefined;
+  }
   var urls = [
-    { loc: siteUrl + '/' },
+    { loc: siteUrl + '/', lastmod: latest(posts) },
     { loc: siteUrl + '/about.html' },
     { loc: siteUrl + '/privacy.html' }
   ];
@@ -1669,7 +1674,8 @@ function buildSitemap(posts) {
     });
   }
   TOPICS.forEach(function(t) {
-    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html' });
+    var inTopic = posts.filter(function(p) { return p.tags.some(function(tag) { return t.tags.indexOf(tag) !== -1; }); });
+    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html', lastmod: latest(inTopic) });
   });
   posts.forEach(function(post) {
     urls.push({
