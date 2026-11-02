@@ -14,7 +14,7 @@
     "name": "제이슨반",
     "role": "편집 책임",
     "credentials": "현직 생명보험·손해보험 설계사 · 변액보험판매자격 보유",
-    "note": "이 블로그에서는 보험·금융 상품을 권유하거나 판매하지 않습니다.",
+    "note": "숫자와 제도는 법령·공식 자료와 대조해 확인하지만 세무·법률 자문은 아닙니다. 이 블로그에서는 보험·금융 상품을 권유하거나 판매하지 않습니다.",
     "avatar": "images/editor-avatar.svg"
   },
   "adsenseId": "ca-pub-5578738695470624",
@@ -27,5 +27,6 @@
   "audioSummaryRequiredFrom": "",
   "newsletterUrl": "",
   "daumWebmasterTool": "#DaumWebMasterTool:0d0d9016b97c9badcf12a9ca4f00d9f9f1209e05f5bc0602428adf8ff0bfb53e:n4Bdeh3er8dd+gRpPxKBoA==",
-  "indexNowKey": "eebcc9135285bf29efc1ef52b4fc8b3a"
+  "indexNowKey": "eebcc9135285bf29efc1ef52b4fc8b3a",
+  "homeHeading": "생활에 바로 쓰는 경제·세금·금융 가이드, 파이낸셜 다이어리"
 }
