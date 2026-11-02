@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" role="img" aria-labelledby="t d">
+  <title id="t">특판 적금과 일반 적금의 세후 이자 비교</title>
+  <desc id="d">1년 동안 넣을 때 세후 이자는 연 8% 특판 적금에 월 20만 원이면 8만 7,984원, 연 3.5% 일반 적금에 월 100만 원이면 19만 2,465원입니다. 특판에 20만 원, 일반 적금에 80만 원을 나눠 넣으면 24만 1,956원으로 가장 많습니다. 특판 우대금리를 놓쳐 연 2%만 받으면 2만 1,996원입니다.</desc>
+  <rect x="0" y="0" width="560" height="470" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">금리보다 넣는 금액이 큽니다</text>
+    <text x="32" y="88" font-size="17" fill="#475569">12개월 적금 · 이자세 15.4% 뺀 세후 이자</text>
+    <text x="32" y="130" font-size="18" font-weight="700" fill="#0f172a">특판 연 8% · 월 20만 원</text>
+    <rect x="32" y="142" width="153" height="44" rx="8" fill="#93c5fd"/>
+    <text x="197" y="171" font-size="20" font-weight="800" fill="#1e3a8a">8만 7,984원</text>
+    <text x="32" y="230" font-size="18" font-weight="700" fill="#0f172a">일반 연 3.5% · 월 100만 원</text>
+    <rect x="32" y="242" width="334" height="44" rx="8" fill="#3b82f6"/>
+    <text x="354" y="271" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">19만 2,465원</text>
+    <text x="32" y="330" font-size="18" font-weight="700" fill="#0f172a">특판 20만 + 일반 80만 원</text>
+    <rect x="32" y="342" width="420" height="44" rx="8" fill="#1d4ed8"/>
+    <text x="440" y="371" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">24만 1,956원</text>
+    <rect x="32" y="404" width="496" height="44" rx="12" fill="#fee2e2"/>
+    <text x="280" y="432" text-anchor="middle" font-size="16" font-weight="700" fill="#b91c1c">특판 우대금리를 놓쳐 연 2%면 2만 1,996원</text>
+  </g>
+</svg>
