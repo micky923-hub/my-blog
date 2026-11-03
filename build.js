@@ -1346,6 +1346,27 @@ function buildPosts() {
 }
 
 // 웹앱 카드 HTML 생성
+// 홈 "어디서부터 볼까요?": 독자 상황별 입구 (start-paths.json). 칸마다 대표 글 1편 + 계산기 1개 + 주제 모음
+function buildStartPathsHtml(posts) {
+  if (!fs.existsSync('start-paths.json')) return '';
+  var paths = JSON.parse(fs.readFileSync('start-paths.json', 'utf-8'));
+  var apps = fs.existsSync('apps.json') ? JSON.parse(fs.readFileSync('apps.json', 'utf-8')) : [];
+  var html = '    <section class="start-paths" aria-labelledby="start-paths-title">\n'
+    + '      <h2 id="start-paths-title" class="app-shelf-title">어디서부터 볼까요?</h2>\n'
+    + '      <ul class="start-path-grid">\n';
+  paths.forEach(function(sp) {
+    if (!posts.some(function(p) { return p.slug === sp.post; })) { console.error('\n[빌드 중단] start-paths.json의 글을 찾을 수 없습니다: ' + sp.post); process.exit(1); }
+    if (!apps.some(function(a) { return a.path === sp.app; })) { console.error('\n[빌드 중단] start-paths.json의 계산기를 apps.json에서 찾을 수 없습니다: ' + sp.app); process.exit(1); }
+    if (!TOPICS.some(function(t) { return t.slug === sp.topic; })) { console.error('\n[빌드 중단] start-paths.json의 주제를 topics.json에서 찾을 수 없습니다: ' + sp.topic); process.exit(1); }
+    html += '        <li class="start-path">\n'
+      + '          <a class="start-path-label" href="' + base + 'topics/' + sp.topic + '.html"><span aria-hidden="true">' + escapeHtml(sp.emoji || '') + '</span> ' + escapeHtml(sp.label) + '</a>\n'
+      + '          <a class="start-path-link" href="' + base + 'posts/' + sp.post + '.html">📖 ' + escapeHtml(sp.postLabel) + '</a>\n'
+      + '          <a class="start-path-link" href="' + base + sp.app + '">🧮 ' + escapeHtml(sp.appLabel) + '</a>\n'
+      + '        </li>\n';
+  });
+  return html + '      </ul>\n    </section>\n';
+}
+
 function buildAppsHtml() {
   var appsFile = 'apps.json';
   if (!fs.existsSync(appsFile)) return '';
@@ -1450,6 +1471,7 @@ function buildIndex(posts) {
   var gridIcon = '<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0" y="0" width="5" height="8" rx="1.5"/><rect x="6.5" y="0" width="5" height="8" rx="1.5"/><rect x="13" y="0" width="5" height="8" rx="1.5"/><rect x="0" y="10" width="5" height="8" rx="1.5"/><rect x="6.5" y="10" width="5" height="8" rx="1.5"/><rect x="13" y="10" width="5" height="8" rx="1.5"/></svg>';
 
   var appsHtml = buildAppsHtml();
+  var startPathsHtml = buildStartPathsHtml(posts);
 
   var pageContent =
     '  <section class="top-section">\n'
@@ -1462,6 +1484,7 @@ function buildIndex(posts) {
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
     + '    <h1 class="visually-hidden">' + escapeHtml(config.homeHeading || config.title) + '</h1>\n'
+    + (startPathsHtml ? startPathsHtml + '\n' : '')
     + (appsHtml ? appsHtml + '\n' : '')
     + (NEWSLETTER_URL ? newsletterStripHtml() + '\n' : '')
     + '    <div class="list-header">\n'
