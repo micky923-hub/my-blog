@@ -772,6 +772,19 @@ function decorateCoupangLinks(html) {
   });
 }
 
+// 본문의 바깥 사이트 링크(법령·정책브리핑 등 출처)는 새 탭으로 연다. 읽던 글은 그대로 두고 탭만 닫으면 돌아온다.
+// 사이트 안 링크(/posts/, /apps/ 등)는 같은 창 그대로: 휴대폰에서 뒤로가기로 읽던 자리에 돌아오게.
+function decorateExternalLinks(html) {
+  return html.replace(A_TAG_RE, function(full, attrs, inner) {
+    var href = getAttr(attrs, 'href') || '';
+    if (!/^https?:\/\//i.test(href)) return full;
+    if (/^https?:\/\/(www\.)?financialdiary\.co\.kr(\/|$)/i.test(href)) return full;
+    if (/\starget\s*=/i.test(attrs)) return full;
+    return '<a' + attrs + ' target="_blank" rel="noopener">' + inner
+      + '<span class="ext-link-mark" aria-hidden="true">↗</span><span class="visually-hidden"> (새 창)</span></a>';
+  });
+}
+
 function coupangNoticeHtml() {
   return '        <p class="affiliate-notice" role="note">' + COUPANG_NOTICE + '</p>\n';
 }
@@ -1190,7 +1203,7 @@ function buildPosts() {
   entries.forEach(function(entry) {
     var meta = entry.meta;
     var slug = entry.slug;
-    var htmlContent = entry.htmlContent;
+    var htmlContent = decorateExternalLinks(entry.htmlContent);
     var hasCode = htmlContent.indexOf('<code') !== -1;
     if (entry.videoId) {
       var videoTitle = meta.videoTitle || ((meta.title || slug) + ' — 40초 요약 영상');
@@ -1563,6 +1576,7 @@ function buildStaticPages() {
     if (meta.requires === 'newsletter' && !NEWSLETTER_URL) return;
     var htmlContent = marked.parse(applyNewsletterBlocks(parsed.content, 'pages/' + filename));
     checkPageCoupang(parsed.content, htmlContent, filename);
+    htmlContent = decorateExternalLinks(htmlContent);
 
     var pageContent =
       '  <main id="main-content" class="container">\n'
