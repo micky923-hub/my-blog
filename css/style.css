@@ -2495,6 +2495,14 @@ a:focus-visible {
   white-space: nowrap;
 }
 
+/* 바깥 사이트 링크(새 탭) 표시 */
+.ext-link-mark {
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
 /* ==============================
    Post Audio (글 음성 듣기, 계획서 audio-spec.md 6절)
    ============================== */
