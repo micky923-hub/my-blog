@@ -576,15 +576,18 @@ img {
   .font-toggle, .font-toggle-knob { transition: none; }
 }
 
-/* 큰글씨 켜짐: 글 본문만 16px → 19px (머리·메뉴·카드 목록은 그대로) */
+/* 큰글씨 켜짐: 글 본문·목차 16px → 20px (머리·메뉴·카드 목록은 그대로) */
 :root[data-font="large"] .post-content {
-  font-size: 1.1875rem;
+  font-size: 1.25rem;
   line-height: 1.8;
 }
 
-:root[data-font="large"] .post-content h2 { font-size: 1.6rem; }
-:root[data-font="large"] .post-content h3 { font-size: 1.32rem; }
-:root[data-font="large"] .post-content table { font-size: 1.02rem; }
+:root[data-font="large"] .post-content h2 { font-size: 1.7rem; }
+:root[data-font="large"] .post-content h3 { font-size: 1.4rem; }
+:root[data-font="large"] .post-content table { font-size: 1.08rem; }
+:root[data-font="large"] .post-toc summary { font-size: 1.15rem; }
+:root[data-font="large"] .post-toc li { font-size: 1.1rem; }
+:root[data-font="large"] .post-meta { font-size: 1rem; }
 
 .theme-toggle {
   background: none;
