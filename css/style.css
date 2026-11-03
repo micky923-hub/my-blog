@@ -521,6 +521,51 @@ img {
   color: inherit;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 큰글씨 버튼: 켜지면 파란 바탕 */
+.font-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.font-toggle:hover {
+  background-color: var(--color-surface);
+}
+
+.font-toggle[aria-pressed="true"] {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.font-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 큰글씨 켜짐: 글 본문만 16px → 19px (머리·메뉴·카드 목록은 그대로) */
+:root[data-font="large"] .post-content {
+  font-size: 1.1875rem;
+  line-height: 1.8;
+}
+
+:root[data-font="large"] .post-content h2 { font-size: 1.6rem; }
+:root[data-font="large"] .post-content h3 { font-size: 1.32rem; }
+:root[data-font="large"] .post-content table { font-size: 1.02rem; }
+
 .theme-toggle {
   background: none;
   border: 1px solid var(--color-border);

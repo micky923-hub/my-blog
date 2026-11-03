@@ -454,6 +454,7 @@ function htmlTemplate(opts) {
     + (gaTag ? gaTag + '\n' : '')
     + '  <script>\n'
     + '    (function(){var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);'
+    + 'if(localStorage.getItem("fontSize")==="large")document.documentElement.setAttribute("data-font","large");'
     + hljsThemeScript
     + '})();\n'
     + '  </script>\n'
@@ -471,7 +472,10 @@ function htmlTemplate(opts) {
     // 사이트 이름은 모든 페이지 머리에 나오므로 h1이 아니다. 페이지마다 자기 주제를 h1 하나로 둔다
     + '        <span class="site-title">' + escapeHtml(config.title) + '</span>\n'
     + '      </a>\n'
-    + '      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
+    + '      <div class="header-actions">\n'
+    + '        <button id="font-toggle" class="font-toggle" type="button" aria-pressed="false" aria-label="본문 글씨 크게 보기">큰글씨</button>\n'
+    + '        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
+    + '      </div>\n'
     + '    </div>\n'
     + '  </header>\n\n'
     + content + '\n\n'

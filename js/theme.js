@@ -37,3 +37,31 @@
     }
   });
 })();
+
+// 큰글씨: 글 본문 글씨를 키운다. 한 번 켜면 이 기기에서는 다음에 와도 유지된다(localStorage "fontSize")
+(function() {
+  var btn = document.getElementById('font-toggle');
+  if (!btn) return;
+  var root = document.documentElement;
+
+  function isLarge() { return root.getAttribute('data-font') === 'large'; }
+
+  function update() {
+    var on = isLarge();
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', on ? '본문 글씨 원래 크기로' : '본문 글씨 크게 보기');
+  }
+
+  btn.addEventListener('click', function() {
+    if (isLarge()) {
+      root.removeAttribute('data-font');
+      try { localStorage.removeItem('fontSize'); } catch (e) {}
+    } else {
+      root.setAttribute('data-font', 'large');
+      try { localStorage.setItem('fontSize', 'large'); } catch (e) {}
+    }
+    update();
+  });
+
+  update();
+})();
