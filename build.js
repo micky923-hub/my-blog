@@ -473,7 +473,7 @@ function htmlTemplate(opts) {
     + '        <span class="site-title">' + escapeHtml(config.title) + '</span>\n'
     + '      </a>\n'
     + '      <div class="header-actions">\n'
-    + '        <button id="font-toggle" class="font-toggle" type="button" aria-pressed="false" aria-label="본문 글씨 크게 보기">큰글씨</button>\n'
+    + '        <button id="font-toggle" class="font-toggle" type="button" role="switch" aria-checked="false" aria-label="큰글씨"><span class="font-toggle-label">큰글씨</span><span class="font-toggle-knob" aria-hidden="true"></span></button>\n'
     + '        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
     + '      </div>\n'
     + '    </div>\n'

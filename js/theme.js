@@ -48,8 +48,7 @@
 
   function update() {
     var on = isLarge();
-    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    btn.setAttribute('aria-label', on ? '본문 글씨 원래 크기로' : '본문 글씨 크게 보기');
+    btn.setAttribute('aria-checked', on ? 'true' : 'false');
   }
 
   btn.addEventListener('click', function() {
