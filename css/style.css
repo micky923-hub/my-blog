@@ -2753,3 +2753,61 @@ a:focus-visible {
 .post-editor--avatar { display: flex; gap: 0.9rem; align-items: flex-start; }
 .post-editor-avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; }
 .about-editor-avatar { display: block; width: 96px; height: 96px; margin: 0.5rem 0 1rem; border-radius: 50%; }
+
+/* 홈 "어디서부터 볼까요?" 상황별 입구 (start-paths.json) */
+.start-paths {
+  margin-bottom: 1.75rem;
+}
+
+.start-paths .app-shelf-title {
+  margin-bottom: 0.75rem;
+}
+
+.start-path-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.start-path {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.start-path-label {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: 0.15rem;
+}
+
+.start-path-link {
+  font-size: 0.92rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.start-path-label:hover,
+.start-path-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+  .start-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .start-path {
+    padding: 0.8rem 0.85rem;
+  }
+}
