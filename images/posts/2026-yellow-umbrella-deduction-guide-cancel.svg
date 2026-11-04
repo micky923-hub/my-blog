@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">노란우산공제를 받을 때 세금이 갈리는 길</title>
+  <desc id="d">폐업, 사망, 법인 대표 지위 상실, 60세 이상이면서 120개월 이상 납입하면 퇴직소득으로 과세돼 유리합니다. 그 전에 스스로 해지하면 공제받은 원금과 이자에 기타소득세가 붙습니다. 다만 120개월 이상 납입 후 매출 20% 이상 감소로 해지하거나, 해외이주·3개월 이상 입원 같은 사유는 퇴직소득으로 과세합니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">공제금 받을 때 세금이 갈려요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">조세특례제한법 제86조의3 · 2026년 11월 기준</text>
+
+    <rect x="130" y="112" width="300" height="56" rx="14" fill="#1e293b"/>
+    <text x="280" y="148" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">공제금을 받는 이유는?</text>
+    <path d="M200 168 L140 206" stroke="#94a3b8" stroke-width="3" fill="none"/>
+    <path d="M360 168 L420 206" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+    <rect x="24" y="208" width="248" height="232" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="148" y="244" text-anchor="middle" font-size="20" font-weight="800" fill="#166534">사유가 생겨서</text>
+    <text x="44" y="282" font-size="17" fill="#14532d">· 폐업·사망</text>
+    <text x="44" y="312" font-size="17" fill="#14532d">· 법인 대표 지위 상실</text>
+    <text x="44" y="342" font-size="17" fill="#14532d">· 60세 이상 + 120개월</text>
+    <text x="58" y="364" font-size="17" fill="#14532d">이상 납입</text>
+    <rect x="44" y="384" width="208" height="40" rx="10" fill="#16a34a"/>
+    <text x="148" y="411" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">퇴직소득 (유리)</text>
+
+    <rect x="288" y="208" width="248" height="232" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="412" y="244" text-anchor="middle" font-size="20" font-weight="800" fill="#991b1b">그 전에 해지</text>
+    <text x="308" y="282" font-size="17" fill="#7f1d1d">· 스스로 해지</text>
+    <text x="308" y="312" font-size="17" fill="#7f1d1d">· 공제받은 원금과</text>
+    <text x="322" y="334" font-size="17" fill="#7f1d1d">이자에 세금</text>
+    <rect x="308" y="384" width="208" height="40" rx="10" fill="#dc2626"/>
+    <text x="412" y="411" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">기타소득 (불리)</text>
+
+    <rect x="24" y="464" width="512" height="112" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="44" y="498" font-size="18" font-weight="800" fill="#92400e">예외: 해지해도 퇴직소득으로</text>
+    <text x="44" y="530" font-size="17" fill="#78350f">· 120개월 이상 납입 + 매출 20% 이상 감소</text>
+    <text x="44" y="558" font-size="17" fill="#78350f">· 해외이주, 3개월 이상 입원 치료 등</text>
+  </g>
+</svg>
