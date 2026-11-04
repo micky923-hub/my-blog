@@ -1859,6 +1859,21 @@ if (fs.existsSync('apps/daily-econ/tools/check-terms.js')) {
 }
 if (fs.existsSync('apps')) {
   copyDir('apps', path.join(DIST, 'apps'), skipAppWorkFiles);
+  // 계산기(웹앱) 페이지에도 애널리틱스 태그를 넣는다. 앱 원본은 자체 완결로 두고, 배포본에만 붙인다.
+  if (config.gaId) {
+    var appGaTag = '  <script async src="https://www.googletagmanager.com/gtag/js?id=' + config.gaId + '"></script>\n'
+      + '  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","' + config.gaId + '");</script>\n';
+    var appGaCount = 0;
+    fs.readdirSync(path.join(DIST, 'apps')).forEach(function(name) {
+      var p = path.join(DIST, 'apps', name, 'index.html');
+      if (!fs.existsSync(p)) return;
+      var html = fs.readFileSync(p, 'utf-8');
+      if (html.indexOf('googletagmanager.com/gtag') !== -1 || html.indexOf('</head>') === -1) return;
+      fs.writeFileSync(p, html.replace('</head>', appGaTag + '</head>'));
+      appGaCount++;
+    });
+    console.log('  apps/ 애널리틱스 태그 추가: ' + appGaCount + '개');
+  }
   console.log('  apps/ 폴더 복사 완료');
 }
 
