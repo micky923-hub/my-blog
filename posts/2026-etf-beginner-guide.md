@@ -1,7 +1,7 @@
 ---
 title: ETF 투자 시작하는 법, 주식 초보가 첫 ETF 고르는 순서와 세금 정리
 date: 2026-09-17
-updated: 2026-11-01
+updated: 2026-10-10
 tags: [투자, ETF, 주식]
 summary: 개별 종목 분석이 부담스러운 초보 투자자에게 ETF는 가장 현실적인 시작점입니다. 첫 ETF 고르는 순서, 총보수가 20년 뒤 만드는 차이, 국내 주식형·국내 상장 해외·해외 상장 ETF의 세금 비교, 계좌 고르는 법과 자주 하는 실수까지 정리했습니다.
 image: https://images.unsplash.com/photo-1604594849809-dfedbc827105?w=800&h=400&fit=crop
