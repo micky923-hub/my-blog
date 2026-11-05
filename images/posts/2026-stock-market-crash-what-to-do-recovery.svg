@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
+  <title id="t">하락률별 본전까지 필요한 상승률</title>
+  <desc id="d">떨어진 만큼보다 더 올라야 본전입니다. 5% 하락은 약 5.3%, 10% 하락은 약 11.1%, 20% 하락은 25%, 30% 하락은 약 42.9% 올라야 본전입니다. 1,000만 원이 5.28% 빠지면 947만 2천 원이 됩니다.</desc>
+  <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">떨어진 만큼보다 더 올라야 해요</text>
+    <text x="32" y="90" font-size="17" fill="#475569">빨강: 하락률 · 초록: 본전까지 필요한 상승률</text>
+
+    <text x="32" y="136" font-size="19" font-weight="700" fill="#0f172a">5% 떨어지면</text>
+    <rect x="32" y="148" width="40" height="30" rx="6" fill="#f87171"/>
+    <text x="84" y="170" font-size="17" font-weight="800" fill="#b91c1c">−5%</text>
+    <rect x="32" y="184" width="42" height="30" rx="6" fill="#16a34a"/>
+    <text x="86" y="206" font-size="17" font-weight="800" fill="#166534">약 +5.3%</text>
+
+    <text x="32" y="254" font-size="19" font-weight="700" fill="#0f172a">10% 떨어지면</text>
+    <rect x="32" y="266" width="80" height="30" rx="6" fill="#f87171"/>
+    <text x="124" y="288" font-size="17" font-weight="800" fill="#b91c1c">−10%</text>
+    <rect x="32" y="302" width="89" height="30" rx="6" fill="#16a34a"/>
+    <text x="133" y="324" font-size="17" font-weight="800" fill="#166534">약 +11.1%</text>
+
+    <text x="32" y="372" font-size="19" font-weight="700" fill="#0f172a">20% 떨어지면</text>
+    <rect x="32" y="384" width="160" height="30" rx="6" fill="#f87171"/>
+    <text x="204" y="406" font-size="17" font-weight="800" fill="#b91c1c">−20%</text>
+    <rect x="32" y="420" width="200" height="30" rx="6" fill="#16a34a"/>
+    <text x="244" y="442" font-size="17" font-weight="800" fill="#166534">+25%</text>
+
+    <text x="32" y="490" font-size="19" font-weight="700" fill="#0f172a">30% 떨어지면</text>
+    <rect x="32" y="502" width="240" height="30" rx="6" fill="#f87171"/>
+    <text x="284" y="524" font-size="17" font-weight="800" fill="#b91c1c">−30%</text>
+    <rect x="32" y="538" width="343" height="30" rx="6" fill="#16a34a"/>
+    <text x="387" y="560" font-size="17" font-weight="800" fill="#166534">약 +42.9%</text>
+
+    <rect x="32" y="584" width="496" height="40" rx="10" fill="#fef3c7"/>
+    <text x="48" y="610" font-size="16" font-weight="700" fill="#92400e">1,000만 원이 5.28% 빠지면 947만 2천 원</text>
+  </g>
+</svg>
