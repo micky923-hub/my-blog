@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 450" role="img" aria-labelledby="t d">
+  <title id="t">에너지바우처 세대원 수별 지원 금액</title>
+  <desc id="d">2026년 에너지바우처 1년 지원 금액은 1인 세대 29만 5,200원, 2인 세대 40만 7,500원, 3인 세대 53만 2,700원, 4인 이상 세대 70만 1,300원입니다. 신청은 12월 31일까지입니다.</desc>
+  <rect x="0" y="0" width="560" height="450" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">에너지바우처, 가족 수만큼</text>
+    <text x="32" y="88" font-size="17" fill="#475569">2026년 1년 지원 금액 · 신청은 12월 31일까지</text>
+    <text x="32" y="132" font-size="18" font-weight="700" fill="#0f172a">1인 세대</text>
+    <rect x="32" y="144" width="204" height="40" rx="8" fill="#bfdbfe"/>
+    <text x="248" y="171" font-size="20" font-weight="800" fill="#1e3a8a">29만 5,200원</text>
+    <text x="32" y="216" font-size="18" font-weight="700" fill="#0f172a">2인 세대</text>
+    <rect x="32" y="228" width="282" height="40" rx="8" fill="#93c5fd"/>
+    <text x="326" y="255" font-size="20" font-weight="800" fill="#1e3a8a">40만 7,500원</text>
+    <text x="32" y="300" font-size="18" font-weight="700" fill="#0f172a">3인 세대</text>
+    <rect x="32" y="312" width="368" height="40" rx="8" fill="#3b82f6"/>
+    <text x="388" y="339" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">53만 2,700원</text>
+    <text x="32" y="384" font-size="18" font-weight="700" fill="#0f172a">4인 이상</text>
+    <rect x="32" y="396" width="484" height="40" rx="8" fill="#1d4ed8"/>
+    <text x="504" y="423" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">70만 1,300원</text>
+  </g>
+</svg>

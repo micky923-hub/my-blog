@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">노란우산공제 한도까지 넣었을 때 줄어드는 세금</title>
+  <desc id="d">본인 기본공제만 있다고 가정하고 지방소득세를 포함해 계산하면, 사업소득금액 1,200만 원은 600만 원 공제로 39만 6천 원, 2,400만 원은 600만 원 공제로 99만 원, 5,000만 원은 500만 원 공제로 82만 5천 원, 8,000만 원은 400만 원 공제로 105만 6천 원, 1억 2,000만 원은 200만 원 공제로 77만 원의 세금이 줄어듭니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#fffbeb"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">소득별로 줄어드는 세금</text>
+    <text x="32" y="88" font-size="17" fill="#475569">노란우산 한도까지 넣었을 때 · 지방소득세 포함</text>
+
+    <text x="32" y="134" font-size="18" font-weight="700" fill="#0f172a">사업소득 1,200만 원</text>
+    <text x="528" y="134" text-anchor="end" font-size="16" fill="#64748b">공제 600만</text>
+    <rect x="32" y="146" width="181" height="40" rx="8" fill="#fde68a"/>
+    <text x="225" y="173" font-size="20" font-weight="800" fill="#92400e">39만 6천 원</text>
+
+    <text x="32" y="222" font-size="18" font-weight="700" fill="#0f172a">사업소득 2,400만 원</text>
+    <text x="528" y="222" text-anchor="end" font-size="16" fill="#64748b">공제 600만</text>
+    <rect x="32" y="234" width="452" height="40" rx="8" fill="#f59e0b"/>
+    <text x="472" y="261" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">99만 원</text>
+
+    <text x="32" y="310" font-size="18" font-weight="700" fill="#0f172a">사업소득 5,000만 원</text>
+    <text x="528" y="310" text-anchor="end" font-size="16" fill="#64748b">공제 500만</text>
+    <rect x="32" y="322" width="377" height="40" rx="8" fill="#fbbf24"/>
+    <text x="397" y="349" text-anchor="end" font-size="20" font-weight="800" fill="#78350f">82만 5천 원</text>
+
+    <text x="32" y="398" font-size="18" font-weight="700" fill="#0f172a">사업소득 8,000만 원</text>
+    <text x="528" y="398" text-anchor="end" font-size="16" fill="#64748b">공제 400만</text>
+    <rect x="32" y="410" width="482" height="40" rx="8" fill="#d97706"/>
+    <text x="502" y="437" text-anchor="end" font-size="20" font-weight="800" fill="#ffffff">105만 6천 원</text>
+
+    <text x="32" y="486" font-size="18" font-weight="700" fill="#0f172a">사업소득 1억 2,000만 원</text>
+    <text x="528" y="486" text-anchor="end" font-size="16" fill="#64748b">공제 200만</text>
+    <rect x="32" y="498" width="352" height="40" rx="8" fill="#fcd34d"/>
+    <text x="372" y="525" text-anchor="end" font-size="20" font-weight="800" fill="#78350f">77만 원</text>
+  </g>
+</svg>

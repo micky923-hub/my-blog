@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 450" role="img" aria-labelledby="t d">
+  <title id="t">11월 정부 지원금 마감 달력</title>
+  <desc id="d">청년미래적금 2차 계좌 개설은 11월 16일부터 27일까지 평일, 근로장려금 기한후신청과 문화누리카드 발급은 11월 30일까지, 에너지바우처 신청은 12월 31일까지입니다. 11월 27일부터 난임치료휴가 유급 기간이 4일로 늘어납니다.</desc>
+  <rect x="0" y="0" width="560" height="450" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">11월 지원금, 마감 순서</text>
+    <text x="32" y="88" font-size="17" fill="#475569">2026년 11월 3일 기준 · 날짜가 빠른 순</text>
+    <line x1="60" y1="118" x2="60" y2="420" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="60" cy="140" r="11" fill="#3b82f6"/>
+    <text x="88" y="136" font-size="19" font-weight="800" fill="#1d4ed8">11월 16~27일 (평일)</text>
+    <text x="88" y="162" font-size="17" fill="#0f172a">청년미래적금 2차 계좌 개설</text>
+    <circle cx="60" cy="214" r="11" fill="#8b5cf6"/>
+    <text x="88" y="210" font-size="19" font-weight="800" fill="#6d28d9">11월 27일</text>
+    <text x="88" y="236" font-size="17" fill="#0f172a">난임치료휴가 유급 2일 → 4일</text>
+    <rect x="80" y="262" width="448" height="78" rx="14" fill="#fee2e2"/>
+    <circle cx="60" cy="300" r="13" fill="#dc2626"/>
+    <text x="100" y="292" font-size="20" font-weight="800" fill="#b91c1c">11월 30일 (월) 마감</text>
+    <text x="100" y="320" font-size="17" fill="#0f172a">근로장려금 기한후신청 · 문화누리카드 발급</text>
+    <circle cx="60" cy="384" r="11" fill="#16a34a"/>
+    <text x="88" y="380" font-size="19" font-weight="800" fill="#15803d">12월 31일 (목)</text>
+    <text x="88" y="406" font-size="17" fill="#0f172a">에너지바우처 신청 · 문화누리카드 사용 끝</text>
+  </g>
+</svg>

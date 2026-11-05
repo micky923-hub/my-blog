@@ -15,7 +15,8 @@
     ],
     "tags": [
       "연금",
-      "노후준비"
+      "노후준비",
+      "퇴직연금"
     ],
     "apps": [
       "apps/pension-tax-calculator/"
@@ -33,13 +34,17 @@
     "start": [
       "2026-year-end-tax-settlement-guide",
       "2026-year-end-tax-saving-checklist",
+      "2026-irp-tax-deduction-guide",
+      "2026-year-end-tax-correction-claim-guide",
       "2026-freelancer-side-income-tax-guide"
     ],
     "tags": [
       "절세",
       "세금",
       "세액공제",
-      "연말정산"
+      "연말정산",
+      "소득공제",
+      "근로장려금"
     ],
     "apps": [
       "apps/year-end-tax-calculator/",
@@ -59,12 +64,20 @@
     ],
     "start": [
       "2026-jeonse-fraud-prevention-checklist",
+      "2026-jeonse-loan-vs-monthly-rent-guide",
+      "2026-rent-tax-credit-guide",
       "2026-loan-refinancing-guide",
       "2026-mortgage-fixed-vs-variable-rate-guide"
     ],
     "tags": [
       "대출",
-      "부동산"
+      "부동산",
+      "월세",
+      "전세보증금",
+      "주택담보대출",
+      "내집마련",
+      "신용대출",
+      "기준금리"
     ],
     "apps": [
       "apps/loan-refinance-calculator/",
@@ -88,7 +101,11 @@
     "tags": [
       "투자",
       "ETF",
-      "주식"
+      "주식",
+      "배당",
+      "ISA",
+      "안전자산",
+      "환테크"
     ],
     "apps": [
       "apps/exchange-fee-calculator/",
@@ -114,7 +131,10 @@
       "목돈마련",
       "생활금융",
       "절약",
-      "예금"
+      "예금",
+      "비과세",
+      "신용카드",
+      "환전"
     ],
     "apps": [
       "apps/savings-calculator/",
@@ -139,7 +159,8 @@
     ],
     "tags": [
       "보험",
-      "보장성보험"
+      "보장성보험",
+      "실손보험"
     ],
     "apps": []
   },

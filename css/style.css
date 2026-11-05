@@ -521,6 +521,74 @@ img {
   color: inherit;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 큰글씨 토글 스위치 (기업은행 앱처럼): 꺼짐은 회색 바탕·동그라미 왼쪽, 켜짐은 파란 바탕·동그라미 오른쪽 */
+.font-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 0.7rem 0 2.25rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, padding 0.2s;
+}
+
+.font-toggle-knob {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: left 0.2s;
+}
+
+.font-toggle[aria-checked="true"] {
+  padding: 0 2.25rem 0 0.7rem;
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.font-toggle[aria-checked="true"] .font-toggle-knob {
+  left: calc(100% - 28px);
+}
+
+.font-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .font-toggle, .font-toggle-knob { transition: none; }
+}
+
+/* 큰글씨 켜짐: 글 본문·목차 16px → 20px (머리·메뉴·카드 목록은 그대로) */
+:root[data-font="large"] .post-content {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+:root[data-font="large"] .post-content h2 { font-size: 1.7rem; }
+:root[data-font="large"] .post-content h3 { font-size: 1.4rem; }
+:root[data-font="large"] .post-content table { font-size: 1.08rem; }
+:root[data-font="large"] .post-toc summary { font-size: 1.15rem; }
+:root[data-font="large"] .post-toc li { font-size: 1.1rem; }
+:root[data-font="large"] .post-meta { font-size: 1rem; }
+
 .theme-toggle {
   background: none;
   border: 1px solid var(--color-border);
@@ -2495,6 +2563,14 @@ a:focus-visible {
   white-space: nowrap;
 }
 
+/* 바깥 사이트 링크(새 탭) 표시 */
+.ext-link-mark {
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
 /* ==============================
    Post Audio (글 음성 듣기, 계획서 audio-spec.md 6절)
    ============================== */
@@ -2753,3 +2829,61 @@ a:focus-visible {
 .post-editor--avatar { display: flex; gap: 0.9rem; align-items: flex-start; }
 .post-editor-avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; }
 .about-editor-avatar { display: block; width: 96px; height: 96px; margin: 0.5rem 0 1rem; border-radius: 50%; }
+
+/* 홈 "어디서부터 볼까요?" 상황별 입구 (start-paths.json) */
+.start-paths {
+  margin-bottom: 1.75rem;
+}
+
+.start-paths .app-shelf-title {
+  margin-bottom: 0.75rem;
+}
+
+.start-path-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.start-path {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.start-path-label {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: 0.15rem;
+}
+
+.start-path-link {
+  font-size: 0.92rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.start-path-label:hover,
+.start-path-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+  .start-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .start-path {
+    padding: 0.8rem 0.85rem;
+  }
+}

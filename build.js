@@ -454,6 +454,7 @@ function htmlTemplate(opts) {
     + (gaTag ? gaTag + '\n' : '')
     + '  <script>\n'
     + '    (function(){var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);'
+    + 'if(localStorage.getItem("fontSize")==="large")document.documentElement.setAttribute("data-font","large");'
     + hljsThemeScript
     + '})();\n'
     + '  </script>\n'
@@ -468,9 +469,13 @@ function htmlTemplate(opts) {
     + '    <div class="header-inner">\n'
     + '      <a href="' + base + '" class="site-brand">\n'
     + '        <svg class="site-logo" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="var(--color-accent)"/><path d="M8 22L13 15L17 18L24 10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="24" cy="10" r="2" fill="#fff"/></svg>\n'
-    + '        <h1 class="site-title">' + escapeHtml(config.title) + '</h1>\n'
+    // 사이트 이름은 모든 페이지 머리에 나오므로 h1이 아니다. 페이지마다 자기 주제를 h1 하나로 둔다
+    + '        <span class="site-title">' + escapeHtml(config.title) + '</span>\n'
     + '      </a>\n'
-    + '      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
+    + '      <div class="header-actions">\n'
+    + '        <button id="font-toggle" class="font-toggle" type="button" role="switch" aria-checked="false" aria-label="큰글씨"><span class="font-toggle-label">큰글씨</span><span class="font-toggle-knob" aria-hidden="true"></span></button>\n'
+    + '        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
+    + '      </div>\n'
     + '    </div>\n'
     + '  </header>\n\n'
     + content + '\n\n'
@@ -768,6 +773,19 @@ function decorateCoupangLinks(html) {
     var clean = attrs.replace(/\s(?:rel|target)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
     return '<a' + clean + ' target="_blank" rel="' + COUPANG_REL + '">' + inner
       + '<span class="affiliate-ext" aria-hidden="true"> ↗</span><span class="visually-hidden"> (새 창)</span></a>';
+  });
+}
+
+// 본문의 바깥 사이트 링크(법령·정책브리핑 등 출처)는 새 탭으로 연다. 읽던 글은 그대로 두고 탭만 닫으면 돌아온다.
+// 사이트 안 링크(/posts/, /apps/ 등)는 같은 창 그대로: 휴대폰에서 뒤로가기로 읽던 자리에 돌아오게.
+function decorateExternalLinks(html) {
+  return html.replace(A_TAG_RE, function(full, attrs, inner) {
+    var href = getAttr(attrs, 'href') || '';
+    if (!/^https?:\/\//i.test(href)) return full;
+    if (/^https?:\/\/(www\.)?financialdiary\.co\.kr(\/|$)/i.test(href)) return full;
+    if (/\starget\s*=/i.test(attrs)) return full;
+    return '<a' + attrs + ' target="_blank" rel="noopener">' + inner
+      + '<span class="ext-link-mark" aria-hidden="true">↗</span><span class="visually-hidden"> (새 창)</span></a>';
   });
 }
 
@@ -1189,7 +1207,7 @@ function buildPosts() {
   entries.forEach(function(entry) {
     var meta = entry.meta;
     var slug = entry.slug;
-    var htmlContent = entry.htmlContent;
+    var htmlContent = decorateExternalLinks(entry.htmlContent);
     var hasCode = htmlContent.indexOf('<code') !== -1;
     if (entry.videoId) {
       var videoTitle = meta.videoTitle || ((meta.title || slug) + ' — 40초 요약 영상');
@@ -1345,6 +1363,27 @@ function buildPosts() {
 }
 
 // 웹앱 카드 HTML 생성
+// 홈 "어디서부터 볼까요?": 독자 상황별 입구 (start-paths.json). 칸마다 대표 글 1편 + 계산기 1개 + 주제 모음
+function buildStartPathsHtml(posts) {
+  if (!fs.existsSync('start-paths.json')) return '';
+  var paths = JSON.parse(fs.readFileSync('start-paths.json', 'utf-8'));
+  var apps = fs.existsSync('apps.json') ? JSON.parse(fs.readFileSync('apps.json', 'utf-8')) : [];
+  var html = '    <section class="start-paths" aria-labelledby="start-paths-title">\n'
+    + '      <h2 id="start-paths-title" class="app-shelf-title">어디서부터 볼까요?</h2>\n'
+    + '      <ul class="start-path-grid">\n';
+  paths.forEach(function(sp) {
+    if (!posts.some(function(p) { return p.slug === sp.post; })) { console.error('\n[빌드 중단] start-paths.json의 글을 찾을 수 없습니다: ' + sp.post); process.exit(1); }
+    if (!apps.some(function(a) { return a.path === sp.app; })) { console.error('\n[빌드 중단] start-paths.json의 계산기를 apps.json에서 찾을 수 없습니다: ' + sp.app); process.exit(1); }
+    if (!TOPICS.some(function(t) { return t.slug === sp.topic; })) { console.error('\n[빌드 중단] start-paths.json의 주제를 topics.json에서 찾을 수 없습니다: ' + sp.topic); process.exit(1); }
+    html += '        <li class="start-path">\n'
+      + '          <a class="start-path-label" href="' + base + 'topics/' + sp.topic + '.html"><span aria-hidden="true">' + escapeHtml(sp.emoji || '') + '</span> ' + escapeHtml(sp.label) + '</a>\n'
+      + '          <a class="start-path-link" href="' + base + 'posts/' + sp.post + '.html">📖 ' + escapeHtml(sp.postLabel) + '</a>\n'
+      + '          <a class="start-path-link" href="' + base + sp.app + '">🧮 ' + escapeHtml(sp.appLabel) + '</a>\n'
+      + '        </li>\n';
+  });
+  return html + '      </ul>\n    </section>\n';
+}
+
 function buildAppsHtml() {
   var appsFile = 'apps.json';
   if (!fs.existsSync(appsFile)) return '';
@@ -1449,6 +1488,7 @@ function buildIndex(posts) {
   var gridIcon = '<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0" y="0" width="5" height="8" rx="1.5"/><rect x="6.5" y="0" width="5" height="8" rx="1.5"/><rect x="13" y="0" width="5" height="8" rx="1.5"/><rect x="0" y="10" width="5" height="8" rx="1.5"/><rect x="6.5" y="10" width="5" height="8" rx="1.5"/><rect x="13" y="10" width="5" height="8" rx="1.5"/></svg>';
 
   var appsHtml = buildAppsHtml();
+  var startPathsHtml = buildStartPathsHtml(posts);
 
   var pageContent =
     '  <section class="top-section">\n'
@@ -1460,6 +1500,8 @@ function buildIndex(posts) {
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
+    + '    <h1 class="visually-hidden">' + escapeHtml(config.homeHeading || config.title) + '</h1>\n'
+    + (startPathsHtml ? startPathsHtml + '\n' : '')
     + (appsHtml ? appsHtml + '\n' : '')
     + (NEWSLETTER_URL ? newsletterStripHtml() + '\n' : '')
     + '    <div class="list-header">\n'
@@ -1538,6 +1580,7 @@ function buildStaticPages() {
     if (meta.requires === 'newsletter' && !NEWSLETTER_URL) return;
     var htmlContent = marked.parse(applyNewsletterBlocks(parsed.content, 'pages/' + filename));
     checkPageCoupang(parsed.content, htmlContent, filename);
+    htmlContent = decorateExternalLinks(htmlContent);
 
     var pageContent =
       '  <main id="main-content" class="container">\n'
@@ -1655,8 +1698,11 @@ function buildTopics(posts) {
 }
 
 function buildSitemap(posts) {
+  function latest(list) {
+    return list.reduce(function(m, p) { var d = p.updated || p.date || ''; return d > m ? d : m; }, '') || undefined;
+  }
   var urls = [
-    { loc: siteUrl + '/' },
+    { loc: siteUrl + '/', lastmod: latest(posts) },
     { loc: siteUrl + '/about.html' },
     { loc: siteUrl + '/privacy.html' }
   ];
@@ -1669,7 +1715,8 @@ function buildSitemap(posts) {
     });
   }
   TOPICS.forEach(function(t) {
-    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html' });
+    var inTopic = posts.filter(function(p) { return p.tags.some(function(tag) { return t.tags.indexOf(tag) !== -1; }); });
+    urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html', lastmod: latest(inTopic) });
   });
   posts.forEach(function(post) {
     urls.push({
@@ -1812,6 +1859,21 @@ if (fs.existsSync('apps/daily-econ/tools/check-terms.js')) {
 }
 if (fs.existsSync('apps')) {
   copyDir('apps', path.join(DIST, 'apps'), skipAppWorkFiles);
+  // 계산기(웹앱) 페이지에도 애널리틱스 태그를 넣는다. 앱 원본은 자체 완결로 두고, 배포본에만 붙인다.
+  if (config.gaId) {
+    var appGaTag = '  <script async src="https://www.googletagmanager.com/gtag/js?id=' + config.gaId + '"></script>\n'
+      + '  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","' + config.gaId + '");</script>\n';
+    var appGaCount = 0;
+    fs.readdirSync(path.join(DIST, 'apps')).forEach(function(name) {
+      var p = path.join(DIST, 'apps', name, 'index.html');
+      if (!fs.existsSync(p)) return;
+      var html = fs.readFileSync(p, 'utf-8');
+      if (html.indexOf('googletagmanager.com/gtag') !== -1 || html.indexOf('</head>') === -1) return;
+      fs.writeFileSync(p, html.replace('</head>', appGaTag + '</head>'));
+      appGaCount++;
+    });
+    console.log('  apps/ 애널리틱스 태그 추가: ' + appGaCount + '개');
+  }
   console.log('  apps/ 폴더 복사 완료');
 }
 

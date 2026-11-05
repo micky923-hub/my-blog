@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" role="img" aria-labelledby="t d">
+  <title id="t">적금은 회차마다 이자가 붙는 기간이 다릅니다</title>
+  <desc id="d">12개월 적금에서 1회차 납입금은 12개월, 12회차 납입금은 1개월만 이자를 받습니다. 평균하면 원금 전체가 6.5개월 동안 이자를 받는 셈이라 연 4% 월 50만 원 적금의 세전 이자는 13만 원으로, 600만 원을 1년 예금에 넣은 24만 원의 54.2%입니다.</desc>
+  <rect x="0" y="0" width="560" height="470" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">회차별로 이자 붙는 개월 수</text>
+    <text x="32" y="88" font-size="17" fill="#475569">12개월 적금 · 막대 위 숫자 = 이자 받는 개월</text>
+    <rect x="40" y="126" width="30" height="204" rx="5" fill="#1d4ed8"/>
+    <text x="55.0" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">12</text>
+    <text x="55.0" y="352" text-anchor="middle" font-size="15" fill="#475569">1</text>
+    <rect x="80" y="143" width="30" height="187" rx="5" fill="#3b82f6"/>
+    <text x="95.0" y="135" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">11</text>
+    <text x="95.0" y="352" text-anchor="middle" font-size="15" fill="#475569">2</text>
+    <rect x="120" y="160" width="30" height="170" rx="5" fill="#3b82f6"/>
+    <text x="135.0" y="152" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">10</text>
+    <text x="135.0" y="352" text-anchor="middle" font-size="15" fill="#475569">3</text>
+    <rect x="160" y="177" width="30" height="153" rx="5" fill="#3b82f6"/>
+    <text x="175.0" y="169" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">9</text>
+    <text x="175.0" y="352" text-anchor="middle" font-size="15" fill="#475569">4</text>
+    <rect x="200" y="194" width="30" height="136" rx="5" fill="#3b82f6"/>
+    <text x="215.0" y="186" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">8</text>
+    <text x="215.0" y="352" text-anchor="middle" font-size="15" fill="#475569">5</text>
+    <rect x="240" y="211" width="30" height="119" rx="5" fill="#3b82f6"/>
+    <text x="255.0" y="203" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">7</text>
+    <text x="255.0" y="352" text-anchor="middle" font-size="15" fill="#475569">6</text>
+    <rect x="280" y="228" width="30" height="102" rx="5" fill="#3b82f6"/>
+    <text x="295.0" y="220" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">6</text>
+    <text x="295.0" y="352" text-anchor="middle" font-size="15" fill="#475569">7</text>
+    <rect x="320" y="245" width="30" height="85" rx="5" fill="#3b82f6"/>
+    <text x="335.0" y="237" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">5</text>
+    <text x="335.0" y="352" text-anchor="middle" font-size="15" fill="#475569">8</text>
+    <rect x="360" y="262" width="30" height="68" rx="5" fill="#3b82f6"/>
+    <text x="375.0" y="254" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">4</text>
+    <text x="375.0" y="352" text-anchor="middle" font-size="15" fill="#475569">9</text>
+    <rect x="400" y="279" width="30" height="51" rx="5" fill="#3b82f6"/>
+    <text x="415.0" y="271" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">3</text>
+    <text x="415.0" y="352" text-anchor="middle" font-size="15" fill="#475569">10</text>
+    <rect x="440" y="296" width="30" height="34" rx="5" fill="#3b82f6"/>
+    <text x="455.0" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">2</text>
+    <text x="455.0" y="352" text-anchor="middle" font-size="15" fill="#475569">11</text>
+    <rect x="480" y="313" width="30" height="17" rx="5" fill="#93c5fd"/>
+    <text x="495.0" y="305" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1</text>
+    <text x="495.0" y="352" text-anchor="middle" font-size="15" fill="#475569">12</text>
+    <text x="280" y="378" text-anchor="middle" font-size="15" fill="#475569">납입 회차(매달 1회)</text>
+    <rect x="32" y="396" width="496" height="52" rx="12" fill="#e0f2fe"/>
+    <text x="280" y="421" text-anchor="middle" font-size="17" font-weight="800" fill="#0c4a6e">평균 6.5개월 → 예금 이자의 54.2%</text>
+    <text x="280" y="441" text-anchor="middle" font-size="15" fill="#0c4a6e">연 4% · 월 50만 원: 세전 13만 원 (예금 24만 원)</text>
+  </g>
+</svg>

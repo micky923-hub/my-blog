@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">비중 되돌리기 판단 예시</title>
+  <desc id="d">주식 투자금 3,000만 원 중 반도체 ETF를 15%인 450만 원 담았는데, 반도체가 20% 내리고 나머지가 5% 내리면 반도체는 360만 원, 전체는 2,782만 5천 원이 됩니다. 반도체 비중은 약 12.9%로 정해 둔 10~25% 범위 안이라 아무것도 하지 않아도 됩니다.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">범위 안이면 그대로 두세요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">주식 3,000만 원 · 반도체 목표 15% · 범위 10~25%</text>
+
+    <text x="32" y="138" font-size="19" font-weight="700" fill="#0f172a">급락 전</text>
+    <rect x="32" y="152" width="496" height="40" rx="8" fill="#e2e8f0"/>
+    <rect x="32" y="152" width="74" height="40" rx="8" fill="#2563eb"/>
+    <text x="118" y="179" font-size="17" font-weight="700" fill="#0f172a">반도체 450만 원 (15%)</text>
+
+    <text x="32" y="236" font-size="19" font-weight="700" fill="#0f172a">급락 후 (반도체 −20%, 나머지 −5%)</text>
+    <rect x="32" y="250" width="460" height="40" rx="8" fill="#e2e8f0"/>
+    <rect x="32" y="250" width="60" height="40" rx="8" fill="#2563eb"/>
+    <text x="104" y="277" font-size="17" font-weight="700" fill="#0f172a">반도체 360만 원 (약 12.9%)</text>
+    <text x="32" y="316" font-size="16" fill="#475569">전체 2,782만 5천 원</text>
+
+    <text x="32" y="368" font-size="19" font-weight="700" fill="#0f172a">정해 둔 범위</text>
+    <rect x="32" y="382" width="496" height="28" rx="6" fill="#e2e8f0"/>
+    <rect x="82" y="382" width="74" height="28" rx="6" fill="#bbf7d0"/>
+    <text x="82" y="432" font-size="15" fill="#166534" text-anchor="middle">10%</text>
+    <text x="156" y="432" font-size="15" fill="#166534" text-anchor="middle">25%</text>
+    <circle cx="96" cy="396" r="9" fill="#2563eb"/>
+
+    <rect x="32" y="456" width="496" height="80" rx="12" fill="#dcfce7"/>
+    <text x="52" y="488" font-size="18" font-weight="800" fill="#166534">12.9%는 범위 안 → 팔지도 사지도 않기</text>
+    <text x="52" y="516" font-size="16" fill="#166534">10% 아래로 내려가면 그때 조금 채웁니다</text>
+  </g>
+</svg>
