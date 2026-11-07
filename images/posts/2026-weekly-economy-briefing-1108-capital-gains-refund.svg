@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">기본공제 250만 원을 빠뜨렸을 때 세금 차이</title>
+  <desc id="d">국세청 사례에서 주식 양도소득 600만 원에 세율 30%를 적용하면 기본공제를 빼먹었을 때 세금은 180만 원, 기본공제 250만 원을 반영하면 105만 원입니다. 차이 75만 원에 환급가산금 4만 원을 더해 79만 원을 돌려받았습니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">공제 빠뜨리면 75만 원 더</text>
+    <text x="32" y="88" font-size="17" fill="#475569">양도소득 600만 원 · 세율 30% (국세청 사례)</text>
+
+    <line x1="32" y1="330" x2="528" y2="330" stroke="#cbd5e1" stroke-width="2"/>
+
+    <rect x="70" y="150" width="140" height="180" rx="8" fill="#ea580c"/>
+    <text x="140" y="136" text-anchor="middle" font-size="20" font-weight="800" fill="#9a3412">180만 원</text>
+    <text x="140" y="358" text-anchor="middle" font-size="17" fill="#334155">공제 누락</text>
+
+    <rect x="300" y="225" width="140" height="105" rx="8" fill="#3b82f6"/>
+    <text x="370" y="211" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">105만 원</text>
+    <text x="370" y="358" text-anchor="middle" font-size="17" fill="#334155">공제 250만 원 반영</text>
+
+    <text x="32" y="400" font-size="16" font-weight="700" fill="#166534">차이 75만 원 + 환급가산금 4만 원 = 79만 원 환급</text>
+  </g>
+</svg>
