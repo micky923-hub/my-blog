@@ -44,6 +44,12 @@ var TOPICS = fs.existsSync('topics.json') ? JSON.parse(fs.readFileSync('topics.j
 // 태그 → 주제 모음 페이지. 모음 페이지가 있는 태그는 검색엔진이 읽을 수 있는 /topics/ 주소로 연결한다
 var TOPIC_BY_TAG = {};
 TOPICS.forEach(function(t) { (t.tags || []).forEach(function(tag) { if (!TOPIC_BY_TAG[tag]) TOPIC_BY_TAG[tag] = t.slug; }); });
+// 공유 미리보기(og:image)는 SNS 권장 비율 1200×630으로. Unsplash 주소면 크기만 바꾼다. 화면 대표 이미지(800×400)는 그대로.
+function ogShareImage(url) {
+  if (!url || url.indexOf('images.unsplash.com') === -1) return url;
+  return url.replace(/([?&])w=\d+/, '$1w=1200').replace(/([?&])h=\d+/, '$1h=630');
+}
+
 function tagHref(base, tag) {
   return TOPIC_BY_TAG[tag] ? base + 'topics/' + TOPIC_BY_TAG[tag] + '.html' : base + '#tag=' + encodeURIComponent(tag);
 }
@@ -1335,7 +1341,7 @@ function buildPosts() {
     var fullHtml = htmlTemplate({
       title: (meta.title || slug) + ' — ' + config.title,
       description: meta.summary || config.description,
-      ogImage: meta.image || '',
+      ogImage: ogShareImage(meta.image || ''),
       canonical: siteUrl + '/posts/' + slug + '.html',
       content: pageContent,
       hasCode: hasCode,
@@ -1552,8 +1558,8 @@ function buildIndex(posts) {
   });
 
   var fullHtml = htmlTemplate({
-    title: config.titleKo ? config.titleKo + ' | ' + config.title : config.title,
-    description: config.description,
+    title: config.homeTitle || (config.titleKo ? config.titleKo + ' | ' + config.title : config.title),
+    description: config.homeDescription || config.description,
     canonical: siteUrl + '/',
     content: pageContent,
     jsonLd: jsonLd,
