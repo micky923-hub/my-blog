@@ -411,6 +411,7 @@ function htmlTemplate(opts) {
     + TOPICS.map(function(t) { return '        <a href="' + base + 'topics/' + t.slug + '.html">' + escapeHtml(t.title) + '</a>\n'; }).join('')
     + (NEWSLETTER_URL ? '        <a href="' + base + 'newsletter.html">뉴스레터</a>\n' : '')
     + '        <a href="' + base + 'privacy.html">개인정보처리방침</a>\n'
+    + (config.contactEmail ? '        <a href="mailto:' + escapeHtml(config.contactEmail) + '">문의</a>\n' : '')
     + '      </div>\n'
     + '    </div>\n'
     + '  </section>\n\n'
@@ -498,10 +499,12 @@ function htmlTemplate(opts) {
 }
 
 // 광고 삽입용 헬퍼
+// 광고 단위 번호(adsenseSlot)가 생기기 전에는 넣지 않는다. 번호 없는 칸은 브라우저 오류만 남기고 광고도 나오지 않는다.
+// 심사·자동 광고에는 <head>의 애드센스 코드 한 줄이면 충분하다.
 function adSlot() {
-  if (!config.adsenseId) return '';
+  if (!config.adsenseId || !config.adsenseSlot) return '';
   return '<div class="ad-container">\n'
-    + '  <ins class="adsbygoogle" style="display:block" data-ad-client="' + config.adsenseId + '" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>\n'
+    + '  <ins class="adsbygoogle" style="display:block" data-ad-client="' + config.adsenseId + '" data-ad-slot="' + config.adsenseSlot + '" data-ad-format="auto" data-full-width-responsive="true"></ins>\n'
     + '  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>\n'
     + '</div>';
 }
