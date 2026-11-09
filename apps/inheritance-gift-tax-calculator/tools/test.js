@@ -198,5 +198,15 @@ eq('rateTax 1억', ig.rateTax(1 * EOK), 1000 * MAN);
 eq('rateTax 30억', ig.rateTax(30 * EOK), 1040000000);
 eq('IG_RULES soleSpouseActual', ig.IG_RULES.inheritance.soleSpouseActual, true);
 
+// 리뷰 반영 (2026-11-09 사용자 결정): 시행령 제46조의3 ①, 법 제47조 ②
+g('R1 미성년 손주 이번 10억 + 10년 안 15억 (합산 25억 → 할증 40%)', { amount: 10 * EOK, prior: 15 * EOK, priorDate: '2020-01-01', minor: true, genSkip: true },
+  { payable: 585104000 });
+g('R2 친족 아님 40만 + 이전 40만 (합계 1천만 미만, 합산 안 함)', { relation: 'none', amount: 40 * MAN, prior: 40 * MAN, priorDate: '2025-01-01' },
+  { payable: 0 });
+g('R3 친족 아님 600만 + 이전 30만 (합계 1천만 미만)', { relation: 'none', amount: 600 * MAN, prior: 30 * MAN, priorDate: '2025-01-01' },
+  { payable: 582000 });
+g('R4 친족 아님 600만 + 이전 400만 (합계 1천만, 합산함)', { relation: 'none', amount: 600 * MAN, prior: 400 * MAN, priorDate: '2025-01-01' },
+  { prior: 400 * MAN });
+
 console.log((fails ? 'FAILED' : 'ALL PASSED') + ': ' + passes + ' passed, ' + fails + ' failed');
 process.exit(fails ? 1 : 0);

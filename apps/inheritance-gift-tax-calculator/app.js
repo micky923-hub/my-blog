@@ -22,6 +22,7 @@ var IG_RULES = {
     marriageBirth: 100000000,  // 제53조의2
     genSkipPct: 30, genSkipMinorBigPct: 40, genSkipMinorBigOver: 2000000000, // 제57조
     lookbackYears: 10,
+    aggregateMin: 10000000, // 제47조 ②: 10년 합계(이번 증여 포함) 1천만 원 이상일 때만 합산
     deadlineMonths: 3,
     installmentOver: 10000000, deferredOver: 20000000, deferredYears: 5
   },
@@ -175,9 +176,11 @@ function calcGift(input, opt) {
   if (prior > 0 && priorDate !== null) {
     if (!igParseDate(priorDate)) return { ok: false, field: 'priorDate', message: '날짜를 다시 확인해 주세요.' };
     if (priorDate > date) return { ok: false, field: 'priorDate', message: '이전에 받은 날은 이번에 받는 날보다 앞이어야 해요.' };
-    // 이전 날짜 + 10년 + 1일 이후에 받으면 합산하지 않는다 (보수적으로 +1일)
+    // 이전 날짜 + 10년 + 1일 이후에 받으면 합산하지 않는다 (민법 제157·160조 기간 계산: 정확히 10년 되는 날은 합산)
     if (date >= plusYearsNextDay(priorDate, G.lookbackYears)) { priorExpired = true; prior = 0; }
   }
+  // 제47조 ②: 합친 금액이 1천만 원 미만이면 합산하지 않는다
+  if (prior > 0 && amount + prior < G.aggregateMin) prior = 0;
   if (prior === 0 && !priorExpired) priorDate = null;
 
   var limit = igGiftLimit(relation, minor);
@@ -186,7 +189,8 @@ function calcGift(input, opt) {
   var basicDed = Math.min(limit, total - mbDed);
   var base = total - mbDed - basicDed;
   var calcTax = igTaxOf(base);
-  var surPct = igSurchargePct(isAsc, genSkip, minor, amount);
+  // 시행령 제46조의3 ①: 할증 40%의 20억 판단에 10년 합산 증여를 포함
+  var surPct = igSurchargePct(isAsc, genSkip, minor, total);
   var surcharge = Math.floor(calcTax * surPct / 100);
 
   // 앞선 증여: 같은 관계, 기본 공제만 쓴 것으로 가정

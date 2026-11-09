@@ -53,7 +53,8 @@
       "apps/year-end-tax-calculator/",
       "apps/pension-tax-calculator/",
       "apps/rent-tax-credit-calculator/",
-      "apps/salary-net-calculator/"
+      "apps/salary-net-calculator/",
+      "apps/inheritance-gift-tax-calculator/"
     ]
   },
   {

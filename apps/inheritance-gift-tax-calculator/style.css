@@ -393,7 +393,8 @@
 }
 
 .ig-example-row dt {
-  color: var(--color-text-secondary);
+  /* 예시 상자 배경(--color-tag-bg) 위에서 보조 글자색은 다크 모드 대비 4.49:1이라 본문 색을 쓴다 */
+  color: var(--color-text);
   flex-shrink: 0;
 }
 
