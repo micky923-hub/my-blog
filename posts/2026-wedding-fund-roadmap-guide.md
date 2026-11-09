@@ -213,6 +213,7 @@ image: https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=400&
 
 - 매달 넣을 금액으로 만기 금액을 확인하려면 [적금·예금 이자 계산기](/apps/savings-calculator/)로 계산해 보세요.
 - 부모님 지원 금액별 증여세는 [자녀에게 증여세 없이 돈 주는 법](/posts/2026-gift-tax-exemption-guide.html)에서 확인하세요.
+- 혼인 공제를 넣은 증여세는 [증여세·상속세 계산기](/apps/inheritance-gift-tax-calculator/)로 바로 계산해 보세요.
 - 잔금 전까지 돈을 둘 곳은 [파킹통장 vs CMA vs 정기예금](/posts/2026-parking-savings-guide.html)을 참고하세요.
 - 신혼집 전세 계약 전에는 [전세사기 예방 체크리스트](/posts/2026-jeonse-fraud-prevention-checklist.html)를 꼭 확인하세요.
 - 결혼 뒤 연말정산은 [맞벌이 부부 연말정산 절세 전략](/posts/2026-dual-income-couple-tax-saving-guide.html)에서 누구에게 몰아줄지 정하세요.

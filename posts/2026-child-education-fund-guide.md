@@ -164,4 +164,4 @@ ETF는 원금이 보장되지 않으니, ETF를 처음 고른다면 [ETF 투자 
 ---
 
 > 💰 **직접 계산해 보세요: [적금·예금 이자 계산기](/apps/savings-calculator/)**  
-> 매달 넣는 금액과 기간, 금리를 넣으면 만기에 세금을 뺀 실제 수령액을 바로 볼 수 있어요. 함께 읽으면 좋은 글: [자녀에게 증여세 없이 돈 주는 법](/posts/2026-gift-tax-exemption-guide.html), [맞벌이 부부 연말정산 절세 전략](/posts/2026-dual-income-couple-tax-saving-guide.html)
+> 매달 넣는 금액과 기간, 금리를 넣으면 만기에 세금을 뺀 실제 수령액을 바로 볼 수 있어요. 함께 읽으면 좋은 글: [자녀에게 증여세 없이 돈 주는 법](/posts/2026-gift-tax-exemption-guide.html), [맞벌이 부부 연말정산 절세 전략](/posts/2026-dual-income-couple-tax-saving-guide.html). 아이 계좌에 넣은 돈이 한도 안인지는 [증여세·상속세 계산기](/apps/inheritance-gift-tax-calculator/)로 확인하세요.

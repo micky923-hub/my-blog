@@ -70,5 +70,13 @@
     "description": "소득과 월세만 넣으면 받을 수 있는지 먼저 확인하고, 공제율 17%·15%와 연 1,000만 원 한도를 반영한 연말정산 월세 세액공제액을 바로 알려줘요.",
     "icon": "apps/rent-tax-credit-calculator/icon.svg",
     "shortTitle": "월세 공제"
+  },
+  {
+    "path": "apps/inheritance-gift-tax-calculator/",
+    "emoji": "🎁",
+    "title": "증여세·상속세 계산기",
+    "description": "누구에게 얼마를 받는지만 넣으면 10년 합산·혼인 공제까지 반영한 증여세를, 재산과 가족만 넣으면 상속세를 바로 계산하고 신고 기한과 나눠 주면 아끼는 금액까지 알려줘요.",
+    "icon": "apps/inheritance-gift-tax-calculator/icon.svg",
+    "shortTitle": "증여·상속"
   }
 ]
