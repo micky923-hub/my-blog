@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>증여세·상속세 계산기 (자녀 증여·상속세 얼마부터) — Financial Diary</title>
+  <meta name="description" content="증여세와 상속세를 바로 계산해요. 관계별 10년 공제, 혼인·출산 1억 원 공제, 상속 일괄·배우자 공제를 반영하고 신고 기한과 나눠 주면 아끼는 금액까지 알려 줘요. 2026년 현행 세법 기준.">
+  <link rel="canonical" href="https://financialdiary.co.kr/apps/inheritance-gift-tax-calculator/">
+  <meta property="og:title" content="증여세·상속세 계산기 (자녀 증여·상속세 얼마부터) — Financial Diary">
+  <meta property="og:description" content="증여세와 상속세를 바로 계산해요. 관계별 10년 공제, 혼인·출산 1억 원 공제, 상속 일괄·배우자 공제를 반영하고 신고 기한과 나눠 주면 아끼는 금액까지 알려 줘요. 2026년 현행 세법 기준.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialdiary.co.kr/apps/inheritance-gift-tax-calculator/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Financial Diary">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&amp;h=630&amp;fit=crop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>
+    (function(){ var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t); })();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://financialdiary.co.kr/apps/inheritance-gift-tax-calculator/#app",
+        "name": "증여세·상속세 계산기",
+        "url": "https://financialdiary.co.kr/apps/inheritance-gift-tax-calculator/",
+        "description": "증여세와 상속세를 바로 계산해요. 관계별 10년 공제, 혼인·출산 1억 원 공제, 상속 일괄·배우자 공제를 반영하고 신고 기한과 나눠 주면 아끼는 금액까지 알려 줘요. 2026년 현행 세법 기준.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "JavaScript를 지원하는 웹 브라우저",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        },
+        "isPartOf": {
+          "@id": "https://financialdiary.co.kr/#website"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Financial Diary",
+          "url": "https://financialdiary.co.kr/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://financialdiary.co.kr/apps/inheritance-gift-tax-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "증여세는 얼마부터 내나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "받는 사람이 10년 동안 같은 관계에서 받은 돈이 공제 한도를 넘을 때부터 내요. 성년 자녀가 부모에게 받으면 5,000만 원, 미성년 자녀는 2,000만 원, 배우자는 6억 원까지 세금이 없어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "상속세는 재산이 얼마부터 나오나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "배우자와 자녀가 함께 상속받으면 빚과 장례비를 뺀 재산 10억 원까지, 자녀만 있으면 5억 원까지는 보통 상속세가 없어요. 일괄공제 5억 원에 배우자공제 최소 5억 원이 더해지기 때문이에요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "자녀에게 2억 원을 증여하면 세금은 얼마인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "10년 동안 다른 증여가 없던 성년 자녀라면 기한 안에 신고할 때 1,940만 원이에요. 결혼이나 출산 2년 안이라 1억 원을 더 공제받으면 485만 원으로 줄어요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "10년이 지나면 공제를 다시 받을 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 받은 날부터 거꾸로 10년 동안 같은 관계에서 받은 돈을 합쳐 한도를 따지므로, 마지막으로 받은 날부터 10년이 꽉 차게 지난 뒤에 받으면 한도를 다시 쓸 수 있어요. 하루라도 모자라면 앞의 증여와 합쳐져요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "증여세와 상속세 신고는 언제까지 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "증여세는 받은 날이 속한 달의 말일부터 3개월, 상속세는 돌아가신 날이 속한 달의 말일부터 6개월 안에 신고해요. 기한 안에 신고하면 세금의 3%를 깎아 줘요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "계산기 결과대로 세금이 나오나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "현금처럼 금액이 정해진 재산을 기준으로 한 간이 계산이라 실제와 다를 수 있어요. 집이나 주식은 시가 평가에 따라 금액이 달라지고, 사전 증여 합산과 동거주택 공제는 넣지 않았으니 신고 전에 국세청 홈택스나 세무 전문가에게 확인하세요."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://financialdiary.co.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "증여세·상속세 계산기",
+            "item": "https://financialdiary.co.kr/apps/inheritance-gift-tax-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="ig-header">
+    <div class="ig-header-inner">
+      <a href="../../" class="ig-back">← 블로그로 돌아가기</a>
+      <button id="theme-toggle" class="theme-toggle ig-theme-toggle" type="button" aria-label="테마 전환"></button>
+    </div>
+  </header>
+
+  <main class="ig-main" id="ig-app">
+    <div class="ig-intro">
+      <h1 class="ig-title">🎁 증여세·상속세 계산기</h1>
+      <p class="ig-subtitle">낼 세금과 신고 기한, 줄이는 방법까지 알려 드려요</p>
+    </div>
+
+    <details class="ig-guide" open>
+      <summary>이렇게 사용하세요</summary>
+      <ol class="ig-guide-steps">
+        <li>위에서 <strong>증여</strong>(살아 있을 때 주고받는 돈) 또는 <strong>상속</strong>(돌아가신 뒤 물려받는 재산)을 고르세요.</li>
+        <li>증여는 <strong>받는 사람 기준</strong>으로 누구에게 받는지, 금액, 최근 10년 동안 같은 분에게 받은 돈을 넣으세요. 부모님 두 분은 한 분으로 합쳐 넣어요.</li>
+        <li>상속은 남긴 재산 합계와 빚, 배우자·자녀 수를 넣으세요. 집·주식은 지금 팔리는 가격(시가)으로 넣어요.</li>
+        <li>금액은 <strong>만 원 단위</strong>로 넣어요. 1억 원이면 10000이에요.</li>
+        <li>결과 아래 <strong>다음 할 일</strong> 카드에서 신고 기한과 세금을 줄이는 방법을 확인하세요.</li>
+      </ol>
+    </details>
+
+    <div class="ig-tabs" role="tablist" aria-label="계산 종류">
+      <button type="button" class="ig-tab" id="ig-tab-gift" role="tab" aria-selected="true" aria-controls="ig-panel-gift">🎁 증여</button>
+      <button type="button" class="ig-tab" id="ig-tab-inheritance" role="tab" aria-selected="false" aria-controls="ig-panel-inheritance" tabindex="-1">🏠 상속</button>
+    </div>
+
+    <!-- ===== 증여 ===== -->
+    <section class="ig-panel" id="ig-panel-gift" role="tabpanel" aria-labelledby="ig-tab-gift">
+      <form class="ig-form" id="ig-g-form" novalidate onsubmit="return false;">
+        <section class="ig-card" aria-labelledby="ig-g-step1">
+          <h2 class="ig-card-title" id="ig-g-step1">증여받는 돈</h2>
+
+          <fieldset class="ig-field">
+            <legend class="ig-label">누구에게 받나요 <span class="ig-optional">(받는 사람 기준)</span></legend>
+            <div class="ig-chips">
+              <input type="radio" name="ig-g-relation" id="ig-g-rel-spouse" value="spouse">
+              <label for="ig-g-rel-spouse">배우자</label>
+              <input type="radio" name="ig-g-relation" id="ig-g-rel-asc" value="asc" checked>
+              <label for="ig-g-rel-asc">부모·조부모</label>
+              <input type="radio" name="ig-g-relation" id="ig-g-rel-desc" value="desc">
+              <label for="ig-g-rel-desc">자녀·손주</label>
+              <input type="radio" name="ig-g-relation" id="ig-g-rel-relative" value="relative">
+              <label for="ig-g-rel-relative">그 밖의 친족</label>
+              <input type="radio" name="ig-g-relation" id="ig-g-rel-none" value="none">
+              <label for="ig-g-rel-none">친족 아님</label>
+            </div>
+            <p class="ig-help">그 밖의 친족은 4촌 이내 혈족과 3촌 이내 인척(사위·며느리 등)이에요.</p>
+          </fieldset>
+
+          <fieldset class="ig-field" id="ig-g-age-wrap">
+            <legend class="ig-label">받는 사람</legend>
+            <div class="ig-segment-options">
+              <input type="radio" name="ig-g-age" id="ig-g-age-adult" value="adult" checked>
+              <label for="ig-g-age-adult">성년 (만 19세 이상)</label>
+              <input type="radio" name="ig-g-age" id="ig-g-age-minor" value="minor">
+              <label for="ig-g-age-minor">미성년</label>
+            </div>
+          </fieldset>
+
+          <div class="ig-field">
+            <label for="ig-g-amount" class="ig-label">이번에 받는 금액</label>
+            <div class="ig-input-wrap">
+              <input type="text" id="ig-g-amount" class="ig-input" inputmode="numeric" autocomplete="off" value="10,000" aria-describedby="ig-g-amount-hint">
+              <span class="ig-unit" aria-hidden="true">만 원</span>
+            </div>
+            <p class="ig-hint" id="ig-g-amount-hint">1억 원</p>
+          </div>
+
+          <div class="ig-field">
+            <label for="ig-g-date" class="ig-label">받는 날</label>
+            <input type="date" id="ig-g-date" class="ig-input ig-date" min="2000-01-01" max="2100-12-31">
+          </div>
+
+          <div class="ig-field">
+            <label for="ig-g-prior" class="ig-label">최근 10년 동안 같은 분에게 받은 돈 <span class="ig-optional">(선택)</span></label>
+            <div class="ig-input-wrap">
+              <input type="text" id="ig-g-prior" class="ig-input" inputmode="numeric" autocomplete="off" value="" placeholder="없으면 비워 두세요" aria-describedby="ig-g-prior-hint ig-g-prior-help">
+              <span class="ig-unit" aria-hidden="true">만 원</span>
+            </div>
+            <p class="ig-hint" id="ig-g-prior-hint"></p>
+            <p class="ig-help" id="ig-g-prior-help">부모님 두 분은 한 분으로 합쳐 넣어요. 할아버지·할머니처럼 다른 분이 준 돈이 따로 있으면 공제 한도가 줄어들어 실제 세금이 달라질 수 있어요.</p>
+          </div>
+
+          <div class="ig-field ig-sub-field" id="ig-g-prior-date-wrap" hidden>
+            <label for="ig-g-prior-date" class="ig-label ig-label-sub">그 돈을 가장 최근에 받은 날 <span class="ig-optional">(선택)</span></label>
+            <input type="date" id="ig-g-prior-date" class="ig-input ig-date" min="2000-01-01" max="2100-12-31" aria-describedby="ig-g-prior-date-help">
+            <p class="ig-help" id="ig-g-prior-date-help">넣으면 10년이 지나 다시 공제받는 날을 알려 드려요.</p>
+          </div>
+
+          <div class="ig-check-group" id="ig-g-mb-wrap">
+            <div class="ig-check-row">
+              <input type="checkbox" id="ig-g-mb" class="ig-checkbox" aria-describedby="ig-g-mb-help">
+              <label for="ig-g-mb">혼인·출산 2년 안이에요 (처음 받는 공제)</label>
+            </div>
+            <p class="ig-help" id="ig-g-mb-help">혼인신고일 전후 2년, 출생·입양신고일부터 2년 안에 부모·조부모에게 받으면 1억 원을 더 공제해요. 혼인·출산 합쳐 평생 1억 원이에요.</p>
+          </div>
+
+          <div class="ig-check-group" id="ig-g-genskip-wrap">
+            <div class="ig-check-row">
+              <input type="checkbox" id="ig-g-genskip" class="ig-checkbox" aria-describedby="ig-g-genskip-help">
+              <label for="ig-g-genskip">할아버지·할머니가 손주에게 줘요</label>
+            </div>
+            <p class="ig-help" id="ig-g-genskip-help">자녀를 건너뛰고 주면 세금이 30% 더 붙어요(미성년 손주가 20억 원 넘게 받으면 40%). 손주의 부모가 돌아가셨다면 더 붙지 않아요.</p>
+          </div>
+        </section>
+
+        <p class="ig-peek"><a href="#ig-g-result" class="ig-peek-link"><span id="ig-g-peek-text">지금 예상</span> <span aria-hidden="true">↓</span> 결과 보기</a></p>
+      </form>
+
+      <section class="ig-result" id="ig-g-result" aria-live="polite" aria-labelledby="ig-g-result-title">
+        <h2 class="ig-result-title" id="ig-g-result-title">증여세 결과</h2>
+        <p class="ig-error" id="ig-g-error" hidden></p>
+        <div id="ig-g-result-body">
+          <div class="ig-headline" id="ig-g-headline">
+            <span class="ig-headline-label" id="ig-g-headline-label">기한 안에 신고하면 낼 증여세</span>
+            <strong class="ig-headline-value" id="ig-g-headline-value">-</strong>
+            <p class="ig-headline-sub" id="ig-g-headline-sub"></p>
+          </div>
+
+          <p class="ig-summary" id="ig-g-summary"></p>
+          <div class="ig-bar" aria-hidden="true"><div class="ig-bar-fill" id="ig-g-bar-fill"></div></div>
+          <p class="ig-bar-legend"><span class="ig-bar-key ig-bar-key-ded" id="ig-g-bar-ded"></span><span class="ig-bar-key ig-bar-key-tax" id="ig-g-bar-tax"></span></p>
+          <p class="ig-note" id="ig-g-prior-note" hidden>ⓘ 이전에 받은 날부터 10년이 지나 그 돈은 합산하지 않았어요.</p>
+
+          <details class="ig-steps-wrap">
+            <summary>계산 과정 보기</summary>
+            <dl class="ig-rows" id="ig-g-steps"></dl>
+          </details>
+
+          <div class="ig-todo">
+            <h3 class="ig-todo-title">다음 할 일</h3>
+            <ul class="ig-cards" id="ig-g-cards"></ul>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===== 상속 ===== -->
+    <section class="ig-panel" id="ig-panel-inheritance" role="tabpanel" aria-labelledby="ig-tab-inheritance" hidden>
+      <form class="ig-form" id="ig-i-form" novalidate onsubmit="return false;">
+        <section class="ig-card" aria-labelledby="ig-i-step1">
+          <h2 class="ig-card-title" id="ig-i-step1">남긴 재산</h2>
+
+          <div class="ig-field">
+            <label for="ig-i-estate" class="ig-label">남긴 재산 합계 <span class="ig-optional">(집·땅·예금·주식 등, 시가)</span></label>
+            <div class="ig-input-wrap">
+              <input type="text" id="ig-i-estate" class="ig-input" inputmode="numeric" autocomplete="off" value="150,000" aria-describedby="ig-i-estate-hint">
+              <span class="ig-unit" aria-hidden="true">만 원</span>
+            </div>
+            <p class="ig-hint" id="ig-i-estate-hint">15억 원</p>
+          </div>
+
+          <div class="ig-field">
+            <label for="ig-i-debt" class="ig-label">빚·밀린 세금 <span class="ig-optional">(선택)</span></label>
+            <div class="ig-input-wrap">
+              <input type="text" id="ig-i-debt" class="ig-input" inputmode="numeric" autocomplete="off" value="" placeholder="없으면 비워 두세요" aria-describedby="ig-i-debt-hint">
+              <span class="ig-unit" aria-hidden="true">만 원</span>
+            </div>
+            <p class="ig-hint" id="ig-i-debt-hint"></p>
+          </div>
+
+          <div class="ig-field">
+            <label for="ig-i-funeral" class="ig-label">장례비 <span class="ig-optional">(봉안시설 제외, 선택)</span></label>
+            <div class="ig-input-wrap">
+              <input type="text" id="ig-i-funeral" class="ig-input" inputmode="numeric" autocomplete="off" value="" placeholder="비우면 500만 원" aria-describedby="ig-i-funeral-hint ig-i-funeral-help">
+              <span class="ig-unit" aria-hidden="true">만 원</span>
+            </div>
+            <p class="ig-hint" id="ig-i-funeral-hint"></p>
+            <p class="ig-help" id="ig-i-funeral-help">비우거나 500만 원보다 적으면 500만 원, 1,000만 원을 넘으면 1,000만 원으로 계산해요.</p>
+          </div>
+
+          <div class="ig-field">
+            <label for="ig-i-financial" class="ig-label">그중 예금·적금·주식·펀드 <span class="ig-optional">(빚 뺀 금액, 선택)</span></label>
+            <div class="ig-input-wrap">
+              <input type="text" id="ig-i-financial" class="ig-input" inputmode="numeric" autocomplete="off" value="" placeholder="없으면 비워 두세요" aria-describedby="ig-i-financial-hint ig-i-financial-help">
+              <span class="ig-unit" aria-hidden="true">만 원</span>
+            </div>
+            <p class="ig-hint" id="ig-i-financial-hint"></p>
+            <p class="ig-help" id="ig-i-financial-help">금융재산은 20%(최대 2억 원)를 더 공제받아요.</p>
+          </div>
+        </section>
+
+        <section class="ig-card" aria-labelledby="ig-i-step2">
+          <h2 class="ig-card-title" id="ig-i-step2">가족</h2>
+
+          <fieldset class="ig-field">
+            <legend class="ig-label">배우자</legend>
+            <div class="ig-segment-options">
+              <input type="radio" name="ig-i-spouse" id="ig-i-spouse-yes" value="yes" checked>
+              <label for="ig-i-spouse-yes">있음</label>
+              <input type="radio" name="ig-i-spouse" id="ig-i-spouse-no" value="no">
+              <label for="ig-i-spouse-no">없음</label>
+            </div>
+          </fieldset>
+
+          <div class="ig-stepper-row">
+            <label for="ig-i-children" class="ig-stepper-label">자녀 수 <span class="ig-stepper-sub">태아 포함, 0~10명</span></label>
+            <div class="ig-stepper">
+              <button type="button" class="ig-step-btn" data-step="-1" aria-controls="ig-i-children" aria-label="자녀 한 명 빼기">−</button>
+              <input type="text" id="ig-i-children" class="ig-count" inputmode="numeric" autocomplete="off" maxlength="2" value="2">
+              <button type="button" class="ig-step-btn" data-step="1" aria-controls="ig-i-children" aria-label="자녀 한 명 더하기">+</button>
+            </div>
+          </div>
+
+          <div class="ig-field ig-sub-field" id="ig-i-ages">
+            <p class="ig-label ig-label-sub">자녀 나이 <span class="ig-optional">(미성년이면 공제가 늘어요)</span></p>
+            <div class="ig-ages" id="ig-i-ages-list"></div>
+          </div>
+
+          <fieldset class="ig-field" id="ig-i-spouse-mode-wrap">
+            <legend class="ig-label">배우자 몫</legend>
+            <div class="ig-segment-options">
+              <input type="radio" name="ig-i-spouse-mode" id="ig-i-spouse-mode-min" value="min" checked>
+              <label for="ig-i-spouse-mode-min">잘 모르겠어요 (5억으로 계산)</label>
+              <input type="radio" name="ig-i-spouse-mode" id="ig-i-spouse-mode-legal" value="legal">
+              <label for="ig-i-spouse-mode-legal">법정상속분대로 나눠요</label>
+            </div>
+            <p class="ig-help">법정상속분은 배우자 1.5 : 자녀 각 1이에요. 배우자가 실제로 그만큼 받아야 공제가 커져요.</p>
+          </fieldset>
+
+          <fieldset class="ig-field" id="ig-i-parents-wrap" hidden>
+            <legend class="ig-label">돌아가신 분의 부모님이 계신가요?</legend>
+            <div class="ig-segment-options">
+              <input type="radio" name="ig-i-parents" id="ig-i-parents-yes" value="yes" checked>
+              <label for="ig-i-parents-yes">계세요</label>
+              <input type="radio" name="ig-i-parents" id="ig-i-parents-no" value="no">
+              <label for="ig-i-parents-no">안 계세요</label>
+            </div>
+            <p class="ig-help">자녀가 없으면 부모님이 배우자와 함께 상속받아요. 부모님도 안 계시면 배우자 혼자 상속받아요.</p>
+          </fieldset>
+
+          <div class="ig-field">
+            <label for="ig-i-death-date" class="ig-label">돌아가신 날 <span class="ig-optional">(선택)</span></label>
+            <input type="date" id="ig-i-death-date" class="ig-input ig-date" min="2000-01-01" max="2100-12-31" aria-describedby="ig-i-death-date-help">
+            <p class="ig-help" id="ig-i-death-date-help">넣으면 신고 기한과 배우자 분할기한을 날짜로 알려 드려요.</p>
+          </div>
+        </section>
+
+        <p class="ig-peek"><a href="#ig-i-result" class="ig-peek-link"><span id="ig-i-peek-text">지금 예상</span> <span aria-hidden="true">↓</span> 결과 보기</a></p>
+      </form>
+
+      <section class="ig-result" id="ig-i-result" aria-live="polite" aria-labelledby="ig-i-result-title">
+        <h2 class="ig-result-title" id="ig-i-result-title">상속세 결과</h2>
+        <p class="ig-error" id="ig-i-error" hidden></p>
+        <div id="ig-i-result-body">
+          <div class="ig-headline" id="ig-i-headline">
+            <span class="ig-headline-label" id="ig-i-headline-label">상속인 모두가 낼 상속세 (기한 안 신고)</span>
+            <strong class="ig-headline-value" id="ig-i-headline-value">-</strong>
+            <p class="ig-headline-sub" id="ig-i-headline-sub"></p>
+          </div>
+
+          <div class="ig-threshold">
+            <p class="ig-threshold-title">📏 상속세가 생기는 기준선</p>
+            <p class="ig-threshold-text" id="ig-i-threshold-text"></p>
+          </div>
+
+          <p class="ig-summary" id="ig-i-summary"></p>
+          <div class="ig-bar" aria-hidden="true"><div class="ig-bar-fill" id="ig-i-bar-fill"></div></div>
+          <p class="ig-bar-legend"><span class="ig-bar-key ig-bar-key-ded" id="ig-i-bar-ded"></span><span class="ig-bar-key ig-bar-key-tax" id="ig-i-bar-tax"></span></p>
+
+          <p class="ig-note ig-note-warn" id="ig-i-debt-note" hidden>빚이 재산보다 많으면 상속포기·한정승인도 알아보세요. 상속이 시작된 것을 안 날부터 3개월 안에 가정법원에 신청해요.</p>
+          <p class="ig-note" id="ig-i-parents-note" hidden>ⓘ 부모님이 배우자와 함께 상속받으면 배우자 단독 상속이 아니라서 일괄공제 5억 원을 받고, 배우자공제는 최소 금액 5억 원으로 계산했어요. 배우자가 법정상속분(배우자 1.5 : 부모님 각 1)만큼 실제로 받으면 배우자공제가 더 커질 수 있어요.</p>
+          <p class="ig-note" id="ig-i-sole-note" hidden>ⓘ 배우자 혼자 상속받으면 일괄공제 5억 원을 받을 수 없어 기초공제 2억 원만 받아요. 대신 배우자공제는 실제 받은 금액(빚 뺀 재산, 최대 30억 원)으로 계산했어요.</p>
+          <p class="ig-note" id="ig-i-legal-note" hidden>ⓘ 배우자공제 5억 원을 넘는 부분은 신고 기한 다음 날부터 9개월(분할기한) 안에 배우자 이름으로 재산을 나누고 신고해야 받을 수 있어요.</p>
+
+          <details class="ig-steps-wrap">
+            <summary>계산 과정 보기</summary>
+            <dl class="ig-rows" id="ig-i-steps"></dl>
+          </details>
+
+          <div class="ig-todo">
+            <h3 class="ig-todo-title">다음 할 일</h3>
+            <ul class="ig-cards" id="ig-i-cards"></ul>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <p class="ig-disclaimer">
+      ※ 이 계산기는 <strong>2026년 11월 현재 시행 중인 상속세 및 증여세법</strong>을 기준으로 한 <strong>참고용 간이 계산</strong>이며 세무 자문이 아닙니다. 재산 평가, 공제 요건, 사전 증여, 신고 여부에 따라 실제 세금은 달라질 수 있습니다. 신고 전에 국세청 홈택스나 세무 전문가에게 확인하세요.
+    </p>
+    <p class="ig-disclaimer">상속세 개편(유산취득세 전환 등)은 국회에서 논의 중이에요. 법이 바뀌면 이 계산기도 고칠게요.</p>
+
+    <details class="ig-excluded">
+      <summary>이 계산기가 넣지 않은 것</summary>
+      <ul class="ig-excluded-list">
+        <li><strong>부동산·비상장주식 평가</strong> 집·주식은 시가(최근 거래가 등)로 넣으세요. 평가 방법에 따라 세금이 크게 달라질 수 있어요.</li>
+        <li><strong>사전증여 합산(상속)</strong> 돌아가시기 전 10년(상속인 아닌 사람은 5년) 안에 준 재산은 상속재산에 더해 계산해요. 이 계산기는 넣지 않았어요.</li>
+        <li><strong>동거주택 상속공제(최대 6억)</strong> 10년 이상 함께 산 무주택 자녀가 집을 물려받으면 더 공제받을 수 있어요.</li>
+        <li><strong>65세 이상·장애인 공제</strong> 배우자 말고 65세 이상 상속인·동거가족, 장애인이 있으면 공제가 늘 수 있어요.</li>
+        <li><strong>가업·영농상속공제</strong> 넣지 않았어요.</li>
+        <li><strong>세대생략 상속 할증</strong> 손주가 바로 상속받으면 30~40% 더 붙어요. 이 계산기는 넣지 않았어요.</li>
+        <li><strong>부담부증여(빚 낀 집)</strong> 빚을 함께 넘기면 그 부분은 부모에게 양도소득세가 붙어요. 넣지 않았어요.</li>
+        <li><strong>증여자 여러 명·다른 분의 공제 사용분</strong> 같은 분에게 받은 돈만 합산해요.</li>
+        <li><strong>비거주자·국외재산·유증·상속포기</strong> 넣지 않았어요.</li>
+        <li><strong>감정평가 수수료·봉안시설 비용</strong> 넣지 않았어요.</li>
+      </ul>
+    </details>
+
+    <section class="ig-explain" aria-labelledby="ig-explain-title">
+      <h2 class="ig-explain-title" id="ig-explain-title">이렇게 계산해요</h2>
+      <p class="ig-explain-lead">2026년 11월 현행 상속세 및 증여세법으로 아래 순서대로 계산해요.</p>
+
+      <h3 class="ig-explain-sub-title">증여세</h3>
+      <ol class="ig-explain-steps">
+        <li><strong>과세가액</strong> 이번에 받는 돈에 최근 10년 동안 같은 분에게 받은 돈을 더해요.</li>
+        <li><strong>공제</strong> 받는 사람 기준 10년 한도(배우자 6억 원, 부모·조부모에게 성년 5,000만 원·미성년 2,000만 원, 자녀·손주에게 5,000만 원, 그 밖의 친족 1,000만 원)를 빼요. 혼인·출산 2년 안이면 1억 원을 더 빼요.</li>
+        <li><strong>산출세액</strong> 과세표준에 세율(10%~50%)을 곱하고 누진공제를 빼요. 손주가 바로 받으면 30%를 더해요.</li>
+        <li><strong>낼 세금</strong> 10년 안에 이미 낸 세금을 빼고, 기한 안에 신고하면 3%를 더 깎아요.</li>
+      </ol>
+      <div class="ig-example">
+        <p class="ig-example-title"><strong>예시</strong> 10년 동안 다른 증여가 없던 성년 자녀가 부모에게 1억 원</p>
+        <dl class="ig-example-rows">
+          <div class="ig-example-row"><dt>과세표준</dt><dd>1억 − 5,000만 = <strong>5,000만 원</strong></dd></div>
+          <div class="ig-example-row"><dt>산출세액</dt><dd>5,000만 × 10% = <strong>500만 원</strong></dd></div>
+          <div class="ig-example-row"><dt>낼 세금</dt><dd>500만 − 신고세액공제 15만 = <strong>485만 원</strong></dd></div>
+        </dl>
+      </div>
+
+      <h3 class="ig-explain-sub-title">상속세</h3>
+      <ol class="ig-explain-steps">
+        <li><strong>과세가액</strong> 남긴 재산에서 빚과 장례비(500만~1,000만 원)를 빼요.</li>
+        <li><strong>공제</strong> 일괄공제 5억 원(또는 기초 2억 원 + 자녀 1명 5,000만 원 + 미성년자 공제 중 큰 쪽), 배우자공제 최소 5억 원, 예금·주식 같은 금융재산의 20%(최대 2억 원)를 빼요.</li>
+        <li><strong>산출세액과 낼 세금</strong> 증여세와 같은 세율을 적용하고, 기한 안에 신고하면 3%를 깎아요.</li>
+      </ol>
+      <div class="ig-example">
+        <p class="ig-example-title"><strong>예시</strong> 재산 15억 원, 배우자와 성년 자녀 2명, 빚 없음, 장례비 500만 원</p>
+        <dl class="ig-example-rows">
+          <div class="ig-example-row"><dt>과세가액</dt><dd>15억 − 500만 = <strong>14억 9,500만 원</strong></dd></div>
+          <div class="ig-example-row"><dt>공제</dt><dd>일괄 5억 + 배우자 5억 = <strong>10억 원</strong></dd></div>
+          <div class="ig-example-row"><dt>산출세액</dt><dd>4억 9,500만 × 20% − 1,000만 = <strong>8,900만 원</strong></dd></div>
+          <div class="ig-example-row"><dt>낼 세금</dt><dd>8,900만 − 267만 = <strong>8,633만 원</strong></dd></div>
+        </dl>
+      </div>
+
+      <p class="ig-explain-sub"><strong>실제 세금과 다를 수 있어요</strong></p>
+      <ul class="ig-explain-notes">
+        <li>집·주식은 평가 방법에 따라 금액이 달라져요.</li>
+        <li>돌아가시기 전 10년 안에 준 재산은 상속재산에 더해요.</li>
+        <li>동거주택 공제·65세 이상 공제는 넣지 않았어요.</li>
+      </ul>
+    </section>
+
+    <section class="ig-faq" aria-labelledby="ig-faq-title">
+      <h2 class="ig-faq-title" id="ig-faq-title">자주 묻는 질문</h2>
+      <details class="ig-faq-item">
+        <summary class="ig-faq-q">증여세는 얼마부터 내나요?</summary>
+        <p class="ig-faq-a">받는 사람이 10년 동안 같은 관계에서 받은 돈이 공제 한도를 넘을 때부터 내요. 성년 자녀가 부모에게 받으면 5,000만 원, 미성년 자녀는 2,000만 원, 배우자는 6억 원까지 세금이 없어요.</p>
+      </details>
+      <details class="ig-faq-item">
+        <summary class="ig-faq-q">상속세는 재산이 얼마부터 나오나요?</summary>
+        <p class="ig-faq-a">배우자와 자녀가 함께 상속받으면 빚과 장례비를 뺀 재산 10억 원까지, 자녀만 있으면 5억 원까지는 보통 상속세가 없어요. 일괄공제 5억 원에 배우자공제 최소 5억 원이 더해지기 때문이에요.</p>
+      </details>
+      <details class="ig-faq-item">
+        <summary class="ig-faq-q">자녀에게 2억 원을 증여하면 세금은 얼마인가요?</summary>
+        <p class="ig-faq-a">10년 동안 다른 증여가 없던 성년 자녀라면 기한 안에 신고할 때 1,940만 원이에요. 결혼이나 출산 2년 안이라 1억 원을 더 공제받으면 485만 원으로 줄어요.</p>
+      </details>
+      <details class="ig-faq-item">
+        <summary class="ig-faq-q">10년이 지나면 공제를 다시 받을 수 있나요?</summary>
+        <p class="ig-faq-a">네. 받은 날부터 거꾸로 10년 동안 같은 관계에서 받은 돈을 합쳐 한도를 따지므로, 마지막으로 받은 날부터 10년이 꽉 차게 지난 뒤에 받으면 한도를 다시 쓸 수 있어요. 하루라도 모자라면 앞의 증여와 합쳐져요.</p>
+      </details>
+      <details class="ig-faq-item">
+        <summary class="ig-faq-q">증여세와 상속세 신고는 언제까지 하나요?</summary>
+        <p class="ig-faq-a">증여세는 받은 날이 속한 달의 말일부터 3개월, 상속세는 돌아가신 날이 속한 달의 말일부터 6개월 안에 신고해요. 기한 안에 신고하면 세금의 3%를 깎아 줘요.</p>
+      </details>
+      <details class="ig-faq-item">
+        <summary class="ig-faq-q">계산기 결과대로 세금이 나오나요?</summary>
+        <p class="ig-faq-a">현금처럼 금액이 정해진 재산을 기준으로 한 간이 계산이라 실제와 다를 수 있어요. 집이나 주식은 시가 평가에 따라 금액이 달라지고, 사전 증여 합산과 동거주택 공제는 넣지 않았으니 신고 전에 국세청 홈택스나 세무 전문가에게 확인하세요.</p>
+      </details>
+    </section>
+
+    <p class="ig-related">관련 글: <a href="../../posts/2026-gift-tax-exemption-guide.html">증여세 없이 자녀에게 주는 돈, 성년 5,000만·미성년 2,000만 원 한도 정리</a> · <a href="../../posts/2026-wedding-fund-roadmap-guide.html">결혼 자금 마련 로드맵, 결혼 날짜에서 거꾸로 계산해 월 저축액과 혼인신고 날짜를 정하세요</a><br>다른 계산기: <a href="../year-end-tax-calculator/">연말정산 환급</a> · <a href="../savings-calculator/">적금·예금 이자</a></p>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

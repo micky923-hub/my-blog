@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="증여세·상속세 계산기 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset="0.55" stop-color="#84cc16"/>
+      <stop offset="1" stop-color="#3f6212"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ecfccb"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f7fee7"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 타일 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M116 0h280a116 116 0 0 1 116 116v40C400 210 112 210 0 156v-40A116 116 0 0 1 116 0z" fill="url(#shine)"/>
+
+  <!-- 그림자 -->
+  <ellipse cx="236" cy="440" rx="180" ry="24" fill="#1a2e05" opacity="0.35"/>
+
+  <!-- 리본 고리 -->
+  <path d="M228 170C196 112 128 104 120 146C114 178 168 186 228 172Z" fill="url(#gold)"/>
+  <path d="M244 170C276 112 344 104 352 146C358 178 304 186 244 172Z" fill="url(#gold)"/>
+  <path d="M214 162C190 132 150 128 146 148C143 164 176 168 214 164Z" fill="#b45309" opacity="0.35"/>
+  <path d="M258 162C282 132 322 128 326 148C329 164 296 168 258 164Z" fill="#b45309" opacity="0.35"/>
+
+  <!-- 상자 몸통 -->
+  <rect x="96" y="244" width="280" height="190" rx="22" fill="url(#box)"/>
+  <!-- 뚜껑 -->
+  <rect x="80" y="178" width="312" height="76" rx="20" fill="url(#lid)"/>
+  <rect x="96" y="254" width="280" height="14" fill="#3f6212" opacity="0.14"/>
+
+  <!-- 세로 리본 -->
+  <rect x="210" y="178" width="52" height="256" fill="url(#gold)"/>
+  <rect x="210" y="254" width="52" height="14" fill="#92400e" opacity="0.22"/>
+  <!-- 매듭 -->
+  <rect x="206" y="156" width="60" height="38" rx="14" fill="url(#gold)"/>
+
+  <!-- 동전 -->
+  <circle cx="388" cy="384" r="70" fill="url(#gold)"/>
+  <circle cx="388" cy="384" r="54" fill="none" stroke="#fef3c7" stroke-width="6" opacity="0.8"/>
+  <text x="388" y="412" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="900" fill="#78350f">₩</text>
+</svg>

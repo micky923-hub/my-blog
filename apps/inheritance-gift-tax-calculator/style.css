@@ -1,0 +1,1196 @@
+/* ==============================
+   증여세·상속세 계산기 (ig-)
+   색상은 블로그 css/style.css 의 CSS 변수만 사용한다.
+   예외: 오류 표시용 빨간색 1개 (--ig-color-error)
+   ============================== */
+
+:root {
+  --ig-color-error: #dc2626;
+  --ig-radius: 12px;
+  --ig-touch: 44px;
+}
+
+/* ---------- Header ---------- */
+
+.ig-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.ig-header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ig-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ig-touch);
+  font-weight: 600;
+}
+
+.ig-theme-toggle {
+  min-width: var(--ig-touch);
+  min-height: var(--ig-touch);
+}
+
+/* ---------- Layout ---------- */
+
+.ig-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
+}
+
+.ig-intro {
+  margin-bottom: 1.25rem;
+}
+
+.ig-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ig-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- Guide ---------- */
+
+.ig-guide {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.ig-guide summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--ig-touch);
+  display: flex;
+  align-items: center;
+  list-style-position: inside;
+}
+
+.ig-guide summary::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.ig-guide[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ig-guide-steps,
+.ig-guide-terms {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.ig-guide-steps li,
+.ig-guide-terms li {
+  margin-bottom: 0.3rem;
+  word-break: keep-all;
+}
+
+.ig-guide-heading {
+  margin: 0.75rem 0 0;
+}
+
+/* ---------- Form ---------- */
+
+.ig-form {
+  margin-bottom: 1.5rem;
+}
+
+.ig-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-field {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.ig-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.ig-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ig-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5rem 4.4rem 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.125rem; /* 16px 이상: iOS 자동 확대 방지 */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ig-input:focus {
+  border-color: var(--color-accent);
+}
+
+.ig-input[aria-invalid="true"] {
+  border-color: var(--ig-color-error);
+}
+
+.ig-unit {
+  position: absolute;
+  right: 0.9rem;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.ig-hint {
+  margin: 0.3rem 0 0;
+  min-height: 1.5em;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Segmented radios ---------- */
+
+.ig-segment-options {
+  display: flex;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.ig-segment-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.ig-segment-options label {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--ig-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.35rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.ig-segment-options input:checked + label {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.ig-segment-options input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Result ---------- */
+
+.ig-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.ig-result-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.ig-rows {
+  margin: 0;
+}
+
+.ig-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.ig-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.ig-row dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.ig-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 4px solid var(--ig-color-error);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.ig-error::before {
+  content: "⚠ ";
+  color: var(--ig-color-error);
+}
+
+.ig-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ig-disclaimer {
+  margin: 0.9rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+@media (min-width: 600px) {
+  .ig-title {
+    font-size: 1.75rem;
+  }
+  .ig-headline-value {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- 이렇게 계산해요 / 자주 묻는 질문 / 관련 글 ---------- */
+
+.ig-explain,
+.ig-faq {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  color: var(--color-text);
+}
+
+.ig-explain-title,
+.ig-faq-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.ig-explain-lead {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.ig-explain-steps,
+.ig-explain-notes {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.ig-explain-steps li,
+.ig-explain-notes li {
+  margin-bottom: 0.4rem;
+}
+
+.ig-formula {
+  display: block;
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ig-example {
+  background: var(--color-tag-bg);
+  border-radius: var(--ig-radius);
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.ig-example-title {
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.ig-example-title strong {
+  color: var(--color-tag-text);
+}
+
+.ig-example-rows {
+  margin: 0;
+}
+
+.ig-example-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.ig-example-row:first-child {
+  border-top: 0;
+}
+
+.ig-example-row dt {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.ig-example-row dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ig-explain-sub {
+  margin: 0.75rem 0 0;
+}
+
+.ig-explain-notes {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.ig-faq {
+  padding-bottom: 0.25rem;
+}
+
+.ig-faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.ig-faq-q {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--ig-touch);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  list-style-position: inside;
+}
+
+.ig-faq-q::-webkit-details-marker {
+  margin-right: 0.4rem;
+}
+
+.ig-faq-q:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-faq-item[open] .ig-faq-q {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ig-faq-a {
+  margin: 0.5rem 0 1rem;
+  color: var(--color-text);
+}
+
+.ig-related {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ig-related a {
+  color: var(--color-accent);
+}
+
+/* FAQ 질문 앞 펼침 표시: summary가 flex라 기본 삼각형(::marker)이 보이지 않아 직접 그린다 */
+.ig-faq-q {
+  list-style: none;
+}
+
+.ig-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.ig-faq-q::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+  color: var(--color-accent);
+}
+
+.ig-faq-item[open] .ig-faq-q::before {
+  content: "▾";
+}
+
+
+/* ---------- 증여세·상속세 계산기 전용 ---------- */
+
+/* 입력 카드 (단계) */
+.ig-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  padding: 0.9rem 1rem 0.25rem;
+  margin: 0 0 1rem;
+}
+
+.ig-card-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ig-card .ig-input {
+  background: var(--color-bg);
+}
+
+.ig-card .ig-segment-options {
+  background: var(--color-bg);
+}
+
+.ig-card .ig-segment-options input:checked + label {
+  background: var(--color-surface);
+}
+
+.ig-label-sub {
+  font-weight: 600;
+}
+
+.ig-optional {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.ig-help {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ig-card > .ig-help {
+  margin: -0.75rem 0 1rem;
+}
+
+/* 스테퍼 */
+.ig-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.9rem;
+}
+
+.ig-stepper-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 700;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.ig-stepper-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.ig-stepper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ig-step-btn {
+  width: var(--ig-touch);
+  height: var(--ig-touch);
+  padding: 0;
+  font: inherit;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  cursor: pointer;
+}
+
+.ig-step-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.ig-step-btn:focus-visible,
+.ig-count:focus-visible,
+.ig-checkbox:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-count {
+  width: 3rem;
+  min-height: var(--ig-touch);
+  padding: 0.25rem;
+  font: inherit;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ig-count[aria-invalid="true"] {
+  border-color: var(--ig-color-error);
+}
+
+/* 체크박스 줄 */
+.ig-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--ig-touch);
+  margin: 0 0 0.9rem;
+}
+
+.ig-checkbox {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.ig-check-row label {
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.ig-sub-field {
+  margin-top: -0.4rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-border);
+}
+
+/* 결과 미리 보기 줄 */
+.ig-peek {
+  margin: 0 0 1rem;
+  text-align: right;
+}
+
+.ig-peek-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: var(--ig-touch);
+  font-weight: 600;
+  color: var(--color-accent);
+  word-break: keep-all;
+}
+
+/* 결과: 가장 큰 숫자 */
+.ig-headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+}
+
+.ig-headline-label {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.ig-headline-value {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+
+.ig-headline-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 계산 과정 */
+.ig-steps-wrap {
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ig-steps-wrap summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: var(--ig-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+}
+
+.ig-steps-wrap summary::-webkit-details-marker {
+  display: none;
+}
+
+.ig-steps-wrap summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.ig-steps-wrap[open] summary::before {
+  content: "▾";
+}
+
+.ig-steps-wrap summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-steps-wrap .ig-rows {
+  padding-bottom: 0.5rem;
+}
+
+.ig-row dt {
+  flex-shrink: 1;
+  min-width: 0;
+  word-break: keep-all;
+}
+
+.ig-row dd {
+  flex-shrink: 0;
+  max-width: 55%;
+}
+
+.ig-row-sum {
+  border-top: 1px dashed var(--color-border);
+}
+
+.ig-row-sum dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.ig-sub-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.ig-small {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+.ig-small a,
+.ig-note a,
+.ig-guide a {
+  color: var(--color-accent);
+}
+
+
+.ig-note:empty {
+  display: none;
+}
+
+.ig-note-warn {
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--ig-color-error);
+  color: var(--color-text);
+}
+
+/* ---------- 증여·상속 탭 ---------- */
+
+.ig-main [hidden] {
+  display: none !important;
+}
+
+.ig-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin: 0 0 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+}
+
+.ig-tab {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--ig-touch);
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.ig-tab[aria-selected="true"] {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.ig-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- 관계 칩 (2열) ---------- */
+
+.ig-chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ig-chips input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.ig-chips label {
+  min-width: 0;
+  min-height: var(--ig-touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  word-break: keep-all;
+}
+
+.ig-chips input:checked + label {
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.ig-chips input:focus-visible + label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-chips + .ig-help {
+  margin-top: 0.5rem;
+}
+
+/* ---------- 날짜·선택 ---------- */
+
+.ig-date {
+  text-align: left;
+  padding-right: 0.9rem;
+  color-scheme: light;
+}
+
+[data-theme="dark"] .ig-date,
+[data-theme="dark"] .ig-select {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ig-date,
+  :root:not([data-theme="light"]) .ig-select {
+    color-scheme: dark;
+  }
+}
+
+.ig-date[aria-invalid="true"] {
+  border-color: var(--ig-color-error);
+}
+
+.ig-sub-field .ig-date {
+  margin-bottom: 0;
+}
+
+.ig-ages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.5rem 0.75rem;
+}
+
+.ig-age-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.ig-age-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.ig-select {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--ig-touch);
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+}
+
+.ig-select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-check-group {
+  margin: 0 0 1rem;
+}
+
+.ig-check-group .ig-check-row {
+  margin-bottom: 0.1rem;
+}
+
+.ig-check-group .ig-help {
+  padding-left: calc(22px + 0.6rem);
+}
+
+.ig-segment-options label {
+  font-size: 0.92rem;
+}
+
+/* ---------- 결과 ---------- */
+
+.ig-panel .ig-result {
+  margin-bottom: 0.5rem;
+}
+
+.ig-is-zero .ig-headline-value {
+  color: var(--color-accent);
+}
+
+.ig-summary {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ig-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.ig-bar-fill {
+  height: 100%;
+  width: 0;
+  background: var(--color-accent);
+  border-radius: 999px 0 0 999px;
+  transition: width 0.2s ease;
+}
+
+.ig-bar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.2rem 0.75rem;
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  word-break: keep-all;
+}
+
+.ig-bar-key::before {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-right: 0.3em;
+  border-radius: 2px;
+  vertical-align: -0.05em;
+}
+
+.ig-bar-key-ded::before {
+  background: var(--color-accent);
+}
+
+.ig-bar-key-tax::before {
+  background: var(--color-border);
+}
+
+.ig-threshold {
+  padding: 0.75rem 0.9rem;
+  margin: 0 0 0.75rem;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--ig-radius);
+  word-break: keep-all;
+}
+
+.ig-threshold-title {
+  margin: 0 0 0.2rem;
+  font-weight: 800;
+  color: var(--color-tag-text);
+}
+
+.ig-threshold-text {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.ig-result .ig-note {
+  margin: 0.25rem 0 0.6rem;
+}
+
+.ig-steps-wrap {
+  margin-top: 0.5rem;
+}
+
+/* 다음 할 일 카드 */
+.ig-todo {
+  padding: 0.85rem 1rem;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--ig-radius);
+  color: var(--color-text);
+}
+
+.ig-todo-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-tag-text);
+}
+
+.ig-cards {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ig-card-item {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.ig-card-item:first-child {
+  border-top: 0;
+  padding-top: 0.1rem;
+}
+
+.ig-card-icon {
+  flex: 0 0 1.6rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ig-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ig-card-head {
+  margin: 0 0 0.1rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.ig-card-text {
+  margin: 0;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.ig-card-text strong {
+  color: var(--color-accent);
+}
+
+.ig-card-note {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+
+/* ---------- 넣지 않은 것 ---------- */
+
+.ig-excluded {
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--ig-radius);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.ig-excluded summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--ig-touch);
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  list-style: none;
+}
+
+.ig-excluded summary::-webkit-details-marker {
+  display: none;
+}
+
+.ig-excluded summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  width: 1.1em;
+}
+
+.ig-excluded[open] summary::before {
+  content: "▾";
+}
+
+.ig-excluded summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.ig-excluded-list {
+  margin: 0.25rem 0 0.9rem;
+  padding-left: 1.1rem;
+  color: var(--color-text);
+}
+
+.ig-excluded-list li {
+  margin-bottom: 0.4rem;
+}
+
+.ig-excluded-list strong {
+  display: block;
+}
+
+.ig-explain-sub-title {
+  margin: 1rem 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.ig-disclaimer + .ig-disclaimer {
+  margin-top: 0.4rem;
+}
