@@ -56,6 +56,10 @@
       });
     } else if (navigator.share) {
       navigator.share({ title: title, text: desc, url: url });
+    } else {
+      // 카카오 공유를 쓸 수 없는 PC에서는 링크를 복사해 준다
+      fallbackCopy(url);
+      showCopied(section.querySelector('[data-share="url"] .share-label'));
     }
   });
 

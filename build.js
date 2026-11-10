@@ -370,6 +370,9 @@ function collectAllTags() {
 }
 
 // HTML 템플릿
+// 상단 메뉴에 쓰는 짧은 이름(주제 모음 제목이 길어 한 줄에 안 들어가서)
+var NAV_LABELS = { pension: '연금', tax: '절세·세금', 'loan-housing': '대출·주거', invest: '투자', saving: '저축', insurance: '보험', briefing: '경제 브리핑' };
+
 function htmlTemplate(opts) {
   var title = opts.title;
   var description = opts.description || config.description;
@@ -457,7 +460,7 @@ function htmlTemplate(opts) {
     + '  <meta name="naver-site-verification" content="66829663743427604f00b45e49e0e4dba24a0b39">\n'
     + '  <meta name="robots" content="' + robots + '">\n'
     + extraMeta
-    + (adsenseTag ? adsenseTag + '\n' : '')
+    + (adsenseTag && !opts.noAds ? adsenseTag + '\n' : '')
     + (gaTag ? gaTag + '\n' : '')
     + '  <script>\n'
     + '    (function(){var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);'
@@ -484,6 +487,15 @@ function htmlTemplate(opts) {
     + '        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="테마 전환"></button>\n'
     + '      </div>\n'
     + '    </div>\n'
+    // 상단 메뉴: 어느 페이지에서든 주제 모음·계산기·소개로 바로 갈 수 있게 한다
+    + '    <nav class="site-nav" aria-label="주요 메뉴">\n'
+    + '      <div class="site-nav-inner">\n'
+    + '        <a href="' + base + '">홈</a>\n'
+    + TOPICS.map(function(t) { return '        <a href="' + base + 'topics/' + t.slug + '.html">' + escapeHtml(NAV_LABELS[t.slug] || t.title.replace(/ 모음$/, '')) + '</a>\n'; }).join('')
+    + '        <a href="' + base + '#web-apps-title">무료 계산기</a>\n'
+    + '        <a href="' + base + 'about.html">소개</a>\n'
+    + '      </div>\n'
+    + '    </nav>\n'
     + '  </header>\n\n'
     + content + '\n\n'
     + preFooterHtml
@@ -1509,7 +1521,7 @@ function buildIndex(posts) {
     + '    </div>\n'
     + '  </section>\n\n'
     + '  <main id="main-content" class="container container-wide">\n'
-    + '    <h1 class="visually-hidden">' + escapeHtml(config.homeHeading || config.title) + '</h1>\n'
+    + '    <h1 class="home-heading">' + escapeHtml(config.homeHeading || config.title) + '</h1>\n'
     + (startPathsHtml ? startPathsHtml + '\n' : '')
     + (appsHtml ? appsHtml + '\n' : '')
     + (NEWSLETTER_URL ? newsletterStripHtml() + '\n' : '')
@@ -1636,7 +1648,9 @@ function buildNotFound(posts) {
     description: config.description,
     canonical: siteUrl + '/404.html',
     content: pageContent,
-    robots: 'noindex, follow'
+    robots: 'noindex, follow',
+    // 오류 페이지에는 광고 코드를 넣지 않는다(애드센스 정책: 게시자 콘텐츠가 없는 화면)
+    noAds: true
   });
 
   fs.writeFileSync(path.join(DIST, '404.html'), fullHtml);

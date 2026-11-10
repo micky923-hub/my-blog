@@ -95,7 +95,7 @@ description: 파이낸셜 다이어리의 개인정보처리방침입니다.
 이용자는 언제든지 아래의 권리를 행사할 수 있습니다.
 
 - 쿠키 수집 거부 (브라우저 설정)
-- 맞춤 광고 비활성화 (Google 광고 설정, www.aboutads.info/choices)
+- 맞춤 광고 비활성화 ([Google 광고 설정](https://adssettings.google.com/), [aboutads.info/choices](https://www.aboutads.info/choices/))
 <!-- newsletter:start -->
 - 뉴스레터 수신거부 (메일 하단 "수신거부" 링크)
 <!-- newsletter:end -->
