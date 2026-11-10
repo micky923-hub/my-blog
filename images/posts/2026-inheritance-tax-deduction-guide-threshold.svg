@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">가족 형태별 상속세 0원 기준선</title>
+  <desc id="d">배우자와 자녀가 함께 상속받으면 일괄공제 5억 원, 배우자공제 5억 원, 장례비 500만 원을 더해 재산 10억 500만 원까지 상속세가 0원입니다. 자녀만 상속받으면 일괄공제 5억 원과 장례비 500만 원으로 5억 500만 원이 기준선입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">상속세 0원 기준선</text>
+    <text x="32" y="88" font-size="17" fill="#475569">빚 없음 · 장례비 500만 원 · 2026년 11월 현행 법</text>
+
+    <text x="32" y="140" font-size="20" font-weight="700" fill="#0f172a">배우자 + 자녀</text>
+    <rect x="32" y="154" width="240" height="56" rx="8" fill="#3b82f6"/>
+    <text x="152" y="189" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">일괄 5억</text>
+    <rect x="276" y="154" width="240" height="56" rx="8" fill="#8b5cf6"/>
+    <text x="396" y="189" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">배우자 최소 5억</text>
+    <rect x="520" y="154" width="8" height="56" rx="3" fill="#94a3b8"/>
+    <text x="32" y="244" font-size="20" font-weight="800" fill="#1d4ed8">= 10억 500만 원까지 0원</text>
+
+    <text x="32" y="300" font-size="20" font-weight="700" fill="#0f172a">자녀만</text>
+    <rect x="32" y="314" width="240" height="56" rx="8" fill="#3b82f6"/>
+    <text x="152" y="349" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">일괄 5억</text>
+    <rect x="276" y="314" width="8" height="56" rx="3" fill="#94a3b8"/>
+    <text x="32" y="404" font-size="20" font-weight="800" fill="#b45309">= 5억 500만 원까지 0원</text>
+
+    <rect x="32" y="428" width="496" height="70" rx="12" fill="#e0f2fe"/>
+    <text x="52" y="457" font-size="17" font-weight="800" fill="#0c4a6e">회색 칸은 장례비 500만 원</text>
+    <text x="52" y="483" font-size="16" fill="#0c4a6e">예금·주식이 있으면 금융재산공제(최대 2억)를 더해요</text>
+  </g>
+</svg>
