@@ -1,6 +1,15 @@
 ## 프로젝트 개요
 마크다운 기반 블로그 + 미니 웹앱 포트폴리오.  HTML, CSS, JavaScript 만 사용.
 
+## 블루엠 표준 하네스
+
+이 저장소에는 블루엠 표준 하네스(media 유형)가 설치돼 있다. 이 파일이 3층(이 사이트만의 규칙)이고, 공통 규칙은 아래 두 파일에 있다.
+
+* `harness/core-rules.md`(1층 공통), `harness/type-rules.md`(2층 홈페이지 + 운영 미디어). 이 파일과 다르면 이 파일이 먼저다.
+* `harness/`, `.github/workflows/bluem-*`, `.claude/skills/bluem-*`는 설치본이다. 여기서 고치지 않는다.
+* 검사: `npm run check`(빌드 + 비밀 정보·필수 태그·내부 링크·제휴 표시·ads.txt). 화면 확인: `npm run shots` → `_workspace/screenshots/`(GitHub에 올라가지 않음).
+* 배포(`deploy.yml`)는 빌드 뒤 하네스 관문을 통과해야 진행된다.
+
 ## 반복 작업 절차서
 
 자주 하는 일의 자세한 순서는 `.claude/skills/`에 있다. 해당 요청을 받으면 먼저 그 파일을 읽는다.

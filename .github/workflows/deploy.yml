@@ -79,6 +79,11 @@ jobs:
 
       - run: npm run build
 
+      # 블루엠 하네스 관문: 위에서 만든 dist/를 검사만 한다(다시 빌드하지 않음).
+      # 비밀 정보·필수 태그·내부 링크·제휴 표시·ads.txt 중 하나라도 실패하면 여기서 멈추고 배포하지 않는다.
+      - name: 하네스 관문 (검사)
+        run: bash harness/checks/gate.sh --skip-build
+
       - name: Fetch exchange rates (Korea Eximbank)
         run: node apps/exchange-fee-calculator/tools/fetch-rates.js --out dist/apps/exchange-fee-calculator/rates.json
         env:
