@@ -1,4 +1,4 @@
-# 원본: 블루엠 표준 하네스 v0.3.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 원본: 블루엠 표준 하네스 v0.5.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 # 블루엠 하네스 2층: 홈페이지 배포 전 관문
 # 관문(gate.sh) + 언어×기기 스크린샷. 이 워크플로는 알림용이고, 배포를 막으려면 배포 워크플로에도 gate.sh를 넣는다. 스크린샷은 실행 결과의 Artifacts에서 받는다.
 name: bluem-homepage-gate
@@ -24,7 +24,8 @@ jobs:
       - name: Playwright 준비
         run: |
           npm i --no-save playwright@1.63.0
-          npx playwright install --with-deps chromium
+          # 시스템 패키지 서버가 잠깐 안 될 때가 있다 → 브라우저만이라도 받아 화면 검사를 이어 간다
+          npx playwright install --with-deps chromium || { echo "::warning::시스템 패키지 설치 실패, 브라우저만 설치하고 계속"; npx playwright install chromium; }
       - name: 화면 검사 (언어×기기 스크린샷)
         run: node harness/checks/screenshots.mjs
       - name: 스크린샷 올리기
