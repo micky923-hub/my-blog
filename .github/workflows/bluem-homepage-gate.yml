@@ -1,0 +1,36 @@
+# 원본: 블루엠 표준 하네스 v0.3.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 블루엠 하네스 2층: 홈페이지 배포 전 관문
+# 관문(gate.sh) + 언어×기기 스크린샷. 이 워크플로는 알림용이고, 배포를 막으려면 배포 워크플로에도 gate.sh를 넣는다. 스크린샷은 실행 결과의 Artifacts에서 받는다.
+name: bluem-homepage-gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 관문 (빌드·기본 검사·홈페이지 검사)
+        run: bash harness/checks/gate.sh
+      - name: Playwright 준비
+        run: |
+          npm i --no-save playwright@1.63.0
+          npx playwright install --with-deps chromium
+      - name: 화면 검사 (언어×기기 스크린샷)
+        run: node harness/checks/screenshots.mjs
+      - name: 스크린샷 올리기
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: _workspace/screenshots/
+          retention-days: 7

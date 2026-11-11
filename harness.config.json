@@ -1,0 +1,14 @@
+{
+  "harnessType": "media",
+  "siteDir": "dist",
+  "buildCommand": "npm install --no-audit --no-fund && npm run build",
+  "branches": ["main"],
+  "launched": true,
+  "languages": { "ko": "" },
+  "pages": ["", "about", "posts/2026-jeonse-fraud-prevention-checklist", "apps/savings-calculator/"],
+  "devices": ["mobile", "desktop"],
+  "media": {
+    "affiliateHosts": ["coupang.com", "coupa.ng"],
+    "disclosure": "쿠팡 파트너스 활동의 일환"
+  }
+}
