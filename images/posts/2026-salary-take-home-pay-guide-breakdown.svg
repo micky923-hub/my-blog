@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="t d">
+  <title id="t">연봉 4,000만 원 월급 333만 원이 나뉘는 곳</title>
+  <desc id="d">비과세 식대 20만 원, 본인 1명, 원천징수 100% 기준입니다. 세전 월급 333만 3,333원 가운데 실수령액은 294만 4,007원입니다. 국민연금 14만 8,833원, 건강보험과 장기요양 12만 7,444원, 소득세와 지방소득세 8만 4,850원, 고용보험 2만 8,199원이 빠져 모두 38만 9,326원이 공제됩니다.</desc>
+  <rect x="0" y="0" width="560" height="540" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">연봉 4,000만 원의 월급</text>
+    <text x="32" y="88" font-size="17" fill="#475569">세전 333만 원 · 식대 20만 원 · 본인 1명 기준</text>
+
+    <text x="32" y="140" font-size="19" font-weight="700" fill="#0f172a">통장에 들어오는 돈</text>
+    <rect x="32" y="152" width="440" height="34" rx="7" fill="#3b82f6"/>
+    <text x="46" y="176" font-size="18" font-weight="800" fill="#ffffff">약 294만 원 (88.3%)</text>
+
+    <text x="32" y="234" font-size="19" font-weight="700" fill="#0f172a">국민연금 4.75%</text>
+    <rect x="32" y="246" width="44" height="30" rx="6" fill="#f59e0b"/>
+    <text x="86" y="268" font-size="17" font-weight="800" fill="#0f172a">약 14만 9천 원</text>
+
+    <text x="32" y="318" font-size="19" font-weight="700" fill="#0f172a">건강보험 + 장기요양</text>
+    <rect x="32" y="330" width="38" height="30" rx="6" fill="#10b981"/>
+    <text x="80" y="352" font-size="17" font-weight="800" fill="#0f172a">약 12만 7천 원</text>
+
+    <text x="32" y="402" font-size="19" font-weight="700" fill="#0f172a">소득세 + 지방소득세</text>
+    <rect x="32" y="414" width="25" height="30" rx="6" fill="#8b5cf6"/>
+    <text x="67" y="436" font-size="17" font-weight="800" fill="#0f172a">약 8만 5천 원</text>
+
+    <text x="300" y="402" font-size="19" font-weight="700" fill="#0f172a">고용보험 0.9%</text>
+    <rect x="300" y="414" width="9" height="30" rx="3" fill="#ec4899"/>
+    <text x="319" y="436" font-size="17" font-weight="800" fill="#0f172a">약 2만 8천 원</text>
+
+    <text x="32" y="500" font-size="16" fill="#475569">빠지는 돈의 약 78%는 4대보험이에요</text>
+  </g>
+</svg>

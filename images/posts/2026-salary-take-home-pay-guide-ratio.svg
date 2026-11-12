@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 604" role="img" aria-labelledby="t d">
+  <title id="t">연봉별 월급에서 빠지는 비율</title>
+  <desc id="d">비과세 식대 20만 원, 본인 1명 기준으로 세전 월급에서 4대보험과 세금이 빠지는 비율입니다. 연봉 3,000만 원은 10.1%, 4,000만 원은 11.7%, 6,000만 원은 16.0%, 8,000만 원은 19.1%, 1억 원은 21.1%입니다.</desc>
+  <rect x="0" y="0" width="560" height="604" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">연봉별 빠지는 비율</text>
+    <text x="32" y="88" font-size="17" fill="#475569">세전 월급 대비 4대보험 + 세금 · 본인 1명</text>
+
+        <text x="32" y="144" font-size="20" font-weight="700" fill="#0f172a">3,000만 원</text>
+    <rect x="32" y="156" width="161" height="30" rx="6" fill="#3b82f6"/>
+    <text x="203" y="178" font-size="17" font-weight="800" fill="#0f172a">10.1%</text>
+
+    <text x="32" y="228" font-size="20" font-weight="700" fill="#0f172a">4,000만 원</text>
+    <rect x="32" y="240" width="187" height="30" rx="6" fill="#3b82f6"/>
+    <text x="229" y="262" font-size="17" font-weight="800" fill="#0f172a">11.7%</text>
+
+    <text x="32" y="312" font-size="20" font-weight="700" fill="#0f172a">6,000만 원</text>
+    <rect x="32" y="324" width="256" height="30" rx="6" fill="#3b82f6"/>
+    <text x="298" y="346" font-size="17" font-weight="800" fill="#0f172a">16.0%</text>
+
+    <text x="32" y="396" font-size="20" font-weight="700" fill="#0f172a">8,000만 원</text>
+    <rect x="32" y="408" width="305" height="30" rx="6" fill="#f59e0b"/>
+    <text x="347" y="430" font-size="17" font-weight="800" fill="#0f172a">19.1%</text>
+
+    <text x="32" y="480" font-size="20" font-weight="700" fill="#0f172a">1억 원</text>
+    <rect x="32" y="492" width="337" height="30" rx="6" fill="#f59e0b"/>
+    <text x="379" y="514" font-size="17" font-weight="800" fill="#0f172a">21.1%</text>
+
+    <text x="32" y="568" font-size="16" fill="#475569">연봉이 오를수록 소득세 몫이 빠르게 커져요</text>
+  </g>
+</svg>
