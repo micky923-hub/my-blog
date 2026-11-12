@@ -183,4 +183,4 @@ image: https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=400&fit
 ---
 
 > 🐷 **함께 계산해 보세요: [연금저축·IRP 세액공제 계산기 →](/apps/pension-tax-calculator/)**  
-> 프리랜서도 종합소득금액을 넣으면 연금계좌로 돌려받을 세금을 바로 계산할 수 있어요.
+> 프리랜서도 종합소득금액을 넣으면 연금계좌로 돌려받을 세금을 바로 계산할 수 있어요. 사업소득이 있다면 [노란우산공제 소득공제 한도](/posts/2026-yellow-umbrella-deduction-guide.html)도 함께 확인하세요.

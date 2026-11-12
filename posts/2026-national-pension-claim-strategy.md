@@ -214,4 +214,4 @@ image: https://images.unsplash.com/photo-1607863680198-23d4b2565df0?w=800&h=400&
 ---
 
 > 🐷 **함께 준비하세요: [연금저축·IRP 세액공제 계산기 →](/apps/pension-tax-calculator/)**  
-> 국민연금 전까지 공백을 메울 연금저축·IRP, 올해 넣으면 얼마를 돌려받는지 바로 계산해 드려요.
+> 국민연금 전까지 공백을 메울 연금저축·IRP, 올해 넣으면 얼마를 돌려받는지 바로 계산해 드려요. 국민연금과 기초연금을 함께 받을 수 있는지는 [기초연금 수급 조건 2026](/posts/2026-basic-pension-eligibility-guide.html)에서 확인하세요.
