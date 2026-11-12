@@ -140,7 +140,7 @@ image: https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=400&
 
 가입자가 먼저 세상을 떠나도 **배우자가 그대로 연금을 이어 받습니다**. 집 소유권을 공사에 맡기는 신탁방식으로 가입하면 자녀 동의 없이 배우자에게 자동으로 넘어가니, 가입할 때 신탁방식을 우선 검토하세요.
 
-집을 물려줄 때 상속세가 생기는지는 [증여세·상속세 계산기](/apps/inheritance-gift-tax-calculator/#inheritance)에서 확인해 보세요.
+집을 물려줄 때 상속세가 생기는지는 [증여세·상속세 계산기](/apps/inheritance-gift-tax-calculator/#inheritance)에서 확인하고, 기준선과 공제 순서는 [상속세 얼마부터 낼까](/posts/2026-inheritance-tax-deduction-guide.html)에서 보세요.
 
 ## 세금과 건강보험 혜택도 챙기세요
 

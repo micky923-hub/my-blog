@@ -180,4 +180,4 @@ image: https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=400&
 ---
 
 > 📅 **함께 보면 좋은 글**  
-> 연금을 언제부터 받을지는 [국민연금 조기수령 vs 연기수령](/posts/2026-national-pension-claim-strategy.html)에서, 국민연금 외에 채울 연금은 [40대 노후 준비 시작하기](/posts/2026-forties-retirement-planning-guide.html)에서 보세요. 은퇴 뒤 건강보험료가 걱정된다면 [건강보험료 줄이는 법](/posts/2026-health-insurance-premium-saving-guide.html)도 함께 읽어 보세요. 개인연금으로 줄일 세금은 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 바로 계산할 수 있어요.
+> 연금을 언제부터 받을지는 [국민연금 조기수령 vs 연기수령](/posts/2026-national-pension-claim-strategy.html)에서, 65세 이후 기초연금을 받을 수 있는지는 [기초연금 수급 조건 2026](/posts/2026-basic-pension-eligibility-guide.html)에서, 국민연금 외에 채울 연금은 [40대 노후 준비 시작하기](/posts/2026-forties-retirement-planning-guide.html)에서 보세요. 은퇴 뒤 건강보험료가 걱정된다면 [건강보험료 줄이는 법](/posts/2026-health-insurance-premium-saving-guide.html)도 함께 읽어 보세요. 개인연금으로 줄일 세금은 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 바로 계산할 수 있어요.

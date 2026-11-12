@@ -197,4 +197,4 @@ image: https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800&h=400&
 > 누구에게 얼마를 받는지와 지난 10년 동안 받은 돈을 넣으면 낼 세금, 신고 기한, 나눠 주면 아끼는 금액을 알려 드려요.
 
 > 🏠 **함께 읽으면 좋은 글: [전세사기 예방 체크리스트](/posts/2026-jeonse-fraud-prevention-checklist.html)**  
-> 증여받은 돈으로 신혼 전셋집을 구한다면, 계약 전에 확인할 것을 순서대로 정리했어요. 내 집 마련을 준비한다면 [청약통장 활용법](/posts/2026-housing-subscription-savings-guide.html)도 함께 보세요.
+> 증여받은 돈으로 신혼 전셋집을 구한다면, 계약 전에 확인할 것을 순서대로 정리했어요. 내 집 마련을 준비한다면 [청약통장 활용법](/posts/2026-housing-subscription-savings-guide.html)도 함께 보세요. 생전 증여와 나중의 상속세를 함께 따져 보려면 [상속세 얼마부터 낼까](/posts/2026-inheritance-tax-deduction-guide.html)를 읽어 보세요.
