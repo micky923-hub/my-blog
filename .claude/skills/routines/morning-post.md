@@ -45,6 +45,16 @@ topics.json의 6개 주제(연금·절세·대출·투자·저축·보험) 가�
 확인하지 못한 숫자를 단정하기
 다른 사이트 글을 옮겨 쓰거나 짜깁기하기
 [검사] CLAUDE.md에 적힌 검사를 모두 한다. npm run build 통과, dist/posts/에 del 태그와 별표 두 개가 남지 않았는지 확인, 본문 5,000자에서 7,000자 사이, 문단 3문장 이하, 표 3열 이하, 자주 묻는 질문 3개에서 5개, SVG 그림 2개를 휴대폰 폭으로 렌더링해 확인, 요약 대본 숫자 검사 통과.
+[하루 1분 경제 용어 추가]
+
+글을 다 쓰고 npm run build가 통과한 뒤 아래를 한다.
+1. 오늘 쓴 글에서 독자가 꼭 알아야 할 경제 용어 1개를 고른다. apps/daily-econ/terms.json에 같은 용어나 같은 뜻의 용어가 이미 있으면 다른 용어를 고르고, 마땅한 것이 없으면 이 단계를 건너뛴다.
+2. terms 배열 맨 끝에 1개만 추가한다. 기존 항목의 순서, id, startDate는 절대 바꾸거나 지우지 않는다.
+3. 필드: id(영문 소문자와 하이픈, 새로 만들기), term, category(세금, 연금, 저축, 투자, 대출, 보험, 부동산, 생활금융 중 하나), level(1에서 3), short(한 줄 정의), lines(쉬운 말 3줄, 각 줄은 "요"로 끝), example(생활 예시 1줄), quiz(statement, answer는 O면 true·X면 false, explain), post(오늘 글 slug), postLabel(짧은 링크 글자, "읽기"로 끝), checkYear(세율·한도·금리 숫자가 있으면 올해 연도, 없으면 null), addedAt(TZ=Asia/Seoul date +%F 결과), addedBy는 "routine".
+4. 숫자는 오늘 글 본문에 있는 숫자만 같은 표기로 쓴다. 종목·상품 이름과 "사세요", "추천", "무조건" 같은 말은 쓰지 않는다.
+5. node apps/daily-econ/tools/check-terms.js 를 실행해 오류 0건인지 확인한다. 오류가 나면 추가한 항목을 고치고, 고칠 수 없으면 추가한 항목을 빼서 terms.json을 원래대로 둔다.
+6. terms.json 변경은 글과 같은 커밋, 같은 PR에 넣는다. 그 밖의 apps 폴더 파일은 건드리지 않는다. PR 본문에 추가한 용어 이름을 한 줄 적는다.
+
 [올리기]
 
 main에 바로 push하지 않는다. post/{글 slug} 브랜치에 커밋해 push하고 main으로 가는 PR을 만든다.
