@@ -722,7 +722,9 @@
     var count = cardCount();
     var bs = badgeState(count);
     body.appendChild(el('p', 'de-cards-count', '모은 카드 ' + count + ' / ' + usableCount()));
-    if (bs.next) {
+    if (bs.next && bs.next.count > usableCount()) {
+      body.appendChild(el('p', 'de-next-badge', '다음 배지 ' + bs.next.icon + ' “' + bs.next.name + '”는 용어가 ' + bs.next.count + '개로 늘면 열려요. 지금은 ' + usableCount() + '개예요.'));
+    } else if (bs.next) {
       var nextLine = el('p', 'de-next-badge', '다음 배지 ' + bs.next.icon + ' “' + bs.next.name + '”까지 ' + bs.remaining + '장');
       body.appendChild(nextLine);
       var prev = bs.earned.length ? BADGES[bs.earned.length - 1].count : 0;
@@ -806,8 +808,10 @@
       var li = el('li', 'de-badge' + (got ? ' de-badge-on' : ''));
       li.appendChild(el('span', 'de-badge-icon', got ? b.icon : '🔒'));
       li.appendChild(el('span', 'de-badge-name', b.name));
-      li.appendChild(el('span', 'de-badge-count', b.count + '장'));
-      li.setAttribute('aria-label', b.name + ' 배지, 카드 ' + b.count + '장, ' + (got ? '얻음' : '아직 못 얻음'));
+      // 아직 용어가 그만큼 쌓이지 않은 배지는 "준비 중"으로 알린다(용어는 계속 늘어남)
+      var soon = !got && b.count > usableCount();
+      li.appendChild(el('span', 'de-badge-count', b.count + '장' + (soon ? ' · 준비 중' : '')));
+      li.setAttribute('aria-label', b.name + ' 배지, 카드 ' + b.count + '장, ' + (got ? '얻음' : soon ? '용어가 더 쌓이면 열림' : '아직 못 얻음'));
       ul.appendChild(li);
     });
     wrap.appendChild(ul);
