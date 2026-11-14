@@ -167,3 +167,5 @@ image: https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=800&h=400&
 오늘 하나만 한다면, 빌린 돈으로 산 주식이 있는지부터 확인하세요. 증권사 앱에서 신용·미수 잔고 화면을 여는 데 1분이면 충분합니다.
 
 > **직접 계산해 보세요**: [적금·예금 계산기](/apps/savings-calculator/) · [환전 수수료 계산기](/apps/exchange-fee-calculator/) · [오늘의 생활경제 대시보드](/apps/economy-dashboard/)
+
+> 📅 **다음 주 브리핑**: [이번 주 경제 브리핑(11월 셋째 주), 유류세 인하 내년 1월까지 연장](/posts/2026-weekly-economy-briefing-1115.html)
