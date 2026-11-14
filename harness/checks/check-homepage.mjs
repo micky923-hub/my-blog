@@ -1,4 +1,4 @@
-// 원본: 블루엠 표준 하네스 v0.5.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+// 원본: 블루엠 표준 하네스 v0.6.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 // 블루엠 하네스 2층 홈페이지 검사
 // harness.config.json을 읽어 HTML 파일의 필수 태그, 검색 차단 상태, 내부 링크, 언어별 페이지를 확인한다.
 // 사용: node harness/checks/check-homepage.mjs   (저장소 맨 위에서 실행, 추가 설치 없음)
@@ -56,7 +56,8 @@ for (const file of htmlFiles) {
 
   for (const m of html.matchAll(/\s(?:href|src)=["']([^"']+)["']/gi)) {
     const link = m[1].trim();
-    if (/^(https?:|\/\/|mailto:|tel:|#|data:|javascript:|\{)/i.test(link)) continue;
+    // 바깥 주소는 건너뛴다 (webcal: = 달력 구독 주소)
+    if (/^(https?:|webcal:|\/\/|mailto:|tel:|#|data:|javascript:|\{)/i.test(link)) continue;
     if (!targetExists(file, link)) fail(file, `없는 파일로 가는 링크: ${link}`);
   }
 }
