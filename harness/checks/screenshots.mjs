@@ -1,4 +1,4 @@
-// 원본: 블루엠 표준 하네스 v0.5.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+// 원본: 블루엠 표준 하네스 v0.6.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 // 블루엠 하네스 2층 화면 검사: 언어 × 페이지 × 기기 스크린샷
 // harness.config.json의 siteDir을 작은 서버로 띄우고 Playwright로 찍는다.
 // 결과: _workspace/screenshots/{언어}-{페이지}-{기기}.png  (GitHub에 올라가지 않음)
@@ -43,7 +43,7 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const origin = `http://127.0.0.1:${server.address().port}`;
 
 const browser = await chromium.launch();
-const problems = [];
+const problems = [], notes = [];
 let count = 0;
 for (const deviceName of config.devices ?? ["mobile", "desktop"]) {
   const context = await browser.newContext(DEVICES[deviceName] ?? DEVICES.desktop);
@@ -59,6 +59,22 @@ for (const deviceName of config.devices ?? ["mobile", "desktop"]) {
       // 휴대폰·태블릿에서 가로 스크롤이 생기는지
       const overflow = await tab.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       if (deviceName !== "desktop" && overflow > 1) broken.push(`가로 스크롤 ${overflow}px`);
+      // 휴대폰에서 12px보다 작은 글씨 (디자인 기준, 배포를 막지 않고 알려만 준다)
+      if (deviceName === "mobile") {
+        const tiny = await tab.evaluate(() => {
+          const seen = new Set();
+          for (const el of document.body.querySelectorAll("*")) {
+            const own = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+            if (!own || !el.getClientRects().length) continue;
+            const cs = getComputedStyle(el);
+            if (cs.visibility === "hidden" || parseFloat(cs.fontSize) >= 12) continue;
+            seen.add(`${Math.round(parseFloat(cs.fontSize) * 10) / 10}px "${el.textContent.trim().slice(0, 20)}"`);
+            if (seen.size >= 3) break;
+          }
+          return [...seen];
+        });
+        for (const t of tiny) notes.push(`${label}: 작은 글씨 ${t}`);
+      }
       await tab.screenshot({ path: path.join(outDir, `${label}.png`), fullPage: true });
       for (const b of broken) problems.push(`${label}: ${b}`);
       count++;
@@ -71,6 +87,8 @@ await browser.close();
 server.close();
 
 console.log(`화면 검사: 스크린샷 ${count}장 → ${path.relative(process.cwd(), outDir)}/`);
+for (const n of notes.slice(0, 15)) console.log(`  [참고] ${n}`);
+if (notes.length > 15) console.log(`  … 참고 외 ${notes.length - 15}건`);
 if (problems.length) {
   for (const p of problems) console.log(`  [확인] ${p}`);
   console.log(`화면 검사 실패: ${problems.length}건`);
