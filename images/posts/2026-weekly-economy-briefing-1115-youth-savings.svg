@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">청년미래적금 월 50만 원 3년 납입 시 정부기여금</title>
+  <desc id="d">청년미래적금에 월 50만 원씩 3년 넣으면 납입금은 1,800만 원입니다. 정부기여금은 납입금의 6%인 일반형이 108만 원, 12%인 우대형이 216만 원입니다. 이자는 따로 붙습니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">3년 넣으면 기여금이 붙어요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">월 50만 원 × 36개월 = 납입금 1,800만 원</text>
+
+    <text x="32" y="140" font-size="17" font-weight="700" fill="#334155">일반형 (납입금의 6%)</text>
+    <rect x="32" y="154" width="400" height="44" rx="8" fill="#cbd5e1"/>
+    <rect x="432" y="154" width="24" height="44" rx="6" fill="#3b82f6"/>
+    <text x="232" y="183" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">납입 1,800만 원</text>
+    <text x="32" y="226" font-size="20" font-weight="800" fill="#1e3a8a">+ 기여금 108만 원</text>
+
+    <text x="32" y="276" font-size="17" font-weight="700" fill="#334155">우대형 (납입금의 12%)</text>
+    <rect x="32" y="290" width="400" height="44" rx="8" fill="#cbd5e1"/>
+    <rect x="432" y="290" width="48" height="44" rx="6" fill="#ea580c"/>
+    <text x="232" y="319" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">납입 1,800만 원</text>
+    <text x="32" y="362" font-size="20" font-weight="800" fill="#9a3412">+ 기여금 216만 원</text>
+
+    <text x="32" y="402" font-size="15" fill="#475569">이자는 따로 · 계좌 개설 11월 16~27일 평일</text>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-labelledby="t d">
+  <title id="t">한 달 100리터 기준 유류세 인하액</title>
+  <desc id="d">유류세 인하로 한 달에 100리터를 넣을 때 덜 내는 돈은 휘발유 1만 2,200원, 경유 1만 4,500원, 부탄 5,100원입니다. 리터당 인하액은 휘발유 122원, 경유 145원, 부탄 51원이고 2027년 1월 31일까지 이어집니다.</desc>
+  <rect x="0" y="0" width="560" height="420" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">100리터 넣으면 이만큼 덜 내요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">유류세 인하액 · 2027년 1월 31일까지</text>
+
+    <line x1="32" y1="330" x2="528" y2="330" stroke="#cbd5e1" stroke-width="2"/>
+
+    <rect x="60" y="174" width="120" height="156" rx="8" fill="#3b82f6"/>
+    <text x="120" y="160" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">1만 2,200원</text>
+    <text x="120" y="356" text-anchor="middle" font-size="17" fill="#334155">휘발유</text>
+    <text x="120" y="378" text-anchor="middle" font-size="15" fill="#64748b">리터당 122원</text>
+
+    <rect x="220" y="144" width="120" height="186" rx="8" fill="#ea580c"/>
+    <text x="280" y="130" text-anchor="middle" font-size="20" font-weight="800" fill="#9a3412">1만 4,500원</text>
+    <text x="280" y="356" text-anchor="middle" font-size="17" fill="#334155">경유</text>
+    <text x="280" y="378" text-anchor="middle" font-size="15" fill="#64748b">리터당 145원</text>
+
+    <rect x="380" y="265" width="120" height="65" rx="8" fill="#10b981"/>
+    <text x="440" y="251" text-anchor="middle" font-size="20" font-weight="800" fill="#065f46">5,100원</text>
+    <text x="440" y="356" text-anchor="middle" font-size="17" fill="#334155">부탄</text>
+    <text x="440" y="378" text-anchor="middle" font-size="15" fill="#64748b">리터당 51원</text>
+
+    <text x="32" y="408" font-size="15" fill="#475569">부가가치세 포함 · 휘발유 15%, 경유·부탄 25% 인하</text>
+  </g>
+</svg>
