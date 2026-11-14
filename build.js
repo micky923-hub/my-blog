@@ -370,6 +370,26 @@ function collectAllTags() {
 }
 
 // HTML 템플릿
+// 사이트 운영 주체(구조화 데이터). 이름·주소·로고·공식 SNS(sameAs)를 한 묶음으로 둔다.
+// 공식 SNS 주소는 site.config.json의 sameAs에서만 관리한다(실제로 운영하는 계정만).
+function orgNode() {
+  var o = {
+    "@type": "Organization",
+    "@id": siteUrl + '/#organization',
+    "name": config.titleKo || config.title,
+    "alternateName": config.alternateNames || [],
+    "url": siteUrl + '/',
+    "logo": { "@type": "ImageObject", "url": siteUrl + '/favicon.svg' }
+  };
+  if (Array.isArray(config.sameAs) && config.sameAs.length) o.sameAs = config.sameAs;
+  return o;
+}
+function orgRef() {
+  var o = { "@type": "Organization", "@id": siteUrl + '/#organization', "name": config.titleKo || config.title, "url": siteUrl + '/' };
+  if (Array.isArray(config.sameAs) && config.sameAs.length) o.sameAs = config.sameAs;
+  return o;
+}
+
 // 상단 메뉴에 쓰는 짧은 이름(주제 모음 제목이 길어 한 줄에 안 들어가서)
 var NAV_LABELS = { pension: '연금', tax: '절세·세금', 'loan-housing': '대출·주거', invest: '투자', saving: '저축', insurance: '보험', briefing: '경제 브리핑' };
 
@@ -1258,7 +1278,7 @@ function buildPosts() {
       "inLanguage": "ko-KR",
       "author": { "@type": "Organization", "name": config.author, "url": siteUrl + '/about.html' },
       "editor": config.editor && config.editor.name ? { "@type": "Person", "name": config.editor.name, "description": config.editor.credentials || '', "url": siteUrl + '/about.html#editor' } : undefined,
-      "publisher": { "@type": "Organization", "name": config.title, "url": siteUrl + '/' },
+      "publisher": orgRef(),
       "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
       "url": postUrl,
       "timeRequired": 'PT' + entry.info.minutes + 'M'
@@ -1549,6 +1569,7 @@ function buildIndex(posts) {
   var jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
+      orgNode(),
       {
         "@type": "WebSite",
         "@id": siteUrl + '/#website',
@@ -1556,7 +1577,8 @@ function buildIndex(posts) {
         "alternateName": config.alternateNames || [],
         "url": siteUrl + '/',
         "inLanguage": "ko-KR",
-        "description": config.description
+        "description": config.description,
+        "publisher": { "@id": siteUrl + '/#organization' }
       },
       {
         "@type": "Blog",
