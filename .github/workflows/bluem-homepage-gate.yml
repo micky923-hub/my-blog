@@ -1,4 +1,4 @@
-# 원본: 블루엠 표준 하네스 v0.6.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 원본: 블루엠 표준 하네스 v0.6.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 # 블루엠 하네스 2층: 홈페이지 배포 전 관문
 # 관문(gate.sh) + 언어×기기 스크린샷. 이 워크플로는 알림용이고, 배포를 막으려면 배포 워크플로에도 gate.sh를 넣는다. 스크린샷은 실행 결과의 Artifacts에서 받는다.
 name: bluem-homepage-gate
@@ -30,6 +30,8 @@ jobs:
         run: node harness/checks/screenshots.mjs
       - name: 스크린샷 올리기
         if: always()
+        # GitHub 저장 공간이 꽉 차도 검사 결과(초록불)는 그대로 둔다. 스크린샷은 PC에서 npm run shots로도 볼 수 있다
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: screenshots
