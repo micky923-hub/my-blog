@@ -765,3 +765,7 @@
     font-size: 1.85rem;
   }
 }
+
+/* 불러오기 실패 화면: 다시 불러오기 단추와 글 링크 사이 간격, 숨긴 분류 칩 */
+.de-error + .de-btn { margin: 0 16px 8px 0; }
+.de-chip[hidden] { display: none; }
