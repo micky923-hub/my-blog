@@ -481,8 +481,16 @@
     title.textContent = shortDate(state.today) + ' 오늘의 용어';
     if (state.loadError) {
       cat.hidden = true;
-      var p = el('p', 'de-error', '용어를 불러오지 못했어요. 잠시 후 다시 열어 주세요.');
+      var p = el('p', 'de-error', '용어를 불러오지 못했어요. 인터넷 연결을 확인한 뒤 다시 시도해 주세요.');
       body.appendChild(p);
+      var again = el('button', 'de-btn', '다시 불러오기');
+      again.type = 'button';
+      again.addEventListener('click', function () {
+        state.loadError = false;
+        renderAll();
+        fetchAndRender();
+      });
+      body.appendChild(again);
       var back = el('a', 'de-post-link', '블로그 글 보러 가기 →');
       back.href = '../../';
       body.appendChild(back);
@@ -996,12 +1004,80 @@
     renderPast();
   }
 
+  var TERMS_CACHE_KEY = 'daily-econ:terms-cache';
+  var LOAD_TIMEOUT_MS = 10000;
+
+  // 응답이 10초 안에 오지 않으면 실패로 본다(느린 모바일 망에서 무한 대기 방지).
   function loadTerms() {
     var url = 'terms.json';
     if (!window.fetch) return Promise.reject(new Error('fetch 없음'));
-    return window.fetch(url, { cache: 'no-cache' }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
+    var ctrl = window.AbortController ? new window.AbortController() : null;
+    var timer;
+    var timeout = new Promise(function (_, reject) {
+      timer = setTimeout(function () {
+        if (ctrl) ctrl.abort();
+        reject(new Error('시간 초과'));
+      }, LOAD_TIMEOUT_MS);
+    });
+    var req = window.fetch(url, ctrl ? { cache: 'no-cache', signal: ctrl.signal } : { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      });
+    return Promise.race([req, timeout]).then(function (data) {
+      clearTimeout(timer);
+      return data;
+    }, function (err) {
+      clearTimeout(timer);
+      throw err;
+    });
+  }
+
+  function saveTermsCache(data) {
+    try { window.localStorage.setItem(TERMS_CACHE_KEY, JSON.stringify(data)); } catch (e) { /* 저장 못 해도 화면은 그대로 */ }
+  }
+
+  function readTermsCache() {
+    try {
+      var raw = window.localStorage.getItem(TERMS_CACHE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  // 받은 데이터를 검사해 화면 상태에 넣는다. 쓸 수 없으면 오류를 던진다.
+  function applyTerms(data) {
+    var v = validateData(data);
+    if (!v.ok) throw new Error(v.error);
+    if (v.errors.length) {
+      console.info('[daily-econ] 형식이 틀린 용어 ' + v.errors.length + '개를 건너뛰어요.', v.errors);
+    }
+    state.data = data;
+    state.usable = usableFlags(data.terms, v.valid);
+    computePick();
+    if (!state.pick) throw new Error('보여 줄 용어 없음');
+  }
+
+  function fetchAndRender() {
+    state.loadError = false;
+    return loadTerms().then(function (data) {
+      applyTerms(data);
+      saveTermsCache(data);
+      renderAll();
+    }).catch(function (err) {
+      console.info('[daily-econ] 용어를 불러오지 못했어요: ' + (err && err.message));
+      // 지난번에 받아 둔 용어가 있으면 그것으로 보여 준다.
+      var cached = readTermsCache();
+      if (cached) {
+        try {
+          applyTerms(cached);
+          renderAll();
+          return;
+        } catch (e) { /* 아래 오류 화면으로 */ }
+      }
+      state.loadError = true;
+      state.data = null;
+      state.pick = null;
+      renderAll();
     });
   }
 
@@ -1012,24 +1088,7 @@
     if (guide && state.rec.introSeen) guide.open = false;
     renderAll();
 
-    loadTerms().then(function (data) {
-      var v = validateData(data);
-      if (!v.ok) throw new Error(v.error);
-      if (v.errors.length) {
-        console.info('[daily-econ] 형식이 틀린 용어 ' + v.errors.length + '개를 건너뛰어요.', v.errors);
-      }
-      state.data = data;
-      state.usable = usableFlags(data.terms, v.valid);
-      computePick();
-      if (!state.pick) throw new Error('보여 줄 용어 없음');
-      renderAll();
-    }).catch(function (err) {
-      console.info('[daily-econ] 용어를 불러오지 못했어요: ' + (err && err.message));
-      state.loadError = true;
-      state.data = null;
-      state.pick = null;
-      renderAll();
-    });
+    fetchAndRender();
 
     document.addEventListener('visibilitychange', function () {
       if (document.visibilityState === 'visible') checkDateChange();
