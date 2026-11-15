@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">자동차세 연납 기간별 할인율</title>
+  <desc id="d">연납 할인율은 1년치 세금 대비로 1월 16~31일 약 4.57%, 3월 16~31일 약 3.77%, 6월 16~30일 2.5%, 9월 16~30일 1.25%입니다. 1,999cc 차 기준 할인액은 약 2만 3,800원, 약 1만 9,600원, 약 1만 3,000원, 약 6,500원입니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">늦을수록 할인이 줄어요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">1년치 세금 대비 할인율 · 괄호는 1,999cc 할인액</text>
+
+    <line x1="60" y1="126" x2="60" y2="450" stroke="#cbd5e1" stroke-width="4"/>
+
+    <circle cx="60" cy="146" r="14" fill="#16a34a"/>
+    <text x="88" y="140" font-size="20" font-weight="800" fill="#0f172a">1월 16~31일</text>
+    <text x="88" y="168" font-size="18" fill="#15803d"><tspan font-weight="800">약 4.57%</tspan> (약 2만 3,800원)</text>
+    <rect x="370" y="128" width="158" height="34" rx="17" fill="#dcfce7"/>
+    <text x="449" y="151" font-size="16" font-weight="700" fill="#15803d" text-anchor="middle">가장 유리</text>
+
+    <circle cx="60" cy="236" r="14" fill="#22c55e"/>
+    <text x="88" y="230" font-size="20" font-weight="800" fill="#0f172a">3월 16~31일</text>
+    <text x="88" y="258" font-size="18" fill="#15803d"><tspan font-weight="800">약 3.77%</tspan> (약 1만 9,600원)</text>
+
+    <circle cx="60" cy="326" r="14" fill="#f59e0b"/>
+    <text x="88" y="320" font-size="20" font-weight="800" fill="#0f172a">6월 16~30일</text>
+    <text x="88" y="348" font-size="18" fill="#b45309"><tspan font-weight="800">2.5%</tspan> (약 1만 3,000원)</text>
+
+    <circle cx="60" cy="416" r="14" fill="#f97316"/>
+    <text x="88" y="410" font-size="20" font-weight="800" fill="#0f172a">9월 16~30일</text>
+    <text x="88" y="438" font-size="18" fill="#c2410c"><tspan font-weight="800">1.25%</tspan> (약 6,500원)</text>
+
+    <rect x="32" y="462" width="496" height="44" rx="12" fill="#fef3c7"/>
+    <text x="52" y="490" font-size="16" font-weight="700" fill="#92400e">이자율은 연 5% · 2027년 1월 31일은 일요일</text>
+  </g>
+</svg>
