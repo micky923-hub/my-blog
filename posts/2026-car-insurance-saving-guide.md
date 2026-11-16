@@ -170,4 +170,4 @@ image: https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&h=400&
 ---
 
 > 🛡️ **함께 읽으면 좋은 글: [내 실손보험 몇 세대? 1~5세대 비교와 5세대 전환 전 체크리스트](/posts/2026-health-insurance-generation-guide.html)**  
-> 자동차보험을 점검했다면 실손보험도 같이 확인해 보세요. 보장성보험 전반은 [종신보험 vs 정기보험, 보장성보험 고르는 법](/posts/2026-term-life-insurance-guide.html)에 정리했어요.
+> 자동차보험을 점검했다면 실손보험도 같이 확인해 보세요. 보장성보험 전반은 [종신보험 vs 정기보험, 보장성보험 고르는 법](/posts/2026-term-life-insurance-guide.html)에 정리했어요. 차에 드는 세금은 [자동차세 연납 할인](/posts/2026-car-tax-annual-prepayment-guide.html)으로 1월에 줄일 수 있어요.

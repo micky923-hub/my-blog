@@ -174,4 +174,4 @@ image: https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=400&
 ---
 
 > 🚗 **함께 읽으면 좋은 글: [자동차보험료 아끼는 법](/posts/2026-car-insurance-saving-guide.html)**  
-> 차를 산 날 바로 가입해야 하는 자동차보험, 특약과 자기부담금으로 보험료를 줄이는 방법을 정리했어요. 이미 받은 할부를 더 싼 대출로 바꾸고 싶다면 [대출 갈아타기 이자 비교 계산기](/apps/loan-refinance-calculator/)로 아끼는 이자를 바로 계산해 볼 수 있어요.
+> 차를 산 날 바로 가입해야 하는 자동차보험, 특약과 자기부담금으로 보험료를 줄이는 방법을 정리했어요. 이미 받은 할부를 더 싼 대출로 바꾸고 싶다면 [대출 갈아타기 이자 비교 계산기](/apps/loan-refinance-calculator/)로 아끼는 이자를 바로 계산해 볼 수 있어요. 차를 산 다음 해부터는 [자동차세 연납 할인](/posts/2026-car-tax-annual-prepayment-guide.html)으로 1월에 세금을 덜 내세요.
