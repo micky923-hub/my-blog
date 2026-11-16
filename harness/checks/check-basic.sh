@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 원본: 블루엠 표준 하네스 v0.7.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 원본: 블루엠 표준 하네스 v0.12.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 # 블루엠 하네스 1층 기본 검사
 # 저장소에 올라갈 파일(git이 추적하는 파일)에서 비밀 정보·민감 파일·큰 파일을 찾는다.
 # 사용: bash harness/checks/check-basic.sh   (저장소 맨 위에서 실행)
@@ -13,7 +13,7 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 fi
 
 # 추적 중인 파일 + 새로 추가하려는 파일 (지워진 파일은 제외)
-mapfile -t files < <( { git ls-files; git ls-files --others --exclude-standard; } | sort -u | while read -r f; do [ -f "$f" ] && echo "$f"; done )
+mapfile -t files < <( { git -c core.quotePath=false ls-files; git -c core.quotePath=false ls-files --others --exclude-standard; } | sort -u | while read -r f; do [ -f "$f" ] && echo "$f"; done )
 
 echo "1) 올리면 안 되는 파일 종류"
 for f in "${files[@]}"; do
