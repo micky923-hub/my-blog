@@ -1,4 +1,4 @@
-// 원본: 블루엠 표준 하네스 v0.7.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+// 원본: 블루엠 표준 하네스 v0.12.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 // 블루엠 하네스 2층 화면 검사: 언어 × 페이지 × 기기 스크린샷
 // harness.config.json의 siteDir을 작은 서버로 띄우고 Playwright로 찍는다.
 // 결과: _workspace/screenshots/{언어}-{페이지}-{기기}.png  (GitHub에 올라가지 않음)
@@ -18,6 +18,8 @@ const { chromium, devices } = playwright;
 
 const config = JSON.parse(fs.readFileSync("harness.config.json", "utf8"));
 const siteDir = path.resolve(config.siteDir ?? ".");
+// 정적 파일 서버로는 답할 수 없는 주소(서버 API 등). 이 주소로 시작하는 요청의 404는 문제로 보지 않는다
+const ignorePaths = config.screenshots?.ignorePaths ?? [];
 const outDir = path.resolve("_workspace/screenshots");
 fs.mkdirSync(outDir, { recursive: true });
 
@@ -53,7 +55,10 @@ for (const deviceName of config.devices ?? ["mobile", "desktop"]) {
       const label = `${lang}-${page.replace(/[/.]+/g, "-").replace(/^-|-$/g, "") || "home"}-${deviceName}`;
       const tab = await context.newPage();
       const broken = [];
-      tab.on("response", (r) => { if (r.status() >= 400) broken.push(`${r.status()} ${r.url().replace(origin, "")}`); });
+      tab.on("response", (r) => {
+        const p = r.url().replace(origin, "");
+        if (r.status() >= 400 && !ignorePaths.some((x) => p.startsWith(x))) broken.push(`${r.status()} ${p}`);
+      });
       tab.on("pageerror", (e) => broken.push(`스크립트 오류: ${e.message}`));
       await tab.goto(origin + urlPath, { waitUntil: "networkidle" });
       // 휴대폰·태블릿에서 가로 스크롤이 생기는지
