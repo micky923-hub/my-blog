@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-labelledby="t d">
+  <title id="t">배기량별 자동차세 1월 연납 할인액</title>
+  <desc id="d">교육세를 포함한 연 자동차세에 약 4.57%를 곱한 1월 연납 할인액입니다. 전기차 13만 원은 약 5,900원, 1,598cc 29만 836원은 약 1만 3,300원, 1,999cc 51만 9,740원은 약 2만 3,800원, 2,497cc 64만 9,220원은 약 2만 9,700원을 덜 냅니다.</desc>
+  <rect x="0" y="0" width="560" height="500" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1월 연납하면 얼마 덜 낼까</text>
+    <text x="32" y="88" font-size="17" fill="#475569">교육세 포함 연 세액 × 약 4.57% (차령 2년 이하)</text>
+
+    <text x="32" y="142" font-size="19" font-weight="700" fill="#0f172a">전기차 <tspan font-size="16" font-weight="400" fill="#475569">연 13만 원</tspan></text>
+    <rect x="32" y="154" width="54" height="36" rx="6" fill="#60a5fa"/>
+    <text x="98" y="179" font-size="19" font-weight="800" fill="#1d4ed8">약 5,900원</text>
+
+    <text x="32" y="232" font-size="19" font-weight="700" fill="#0f172a">1,598cc <tspan font-size="16" font-weight="400" fill="#475569">연 29만 836원</tspan></text>
+    <rect x="32" y="244" width="121" height="36" rx="6" fill="#3b82f6"/>
+    <text x="165" y="269" font-size="19" font-weight="800" fill="#1d4ed8">약 1만 3,300원</text>
+
+    <text x="32" y="322" font-size="19" font-weight="700" fill="#0f172a">1,999cc <tspan font-size="16" font-weight="400" fill="#475569">연 51만 9,740원</tspan></text>
+    <rect x="32" y="334" width="216" height="36" rx="6" fill="#2563eb"/>
+    <text x="260" y="359" font-size="19" font-weight="800" fill="#1d4ed8">약 2만 3,800원</text>
+
+    <text x="32" y="412" font-size="19" font-weight="700" fill="#0f172a">2,497cc <tspan font-size="16" font-weight="400" fill="#475569">연 64만 9,220원</tspan></text>
+    <rect x="32" y="424" width="270" height="36" rx="6" fill="#1d4ed8"/>
+    <text x="314" y="449" font-size="19" font-weight="800" fill="#1d4ed8">약 2만 9,700원</text>
+  </g>
+</svg>
