@@ -1,8 +1,10 @@
 node_modules/
 dist/
-# Claude 작업 파일은 올리지 않고, 절차서(스킬)만 올린다
+# Claude 작업 파일은 올리지 않고, 절차서(스킬)·개발팀 지침(agents)·자동 강제 훅 설정(settings.json)만 올린다
 .claude/*
 !.claude/skills/
+!.claude/agents/
+!.claude/settings.json
 
 # 쇼츠 영상 생성물(스크립트로 다시 만듦)
 videos/**/scenes/

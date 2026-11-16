@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# 원본: 블루엠 표준 하네스 v0.12.0 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 블루엠 하네스 프리커밋 훅: 커밋하기 직전에 자동으로 돈다 (사람이든 AI든).
+#   1) 린터: 올리려는 파일의 형식을 자동 교정하고 다시 담는다. 충돌 표시·깨진 JSON은 막는다.
+#   2) 기본 검사: 비밀 키·민감 파일·주민번호·큰 파일이 있으면 막는다.
+# 켜기: git config core.hooksPath harness/hooks (설치·세션 시작 때 자동)
+set -uo pipefail
+cd "$(git rev-parse --show-toplevel)" || exit 1
+# 루프 기록: .git/bluem-loop.log 에 한 줄 (날짜·루프·결과·내용). 커밋하지 않는 이 컴퓨터만의 기록, 숫자는 loop-stats.sh
+lg() { local d; d="$(git rev-parse --git-dir 2>/dev/null)" && printf '%s\t%s\t%s\t%s\n' "$(TZ=Asia/Seoul date '+%F %T')" "$1" "$2" "${3:-}" >>"$d/bluem-loop.log" 2>/dev/null; return 0; }
+
+staged=()
+while IFS= read -r f; do staged+=("$f"); done < <(git -c core.quotePath=false diff --cached --name-only --diff-filter=ACM)
+[ ${#staged[@]} -eq 0 ] && exit 0
+
+# 일부만 담은 파일(담지 않은 수정이 따로 있음)은 고치면 섞이므로 교정하지 않는다
+fixable=()
+for f in "${staged[@]}"; do git diff --quiet -- "$f" 2>/dev/null && fixable+=("$f"); done
+
+echo "== 블루엠 프리커밋: 린터"
+rc=0; out=""
+[ ${#fixable[@]} -gt 0 ] && { out="$(bash harness/checks/check-lint.sh --fix "${fixable[@]}" 2>&1)"; rc=$?; }
+echo "$out"
+fixedn=$(printf '%s\n' "$out" | grep -c '\[교정\]' || true); [ "${fixedn:-0}" -gt 0 ] && lg 커밋 교정 "${fixedn}개 파일"
+for f in ${fixable[@]+"${fixable[@]}"}; do git add -- "$f"; done
+[ $rc -ne 0 ] && { lg 커밋 막힘 "린터: $(printf '%s\n' "$out" | grep '\[막힘\]' | head -1 | sed 's/^ *//' | cut -c1-80)"; echo "커밋을 멈췄습니다: 위 [막힘]을 고친 뒤 다시 커밋하세요."; exit 1; }
+
+echo "== 블루엠 프리커밋: 기본 검사"
+if ! bash harness/checks/check-basic.sh >/tmp/bluem-basic.$$ 2>&1; then
+  grep -E '\[막힘\]|실패' /tmp/bluem-basic.$$; lg 커밋 막힘 "기본 검사: $(grep '\[막힘\]' /tmp/bluem-basic.$$ | head -1 | sed 's/^ *//' | cut -c1-80)"; rm -f /tmp/bluem-basic.$$
+  echo "커밋을 멈췄습니다: 비밀 정보·민감 파일을 빼고 다시 커밋하세요. 검사를 건너뛰지(--no-verify) 않습니다."
+  exit 1
+fi
+rm -f /tmp/bluem-basic.$$
+lg 커밋 통과; echo "프리커밋 통과"
