@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">새해 재테크 계획 5단계 순서</title>
+  <desc id="d">1단계 매달 남는 돈 계산, 2단계 생활비 3~6개월치 비상금, 3단계 비싼 빚 먼저 갚기, 4단계 연금저축 연 600만 원까지 세액공제, 5단계 쓸 시점별로 3년 안은 예적금, 5년 넘게는 투자 순서로 계획을 세웁니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">새해 재테크 계획 5단계</text>
+    <text x="32" y="88" font-size="17" fill="#475569">위에서부터 순서대로 채우세요</text>
+
+    <rect x="32" y="114" width="496" height="74" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="72" cy="151" r="22" fill="#1d4ed8"/>
+    <text x="72" y="158" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">1</text>
+    <text x="110" y="145" font-size="19" font-weight="800" fill="#0f172a">매달 남는 돈 계산</text>
+    <text x="110" y="172" font-size="16" fill="#475569">실수령액 − 생활비 = 예) 100만 원</text>
+
+    <rect x="32" y="206" width="496" height="74" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="72" cy="243" r="22" fill="#1d4ed8"/>
+    <text x="72" y="250" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">2</text>
+    <text x="110" y="237" font-size="19" font-weight="800" fill="#0f172a">비상금 채우기</text>
+    <text x="110" y="264" font-size="16" fill="#475569">생활비 3~6개월치, 파킹통장에</text>
+
+    <rect x="32" y="298" width="496" height="74" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="72" cy="335" r="22" fill="#1d4ed8"/>
+    <text x="72" y="342" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">3</text>
+    <text x="110" y="329" font-size="19" font-weight="800" fill="#0f172a">비싼 빚 먼저 갚기</text>
+    <text x="110" y="356" font-size="16" fill="#475569">대출 금리가 예적금보다 높으면</text>
+
+    <rect x="32" y="390" width="496" height="74" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="72" cy="427" r="22" fill="#1d4ed8"/>
+    <text x="72" y="434" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">4</text>
+    <text x="110" y="421" font-size="19" font-weight="800" fill="#0f172a">연금저축 세액공제</text>
+    <text x="110" y="448" font-size="16" fill="#475569">연 600만 원까지, 12월 31일 전</text>
+
+    <rect x="32" y="482" width="496" height="90" rx="14" fill="#eff6ff" stroke="#93c5fd"/>
+    <circle cx="72" cy="527" r="22" fill="#16a34a"/>
+    <text x="72" y="534" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff">5</text>
+    <text x="110" y="515" font-size="19" font-weight="800" fill="#0f172a">쓸 시점으로 나누기</text>
+    <text x="110" y="541" font-size="16" fill="#475569">3년 안 → 예적금</text>
+    <text x="110" y="562" font-size="16" fill="#475569">5년 넘게 → ISA·연금계좌 투자</text>
+  </g>
+</svg>

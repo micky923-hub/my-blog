@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">남는 돈 100만 원, 상황별로 나누는 예시</title>
+  <desc id="d">비상금 모으는 중이면 비상금 60만 원, 적금 30만 원, 투자 10만 원. 3년 안에 큰 지출이 있으면 적금 60만 원, 연금저축 20만 원, 투자 20만 원. 5년 넘게 쓸 곳이 없으면 적금 20만 원, 연금저축 50만 원, 투자 30만 원으로 나눕니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">남는 돈 100만 원 나누기</text>
+    <text x="32" y="88" font-size="17" fill="#475569">상황별 예시 · 단위 만 원</text>
+
+    <text x="32" y="138" font-size="18" font-weight="800" fill="#0f172a">비상금 모으는 중</text>
+    <rect x="32" y="152" width="297.6" height="52" fill="#f59e0b"/>
+    <rect x="329.6" y="152" width="148.8" height="52" fill="#3b82f6"/>
+    <rect x="478.4" y="152" width="49.6" height="52" fill="#16a34a"/>
+    <text x="180.8" y="185" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">비상금 60</text>
+    <text x="404" y="185" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">적금 30</text>
+    <text x="503.2" y="185" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">10</text>
+
+    <text x="32" y="250" font-size="18" font-weight="800" fill="#0f172a">3년 안에 큰 지출</text>
+    <rect x="32" y="264" width="297.6" height="52" fill="#3b82f6"/>
+    <rect x="329.6" y="264" width="99.2" height="52" fill="#7c3aed"/>
+    <rect x="428.8" y="264" width="99.2" height="52" fill="#16a34a"/>
+    <text x="180.8" y="297" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">적금 60</text>
+    <text x="379.2" y="297" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">연금 20</text>
+    <text x="478.4" y="297" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">투자 20</text>
+
+    <text x="32" y="362" font-size="18" font-weight="800" fill="#0f172a">5년 넘게 쓸 곳 없음</text>
+    <rect x="32" y="376" width="99.2" height="52" fill="#3b82f6"/>
+    <rect x="131.2" y="376" width="248" height="52" fill="#7c3aed"/>
+    <rect x="379.2" y="376" width="148.8" height="52" fill="#16a34a"/>
+    <text x="81.6" y="409" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">적금 20</text>
+    <text x="255.2" y="409" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">연금저축 50</text>
+    <text x="453.6" y="409" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">투자 30</text>
+
+    <rect x="32" y="458" width="16" height="16" fill="#f59e0b"/><text x="54" y="472" font-size="15" fill="#334155">비상금</text>
+    <rect x="120" y="458" width="16" height="16" fill="#3b82f6"/><text x="142" y="472" font-size="15" fill="#334155">적금</text>
+    <rect x="196" y="458" width="16" height="16" fill="#7c3aed"/><text x="218" y="472" font-size="15" fill="#334155">연금저축</text>
+    <rect x="300" y="458" width="16" height="16" fill="#16a34a"/><text x="322" y="472" font-size="15" fill="#334155">투자(ISA·ETF 등)</text>
+  </g>
+</svg>
