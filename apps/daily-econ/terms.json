@@ -1450,6 +1450,29 @@
       "checkYear": 2026,
       "addedAt": "2026-11-18",
       "addedBy": "routine"
+    },
+    {
+      "id": "dependent-basic-deduction",
+      "term": "부양가족 기본공제",
+      "category": "세금",
+      "level": 1,
+      "short": "조건에 맞는 가족 1명당 150만 원을 소득에서 빼 주는 연말정산 공제",
+      "lines": [
+        "부모님이 만 60세 이상이고 소득금액이 100만 원 이하면 부양가족으로 올릴 수 있어요.",
+        "따로 사셔도 주거 형편상 별거라면 생계를 같이 하는 것으로 봐요.",
+        "같은 부모님은 형제 중 한 사람만 공제받을 수 있어요."
+      ],
+      "example": "총급여 5,000만 원 직장인이 70세 이상 부모님 1명을 올리면 세금이 41만 2,500원 줄어요.",
+      "quiz": {
+        "statement": "부모님을 형제 두 명이 각자 부양가족으로 올려 둘 다 공제받을 수 있다.",
+        "answer": false,
+        "explain": "같은 부모님은 한 사람만 공제받아요. 세율이 높은 사람이 받으면 가족 전체로 덜 내요."
+      },
+      "post": "2026-parents-dependent-deduction-guide",
+      "postLabel": "부모님 부양가족 공제 글 읽기",
+      "checkYear": 2026,
+      "addedAt": "2026-11-20",
+      "addedBy": "routine"
     }
   ]
 }
