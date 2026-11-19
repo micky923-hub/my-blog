@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 700" role="img" aria-labelledby="t d">
+  <title id="t">부모님 부양가족 공제, 네 가지를 차례로 확인하세요</title>
+  <desc id="d">2026년 귀속 기준입니다. 1단계 나이: 만 60세 이상, 1966년 이전 출생. 2단계 소득: 연간 소득금액 100만 원 이하, 근로소득만 있으면 총급여 500만 원 이하. 3단계 생계: 따로 살아도 주거 형편상 별거면 인정. 4단계 형제 중 한 명만 공제. 네 가지를 모두 통과하면 1명당 150만 원을 공제받고, 70세 이상이면 100만 원을 더해 250만 원입니다.</desc>
+  <rect x="0" y="0" width="560" height="700" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">부모님 공제, 4단계로 확인</text>
+    <text x="32" y="88" font-size="17" fill="#475569">2026년 귀속 연말정산 기준</text>
+
+    <rect x="32" y="112" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="158" r="20" fill="#1d4ed8"/>
+    <text x="68" y="165" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="104" y="150" font-size="20" font-weight="800" fill="#0f172a">나이: 만 60세 이상</text>
+    <text x="104" y="180" font-size="16" fill="#334155">1966년 이전 출생 (장애인은 나이 무관)</text>
+
+    <path d="M280 206 L280 226" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 220 L280 232 L288 220 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="236" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="282" r="20" fill="#1d4ed8"/>
+    <text x="68" y="289" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="104" y="274" font-size="20" font-weight="800" fill="#0f172a">소득금액 100만 원 이하</text>
+    <text x="104" y="304" font-size="16" fill="#334155">근로소득만이면 총급여 500만 원 이하</text>
+
+    <path d="M280 330 L280 350" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 344 L280 356 L288 344 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="360" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="406" r="20" fill="#1d4ed8"/>
+    <text x="68" y="413" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="104" y="398" font-size="20" font-weight="800" fill="#0f172a">생계를 같이 함</text>
+    <text x="104" y="428" font-size="16" fill="#334155">따로 살아도 주거 형편상 별거면 인정</text>
+
+    <path d="M280 454 L280 474" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 468 L280 480 L288 468 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="484" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="530" r="20" fill="#1d4ed8"/>
+    <text x="68" y="537" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">4</text>
+    <text x="104" y="522" font-size="20" font-weight="800" fill="#0f172a">형제 중 한 명만</text>
+    <text x="104" y="552" font-size="16" fill="#334155">세율 높은 자녀가 받으면 유리</text>
+
+    <path d="M280 578 L280 598" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 592 L280 604 L288 592 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="608" width="496" height="68" rx="14" fill="#1d4ed8"/>
+    <text x="280" y="637" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">1명당 150만 원 공제</text>
+    <text x="280" y="663" font-size="16" fill="#dbeafe" text-anchor="middle">70세 이상이면 100만 원 더해 250만 원</text>
+  </g>
+</svg>
