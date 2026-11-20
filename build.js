@@ -1233,7 +1233,9 @@ function buildPosts() {
         slug: slug,
         minutes: readingMinutes(withIds.html),
         publishedAt: timing.publishedAt,
-        slot: timing.slot
+        slot: timing.slot,
+        // 머리말 `noindex: true` — 검색 결과에서 빼는 글(날짜가 지난 브리핑 등). 사이트 안 목록·모음에는 그대로 둔다.
+        noindex: String(meta.noindex || '').toLowerCase() === 'true'
       }
     });
   });
@@ -1382,6 +1384,7 @@ function buildPosts() {
       hasCode: hasCode,
       jsonLd: jsonLd,
       ogType: 'article',
+      robots: entry.info.noindex ? 'noindex, follow' : undefined,
       extraMeta: (meta.date ? '  <meta property="article:published_time" content="' + escapeHtml(meta.date) + '">\n' : '')
         + (meta.tags || []).map(function(t) { return '  <meta property="article:tag" content="' + escapeHtml(t) + '">\n'; }).join(''),
       pathPrefix: sharePathPrefix,
@@ -1764,6 +1767,7 @@ function buildSitemap(posts) {
     urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html', lastmod: latest(inTopic) });
   });
   posts.forEach(function(post) {
+    if (post.noindex) return; // 검색 제외 글은 사이트맵에 넣지 않는다
     urls.push({
       loc: siteUrl + '/posts/' + post.slug + '.html',
       lastmod: post.updated || post.date
@@ -1832,6 +1836,7 @@ function buildLlmsTxt(posts) {
   }
   lines.push('## 글', '');
   posts.forEach(function(p) {
+    if (p.noindex) return; // 검색 제외 글은 AI 검색 안내에도 넣지 않는다
     var when = p.updated ? p.updated + ' 업데이트' : p.date;
     lines.push('- [' + p.title + '](' + siteUrl + '/posts/' + p.slug + '.html): ' + String(p.summary || '').replace(/\s+/g, ' ') + ' (' + when + ')');
   });
