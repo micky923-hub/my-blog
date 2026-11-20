@@ -1,4 +1,4 @@
-// 원본: 블루엠 표준 하네스 v0.12.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+// 원본: 블루엠 표준 하네스 v0.13.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 // 블루엠 하네스 2층 홈페이지 검사
 // harness.config.json을 읽어 HTML 파일의 필수 태그, 검색 차단 상태, 내부 링크, 언어별 페이지를 확인한다.
 // 사용: node harness/checks/check-homepage.mjs   (저장소 맨 위에서 실행, 추가 설치 없음)
@@ -11,6 +11,9 @@ const siteDir = path.resolve(config.siteDir ?? ".");
 const launched = config.launchedFrom
   ? JSON.parse(fs.readFileSync(config.launchedFrom, "utf8")).launched
   : config.launched;
+// 오픈 뒤에도 일부러 검색에서 숨기는 페이지 (siteDir 기준 경로, * ** ? 사용 가능). 예: ["posts/old-*.html"]
+const toRe = (g) => new RegExp("^" + g.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*\*/g, "\0").replace(/\*/g, "[^/]*").replace(/\?/g, "[^/]").replace(/\0/g, ".*") + "$");
+const noindexAllow = (config.noindexAllow ?? []).map(toRe);
 const skipDirs = new Set(["node_modules", ".git", "_workspace", "harness", ".github", ".claude"]);
 const problems = [];
 const fail = (file, msg) => problems.push(`${path.relative(process.cwd(), file) || file}: ${msg}`);
@@ -52,7 +55,10 @@ for (const file of htmlFiles) {
   const noindex = /<meta[^>]+name=["']robots["'][^>]+noindex/i.test(html) || /<meta[^>]+noindex[^>]+name=["']robots["']/i.test(html);
   if (launched === false && !noindex) fail(file, "오픈 전인데 noindex가 없음 (검색에 노출될 수 있음)");
   // 404 페이지는 오픈 후에도 검색에 안 나오는 게 정상
-  if (launched === true && noindex && path.basename(file) !== "404.html") fail(file, "오픈했는데 noindex가 남아 있음 (검색에 안 나옴)");
+  // harness.config.json의 noindexAllow에 맞는 페이지는 일부러 숨긴 것으로 본다
+  const rel = path.relative(siteDir, file).split(path.sep).join("/");
+  if (launched === true && noindex && path.basename(file) !== "404.html" && !noindexAllow.some((re) => re.test(rel)))
+    fail(file, "오픈했는데 noindex가 남아 있음 (검색에 안 나옴). 일부러 숨긴 페이지면 harness.config.json의 noindexAllow에 적기");
 
   for (const m of html.matchAll(/\s(?:href|src)=["']([^"']+)["']/gi)) {
     const link = m[1].trim();

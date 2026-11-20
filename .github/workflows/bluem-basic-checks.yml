@@ -1,4 +1,4 @@
-# 원본: 블루엠 표준 하네스 v0.12.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 원본: 블루엠 표준 하네스 v0.13.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 # 블루엠 하네스 1층: 기본 검사 (모든 프로젝트)
 name: bluem-basic-checks
 
@@ -17,3 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: 기본 검사 (비밀 정보·민감 파일·큰 파일)
         run: bash harness/checks/check-basic.sh
+      - name: 개발 착수 관문 (승인된 설계서, PR의 D-·F-번호. harness.config.json devDocs로 켬)
+        env:
+          BLUEM_PR_TITLE: ${{ github.event.pull_request.title }}
+          BLUEM_PR_BODY: ${{ github.event.pull_request.body }}
+        run: bash harness/checks/check-devdocs.sh

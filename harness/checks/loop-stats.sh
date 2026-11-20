@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 원본: 블루엠 표준 하네스 v0.12.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
+# 원본: 블루엠 표준 하네스 v0.13.1 (media). 이 파일은 고치지 말고 원본에서 고친 뒤 다시 설치.
 # 블루엠 루프 숫자: 훅이 남긴 .git/bluem-loop.log 를 세어 "루프 보고"로 낸다 (루프 지도 ①②③).
 # 사용: bash harness/checks/loop-stats.sh           최근 7일
 #       bash harness/checks/loop-stats.sh --days 30
