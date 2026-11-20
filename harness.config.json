@@ -10,5 +10,11 @@
   "media": {
     "affiliateHosts": ["coupang.com", "coupa.ng"],
     "disclosure": "쿠팡 파트너스 활동의 일환"
-  }
+  },
+  "noindexAllow": [
+    "posts/2026-weekly-economy-briefing-1025.html",
+    "posts/2026-weekly-economy-briefing-1101.html",
+    "posts/2026-weekly-economy-briefing-1108.html",
+    "posts/2026-weekly-economy-briefing-1115.html"
+  ]
 }
