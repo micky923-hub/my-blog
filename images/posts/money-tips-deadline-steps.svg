@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" role="img" aria-labelledby="t d">
   <title id="t">2026년 하반기 금융 마감 순서</title>
-  <desc id="d">10~11월에는 연말정산 미리보기로 카드 사용액을 확인하고 퇴직연금 디폴트옵션과 실손 세대를 점검합니다. 11월에는 1·2세대 실손의 5세대 전환 할인이 시행될 예정입니다. 12월 중순까지 연금저축·IRP를 입금하고 고향사랑기부를 합니다. 12월 31일에 올해 공제가 마감되고, 코인 보유 수량과 시세를 기록합니다. 2027년 1월 1일부터 가상자산 과세가 시작될 예정입니다.</desc>
+  <desc id="d">10~11월에는 연말정산 미리보기로 카드 사용액을 확인하고 퇴직연금 디폴트옵션과 실손 세대를 점검합니다. 1·2세대 실손의 5세대 전환 할인은 시행일과 대상을 보험사에 확인합니다. 12월 중순까지 연금저축·IRP를 입금하고 고향사랑기부를 합니다. 12월 31일에 올해 공제가 마감되고, 코인 보유 수량과 시세를 기록합니다. 2027년 1월 1일부터 가상자산 과세가 시작될 예정입니다.</desc>
   <rect x="0" y="0" width="560" height="640" rx="22" fill="#f8fafc"/>
   <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
     <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">하반기, 이 순서로 챙기세요</text>
@@ -15,7 +15,7 @@
 
     <circle cx="62" cy="226" r="20" fill="#3b82f6"/>
     <text x="62" y="233" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">2</text>
-    <text x="98" y="222" font-size="20" font-weight="800" fill="#0f172a">11월 · 실손 전환 할인(예정)</text>
+    <text x="98" y="222" font-size="20" font-weight="800" fill="#0f172a">실손 전환 할인 · 보험사에 확인</text>
     <text x="98" y="248" font-size="16" fill="#475569">1·2세대 → 5세대, 3년간 50% 할인</text>
 
     <circle cx="62" cy="316" r="20" fill="#3b82f6"/>

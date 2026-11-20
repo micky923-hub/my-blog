@@ -172,4 +172,4 @@ ETF는 시장 평균을 싸게 따라가는 도구입니다. 오늘은 대표 �
 
 > 📚 **함께 읽으면 좋은 글**  
 > [ISA 계좌 가이드](/posts/2026-isa-account-guide.html) · [배당주 고르는 법](/posts/2026-dividend-stock-guide.html) · [채권투자 기초](/posts/2026-bond-investment-guide.html) · [AI·반도체 ETF 가이드](/posts/2026-ai-semiconductor-etf-guide.html)  
-> 연금계좌에서 ETF를 굴릴 때 돌려받는 세금은 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 확인해 보세요.
+> 연금계좌에서 ETF를 굴릴 때 돌려받는 세금은 [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)로 확인해 보세요. 상장 첫날 주식을 받는 다른 방법이 궁금하다면 [공모주 청약 방법](/posts/2026-ipo-stock-subscription-guide.html)도 읽어 보세요.

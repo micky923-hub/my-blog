@@ -172,4 +172,4 @@ image: https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=400&
 ---
 
 > 🏥 **함께 읽으면 좋은 글: [내 실손보험 몇 세대? 1~5세대 비교](/posts/2026-health-insurance-generation-guide.html)**  
-> 내 실손이 몇 세대인지, 5세대로 바꾸면 얼마를 아끼는지 계산하는 법을 정리했어요. 병원비 부담이 크다면 [건강보험료 줄이는 법](/posts/2026-health-insurance-premium-saving-guide.html)도 함께 보세요.
+> 내 실손이 몇 세대인지, 5세대로 바꾸면 얼마를 아끼는지 계산하는 법을 정리했어요. 병원비 부담이 크다면 [건강보험료 줄이는 법](/posts/2026-health-insurance-premium-saving-guide.html)도 함께 보세요. 가족이 오래 입원해 간병이 필요하다면 [간병비 줄이는 법](/posts/2026-caregiver-cost-insurance-guide.html)에서 통합서비스 병동과 장기요양부터 확인하세요.

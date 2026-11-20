@@ -195,4 +195,4 @@ image: https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=400&
 ---
 
 > 🏠 **함께 읽으면 좋은 글: [주택담보대출 고정금리 vs 변동금리](/posts/2026-mortgage-fixed-vs-variable-rate-guide.html)**  
-> 갈아탈 새집을 대출로 산다면 금리 방식부터 비교해 보세요. 증여로 집을 넘길 계획이라면 [증여세 면제 한도 가이드](/posts/2026-gift-tax-exemption-guide.html)도 함께 확인하세요.
+> 갈아탈 새집을 대출로 산다면 금리 방식부터 비교해 보세요. 증여로 집을 넘길 계획이라면 [증여세 면제 한도 가이드](/posts/2026-gift-tax-exemption-guide.html)도 함께 확인하세요. 집을 계속 갖고 있을 때 매년 내는 세금은 [종합부동산세 계산](/posts/2026-comprehensive-real-estate-tax-guide.html)에서 확인하세요.

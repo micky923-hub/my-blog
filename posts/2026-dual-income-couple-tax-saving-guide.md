@@ -183,4 +183,4 @@ image: https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit
 ---
 
 > 💰 **함께 쓰면 좋은 도구: [연금저축·IRP 세액공제 계산기](/apps/pension-tax-calculator/)**  
-> 부부 각자 얼마를 넣으면 얼마를 돌려받는지 바로 계산해 보세요. 부부가 각자 [연말정산 환급 계산기](/apps/year-end-tax-calculator/)로 자녀 공제를 넣고 빼 보면 누가 받는 쪽이 유리한지도 바로 보여요. 카드 문턱 전략은 [신용카드 혜택 챙기는 법](/posts/2026-credit-card-benefits-guide.html), 놓치기 쉬운 공제는 [연말정산 소득공제 총정리](/posts/2026-year-end-tax-settlement-guide.html)에서 더 자세히 볼 수 있어요.
+> 부부 각자 얼마를 넣으면 얼마를 돌려받는지 바로 계산해 보세요. 부부가 각자 [연말정산 환급 계산기](/apps/year-end-tax-calculator/)로 자녀 공제를 넣고 빼 보면 누가 받는 쪽이 유리한지도 바로 보여요. 카드 문턱 전략은 [신용카드 혜택 챙기는 법](/posts/2026-credit-card-benefits-guide.html), 놓치기 쉬운 공제는 [연말정산 소득공제 총정리](/posts/2026-year-end-tax-settlement-guide.html)에서 더 자세히 볼 수 있어요. 결혼을 앞두고 있다면 [결혼 자금 로드맵](/posts/2026-wedding-fund-roadmap-guide.html)으로 두 사람의 저축 계획부터 맞춰 보세요.
