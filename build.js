@@ -601,6 +601,35 @@ function relatedPosts(post, all, tagCount, limit) {
   return scored.slice(0, limit).map(function(s) { return s.post; });
 }
 
+// 구조화 데이터 저자: 편집 책임자(필명) Person. 발행처(publisher)는 운영 주체 Organization 그대로 둔다(2026-11-20 결정).
+function authorRef() {
+  var ed = config.editor || {};
+  if (!ed.name) return { "@type": "Organization", "name": config.author, "url": siteUrl + '/about.html' };
+  return { "@type": "Person", "name": ed.name, "url": siteUrl + '/about.html#editor' };
+}
+
+// 글 제목 아래 "글 제이슨반(필명)" — 누르면 소개 페이지 편집자 칸으로 간다.
+function bylineHtml() {
+  var ed = config.editor || {};
+  if (!ed.name) return '';
+  return '<a class="post-byline" href="' + base + 'about.html#editor">글 ' + escapeHtml(ed.name) + '(필명)</a><span class="post-meta-sep" aria-hidden="true"> · </span>';
+}
+
+// 보험 태그 글에만 붙는 이해관계 한 줄
+function insuranceDisclosureHtml() {
+  return '        <p class="post-disclosure">편집자는 현직 설계사이며 특정 상품을 권하지 않습니다.</p>\n';
+}
+
+function reviewedDate(v, filename) {
+  if (!v) return '';
+  v = String(v).trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) {
+    console.error('\n[빌드 중단] ' + filename + '의 reviewed 형식이 YYYY-MM-DD가 아닙니다: ' + v);
+    process.exit(1);
+  }
+  return v;
+}
+
 // 글 아래 편집 책임자 표시 (site.config.json의 editor). 누가 글을 책임지는지와 이해관계를 밝힌다.
 function editorBoxHtml() {
   var ed = config.editor;
@@ -1233,7 +1262,9 @@ function buildPosts() {
         slug: slug,
         minutes: readingMinutes(withIds.html),
         publishedAt: timing.publishedAt,
-        slot: timing.slot
+        slot: timing.slot,
+        // 머리말 reviewed: YYYY-MM-DD — 대표가 실제로 읽고 검토한 날만. 없으면 검토일을 표시하지 않는다.
+        reviewed: reviewedDate(meta.reviewed, filename)
       }
     });
   });
@@ -1276,8 +1307,7 @@ function buildPosts() {
       "datePublished": meta.date || "",
       "dateModified": meta.updated || meta.date || "",
       "inLanguage": "ko-KR",
-      "author": { "@type": "Organization", "name": config.author, "url": siteUrl + '/about.html' },
-      "editor": config.editor && config.editor.name ? { "@type": "Person", "name": config.editor.name, "description": config.editor.credentials || '', "url": siteUrl + '/about.html#editor' } : undefined,
+      "author": authorRef(),
       "publisher": orgRef(),
       "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
       "url": postUrl,
@@ -1315,9 +1345,11 @@ function buildPosts() {
       + '    <article>\n'
       + '      <header class="post-header">\n'
       + '        <h1 class="post-title">' + escapeHtml(meta.title || slug) + '</h1>\n'
-      + '        <div class="post-meta"><time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time>'
+      + '        <div class="post-meta">' + bylineHtml() + '<time datetime="' + (meta.date || '') + '">' + formatDate(meta.date) + '</time>'
         + (entry.info.updated ? '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-updated"><time datetime="' + escapeHtml(entry.info.updated) + '">' + formatDate(entry.info.updated) + '</time> 업데이트</span>' : '')
+        + (entry.info.reviewed ? '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-reviewed">검토 <time datetime="' + entry.info.reviewed + '">' + formatDate(entry.info.reviewed) + '</time></span>' : '')
         + '<span class="post-meta-sep" aria-hidden="true"> · </span><span class="post-reading-time">약 ' + entry.info.minutes + '분 읽기</span></div>\n'
+      + ((meta.tags || []).indexOf('보험') !== -1 ? insuranceDisclosureHtml() : '')
       + tagsHtml
       + (entry.coupang ? coupangNoticeHtml() : '')
       + '      </header>\n'
@@ -1586,7 +1618,7 @@ function buildIndex(posts) {
         "description": config.description,
         "url": siteUrl + '/',
         "inLanguage": "ko-KR",
-        "author": { "@type": "Organization", "name": config.author, "url": siteUrl + '/about.html' },
+        "author": authorRef(),
         "blogPost": posts.slice(0, 10).map(function(p) {
           return { "@type": "BlogPosting", "headline": p.title, "url": siteUrl + '/posts/' + p.slug + '.html', "datePublished": p.date };
         })

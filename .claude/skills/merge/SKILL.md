@@ -11,6 +11,7 @@ description: 사용자가 "머지해줘"라고 할 때 쓴다. 작업 브랜치�
 
 이미 PR이 있으므로 머지만 한다.
 
+0. 대표가 글을 확인하고 머지를 지시했으면, 머지 전에 글 머리말에 `reviewed: {오늘 한국 날짜}`를 넣어 PR 브랜치에 커밋·푸시한다(CLAUDE.md 검토일 규칙). 글이 아닌 PR이거나 대표가 글을 보지 않았으면 넣지 않는다.
 1. GitHub MCP `merge_pull_request` (owner `micky923-hub`, repo `my-blog`, `merge_method: merge`)
 2. 로컬 글 브랜치 정리: `git branch -D post/{slug}`
 
