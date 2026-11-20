@@ -156,4 +156,4 @@ image: https://images.unsplash.com/photo-1574607383476-f517f260d30b?w=800&h=400&
 ---
 
 > 🏠 **함께 읽으면 좋은 글: [월세 세액공제 받는 법](/posts/2026-rent-tax-credit-guide.html)**  
-> 월세로 사는 동안 낸 돈의 15~17%를 연말정산에서 돌려받는 방법을 정리했어요. [월세 세액공제 계산기](/apps/rent-tax-credit-calculator/)로 바로 계산해 볼 수도 있어요.
+> 월세로 사는 동안 낸 돈의 15~17%를 연말정산에서 돌려받는 방법을 정리했어요. [월세 세액공제 계산기](/apps/rent-tax-credit-calculator/)로 바로 계산해 볼 수도 있어요. 전세와 월세 중 어느 쪽이 유리한지는 [전세대출 vs 월세 비교](/posts/2026-jeonse-loan-vs-monthly-rent-guide.html)에서 계산해 보세요.
