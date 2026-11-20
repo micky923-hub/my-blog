@@ -1,5 +1,15 @@
 #!/usr/bin/env node
 var fs = require('fs');
+// 정적 파일 주소 뒤 ?v= 값: 파일 내용의 짧은 해시. 파일이 바뀔 때만 값이 바뀌어 브라우저 캐시를 살린다.
+// (예전에는 Date.now()라 배포마다 모든 CSS·JS를 다시 받았다)
+var _assetVer = {};
+function assetVer(rel) {
+  if (_assetVer[rel]) return _assetVer[rel];
+  var v = 'x';
+  try { v = crypto.createHash('sha1').update(fs.readFileSync(rel)).digest('hex').slice(0, 10); } catch (e) { /* 파일이 없으면 고정값 */ }
+  _assetVer[rel] = v;
+  return v;
+}
 var path = require('path');
 var crypto = require('crypto');
 var { marked } = require('marked');
@@ -488,7 +498,7 @@ function htmlTemplate(opts) {
     + hljsThemeScript
     + '})();\n'
     + '  </script>\n'
-    + '  <link rel="stylesheet" href="' + pathPrefix + 'css/style.css?v=' + Date.now() + '">\n'
+    + '  <link rel="stylesheet" href="' + pathPrefix + 'css/style.css?v=' + assetVer('css/style.css') + '">\n'
     + (hljsCss ? hljsCss + '\n' : '')
     // JSON 안의 '<'를 이스케이프해서 제목 등에 '</script>'가 들어가도 태그가 깨지지 않게 한다
     + (jsonLd ? '  <script type="application/ld+json">' + jsonLd.replace(/</g, '\\u003c') + '</script>\n' : '')
@@ -524,7 +534,7 @@ function htmlTemplate(opts) {
     + '      <p>&copy; ' + new Date().getFullYear() + ' ' + escapeHtml(config.title) + '. All rights reserved.</p>\n'
     + '    </div>\n'
     + '  </footer>\n\n'
-    + '  <script src="' + pathPrefix + 'js/theme.js?v=' + Date.now() + '"></script>\n'
+    + '  <script src="' + pathPrefix + 'js/theme.js?v=' + assetVer('js/theme.js') + '"></script>\n'
     + (opts.extraScripts || '')
     + '</body>\n'
     + '</html>';
@@ -1263,6 +1273,8 @@ function buildPosts() {
         minutes: readingMinutes(withIds.html),
         publishedAt: timing.publishedAt,
         slot: timing.slot,
+        // 머리말 `noindex: true` — 검색 결과에서 빼는 글(날짜가 지난 브리핑 등). 사이트 안 목록·모음에는 그대로 둔다.
+        noindex: String(meta.noindex || '').toLowerCase() === 'true',
         // 머리말 reviewed: YYYY-MM-DD — 대표가 실제로 읽고 검토한 날만. 없으면 검토일을 표시하지 않는다.
         reviewed: reviewedDate(meta.reviewed, filename)
       }
@@ -1414,13 +1426,14 @@ function buildPosts() {
       hasCode: hasCode,
       jsonLd: jsonLd,
       ogType: 'article',
+      robots: entry.info.noindex ? 'noindex, follow' : undefined,
       extraMeta: (meta.date ? '  <meta property="article:published_time" content="' + escapeHtml(meta.date) + '">\n' : '')
         + (meta.tags || []).map(function(t) { return '  <meta property="article:tag" content="' + escapeHtml(t) + '">\n'; }).join(''),
       pathPrefix: sharePathPrefix,
-      extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + Date.now() + '"></script>\n'
-        + '  <script src="' + sharePathPrefix + 'js/like.js?v=' + Date.now() + '" defer></script>\n'
-        + (entry.videoId ? '  <script src="' + sharePathPrefix + 'js/video.js?v=' + Date.now() + '" defer></script>\n' : '')
-        + (entry.audio ? '  <script src="' + sharePathPrefix + 'js/audio.js?v=' + Date.now() + '" defer></script>\n' : '')
+      extraScripts: kakaoSdkScript + '  <script src="' + sharePathPrefix + 'js/share.js?v=' + assetVer('js/share.js') + '"></script>\n'
+        + '  <script src="' + sharePathPrefix + 'js/like.js?v=' + assetVer('js/like.js') + '" defer></script>\n'
+        + (entry.videoId ? '  <script src="' + sharePathPrefix + 'js/video.js?v=' + assetVer('js/video.js') + '" defer></script>\n' : '')
+        + (entry.audio ? '  <script src="' + sharePathPrefix + 'js/audio.js?v=' + assetVer('js/audio.js') + '" defer></script>\n' : '')
     });
 
     checkCoupangOutput(fullHtml, entry.coupang, entry.filename);
@@ -1632,10 +1645,10 @@ function buildIndex(posts) {
     canonical: siteUrl + '/',
     content: pageContent,
     jsonLd: jsonLd,
-    extraScripts: '  <script src="' + base + 'js/list.js?v=' + Date.now() + '"></script>\n'
-      + (heroHtml ? '  <script src="' + base + 'js/today-hero.js?v=' + Date.now() + '" defer></script>\n' : '')
-      + (econStrip ? '  <script src="' + base + 'apps/daily-econ/app.js?v=' + Date.now() + '" defer></script>\n'
-        + '  <script src="' + base + 'js/econ-strip.js?v=' + Date.now() + '" defer></script>\n' : '')
+    extraScripts: '  <script src="' + base + 'js/list.js?v=' + assetVer('js/list.js') + '"></script>\n'
+      + (heroHtml ? '  <script src="' + base + 'js/today-hero.js?v=' + assetVer('js/today-hero.js') + '" defer></script>\n' : '')
+      + (econStrip ? '  <script src="' + base + 'apps/daily-econ/app.js?v=' + assetVer('apps/daily-econ/app.js') + '" defer></script>\n'
+        + '  <script src="' + base + 'js/econ-strip.js?v=' + assetVer('js/econ-strip.js') + '" defer></script>\n' : '')
   });
 
   fs.writeFileSync(path.join(DIST, 'index.html'), fullHtml);
@@ -1796,6 +1809,7 @@ function buildSitemap(posts) {
     urls.push({ loc: siteUrl + '/topics/' + t.slug + '.html', lastmod: latest(inTopic) });
   });
   posts.forEach(function(post) {
+    if (post.noindex) return; // 검색 제외 글은 사이트맵에 넣지 않는다
     urls.push({
       loc: siteUrl + '/posts/' + post.slug + '.html',
       lastmod: post.updated || post.date
@@ -1864,6 +1878,7 @@ function buildLlmsTxt(posts) {
   }
   lines.push('## 글', '');
   posts.forEach(function(p) {
+    if (p.noindex) return; // 검색 제외 글은 AI 검색 안내에도 넣지 않는다
     var when = p.updated ? p.updated + ' 업데이트' : p.date;
     lines.push('- [' + p.title + '](' + siteUrl + '/posts/' + p.slug + '.html): ' + String(p.summary || '').replace(/\s+/g, ' ') + ' (' + when + ')');
   });
