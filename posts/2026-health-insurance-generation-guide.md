@@ -169,4 +169,4 @@ image: https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=400&
 ---
 
 > 🛡️ **함께 읽으면 좋은 글: [종신보험 vs 정기보험, 보장성보험 제대로 고르는 법](/posts/2026-term-life-insurance-guide.html)**  
-> 실손을 정리했다면 사망·진단 보장도 함께 점검해 보세요. 자동차보험 갱신이 다가온다면 [자동차보험료 아끼는 법](/posts/2026-car-insurance-saving-guide.html)도 참고하세요.
+> 실손을 정리했다면 사망·진단 보장도 함께 점검해 보세요. 자동차보험 갱신이 다가온다면 [자동차보험료 아끼는 법](/posts/2026-car-insurance-saving-guide.html)도 참고하세요. 11월 23일 시작한 전환 할인·선택형 할인특약의 보험료 예시는 [이번 주 경제 브리핑(11월 넷째 주)](/posts/2026-weekly-economy-briefing-1122.html)에 정리했어요.
