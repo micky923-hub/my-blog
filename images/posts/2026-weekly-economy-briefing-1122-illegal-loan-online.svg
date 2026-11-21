@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 450" role="img" aria-labelledby="t d">
+  <title id="t">불법사금융 원스톱 지원 온라인 신청 순서</title>
+  <desc id="d">11월 16일부터 신용회복위원회 홈페이지나 앱에서 24시간 신청합니다. 본인인증 후 업자 정보와 피해금액을 입력하면 전담자가 연락해 추심 중단 경고와 채무종결을 요구하고, 연 60%를 넘는 계약은 원금과 이자 모두 무효입니다.</desc>
+  <rect x="0" y="0" width="560" height="450" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">방문 없이 이렇게 신청해요</text>
+    <text x="32" y="88" font-size="17" fill="#475569">불법사금융 원스톱 지원 · 11월 16일부터 24시간</text>
+
+    <rect x="32" y="112" width="496" height="64" rx="14" fill="#dbeafe"/>
+    <text x="52" y="152" font-size="20" font-weight="800" fill="#1e3a8a">1</text>
+    <text x="80" y="152" font-size="18" font-weight="700" fill="#1e293b">신용회복위원회 홈페이지·앱 접속</text>
+    <path d="M280 180 l0 14 m-7 -7 l7 8 l7 -8" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+    <rect x="32" y="200" width="496" height="64" rx="14" fill="#dbeafe"/>
+    <text x="52" y="240" font-size="20" font-weight="800" fill="#1e3a8a">2</text>
+    <text x="80" y="240" font-size="18" font-weight="700" fill="#1e293b">본인인증, 업자 정보·피해금액 입력</text>
+    <path d="M280 268 l0 14 m-7 -7 l7 8 l7 -8" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+    <rect x="32" y="288" width="496" height="64" rx="14" fill="#d1fae5"/>
+    <text x="52" y="328" font-size="20" font-weight="800" fill="#065f46">3</text>
+    <text x="80" y="328" font-size="18" font-weight="700" fill="#1e293b">전담자 연락, 추심 중단·채무종결 요구</text>
+
+    <rect x="32" y="372" width="496" height="56" rx="14" fill="#ffedd5"/>
+    <text x="52" y="407" font-size="17" font-weight="700" fill="#9a3412">연 60% 넘는 계약은 원금·이자 모두 무효</text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-labelledby="t d">
+  <title id="t">1세대 실손 월 보험료 비교(60대 여성 예시)</title>
+  <desc id="d">금융위원회 예시에서 60대 여성의 1세대 실손 월 보험료는 17만 6,982원입니다. 선택형 할인특약을 모두 넣으면 11만 1,499원, 5세대로 전환하면 4만 3,241원, 전환 할인 3년 동안은 2만 1,620원입니다.</desc>
+  <rect x="0" y="0" width="560" height="440" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">1세대 실손, 월 보험료 비교</text>
+    <text x="32" y="88" font-size="17" fill="#475569">60대 여성 예시 · 금융위원회 11월 19일 발표</text>
+
+    <text x="32" y="138" font-size="17" font-weight="700" fill="#334155">지금 그대로</text>
+    <rect x="32" y="148" width="330" height="34" rx="8" fill="#94a3b8"/>
+    <text x="372" y="172" font-size="18" font-weight="800" fill="#334155">17만 6,982원</text>
+
+    <text x="32" y="218" font-size="17" font-weight="700" fill="#334155">선택형 할인특약 모두 넣기</text>
+    <rect x="32" y="228" width="208" height="34" rx="8" fill="#3b82f6"/>
+    <text x="250" y="252" font-size="18" font-weight="800" fill="#1e3a8a">11만 1,499원</text>
+
+    <text x="32" y="298" font-size="17" font-weight="700" fill="#334155">5세대 전환(4년 차부터)</text>
+    <rect x="32" y="308" width="81" height="34" rx="8" fill="#10b981"/>
+    <text x="123" y="332" font-size="18" font-weight="800" fill="#065f46">4만 3,241원</text>
+
+    <text x="32" y="378" font-size="17" font-weight="700" fill="#334155">5세대 전환 할인(첫 3년)</text>
+    <rect x="32" y="388" width="40" height="34" rx="8" fill="#ea580c"/>
+    <text x="82" y="412" font-size="18" font-weight="800" fill="#9a3412">2만 1,620원</text>
+  </g>
+</svg>
