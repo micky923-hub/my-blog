@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" role="img" aria-labelledby="t d">
+  <title id="t">성과급 받은 뒤 할 일 순서</title>
+  <desc id="d">성과급을 받는 날 명세서의 지급대상기간을 확인하고, 12월 31일까지 연금계좌에 넣고, 다음 해 1월 간소화 자료를 확인하고, 2월 연말정산에서 더 뗀 세금을 돌려받고, 4월 건강보험 정산분에 대비합니다.</desc>
+  <rect x="0" y="0" width="560" height="600" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">성과급 받은 뒤 할 일</text>
+    <text x="32" y="88" font-size="17" fill="#475569">받는 날부터 다음 해 4월까지</text>
+    <line x1="56" y1="130" x2="56" y2="530" stroke="#cbd5e1" stroke-width="4"/>
+
+    <circle cx="56" cy="130" r="18" fill="#3b82f6"/>
+    <text x="56" y="136" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="90" y="126" font-size="19" font-weight="800" fill="#0f172a">받는 날</text>
+    <text x="90" y="152" font-size="16" fill="#475569">명세서에서 지급대상기간 확인</text>
+
+    <circle cx="56" cy="230" r="18" fill="#3b82f6"/>
+    <text x="56" y="236" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="90" y="226" font-size="19" font-weight="800" fill="#0f172a">12월 31일까지</text>
+    <text x="90" y="252" font-size="16" fill="#475569">연금저축·IRP 900만 원 한도 채우기</text>
+
+    <circle cx="56" cy="330" r="18" fill="#10b981"/>
+    <text x="56" y="336" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="90" y="326" font-size="19" font-weight="800" fill="#0f172a">다음 해 1월</text>
+    <text x="90" y="352" font-size="16" fill="#475569">간소화 자료와 총급여 확인</text>
+
+    <circle cx="56" cy="430" r="18" fill="#10b981"/>
+    <text x="56" y="436" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">4</text>
+    <text x="90" y="426" font-size="19" font-weight="800" fill="#0f172a">2월 연말정산</text>
+    <text x="90" y="452" font-size="16" fill="#475569">더 뗀 세금을 돌려받기</text>
+
+    <circle cx="56" cy="530" r="18" fill="#f59e0b"/>
+    <text x="56" y="536" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">5</text>
+    <text x="90" y="526" font-size="19" font-weight="800" fill="#0f172a">4월 급여</text>
+    <text x="90" y="552" font-size="16" fill="#475569">건강보험 정산분 약 40만 원 대비</text>
+  </g>
+</svg>
