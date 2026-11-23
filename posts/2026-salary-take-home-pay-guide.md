@@ -182,4 +182,4 @@ image: https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit
 > 연봉과 비과세액, 부양가족 수만 넣으면 월 실수령액과 항목별 공제액, 연봉이 오를 때 남는 금액을 알려 드려요.
 
 > 📚 **함께 읽으면 좋은 글**  
-> 매달 뗀 세금을 돌려받으려면 [연말정산 소득공제 놓치기 쉬운 항목](/posts/2026-year-end-tax-settlement-guide.html)을, 세액공제를 더 받으려면 [IRP 세액공제 300만 원 더 받는 법](/posts/2026-irp-tax-deduction-guide.html)을 보세요.
+> 매달 뗀 세금을 돌려받으려면 [연말정산 소득공제 놓치기 쉬운 항목](/posts/2026-year-end-tax-settlement-guide.html)을, 세액공제를 더 받으려면 [IRP 세액공제 300만 원 더 받는 법](/posts/2026-irp-tax-deduction-guide.html)을 보세요. 성과급을 받는 달에 세금이 많이 빠졌다면 [성과급 세금 계산](/posts/2026-bonus-tax-withholding-guide.html)을 보세요.

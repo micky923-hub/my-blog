@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="t d">
+  <title id="t">성과급 1,000만 원, 받는 달에 따라 떼는 세금</title>
+  <desc id="d">연봉 6,000만 원, 본인 1명 기준으로 성과급 1,000만 원에서 떼는 소득세와 지방소득세는 12월 지급 144만 5,000원, 2월 지급 232만 3,240원, 1개월로 떼면 309만 4,050원입니다. 1년 세금은 약 141만 원이라 더 뗀 돈은 연말정산에서 돌아옵니다.</desc>
+  <rect x="0" y="0" width="560" height="520" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">성과급 1,000만 원의 세금</text>
+    <text x="32" y="88" font-size="17" fill="#475569">연봉 6,000만 원 · 본인 1명 · 지방소득세 포함</text>
+
+    <text x="32" y="142" font-size="19" font-weight="700" fill="#0f172a">12월 지급 (12개월로 나눔)</text>
+    <rect x="32" y="154" width="226" height="34" rx="7" fill="#3b82f6"/>
+    <text x="270" y="178" font-size="18" font-weight="800" fill="#0f172a">144만 5,000원</text>
+
+    <text x="32" y="236" font-size="19" font-weight="700" fill="#0f172a">2월 지급 (2개월로 나눔)</text>
+    <rect x="32" y="248" width="220" height="34" rx="7" fill="#3b82f6"/>
+    <rect x="252" y="248" width="143" height="34" rx="0" fill="#f59e0b"/>
+    <text x="405" y="272" font-size="18" font-weight="800" fill="#0f172a">232만 원</text>
+
+    <text x="32" y="330" font-size="19" font-weight="700" fill="#0f172a">1개월로 나눠 뗄 때</text>
+    <rect x="32" y="342" width="220" height="34" rx="7" fill="#3b82f6"/>
+    <rect x="252" y="342" width="264" height="34" rx="0" fill="#f59e0b"/>
+    <text x="380" y="366" font-size="18" font-weight="800" fill="#ffffff">309만 원</text>
+
+    <line x1="252" y1="152" x2="252" y2="392" stroke="#0f172a" stroke-width="2" stroke-dasharray="6 5"/>
+    <rect x="32" y="414" width="18" height="18" rx="4" fill="#3b82f6"/>
+    <text x="58" y="430" font-size="16" fill="#0f172a">1년 세금 약 141만 원</text>
+    <rect x="300" y="414" width="18" height="18" rx="4" fill="#f59e0b"/>
+    <text x="326" y="430" font-size="16" fill="#0f172a">연말정산에서 환급</text>
+
+    <text x="32" y="478" font-size="16" fill="#475569">2월 지급은 약 92만 원, 1개월은 약 169만 원이 돌아와요</text>
+  </g>
+</svg>
