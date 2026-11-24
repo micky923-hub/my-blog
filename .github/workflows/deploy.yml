@@ -59,7 +59,7 @@ jobs:
       cancel-in-progress: false
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -119,7 +119,18 @@ jobs:
         with:
           path: dist
 
+      # GitHub 쪽에서 방금 올린 사이트 파일을 못 찾는 일시 오류("No artifacts named github-pages")가
+      # 가끔 난다. 첫 시도가 실패하면 1분 기다렸다가 한 번 더 배포한다. 두 번째도 실패하면 작업이 실패로 끝난다.
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: 배포 재시도 전 대기
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+
+      - id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
 
       # IndexNow 2단계: 배포가 끝난 뒤 고른 주소를 빙·네이버 등에 알린다. 실패해도 배포에는 영향 없음.
