@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t d">
+  <title id="t">공제 한도별로 줄어드는 세금</title>
+  <desc id="d">3억 원을 30년, 연 4% 원리금균등으로 빌려 첫해 이자 1,190만 원을 낸 총급여 5,000만 원 1인 가구 예시입니다. 한도 2,000만 원과 1,800만 원 대출은 이자 전부를 공제받아 182만 500원, 한도 800만 원 대출은 117만 7천 원, 한도 600만 원 대출은 84만 7천 원을 덜 냅니다. 지방소득세 포함, 표준세액공제 13만 원 포기 반영.</desc>
+  <rect x="0" y="0" width="560" height="560" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">한도별로 줄어드는 세금</text>
+    <text x="32" y="88" font-size="17" fill="#475569">첫해 이자 1,190만 원 · 총급여 5,000만 원</text>
+
+    <text x="32" y="146" font-size="18" font-weight="700" fill="#0f172a">한도 2,000만 원</text>
+    <text x="528" y="146" font-size="15" fill="#475569" text-anchor="end">15년+ 고정·비거치</text>
+    <rect x="32" y="158" width="380" height="40" rx="8" fill="#1d4ed8"/>
+    <text x="422" y="185" font-size="19" font-weight="800" fill="#1d4ed8">182만 원</text>
+
+    <text x="32" y="246" font-size="18" font-weight="700" fill="#0f172a">한도 1,800만 원</text>
+    <text x="528" y="246" font-size="15" fill="#475569" text-anchor="end">15년+ 둘 중 하나</text>
+    <rect x="32" y="258" width="380" height="40" rx="8" fill="#2563eb"/>
+    <text x="422" y="285" font-size="19" font-weight="800" fill="#2563eb">182만 원</text>
+
+    <text x="32" y="346" font-size="18" font-weight="700" fill="#0f172a">한도 800만 원</text>
+    <text x="528" y="346" font-size="15" fill="#475569" text-anchor="end">15년+ 둘 다 아님</text>
+    <rect x="32" y="358" width="246" height="40" rx="8" fill="#60a5fa"/>
+    <text x="288" y="385" font-size="19" font-weight="800" fill="#2563eb">117만 7천 원</text>
+
+    <text x="32" y="446" font-size="18" font-weight="700" fill="#0f172a">한도 600만 원</text>
+    <text x="528" y="446" font-size="15" fill="#475569" text-anchor="end">10년+ 둘 중 하나</text>
+    <rect x="32" y="458" width="177" height="40" rx="8" fill="#93c5fd"/>
+    <text x="219" y="485" font-size="19" font-weight="800" fill="#2563eb">84만 7천 원</text>
+
+    <text x="32" y="534" font-size="15" fill="#64748b">지방소득세 포함, 표준세액공제 13만 원 포기 반영</text>
+  </g>
+</svg>
