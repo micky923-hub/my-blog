@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 700" role="img" aria-labelledby="t d">
+  <title id="t">주택담보대출 이자 공제, 날짜별로 할 일</title>
+  <desc id="d">12월 31일까지 세대주·집 수·대환 조건을 확인합니다. 1월 15일 무렵 홈택스 간소화 자료에서 이자상환액을 확인합니다. 빠졌으면 1월 중 은행에서 이자상환증명서를 받습니다. 1~2월 등본·등기부와 함께 회사에 제출합니다. 2월 급여에서 환급을 받습니다.</desc>
+  <rect x="0" y="0" width="560" height="700" rx="22" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif">
+    <text x="32" y="56" font-size="27" font-weight="800" fill="#0f172a">이자 공제, 날짜별 할 일</text>
+    <text x="32" y="88" font-size="17" fill="#475569">2026년 귀속 연말정산 기준</text>
+
+    <rect x="32" y="108" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="154" r="20" fill="#1d4ed8"/>
+    <text x="68" y="161" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="104" y="146" font-size="20" font-weight="800" fill="#0f172a">12월 31일까지</text>
+    <text x="104" y="176" font-size="16" fill="#334155">세대주·집 수·대환 15년 이상 확인</text>
+
+    <path d="M280 202 L280 216" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 212 L280 224 L288 212 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="226" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="272" r="20" fill="#1d4ed8"/>
+    <text x="68" y="279" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="104" y="264" font-size="20" font-weight="800" fill="#0f172a">1월 15일 무렵</text>
+    <text x="104" y="294" font-size="16" fill="#334155">홈택스 간소화 자료에서 이자 확인</text>
+
+    <path d="M280 320 L280 334" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 330 L280 342 L288 330 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="344" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="390" r="20" fill="#1d4ed8"/>
+    <text x="68" y="397" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="104" y="382" font-size="20" font-weight="800" fill="#0f172a">빠졌다면 1월 중</text>
+    <text x="104" y="412" font-size="16" fill="#334155">은행에서 이자상환증명서 받기</text>
+
+    <path d="M280 438 L280 452" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 448 L280 460 L288 448 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="462" width="496" height="92" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="68" cy="508" r="20" fill="#1d4ed8"/>
+    <text x="68" y="515" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">4</text>
+    <text x="104" y="500" font-size="20" font-weight="800" fill="#0f172a">1~2월 회사에 제출</text>
+    <text x="104" y="530" font-size="16" fill="#334155">등본·등기부·기준시가 자료와 함께</text>
+
+    <path d="M280 556 L280 570" stroke="#94a3b8" stroke-width="3"/>
+    <path d="M272 566 L280 578 L288 566 Z" fill="#94a3b8"/>
+
+    <rect x="32" y="580" width="496" height="92" rx="14" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+    <circle cx="68" cy="626" r="20" fill="#16a34a"/>
+    <text x="68" y="633" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle">5</text>
+    <text x="104" y="618" font-size="20" font-weight="800" fill="#0f172a">2월 급여에서 환급</text>
+    <text x="104" y="648" font-size="16" fill="#334155">놓쳤으면 5년 안에 경정청구</text>
+  </g>
+</svg>
