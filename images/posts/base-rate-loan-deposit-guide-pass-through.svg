@@ -10,7 +10,7 @@
 
     <rect x="32" y="84" width="496" height="66" rx="12" fill="#e0f2fe"/>
     <text x="52" y="114" font-size="18" font-weight="800" fill="#075985">① 기준금리 인상</text>
-    <text x="52" y="138" font-size="16" fill="#0c4a6e">지금 연 3.00% · 다음 결정 10월 22일</text>
+    <text x="52" y="138" font-size="16" fill="#0c4a6e">지금 연 3.25% · 11월 26일 인상</text>
     <line x1="280" y1="152" x2="280" y2="170" stroke="#94a3b8" stroke-width="3" marker-end="url(#a)"/>
 
     <rect x="32" y="176" width="496" height="66" rx="12" fill="#e0f2fe"/>
