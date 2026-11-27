@@ -1,6 +1,7 @@
 ---
 title: 새해 재테크 계획 세우는 법, 비상금 먼저 채우고 저축·투자 비율 정하는 5단계
 date: 2026-11-18
+updated: 2026-11-27
 tags: [저축, 투자, 목돈마련, 비상금]
 summary: 새해 재테크 계획은 상품보다 순서가 먼저입니다. 한 달 남는 돈 확인, 생활비 3~6개월 비상금, 비싼 빚 정리, 연금저축 세액공제, 쓸 시점별 저축·투자 비율까지 5단계로 정리했습니다. 적금·예금 계산기로 계산한 금액별 세후 이자와 상황별 비율 예시도 담았습니다.
 image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=400&fit=crop
@@ -70,7 +71,7 @@ image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=400&
 
 갚기 전에 중도상환수수료가 있는지 확인하세요. 금리를 낮출 수 있다면 [금리인하요구권](/posts/2026-interest-rate-cut-request-guide.html)부터 신청해 보고, 다른 은행으로 옮길지는 [대출 갈아타기 계산기](/apps/loan-refinance-calculator/)로 수수료까지 빼서 비교하세요.
 
-한국은행 기준금리는 2026년 11월 18일 확인 기준 연 3.00%입니다(2026년 8월 27일 결정, [한국은행 기준금리 추이](https://www.bok.or.kr/portal/singl/baseRate/list.do?dataSeCd=01&menuNo=200643)). 변동금리 대출이 있다면 금리 결정 때마다 이자가 달라지니 [기준금리와 대출 이자](/posts/2026-base-rate-loan-deposit-guide.html) 글도 함께 보세요.
+한국은행 기준금리는 2026년 11월 26일 0.25%p 올라 연 3.25%입니다( [한국은행 기준금리 추이](https://www.bok.or.kr/portal/singl/baseRate/list.do?dataSeCd=01&menuNo=200643)). 변동금리 대출이 있다면 금리 결정 때마다 이자가 달라지니 [기준금리와 대출 이자](/posts/2026-base-rate-loan-deposit-guide.html) 글도 함께 보세요.
 
 ## 연금저축은 올해 몫부터 12월 31일 전에 넣으세요
 
